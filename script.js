@@ -86,6 +86,58 @@ function goBack() { showStep('step1'); }
 // ===== FORM SUBMIT =====
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuK1o1PdjrfvhJwutbSzn7y3-TVP4qWl8tDvgKALnJyCyaNlTHWCh8SJM2kGgWVeY/exec';
 
+// Package → QR data mapping
+const PACKAGE_DATA = {
+  'Cấu trúc + Luyện dịch - 69K':       { amount: 69000,  content: 'tai lieu tieng trung 1' },
+  'Từ vựng HSK1-HSK6 - 39K':            { amount: 39000,  content: 'tai lieu tieng trung 2' },
+  'Luyện gõ Hán tự HSK1-HSK4 - 39K':    { amount: 39000,  content: 'tai lieu tieng trung 3' },
+  '1200 câu giao tiếp + Video - 99K':   { amount: 99000,  content: 'tai lieu tieng trung 4' },
+  '60 bộ thủ chữ Hán - 39K':            { amount: 39000,  content: 'tai lieu tieng trung 5' },
+  'Full trọn bộ - 199K':                { amount: 199000, content: 'tai lieu tieng trung 6' }
+};
+
+function generateQR(pkg) {
+  const data = PACKAGE_DATA[pkg];
+  if (!data) return;
+
+  const bankId = 'TCB';
+  const accountNo = '19032738533021';
+  const template = 'compact2';
+  const qrUrl = `https://img.vietqr.io/image/${bankId}-${accountNo}-${template}.png?amount=${data.amount}&addInfo=${encodeURIComponent(data.content)}&accountName=${encodeURIComponent('PHAM NGOC TRAI')}`;
+
+  document.getElementById('qrImage').src = qrUrl;
+  document.getElementById('qrAmount').textContent = data.amount.toLocaleString('vi-VN') + '₫';
+  document.getElementById('qrContent').textContent = data.content;
+  document.getElementById('qrPkgInfo').textContent = '📦 ' + pkg;
+
+  // VietQR deeplink - opens banking app on mobile
+  const deeplink = `https://dl.vietqr.io/pay?app=&ba=${accountNo}&bn=PHAM+NGOC+TRAI&am=${data.amount}&dn=${encodeURIComponent(data.content)}&bi=970407`;
+  document.getElementById('qrDeeplink').href = deeplink;
+}
+
+function downloadQR() {
+  const img = document.getElementById('qrImage');
+  const link = document.createElement('a');
+  link.href = img.src;
+  link.download = 'QR_thanhtoan.png';
+  link.target = '_blank';
+  // On mobile, open in new tab so user can long-press to save
+  window.open(img.src, '_blank');
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Đã sao chép: ' + text);
+  });
+}
+
+function copyTransferContent() {
+  const content = document.getElementById('qrContent').textContent;
+  navigator.clipboard.writeText(content).then(() => {
+    alert('Đã sao chép nội dung CK: ' + content);
+  });
+}
+
 async function submitOrder(e) {
   e.preventDefault();
   const name = document.getElementById('fullName').value.trim();
@@ -99,7 +151,6 @@ async function submitOrder(e) {
 
   const now = new Date();
   const timestamp = now.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
-  const source = 'landing-tieng-trung-v2';
 
   try {
     const payload = {
@@ -118,15 +169,28 @@ async function submitOrder(e) {
     });
 
     if (typeof fbq !== 'undefined') {
-      fbq('track', 'CompleteRegistration', { content_name: selectedPackage, value: selectedPackage.includes('199') ? 199000 : selectedPackage.includes('149') ? 149000 : 99000, currency: 'VND' });
+      const priceMatch = selectedPackage.match(/(\d+)K/);
+      const value = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
+      fbq('track', 'CompleteRegistration', { content_name: selectedPackage, value: value, currency: 'VND' });
     }
 
-    await new Promise(r => setTimeout(r, 1500));
+    await new Promise(r => setTimeout(r, 1000));
 
-    window.location.href = 'thanks.html?name=' + encodeURIComponent(name) + '&pkg=' + encodeURIComponent(selectedPackage);
+    // Show QR payment step
+    generateQR(selectedPackage);
+    showStep('step3');
+
+    // Reset button
+    btn.disabled = false;
+    document.getElementById('btnText').classList.remove('hidden');
+    document.getElementById('btnLoading').classList.add('hidden');
+
   } catch (err) {
     console.error(err);
-    if (typeof fbq !== 'undefined') fbq('track', 'CompleteRegistration');
-    window.location.href = 'thanks.html?name=' + encodeURIComponent(name) + '&pkg=' + encodeURIComponent(selectedPackage);
+    generateQR(selectedPackage);
+    showStep('step3');
+    btn.disabled = false;
+    document.getElementById('btnText').classList.remove('hidden');
+    document.getElementById('btnLoading').classList.add('hidden');
   }
 }

@@ -27,33 +27,48 @@
     .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#0068ff,#0099ff);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:10px;transition:all .2s}
     .zalo-btn:hover{filter:brightness(1.1)}
     .note{font-size:12px;color:#999;margin-top:16px}
+    .hotline-box{margin-top:16px;padding:12px;background:#fff3f0;border-radius:8px;border:1px solid #ffccbc}
+    .hotline-box p{font-size:13px;color:#555;margin:0}
+    .hotline-box a{color:#ee4d2d;text-decoration:none}
+    .hotline-box i{color:#ee4d2d;margin-right:6px}
   </style>
 </head>
 <body>
   <div class="card">
     <div class="icon"><i class="fas fa-check"></i></div>
-    <h1>Đặt hàng <span class="highlight">thành công!</span></h1>
-    <p>Cảm ơn <strong id="userName"></strong> đã đặt hàng.</p>
+    <h1>Cảm ơn <span class="highlight" id="userName"></span>!</h1>
+    <p>Đơn hàng của bạn đã được ghi nhận thành công.</p>
     <div class="pkg-info" id="pkgInfo"></div>
+
     <div class="steps">
-      <h3>📋 Bước tiếp theo:</h3>
+      <h3>📋 Để nhận tài liệu, vui lòng:</h3>
       <ol>
-        <li>Liên hệ Zalo để nhận thông tin thanh toán</li>
-        <li>Chuyển khoản theo hướng dẫn</li>
-        <li>Nhận tài liệu ngay qua Zalo trong vài phút</li>
+        <li><strong>Chụp màn hình</strong> xác nhận chuyển khoản thành công</li>
+        <li><strong>Gửi ảnh chụp</strong> qua Zalo bằng nút bên dưới</li>
+        <li>Nhận tài liệu <strong>trong vài phút</strong> sau khi xác nhận</li>
       </ol>
     </div>
-    <a href="https://zalo.me/0528786710" class="zalo-btn" target="_blank">
-      <i class="fas fa-comment-dots"></i> Liên hệ Zalo ngay
+
+    <a id="zaloBtn" href="#" class="zalo-btn" target="_blank">
+      <i class="fas fa-comment-dots"></i> Gửi ảnh thanh toán qua Zalo
     </a>
-    <p class="note">Nếu chưa nhận được phản hồi, gọi trực tiếp: 0528786710</p>
+
+    <div class="hotline-box">
+      <p><i class="fas fa-phone"></i> Gọi trực tiếp nếu cần hỗ trợ: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
+    </div>
+
+    <p class="note">⏰ Thời gian xử lý: vài phút trong giờ hành chính (8h - 22h).<br>Ngoài giờ sẽ phản hồi sớm nhất có thể.</p>
   </div>
   <script>
     const params = new URLSearchParams(window.location.search);
     const name = params.get('name') || 'bạn';
-    const pkg = params.get('pkg') || '';
+    const pkg = params.get('pkg') || 'Bộ tài liệu tiếng Trung';
     document.getElementById('userName').textContent = name;
-    document.getElementById('pkgInfo').textContent = '📦 ' + (pkg || 'Bộ tài liệu tiếng Trung');
+    document.getElementById('pkgInfo').textContent = '📦 ' + pkg;
+
+    // Pre-fill Zalo message with customer info
+    const zaloMsg = `Xin chào, mình là ${name}. Mình vừa thanh toán đơn hàng: ${pkg}. Mình gửi ảnh xác nhận thanh toán ạ.`;
+    document.getElementById('zaloBtn').href = 'https://zalo.me/0528786710';
   </script>
 </body>
 </html>
