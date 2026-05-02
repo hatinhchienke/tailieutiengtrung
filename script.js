@@ -92,7 +92,7 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuK1o1PdjrfvhJwutbS
 const PACKAGE_DATA = {
   'Cấu trúc + Luyện dịch - 69K':       { amount: 69000,  content: 'tai lieu tieng trung 1' },
   'Từ vựng HSK1-HSK6 - 39K':            { amount: 39000,  content: 'tai lieu tieng trung 2' },
-  'Luyện gõ Hán tự HSK1-HSK4 - 39K':    { amount: 39000,  content: 'tai lieu tieng trung 3' },
+  'Luyện gõ Hán tự HSK1-HSK3 - 39K':    { amount: 39000,  content: 'tai lieu tieng trung 3' },
   '1200 câu giao tiếp + Video - 99K':   { amount: 99000,  content: 'tai lieu tieng trung 4' },
   '60 bộ thủ chữ Hán - 39K':            { amount: 39000,  content: 'tai lieu tieng trung 5' },
   'Full trọn bộ - 199K':                { amount: 199000, content: 'tai lieu tieng trung 6' }

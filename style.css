@@ -13,9 +13,9 @@ img { max-width:100%; display:block; }
 .hero-slider { position:relative; background:#000; }
 .slider-container { position:relative; overflow:hidden; }
 .slides { display:flex; transition:transform .4s ease; }
-.slide { min-width:100%; aspect-ratio:9/16; display:flex; align-items:center; justify-content:center; position:relative; background:#000; }
-.slide img { width:100%; height:100%; object-fit:cover; }
-.slide video { width:100%; height:100%; object-fit:contain; }
+.slide { min-width:100%; aspect-ratio:3/4; display:flex; align-items:center; justify-content:center; position:relative; background:#000; }
+.slide img, .slide video { width:100%; height:100%; object-fit:contain; background:#fff; }
+.slide-label { position:absolute; bottom:10px; left:10px; background:rgba(0,0,0,.65); color:#fff; font-size:12px; font-weight:600; padding:5px 12px; border-radius:20px; z-index:3; }
 .play-btn { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:64px; height:64px; border-radius:50%; background:rgba(0,0,0,.55); border:3px solid #fff; color:#fff; font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:5; transition:all .2s; }
 .play-btn:hover { background:rgba(238,77,45,.8); }
 .play-btn.playing { display:none; }
@@ -126,8 +126,13 @@ img { max-width:100%; display:block; }
 .guarantee-block h4 { color:#ff9800; }
 .digital-block { background:#e3f2fd; border-left:4px solid #1565c0; }
 .digital-block h4 { color:#1565c0; }
-.preview-images { display:flex; flex-direction:column; gap:4px; margin-bottom:16px; }
-.preview-images img { border-radius:4px; border:1px solid #eee; }
+.review-slider-section { background:#fff; padding:16px 12px; margin-bottom:8px; }
+.review-slider-title { font-size:15px; font-weight:700; color:#333; margin-bottom:12px; }
+.review-slider { display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding-bottom:8px; }
+.review-slider::-webkit-scrollbar { height:4px; }
+.review-slider::-webkit-scrollbar-thumb { background:#ddd; border-radius:4px; }
+.review-slide { min-width:45%; scroll-snap-align:start; flex-shrink:0; max-height:300px; overflow:hidden; border-radius:8px; }
+.review-slide img { width:100%; height:300px; object-fit:cover; object-position:top; border-radius:8px; border:1px solid #eee; box-shadow:0 2px 8px rgba(0,0,0,.08); }
 
 /* PRODUCT CATALOG */
 .product-catalog { display:flex; flex-direction:column; gap:12px; margin-bottom:16px; }
