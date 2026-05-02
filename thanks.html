@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đặt hàng thành công</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1518933582936427');
+    fbq('track','PageView');
+  </script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Roboto',sans-serif;background:#f5f5f5;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+    .card{background:#fff;border-radius:16px;padding:40px 24px;max-width:420px;width:100%;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+    .icon{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#00bfa5,#4dd0e1);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px;color:#fff}
+    h1{font-size:22px;color:#222;margin-bottom:8px}
+    .highlight{color:#ee4d2d;font-weight:700}
+    p{font-size:14px;color:#555;line-height:1.7;margin-bottom:12px}
+    .pkg-info{background:#f0faf7;padding:12px;border-radius:8px;margin:16px 0;font-weight:500;color:#00897b;border:1px solid #b2dfdb}
+    .steps{text-align:left;margin:20px 0;padding:16px;background:#fafafa;border-radius:8px}
+    .steps h3{font-size:14px;margin-bottom:10px;color:#333}
+    .steps ol{padding-left:20px}
+    .steps li{font-size:13px;line-height:2;color:#555}
+    .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#0068ff,#0099ff);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:10px;transition:all .2s}
+    .zalo-btn:hover{filter:brightness(1.1)}
+    .note{font-size:12px;color:#999;margin-top:16px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon"><i class="fas fa-check"></i></div>
+    <h1>Đặt hàng <span class="highlight">thành công!</span></h1>
+    <p>Cảm ơn <strong id="userName"></strong> đã đặt hàng.</p>
+    <div class="pkg-info" id="pkgInfo"></div>
+    <div class="steps">
+      <h3>📋 Bước tiếp theo:</h3>
+      <ol>
+        <li>Liên hệ Zalo để nhận thông tin thanh toán</li>
+        <li>Chuyển khoản theo hướng dẫn</li>
+        <li>Nhận tài liệu ngay qua Zalo trong vài phút</li>
+      </ol>
+    </div>
+    <a href="https://zalo.me/0528786710" class="zalo-btn" target="_blank">
+      <i class="fas fa-comment-dots"></i> Liên hệ Zalo ngay
+    </a>
+    <p class="note">Nếu chưa nhận được phản hồi, gọi trực tiếp: 0528786710</p>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name') || 'bạn';
+    const pkg = params.get('pkg') || '';
+    document.getElementById('userName').textContent = name;
+    document.getElementById('pkgInfo').textContent = '📦 ' + (pkg || 'Bộ tài liệu tiếng Trung');
+  </script>
+</body>
+</html>
