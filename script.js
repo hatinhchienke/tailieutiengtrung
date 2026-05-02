@@ -63,6 +63,8 @@ function openModal() {
   document.getElementById('modalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
   showStep('step1');
+  // FB Pixel: khách mở modal xem sản phẩm
+  if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', { content_name: 'Mở modal chọn gói' });
 }
 
 function closeModal() {
@@ -109,10 +111,6 @@ function generateQR(pkg) {
   document.getElementById('qrAmount').textContent = data.amount.toLocaleString('vi-VN') + '₫';
   document.getElementById('qrContent').textContent = data.content;
   document.getElementById('qrPkgInfo').textContent = '📦 ' + pkg;
-
-  // VietQR deeplink - opens banking app on mobile
-  const deeplink = `https://dl.vietqr.io/pay?app=&ba=${accountNo}&bn=PHAM+NGOC+TRAI&am=${data.amount}&dn=${encodeURIComponent(data.content)}&bi=970407`;
-  document.getElementById('qrDeeplink').href = deeplink;
 }
 
 function downloadQR() {
@@ -168,10 +166,11 @@ async function submitOrder(e) {
       body: JSON.stringify(payload)
     });
 
+    // FB Pixel: khách điền form = Lead
     if (typeof fbq !== 'undefined') {
       const priceMatch = selectedPackage.match(/(\d+)K/);
       const value = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
-      fbq('track', 'CompleteRegistration', { content_name: selectedPackage, value: value, currency: 'VND' });
+      fbq('track', 'Lead', { content_name: selectedPackage, value: value, currency: 'VND' });
     }
 
     await new Promise(r => setTimeout(r, 1000));
@@ -179,6 +178,13 @@ async function submitOrder(e) {
     // Show QR payment step
     generateQR(selectedPackage);
     showStep('step3');
+
+    // FB Pixel: khách thấy QR = sẵn sàng thanh toán
+    if (typeof fbq !== 'undefined') {
+      const priceMatch2 = selectedPackage.match(/(\d+)K/);
+      const val2 = priceMatch2 ? parseInt(priceMatch2[1]) * 1000 : 0;
+      fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: val2, currency: 'VND' });
+    }
 
     // Reset button
     btn.disabled = false;

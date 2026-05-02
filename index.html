@@ -40,6 +40,9 @@
           <video id="heroVideo" src="a.mp4" poster="images/Screenshot_1.png" playsinline preload="metadata"></video>
           <button class="play-btn" id="playBtn"><i class="fas fa-play"></i></button>
         </div>
+        <div class="slide"><img src="1200 câu/1.png" alt="1200 câu giao tiếp 1"></div>
+        <div class="slide"><img src="1200 câu/2.png" alt="1200 câu giao tiếp 2"></div>
+        <div class="slide"><img src="1200 câu/3.png" alt="1200 câu giao tiếp 3"></div>
         <div class="slide"><img src="images/Screenshot_1.png" alt="Cấu trúc câu"></div>
         <div class="slide"><img src="images/Screenshot_2.png" alt="Luyện dịch"></div>
         <div class="slide"><img src="images/Screenshot_3.png" alt="Bài tập"></div>
@@ -61,8 +64,11 @@
         <span class="dot" data-index="7"></span>
         <span class="dot" data-index="8"></span>
         <span class="dot" data-index="9"></span>
+        <span class="dot" data-index="10"></span>
+        <span class="dot" data-index="11"></span>
+        <span class="dot" data-index="12"></span>
       </div>
-      <div class="slide-counter"><span id="currentSlide">1</span>/10</div>
+      <div class="slide-counter"><span id="currentSlide">1</span>/13</div>
     </div>
   </section>
 
@@ -489,15 +495,6 @@
           <div class="qr-pkg-info" id="qrPkgInfo"></div>
           <div class="qr-container">
             <img id="qrImage" src="" alt="QR Thanh toán" loading="lazy" crossorigin="anonymous">
-            <p class="qr-save-hint">Nhấn giữ QR để lưu ảnh</p>
-          </div>
-          <div class="qr-actions">
-            <button class="qr-action-btn" onclick="downloadQR()">
-              <i class="fas fa-download"></i> Lưu mã QR
-            </button>
-            <a class="qr-action-btn qr-action-primary" id="qrDeeplink" href="#" target="_blank">
-              <i class="fas fa-building-columns"></i> Mở app ngân hàng
-            </a>
           </div>
           <div class="qr-amount">
             <span>Số tiền thanh toán</span>
