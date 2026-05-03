@@ -166,11 +166,12 @@ async function submitOrder(e) {
       body: JSON.stringify(payload)
     });
 
-    // FB Pixel: khách điền form = Lead
+    // FB Pixel: khách điền form = Lead + Hoàn tất đăng ký
     if (typeof fbq !== 'undefined') {
       const priceMatch = selectedPackage.match(/(\d+)K/);
       const value = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
       fbq('track', 'Lead', { content_name: selectedPackage, value: value, currency: 'VND' });
+      fbq('track', 'CompleteRegistration', { content_name: selectedPackage, value: value, currency: 'VND' });
     }
 
     await new Promise(r => setTimeout(r, 1000));
