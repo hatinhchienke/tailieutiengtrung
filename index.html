@@ -55,37 +55,20 @@
     <div class="slider-container">
       <div class="slides">
         <div class="slide active">
-          <video id="heroVideo" src="video bộ tài liệu.mp4" poster="images/ảnh bìa video.webp" playsinline
-            preload="none"></video>
-          <button class="play-btn" id="playBtn"><i class="fas fa-play"></i></button>
+          <div class="yt-lazy" id="ytLazy" data-id="g8p1BpPhAUY">
+            <img src="images/ảnh bìa video.webp" alt="Video giới thiệu bộ tài liệu" class="yt-poster">
+            <button class="play-btn" id="playBtn"><i class="fas fa-play"></i></button>
+          </div>
         </div>
-        <div class="slide"><img src="ảnh slider/1.webp" alt="1200 câu giao tiếp 1" loading="lazy"><span class="slide-label">📦 1200 câu
+        <div class="slide"><img src="ảnh slider/1.webp" alt="1200 câu giao tiếp" loading="lazy"><span class="slide-label">📦 1200 câu
             giao tiếp</span></div>
-        <div class="slide"><img src="ảnh slider/2.webp" alt="1200 câu giao tiếp 2" loading="lazy"><span class="slide-label">📦 1200 câu
-            giao tiếp</span></div>
-        <div class="slide"><img src="ảnh slider/3.webp" alt="1200 câu giao tiếp 3" loading="lazy"><span class="slide-label">📦 1200 câu
-            giao tiếp</span></div>
-        <div class="slide"><img src="ảnh slider/4.webp" alt="1200 câu giao tiếp 4" loading="lazy"><span class="slide-label">📦 1200 câu
-            giao tiếp</span></div>
-        <div class="slide"><img src="ảnh slider/5.webp" alt="Cấu trúc + Luyện dịch 1" loading="lazy"><span class="slide-label">📦 Cấu
+        <div class="slide"><img src="ảnh slider/5.webp" alt="Cấu trúc + Luyện dịch" loading="lazy"><span class="slide-label">📦 Cấu
             trúc + Luyện dịch</span></div>
-        <div class="slide"><img src="ảnh slider/6.webp" alt="Cấu trúc + Luyện dịch 2" loading="lazy"><span class="slide-label">📦 Cấu
-            trúc + Luyện dịch</span></div>
-        <div class="slide"><img src="ảnh slider/7.webp" alt="Cấu trúc + Luyện dịch 3" loading="lazy"><span class="slide-label">📦 Cấu
-            trúc + Luyện dịch</span></div>
-        <div class="slide"><img src="ảnh slider/8.webp" alt="Cấu trúc + Luyện dịch 4" loading="lazy"><span class="slide-label">📦 Cấu
-            trúc + Luyện dịch</span></div>
-        <div class="slide"><img src="ảnh slider/9.webp" alt="Từ vựng HSK 1" loading="lazy"><span class="slide-label">📦 Từ vựng HSK1 -
+        <div class="slide"><img src="ảnh slider/9.webp" alt="Từ vựng HSK1 - HSK6" loading="lazy"><span class="slide-label">📦 Từ vựng HSK1 -
             HSK6</span></div>
-        <div class="slide"><img src="ảnh slider/10.webp" alt="Từ vựng HSK 2" loading="lazy"><span class="slide-label">📦 Từ vựng HSK1 -
-            HSK6</span></div>
-        <div class="slide"><img src="ảnh slider/11.webp" alt="Luyện gõ Hán tự 1" loading="lazy"><span class="slide-label">📦 Luyện gõ
+        <div class="slide"><img src="ảnh slider/11.webp" alt="Luyện gõ Hán tự" loading="lazy"><span class="slide-label">📦 Luyện gõ
             Hán tự HSK1 - HSK3</span></div>
-        <div class="slide"><img src="ảnh slider/12.webp" alt="Luyện gõ Hán tự 2" loading="lazy"><span class="slide-label">📦 Luyện gõ
-            Hán tự HSK1 - HSK3</span></div>
-        <div class="slide"><img src="ảnh slider/13.webp" alt="60 bộ thủ 1" loading="lazy"><span class="slide-label">📦 60 bộ thủ cốt
-            lõi</span></div>
-        <div class="slide"><img src="ảnh slider/14.webp" alt="60 bộ thủ 2" loading="lazy"><span class="slide-label">📦 60 bộ thủ cốt
+        <div class="slide"><img src="ảnh slider/13.webp" alt="60 bộ thủ cốt lõi" loading="lazy"><span class="slide-label">📦 60 bộ thủ cốt
             lõi</span></div>
       </div>
       <div class="slide-dots">
@@ -95,17 +78,8 @@
         <span class="dot" data-index="3"></span>
         <span class="dot" data-index="4"></span>
         <span class="dot" data-index="5"></span>
-        <span class="dot" data-index="6"></span>
-        <span class="dot" data-index="7"></span>
-        <span class="dot" data-index="8"></span>
-        <span class="dot" data-index="9"></span>
-        <span class="dot" data-index="10"></span>
-        <span class="dot" data-index="11"></span>
-        <span class="dot" data-index="12"></span>
-        <span class="dot" data-index="13"></span>
-        <span class="dot" data-index="14"></span>
       </div>
-      <div class="slide-counter"><span id="currentSlide">1</span>/15</div>
+      <div class="slide-counter"><span id="currentSlide">1</span>/6</div>
     </div>
   </section>
 
@@ -290,6 +264,13 @@
           </div>
         </div>
         <div class="catalog-save">Tiết kiệm 56% so với mua lẻ</div>
+        <div class="catalog-preview">
+          <img src="ảnh slider/1.webp" alt="1200 câu giao tiếp" loading="lazy">
+          <img src="ảnh slider/5.webp" alt="Cấu trúc + Luyện dịch" loading="lazy">
+          <img src="ảnh slider/9.webp" alt="Từ vựng HSK" loading="lazy">
+          <img src="ảnh slider/11.webp" alt="Luyện gõ Hán tự" loading="lazy">
+          <img src="ảnh slider/13.webp" alt="60 bộ thủ" loading="lazy">
+        </div>
         <ul class="catalog-features">
           <li><i class="fas fa-check"></i> Cấu trúc câu + Luyện dịch tiếng Trung</li>
           <li><i class="fas fa-check"></i> Từ vựng HSK1 – HSK6 đầy đủ</li>
@@ -315,6 +296,12 @@
             </div>
           </div>
         </div>
+        <div class="catalog-preview">
+          <img src="ảnh slider/5.webp" alt="Cấu trúc 1" loading="lazy">
+          <img src="ảnh slider/6.webp" alt="Cấu trúc 2" loading="lazy">
+          <img src="ảnh slider/7.webp" alt="Cấu trúc 3" loading="lazy">
+          <img src="ảnh slider/8.webp" alt="Cấu trúc 4" loading="lazy">
+        </div>
         <ul class="catalog-features">
           <li><i class="fas fa-check"></i> Hơn 30 cấu trúc ngữ pháp từ cơ bản đến nâng cao</li>
           <li><i class="fas fa-check"></i> Giải thích bằng tiếng Việt, dễ hiểu cho người mới</li>
@@ -337,6 +324,10 @@
             </div>
           </div>
         </div>
+        <div class="catalog-preview">
+          <img src="ảnh slider/9.webp" alt="Từ vựng 1" loading="lazy">
+          <img src="ảnh slider/10.webp" alt="Từ vựng 2" loading="lazy">
+        </div>
         <ul class="catalog-features">
           <li><i class="fas fa-check"></i> Đầy đủ từ HSK1 đến HSK6 (hơn 5000 từ)</li>
           <li><i class="fas fa-check"></i> Có chữ Hán, phiên âm Pinyin, nghĩa tiếng Việt</li>
@@ -357,6 +348,10 @@
               <span class="catalog-sale">39,000₫</span>
             </div>
           </div>
+        </div>
+        <div class="catalog-preview">
+          <img src="ảnh slider/11.webp" alt="Luyện gõ 1" loading="lazy">
+          <img src="ảnh slider/12.webp" alt="Luyện gõ 2" loading="lazy">
         </div>
         <ul class="catalog-features">
           <li><i class="fas fa-check"></i> Rèn kỹ năng gõ và nhận diện chữ Hán</li>
@@ -380,6 +375,12 @@
             </div>
           </div>
         </div>
+        <div class="catalog-preview">
+          <img src="ảnh slider/1.webp" alt="1200 câu 1" loading="lazy">
+          <img src="ảnh slider/2.webp" alt="1200 câu 2" loading="lazy">
+          <img src="ảnh slider/3.webp" alt="1200 câu 3" loading="lazy">
+          <img src="ảnh slider/4.webp" alt="1200 câu 4" loading="lazy">
+        </div>
         <ul class="catalog-features">
           <li><i class="fas fa-check"></i> 1200 câu giao tiếp theo 100+ chủ đề thực tế</li>
           <li><i class="fas fa-check"></i> Video hướng dẫn phát âm chi tiết từng câu</li>
@@ -401,6 +402,10 @@
               <span class="catalog-sale">39,000₫</span>
             </div>
           </div>
+        </div>
+        <div class="catalog-preview">
+          <img src="ảnh slider/13.webp" alt="60 bộ thủ 1" loading="lazy">
+          <img src="ảnh slider/14.webp" alt="60 bộ thủ 2" loading="lazy">
         </div>
         <ul class="catalog-features">
           <li><i class="fas fa-check"></i> 60 bộ thủ xuất hiện nhiều nhất trong tiếng Trung</li>
@@ -580,6 +585,17 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+    <div class="lightbox-img-wrap" id="lightboxWrap">
+      <img src="" alt="Preview" id="lightboxImg">
+    </div>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
   </div>
 
   <script src="script.js"></script>
