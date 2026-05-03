@@ -959,8 +959,8 @@ img {
 .catalog-preview { display:flex; gap:8px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 0 12px; margin-bottom:4px; }
 .catalog-preview::-webkit-scrollbar { height:3px; }
 .catalog-preview::-webkit-scrollbar-thumb { background:#ddd; border-radius:3px; }
-.catalog-preview img { width:100%; height:auto; max-height:300px; object-fit:contain; border-radius:8px; border:1.5px solid #eee; flex-shrink:0; scroll-snap-align:start; cursor:pointer; transition:all .2s; }
-.catalog-preview img:hover { border-color:#ee4d2d; box-shadow:0 2px 8px rgba(238,77,45,.15); }
+.catalog-preview img { width:80px; height:80px; object-fit:cover; border-radius:8px; border:1.5px solid #eee; flex-shrink:0; scroll-snap-align:start; cursor:pointer; transition:all .2s; }
+.catalog-preview img:hover { border-color:#ee4d2d; transform:scale(1.05); box-shadow:0 2px 8px rgba(238,77,45,.15); }
 
 /* FOOTER */
 .footer-info {
