@@ -86,13 +86,33 @@
     </div>
   </section>
 
-  <!-- VOUCHER BADGES -->
-  <section class="voucher-bar">
-    <div class="voucher-item super"><span class="v-label">SUPER</span><span class="v-text">Voucher<br>Siêu Sao</span>
+
+
+  <!-- FLASH SALE -->
+  <section class="flash-sale-bar">
+    <div class="flash-sale-header">
+      <div class="flash-sale-title">
+        <i class="fas fa-bolt"></i>
+        <span class="flash-text">FLASH SALE</span>
+        <span class="flash-badge">Hôm nay</span>
+      </div>
+      <div class="flash-countdown">
+        <span class="countdown-label">Kết thúc sau</span>
+        <div class="countdown-boxes">
+          <span class="cd-box" id="cdHours">00</span>
+          <span class="cd-sep">:</span>
+          <span class="cd-box" id="cdMins">00</span>
+          <span class="cd-sep">:</span>
+          <span class="cd-box" id="cdSecs">00</span>
+        </div>
+      </div>
     </div>
-    <div class="voucher-item xtra"><span class="v-label">XTRA</span><span class="v-text">Shipping<br>Voucher</span>
+    <div class="flash-sale-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" id="flashProgress"></div>
+      </div>
+      <span class="progress-text">Đã bán <strong id="flashSold">87</strong>%</span>
     </div>
-    <div class="voucher-item bonus"><span class="v-label">Bonus</span><span class="v-text">Hoàn tiền</span></div>
   </section>
 
   <!-- PRICING -->
@@ -119,8 +139,7 @@
       <span class="sold">Đã bán 9.3K</span>
     </div>
     <div class="free-ship"><i class="fas fa-bolt"></i> Gửi file ngay qua Zalo — Không phải chờ ship</div>
-    <div class="digital-badge"><i class="fas fa-file-pdf"></i> Sản phẩm dạng FILE số (PDF/Excel) — Có thể tự in thành
-      sách</div>
+    <div class="digital-badge"><i class="fas fa-file-pdf"></i> ⚠️ Đây là FILE số (PDF/Excel) — KHÔNG phải sách giấy. Bạn có thể tự in thành sách</div>
   </section>
 
   <!-- OPTIONS -->
@@ -147,8 +166,22 @@
   <!-- TRUST BADGES -->
   <section class="trust-section">
     <div class="trust-item"><i class="fas fa-shield-halved"></i><span>Thanh toán bảo mật</span></div>
-    <div class="trust-item"><i class="fas fa-rotate-left"></i><span>Đổi trả dễ dàng</span></div>
+    <div class="trust-item"><i class="fas fa-rotate-left"></i><span>Hoàn tiền 100%</span></div>
     <div class="trust-item"><i class="fas fa-headset"></i><span>Hỗ trợ nhanh</span></div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="guarantee-section">
+    <div class="guarantee-icon"><i class="fas fa-shield-halved"></i></div>
+    <div class="guarantee-content">
+      <h4>CAM KẾT HOÀN TIỀN 100%</h4>
+      <p>Nếu tài liệu không đúng như mô tả hoặc bạn không hài lòng — hoàn tiền <strong>100% trong 24h</strong>, không hỏi lý do.</p>
+      <div class="guarantee-tags">
+        <span><i class="fas fa-check-circle"></i> Không rủi ro</span>
+        <span><i class="fas fa-check-circle"></i> Hoàn tiền nhanh</span>
+        <span><i class="fas fa-check-circle"></i> Không hỏi lý do</span>
+      </div>
+    </div>
   </section>
 
   <!-- PAYMENT INFO -->
@@ -439,9 +472,12 @@
     </div>
 
     <div class="desc-block digital-block">
-      <h4>📲 SẢN PHẨM DẠNG FILE SỐ</h4>
+      <h4>📲 SẢN PHẨM DẠNG FILE SỐ — KHÔNG PHẢI SÁCH GIẤY</h4>
+      <div class="digital-warning-banner">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>Đây là tài liệu dạng <strong>FILE điện tử</strong> (PDF/Excel), <strong>KHÔNG</strong> phải sách giấy giao tận nơi.</span>
+      </div>
       <ul>
-        <li><strong>Đây KHÔNG phải sách giấy.</strong> Tài liệu ở dạng file PDF / Excel.</li>
         <li>Nhận file ngay qua <strong>Zalo</strong> trong vòng vài phút sau thanh toán.</li>
         <li>Bạn hoàn toàn có thể <strong>tự in ra giấy</strong> thành sách để học.</li>
         <li>File dùng được trên <strong>điện thoại, máy tính, máy tính bảng</strong>.</li>
@@ -480,6 +516,10 @@
           <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body">
+          <div class="modal-digital-notice">
+            <i class="fas fa-file-pdf"></i>
+            <span>Sản phẩm dạng <strong>FILE số</strong> (PDF/Excel) — Không phải sách giấy. Nhận qua Zalo ngay sau khi thanh toán.</span>
+          </div>
           <div class="product-thumbs">
             <img src="images/Screenshot_1.webp" alt="SP1" loading="lazy">
             <img src="images/Screenshot_4.webp" alt="SP2" loading="lazy">
@@ -522,8 +562,12 @@
           <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body">
-          <h4 class="form-title">Thông tin nhận hàng</h4>
-          <p class="form-subtitle">Vui lòng nhập chính xác thông tin để nhận tài liệu!</p>
+          <h4 class="form-title">Thông tin nhận tài liệu</h4>
+          <p class="form-subtitle">Vui lòng nhập chính xác thông tin để nhận file qua Zalo!</p>
+          <div class="modal-digital-notice">
+            <i class="fas fa-file-pdf"></i>
+            <span>📲 Tài liệu dạng <strong>FILE số</strong> — nhận qua Zalo ngay sau thanh toán. Có thể tự in thành sách.</span>
+          </div>
           <div class="selected-pkg" id="selectedPkg"></div>
           <form id="orderForm" onsubmit="submitOrder(event)">
             <div class="form-group">
@@ -535,10 +579,10 @@
               <input type="tel" id="phone" placeholder="0xxxxxxxxx" required>
             </div>
             <button type="submit" class="btn-submit" id="submitBtn">
-              <span id="btnText">NHẬN TÀI LIỆU NGAY</span>
+              <span id="btnText">TIẾP TỤC THANH TOÁN</span>
               <span id="btnLoading" class="hidden"><i class="fas fa-spinner fa-spin"></i> Đang gửi...</span>
             </button>
-            <p class="form-note">*Tài liệu được gửi qua Zalo trong vòng vài phút sau thanh toán.</p>
+            <p class="form-note">*File tài liệu (PDF/Excel) được gửi qua Zalo trong vòng vài phút sau khi thanh toán.</p>
           </form>
         </div>
       </div>
@@ -550,6 +594,8 @@
           <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body" style="text-align:center;">
+          <!-- Bước 1: QR nổi bật -->
+          <div class="qr-step-label"><span class="step-num">1</span> Chuyển khoản theo thông tin bên dưới</div>
           <div class="qr-pkg-info" id="qrPkgInfo"></div>
           <div class="qr-container">
             <img id="qrImage" src="" alt="QR Thanh toán" loading="lazy" crossorigin="anonymous">
@@ -569,17 +615,36 @@
                 style="cursor:pointer;color:#ee4d2d;font-size:12px;"></i></div>
           </div>
 
+          <!-- Bước 2: Xác nhận đã thanh toán -->
+          <div class="qr-step-label"><span class="step-num">2</span> Sau khi chuyển khoản xong</div>
+          <div class="qr-confirm-section">
+            <label class="confirm-checkbox" id="confirmLabel">
+              <input type="checkbox" id="confirmPaid" onchange="toggleZaloBtn()">
+              <span class="checkmark"></span>
+              <span class="confirm-text">Tôi đã chuyển khoản thành công ✅</span>
+            </label>
+          </div>
+
+          <!-- Bước 3: Gửi ảnh CK qua Zalo (disabled cho đến khi tick) -->
+          <div class="qr-step-label"><span class="step-num">3</span> Gửi ảnh chụp màn hình CK qua Zalo</div>
           <div class="qr-receive-guide">
-            <h4>📋 Sau khi chuyển khoản:</h4>
+            <h4>📋 Hướng dẫn:</h4>
             <ol>
-              <li>Chụp màn hình xác nhận chuyển khoản</li>
-              <li>Gửi ảnh qua Zalo để nhận tài liệu</li>
+              <li><strong>Chụp màn hình</strong> xác nhận chuyển khoản thành công</li>
+              <li>Nhấn nút bên dưới để <strong>gửi ảnh qua Zalo</strong></li>
+              <li>Nhận <strong>FILE tài liệu</strong> (PDF/Excel) trong vài phút</li>
             </ol>
           </div>
 
-          <a href="https://zalo.me/0528786710" class="qr-zalo-btn" target="_blank">
-            <i class="fas fa-comment-dots"></i> Gửi ảnh CK qua Zalo — Nhận tài liệu ngay
+          <a id="zaloPaymentBtn" class="qr-zalo-btn qr-zalo-btn-disabled" onclick="return false;">
+            <i class="fas fa-lock"></i> Vui lòng xác nhận đã thanh toán ở trên
           </a>
+          <p class="zalo-unlock-hint" id="zaloUnlockHint">👆 Tick xác nhận đã chuyển khoản để mở nút gửi Zalo</p>
+
+          <div class="qr-digital-reminder">
+            <i class="fas fa-info-circle"></i>
+            <span>Bạn sẽ nhận <strong>FILE số</strong> (PDF/Excel) qua Zalo — không phải sách giấy. Có thể tự in ra giấy.</span>
+          </div>
 
           <div class="qr-zalo-note">
             <p><i class="fas fa-phone"></i> Hotline/Zalo: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
@@ -599,6 +664,17 @@
     </div>
     <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
     <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
+  <!-- SOCIAL PROOF TOAST -->
+  <div class="social-proof-toast" id="socialProofToast">
+    <div class="toast-avatar" id="toastAvatar">N</div>
+    <div class="toast-content">
+      <p class="toast-name" id="toastName">Ng** Minh</p>
+      <p class="toast-pkg" id="toastPkg">vừa mua <strong>Full trọn bộ</strong></p>
+      <p class="toast-time" id="toastTime">3 phút trước</p>
+    </div>
+    <button class="toast-close" onclick="closeToast()"><i class="fas fa-times"></i></button>
   </div>
 
   <script src="script.js"></script>

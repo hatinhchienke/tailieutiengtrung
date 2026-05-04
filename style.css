@@ -262,6 +262,145 @@ img {
   color: #555;
 }
 
+/* FLASH SALE */
+.flash-sale-bar {
+  background: linear-gradient(135deg, #d0011b, #ee4d2d);
+  padding: 10px 12px;
+  margin-top: 2px;
+}
+
+.flash-sale-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.flash-sale-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flash-sale-title i {
+  color: #ffeb3b;
+  font-size: 16px;
+  animation: flash-pulse 1s ease-in-out infinite;
+}
+
+@keyframes flash-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+.flash-text {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.flash-badge {
+  background: #ffeb3b;
+  color: #d0011b;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.flash-countdown {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.countdown-label {
+  font-size: 11px;
+  color: rgba(255,255,255,.8);
+}
+
+.countdown-boxes {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.cd-box {
+  background: #222;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: 4px;
+  min-width: 28px;
+  text-align: center;
+  font-family: 'Roboto', monospace;
+}
+
+.cd-sep {
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.flash-sale-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 16px;
+  background: rgba(255,255,255,.3);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffeb3b, #ffc107);
+  border-radius: 10px;
+  transition: width .5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 8px,
+    rgba(255,255,255,.2) 8px,
+    rgba(255,255,255,.2) 16px
+  );
+  animation: progress-stripes 1s linear infinite;
+}
+
+@keyframes progress-stripes {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(16px); }
+}
+
+.progress-text {
+  font-size: 12px;
+  color: #fff;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.progress-text strong {
+  color: #ffeb3b;
+}
+
 /* PRICING */
 .pricing-section {
   background: #fff;
@@ -1458,6 +1597,322 @@ img {
 .qr-zalo-note i {
   color: #ee4d2d;
   margin-right: 4px;
+}
+
+/* QR Step Labels */
+.qr-step-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+  margin: 18px 0 12px;
+  text-align: left;
+}
+
+.qr-step-label .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ee4d2d, #ff6633);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Payment Confirmation Checkbox */
+.qr-confirm-section {
+  margin: 12px 0 16px;
+}
+
+.confirm-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #f0faf7;
+  border: 2px solid #b2dfdb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all .2s;
+  user-select: none;
+}
+
+.confirm-checkbox:hover {
+  border-color: #00bfa5;
+  background: #e0f7f3;
+}
+
+.confirm-checkbox input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  accent-color: #00bfa5;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.confirm-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #00897b;
+}
+
+/* Disabled Zalo Button */
+.qr-zalo-btn-disabled {
+  background: #ccc !important;
+  cursor: not-allowed !important;
+  pointer-events: auto;
+  opacity: 0.7;
+}
+
+.qr-zalo-btn-disabled:hover {
+  filter: none !important;
+}
+
+.zalo-unlock-hint {
+  font-size: 13px;
+  color: #ee4d2d;
+  font-weight: 500;
+  margin-top: -6px;
+  margin-bottom: 14px;
+  animation: pulse-hint 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Modal Digital Notice */
+.modal-digital-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  border: 1.5px solid #90caf9;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.modal-digital-notice i {
+  color: #1565c0;
+  font-size: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.modal-digital-notice span {
+  font-size: 13px;
+  color: #1565c0;
+  line-height: 1.6;
+}
+
+/* Digital Warning Banner */
+.digital-warning-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  border: 2px solid #ff9800;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.digital-warning-banner i {
+  color: #e65100;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.digital-warning-banner span {
+  font-size: 14px;
+  color: #bf360c;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* QR Digital Reminder */
+.qr-digital-reminder {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 14px;
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 10px;
+  margin: 14px 0;
+  text-align: left;
+}
+
+.qr-digital-reminder i {
+  color: #1565c0;
+  font-size: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.qr-digital-reminder span {
+  font-size: 13px;
+  color: #1565c0;
+  line-height: 1.5;
+}
+
+/* GUARANTEE SECTION */
+.guarantee-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  border: 2px solid #66bb6a;
+  margin: 8px 0 0;
+  padding: 16px 14px;
+  border-radius: 0;
+}
+
+.guarantee-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #43a047, #66bb6a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.guarantee-icon i {
+  font-size: 22px;
+  color: #fff;
+}
+
+.guarantee-content h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 4px;
+}
+
+.guarantee-content p {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.guarantee-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.guarantee-tags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #2e7d32;
+  background: rgba(255,255,255,.7);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.guarantee-tags span i {
+  font-size: 10px;
+  color: #43a047;
+}
+
+/* SOCIAL PROOF TOAST */
+.social-proof-toast {
+  position: fixed;
+  bottom: 70px;
+  left: 12px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.15);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  max-width: 320px;
+  z-index: 150;
+  transform: translateX(-120%);
+  opacity: 0;
+  transition: all .4s cubic-bezier(.175,.885,.32,1.275);
+  border: 1px solid #f0f0f0;
+}
+
+.social-proof-toast.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ee4d2d, #ff6633);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.toast-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #222;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.toast-pkg {
+  font-size: 12px;
+  color: #555;
+  margin: 2px 0 0;
+  line-height: 1.3;
+}
+
+.toast-pkg strong {
+  color: #ee4d2d;
+}
+
+.toast-time {
+  font-size: 11px;
+  color: #999;
+  margin: 2px 0 0;
+  line-height: 1.3;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  color: #bbb;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.toast-close:hover {
+  color: #666;
 }
 
 @keyframes fadeIn {

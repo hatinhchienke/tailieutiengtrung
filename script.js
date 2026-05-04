@@ -67,8 +67,47 @@ function playDemo() {
   setTimeout(() => { loadYouTube(); }, 500);
 }
 
+// ===== FLASH SALE COUNTDOWN =====
+function updateCountdown() {
+  const now = new Date();
+  // End time = midnight tonight (Vietnam time)
+  const end = new Date(now);
+  end.setHours(23, 59, 59, 0);
+  
+  const diff = end - now;
+  if (diff <= 0) return;
+
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+  const cdH = document.getElementById('cdHours');
+  const cdM = document.getElementById('cdMins');
+  const cdS = document.getElementById('cdSecs');
+  if (cdH) cdH.textContent = String(hours).padStart(2, '0');
+  if (cdM) cdM.textContent = String(mins).padStart(2, '0');
+  if (cdS) cdS.textContent = String(secs).padStart(2, '0');
+}
+
+// Sold percentage: consistent per day, changes daily (82-92%)
+function initFlashSold() {
+  const today = new Date();
+  const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+  const pct = 82 + (seed % 11); // 82-92%
+  const el = document.getElementById('flashSold');
+  const bar = document.getElementById('flashProgress');
+  if (el) el.textContent = pct;
+  if (bar) bar.style.width = pct + '%';
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+initFlashSold();
+
 // ===== MODAL =====
 let selectedPackage = '';
+let customerName = '';
+let customerPhone = '';
 
 function openModal() {
   document.getElementById('modalOverlay').classList.add('active');
@@ -86,6 +125,14 @@ function closeModal() {
 function showStep(id) {
   document.querySelectorAll('.modal-step').forEach(s => s.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
+  // Reset checkbox & zalo btn when going back to QR step
+  if (id === 'step3') {
+    const cb = document.getElementById('confirmPaid');
+    if (cb) {
+      cb.checked = false;
+      toggleZaloBtn();
+    }
+  }
 }
 
 function selectPackage(pkg) {
@@ -95,6 +142,39 @@ function selectPackage(pkg) {
 }
 
 function goBack() { showStep('step1'); }
+
+// Toggle Zalo button based on payment confirmation checkbox
+function toggleZaloBtn() {
+  const cb = document.getElementById('confirmPaid');
+  const btn = document.getElementById('zaloPaymentBtn');
+  const hint = document.getElementById('zaloUnlockHint');
+  if (!cb || !btn) return;
+
+  if (cb.checked) {
+    // Build Zalo link with customer info
+    const msg = `Xin chào, mình là ${customerName} (SĐT: ${customerPhone}). Mình vừa chuyển khoản đơn hàng: ${selectedPackage}. Mình gửi ảnh xác nhận thanh toán ạ.`;
+    btn.href = 'https://zalo.me/0528786710';
+    btn.target = '_blank';
+    btn.onclick = null;
+    btn.classList.remove('qr-zalo-btn-disabled');
+    btn.innerHTML = '<i class="fas fa-comment-dots"></i> Gửi ảnh CK qua Zalo — Nhận FILE tài liệu ngay';
+    if (hint) hint.style.display = 'none';
+
+    // FB Pixel: khách xác nhận đã thanh toán
+    if (typeof fbq !== 'undefined') {
+      const priceMatch = selectedPackage.match(/(\d+)K/);
+      const val = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
+      fbq('track', 'Purchase', { content_name: selectedPackage, value: val, currency: 'VND' });
+    }
+  } else {
+    btn.removeAttribute('href');
+    btn.removeAttribute('target');
+    btn.onclick = function() { return false; };
+    btn.classList.add('qr-zalo-btn-disabled');
+    btn.innerHTML = '<i class="fas fa-lock"></i> Vui lòng xác nhận đã thanh toán ở trên';
+    if (hint) hint.style.display = '';
+  }
+}
 
 // ===== FORM SUBMIT =====
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuK1o1PdjrfvhJwutbSzn7y3-TVP4qWl8tDvgKALnJyCyaNlTHWCh8SJM2kGgWVeY/exec';
@@ -152,6 +232,10 @@ async function submitOrder(e) {
   const name = document.getElementById('fullName').value.trim();
   const phone = document.getElementById('phone').value.trim();
   if (!name || !phone) return alert('Vui lòng nhập đầy đủ thông tin!');
+
+  // Save customer info for Zalo message
+  customerName = name;
+  customerPhone = phone;
 
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
@@ -274,3 +358,93 @@ lbWrap.addEventListener('touchend', e => {
 document.querySelectorAll('.catalog-preview img').forEach(img => {
   img.addEventListener('click', () => openLightbox(img));
 });
+
+// ===== SOCIAL PROOF TOAST =====
+const PROOF_DATA = [
+  { name: 'Ng** Minh', pkg: 'Full trọn bộ', letter: 'N' },
+  { name: 'Tr** Hương', pkg: 'Full trọn bộ', letter: 'T' },
+  { name: 'Lê** Dũng', pkg: 'Cấu trúc + Luyện dịch', letter: 'L' },
+  { name: 'Ph** Thảo', pkg: 'Full trọn bộ', letter: 'P' },
+  { name: 'Hà** Anh', pkg: '1200 câu giao tiếp', letter: 'H' },
+  { name: 'Vũ** Hải', pkg: 'Full trọn bộ', letter: 'V' },
+  { name: 'Đỗ** Linh', pkg: 'Từ vựng HSK1-HSK6', letter: 'Đ' },
+  { name: 'Bù** Trang', pkg: 'Full trọn bộ', letter: 'B' },
+  { name: 'Ng** Thắng', pkg: 'Luyện gõ Hán tự', letter: 'N' },
+  { name: 'Tr** Yến', pkg: '1200 câu giao tiếp', letter: 'T' },
+  { name: 'Lý** Quân', pkg: 'Full trọn bộ', letter: 'L' },
+  { name: 'Ho** Mai', pkg: '60 bộ thủ chữ Hán', letter: 'H' },
+  { name: 'Ng** Phúc', pkg: 'Full trọn bộ', letter: 'N' },
+  { name: 'Đặ** Huy', pkg: 'Cấu trúc + Luyện dịch', letter: 'Đ' },
+  { name: 'Vò** Ngọc', pkg: 'Full trọn bộ', letter: 'V' },
+];
+
+const PHONE_PREFIXES = ['096', '097', '098', '086', '032', '033', '034', '035', '036', '037', '038', '039', '070', '079', '077', '076', '078', '089', '090', '093', '088'];
+
+let toastTimeout;
+let proofIndex = 0;
+let toastPaused = false;
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// Shuffle on load so it's different each session
+shuffleArray(PROOF_DATA);
+
+function showToast() {
+  if (toastPaused) return;
+  const toast = document.getElementById('socialProofToast');
+  if (!toast) return;
+
+  const data = PROOF_DATA[proofIndex % PROOF_DATA.length];
+  const prefix = PHONE_PREFIXES[Math.floor(Math.random() * PHONE_PREFIXES.length)];
+  const last2 = String(Math.floor(Math.random() * 100)).padStart(2, '0');
+  const maskedPhone = prefix + '*****' + last2;
+  const minutes = Math.floor(Math.random() * 15) + 1;
+
+  document.getElementById('toastAvatar').textContent = data.letter;
+  document.getElementById('toastName').textContent = data.name + ' — ' + maskedPhone;
+  document.getElementById('toastPkg').innerHTML = 'vừa mua <strong>' + data.pkg + '</strong>';
+  document.getElementById('toastTime').textContent = minutes + ' phút trước';
+
+  toast.classList.add('show');
+  proofIndex++;
+
+  // Auto hide after 5s
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 5000);
+}
+
+function closeToast() {
+  const toast = document.getElementById('socialProofToast');
+  if (toast) toast.classList.remove('show');
+  clearTimeout(toastTimeout);
+}
+
+// Start showing toasts after 8s, then every 15-25s
+setTimeout(() => {
+  showToast();
+  setInterval(() => {
+    const delay = Math.floor(Math.random() * 10000) + 15000; // 15-25s
+    setTimeout(showToast, delay % 10000);
+  }, 20000);
+}, 8000);
+
+// Pause toasts when modal is open
+const origOpenModal = openModal;
+openModal = function() {
+  toastPaused = true;
+  closeToast();
+  origOpenModal();
+};
+const origCloseModal = closeModal;
+closeModal = function() {
+  toastPaused = false;
+  origCloseModal();
+};
