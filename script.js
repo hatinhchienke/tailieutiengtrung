@@ -464,6 +464,17 @@ if (videoModal) {
   });
 }
 
+// ===== FAQ ACCORDION =====
+function toggleFaq(questionEl) {
+  const item = questionEl.closest('.faq-item');
+  if (!item) return;
+  // Close others
+  document.querySelectorAll('.faq-item.open').forEach(el => {
+    if (el !== item) el.classList.remove('open');
+  });
+  item.classList.toggle('open');
+}
+
 // ===== SOCIAL PROOF TOAST =====
 const PROOF_DATA = [
   { name: 'Nguyễn Minh', pkg: 'Full trọn bộ', letter: 'N' },
