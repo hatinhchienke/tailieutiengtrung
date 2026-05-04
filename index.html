@@ -368,6 +368,10 @@
         </div>
         <div class="catalog-save">Tiết kiệm 56% so với mua lẻ</div>
         <div class="catalog-preview">
+          <div class="video-thumb" data-id="g8p1BpPhAUY">
+            <img src="images/ảnh bìa video.webp" alt="Video review" loading="lazy">
+            <i class="fas fa-play play-icon"></i>
+          </div>
           <img src="ảnh slider/1.webp" alt="1200 câu giao tiếp" loading="lazy">
           <img src="ảnh slider/5.webp" alt="Cấu trúc + Luyện dịch" loading="lazy">
           <img src="ảnh slider/9.webp" alt="Từ vựng HSK" loading="lazy">
@@ -400,6 +404,10 @@
           </div>
         </div>
         <div class="catalog-preview">
+          <div class="video-thumb" data-id="fBMha7GPcmY">
+            <img src="ảnh slider/5.webp" alt="Video review" loading="lazy">
+            <i class="fas fa-play play-icon"></i>
+          </div>
           <img src="ảnh slider/5.webp" alt="Cấu trúc 1" loading="lazy">
           <img src="ảnh slider/6.webp" alt="Cấu trúc 2" loading="lazy">
           <img src="ảnh slider/7.webp" alt="Cấu trúc 3" loading="lazy">
@@ -428,6 +436,10 @@
           </div>
         </div>
         <div class="catalog-preview">
+          <div class="video-thumb" data-id="FQPgp6mjnEM">
+            <img src="ảnh slider/9.webp" alt="Video review" loading="lazy">
+            <i class="fas fa-play play-icon"></i>
+          </div>
           <img src="ảnh slider/9.webp" alt="Từ vựng 1" loading="lazy">
           <img src="ảnh slider/10.webp" alt="Từ vựng 2" loading="lazy">
         </div>
@@ -453,6 +465,10 @@
           </div>
         </div>
         <div class="catalog-preview">
+          <div class="video-thumb" data-id="FbMDnTSfHF4">
+            <img src="ảnh slider/11.webp" alt="Video review" loading="lazy">
+            <i class="fas fa-play play-icon"></i>
+          </div>
           <img src="ảnh slider/11.webp" alt="Luyện gõ 1" loading="lazy">
           <img src="ảnh slider/12.webp" alt="Luyện gõ 2" loading="lazy">
         </div>
@@ -479,6 +495,10 @@
           </div>
         </div>
         <div class="catalog-preview">
+          <div class="video-thumb" data-id="kgH3MEUr6CY">
+            <img src="ảnh slider/1.webp" alt="Video review" loading="lazy">
+            <i class="fas fa-play play-icon"></i>
+          </div>
           <img src="ảnh slider/1.webp" alt="1200 câu 1" loading="lazy">
           <img src="ảnh slider/2.webp" alt="1200 câu 2" loading="lazy">
           <img src="ảnh slider/3.webp" alt="1200 câu 3" loading="lazy">
@@ -507,6 +527,10 @@
           </div>
         </div>
         <div class="catalog-preview">
+          <div class="video-thumb" data-id="SwL2V_aaxu4">
+            <img src="ảnh slider/13.webp" alt="Video review" loading="lazy">
+            <i class="fas fa-play play-icon"></i>
+          </div>
           <img src="ảnh slider/13.webp" alt="60 bộ thủ 1" loading="lazy">
           <img src="ảnh slider/14.webp" alt="60 bộ thủ 2" loading="lazy">
         </div>
@@ -876,6 +900,14 @@
       <p class="toast-time" id="toastTime">3 phút trước</p>
     </div>
     <button class="toast-close" onclick="closeToast()"><i class="fas fa-times"></i></button>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div class="lightbox-overlay" id="videoModal">
+    <button class="lightbox-close" onclick="closeVideoModal()"><i class="fas fa-times"></i></button>
+    <div class="lightbox-img-wrap" style="padding: 0; background: transparent; box-shadow: none;">
+      <iframe id="videoModalIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%; aspect-ratio:9/16; max-height:80vh; max-width:400px; border-radius:12px; background:#000;"></iframe>
+    </div>
   </div>
 
   <script src="script.js"></script>

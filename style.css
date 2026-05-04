@@ -2368,6 +2368,33 @@ img {
   margin-top: 2px;
 }
 
+/* VIDEO THUMB IN GALLERY */
+.video-thumb {
+  position: relative;
+  height: 80px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.video-thumb img {
+  height: 100%;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.video-thumb .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 24px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  pointer-events: none;
+}
+
 /* Desktop */
 @media(min-width:481px) {
   body {
