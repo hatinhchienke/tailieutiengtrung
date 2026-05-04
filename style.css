@@ -2256,7 +2256,7 @@ img {
 .floating-zalo {
   position: fixed;
   bottom: 80px;
-  left: 15px;
+  right: 15px;
   width: 50px;
   height: 50px;
   z-index: 1000;
@@ -2346,6 +2346,26 @@ img {
   font-size: 13px;
   color: #555;
   line-height: 1.5;
+}
+
+.admin-trust-badge {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #2e7d32;
+  background: #e8f5e9;
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  text-align: left;
+  border: 1px solid #c8e6c9;
+}
+
+.admin-trust-badge i {
+  color: #43a047;
+  font-size: 16px;
+  margin-top: 2px;
 }
 
 /* Desktop */

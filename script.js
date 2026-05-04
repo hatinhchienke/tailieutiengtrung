@@ -361,21 +361,21 @@ document.querySelectorAll('.catalog-preview img').forEach(img => {
 
 // ===== SOCIAL PROOF TOAST =====
 const PROOF_DATA = [
-  { name: 'Nguyễn *** Minh', pkg: 'Full trọn bộ', letter: 'N' },
-  { name: 'Trần *** Hương', pkg: 'Full trọn bộ', letter: 'T' },
-  { name: 'Lê *** Dũng', pkg: 'Cấu trúc + Luyện dịch', letter: 'L' },
-  { name: 'Phạm *** Thảo', pkg: 'Full trọn bộ', letter: 'P' },
-  { name: 'Hoàng *** Anh', pkg: '1200 câu giao tiếp', letter: 'H' },
-  { name: 'Vũ *** Hải', pkg: 'Full trọn bộ', letter: 'V' },
-  { name: 'Đỗ *** Linh', pkg: 'Từ vựng HSK1-HSK6', letter: 'Đ' },
-  { name: 'Bùi *** Trang', pkg: 'Full trọn bộ', letter: 'B' },
-  { name: 'Nguyễn *** Thắng', pkg: 'Luyện gõ Hán tự', letter: 'N' },
-  { name: 'Trần *** Yến', pkg: '1200 câu giao tiếp', letter: 'T' },
-  { name: 'Lý *** Quân', pkg: 'Full trọn bộ', letter: 'L' },
-  { name: 'Phan *** Mai', pkg: '60 bộ thủ chữ Hán', letter: 'P' },
-  { name: 'Đặng *** Huy', pkg: 'Cấu trúc + Luyện dịch', letter: 'Đ' },
-  { name: 'Võ *** Ngọc', pkg: 'Full trọn bộ', letter: 'V' },
-  { name: 'Đinh *** Nam', pkg: 'Từ vựng HSK1-HSK6', letter: 'Đ' },
+  { name: 'Nguyễn Minh', pkg: 'Full trọn bộ', letter: 'N' },
+  { name: 'Trần Hương', pkg: 'Full trọn bộ', letter: 'T' },
+  { name: 'Lê Dũng', pkg: 'Cấu trúc + Luyện dịch', letter: 'L' },
+  { name: 'Phạm Thảo', pkg: 'Full trọn bộ', letter: 'P' },
+  { name: 'Hoàng Anh', pkg: '1200 câu giao tiếp', letter: 'H' },
+  { name: 'Vũ Hải', pkg: 'Full trọn bộ', letter: 'V' },
+  { name: 'Đỗ Linh', pkg: 'Từ vựng HSK1-HSK6', letter: 'Đ' },
+  { name: 'Bùi Trang', pkg: 'Full trọn bộ', letter: 'B' },
+  { name: 'Nguyễn Thắng', pkg: 'Luyện gõ Hán tự', letter: 'N' },
+  { name: 'Trần Yến', pkg: '1200 câu giao tiếp', letter: 'T' },
+  { name: 'Lý Quân', pkg: 'Full trọn bộ', letter: 'L' },
+  { name: 'Phan Mai', pkg: '60 bộ thủ chữ Hán', letter: 'P' },
+  { name: 'Đặng Huy', pkg: 'Cấu trúc + Luyện dịch', letter: 'Đ' },
+  { name: 'Võ Ngọc', pkg: 'Full trọn bộ', letter: 'V' },
+  { name: 'Đinh Nam', pkg: 'Từ vựng HSK1-HSK6', letter: 'Đ' },
 ];
 
 const PHONE_PREFIXES = ['096', '097', '098', '086', '032', '033', '034', '035', '036', '037', '038', '039', '070', '079', '077', '076', '078', '089', '090', '093', '088'];
