@@ -323,9 +323,19 @@ async function submitOrder(e) {
 }
 
 // ===== HISTORY STATE MANAGEMENT (Back button support) =====
-// Track which overlays are open so the browser Back button closes them
-// instead of navigating away from the page.
+// Guard state pattern: prevents Back button from exiting the page
+// in Facebook in-app browser (WebView) where history starts with only 1 entry.
+//
+// How it works:
+// 1. On page load: mark current state as 'base', push a 'guard' state
+// 2. Opening overlay: push overlay state on top of guard
+// 3. Back with overlay open: popstate → close overlay → re-push guard
+// 4. Back with no overlay: popstate hits base → re-push guard (stays on page)
 let overlayStack = []; // stack of overlay names: 'modal', 'lightbox', 'video'
+
+// Initialize guard state on page load
+history.replaceState({ page: 'base' }, '');
+history.pushState({ page: 'guard' }, '');
 
 function pushOverlayState(name) {
   overlayStack.push(name);
@@ -339,13 +349,20 @@ function popOverlayState(name) {
 
 // Listen for browser back button
 window.addEventListener('popstate', function(e) {
-  // Check what overlay was on top and close it
   if (overlayStack.length > 0) {
+    // An overlay is open — close it
     const top = overlayStack.pop();
     if (top === 'video') closeVideoModalInternal();
     else if (top === 'lightbox') closeLightboxInternal();
     else if (top === 'modal') closeModalInternal();
   }
+  // Always re-push guard state to prevent exiting the page
+  // Use setTimeout to avoid interfering with the current popstate event
+  setTimeout(function() {
+    if (overlayStack.length === 0) {
+      history.pushState({ page: 'guard' }, '');
+    }
+  }, 50);
 });
 
 // ===== LIGHTBOX =====
