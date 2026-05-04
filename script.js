@@ -130,13 +130,21 @@ function openModal() {
   document.getElementById('modalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
   showStep('step1');
+  pushOverlayState('modal');
   // FB Pixel: khách mở modal xem sản phẩm
   if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', { content_name: 'Mở modal chọn gói' });
 }
 
-function closeModal() {
+// Internal close (called by popstate)
+function closeModalInternal() {
   document.getElementById('modalOverlay').classList.remove('active');
   document.body.style.overflow = '';
+}
+
+function closeModal() {
+  closeModalInternal();
+  popOverlayState('modal');
+  history.back();
 }
 
 function showStep(id) {
@@ -314,6 +322,32 @@ async function submitOrder(e) {
   }
 }
 
+// ===== HISTORY STATE MANAGEMENT (Back button support) =====
+// Track which overlays are open so the browser Back button closes them
+// instead of navigating away from the page.
+let overlayStack = []; // stack of overlay names: 'modal', 'lightbox', 'video'
+
+function pushOverlayState(name) {
+  overlayStack.push(name);
+  history.pushState({ overlay: name }, '');
+}
+
+function popOverlayState(name) {
+  const idx = overlayStack.lastIndexOf(name);
+  if (idx !== -1) overlayStack.splice(idx, 1);
+}
+
+// Listen for browser back button
+window.addEventListener('popstate', function(e) {
+  // Check what overlay was on top and close it
+  if (overlayStack.length > 0) {
+    const top = overlayStack.pop();
+    if (top === 'video') closeVideoModalInternal();
+    else if (top === 'lightbox') closeLightboxInternal();
+    else if (top === 'modal') closeModalInternal();
+  }
+});
+
 // ===== LIGHTBOX =====
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
@@ -331,6 +365,7 @@ function openLightbox(imgEl) {
   showLightboxImage();
   lightbox.classList.add('active');
   document.body.style.overflow = 'hidden';
+  pushOverlayState('lightbox');
 }
 
 function showLightboxImage() {
@@ -338,9 +373,17 @@ function showLightboxImage() {
   lightboxCounter.textContent = (lbIndex + 1) + ' / ' + lbImages.length;
 }
 
-function closeLightbox() {
+// Internal close (called by popstate, no history.back needed)
+function closeLightboxInternal() {
   lightbox.classList.remove('active');
   document.body.style.overflow = '';
+}
+
+// User-initiated close (click X or background)
+function closeLightbox() {
+  closeLightboxInternal();
+  popOverlayState('lightbox');
+  history.back();
 }
 
 document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
@@ -390,18 +433,27 @@ document.querySelectorAll('.video-thumb').forEach(thumb => {
       videoModalIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
       videoModal.classList.add('active');
       document.body.style.overflow = 'hidden';
+      pushOverlayState('video');
       // pause background slider video if any
       ytPlaying = true;
     }
   });
 });
 
-function closeVideoModal() {
+// Internal close (called by popstate)
+function closeVideoModalInternal() {
   if (videoModal) {
     videoModal.classList.remove('active');
     videoModalIframe.src = '';
     document.body.style.overflow = '';
   }
+}
+
+// User-initiated close (click X or background)
+function closeVideoModal() {
+  closeVideoModalInternal();
+  popOverlayState('video');
+  history.back();
 }
 
 if (videoModal) {
@@ -500,4 +552,10 @@ const origCloseModal = closeModal;
 closeModal = function() {
   toastPaused = false;
   origCloseModal();
+};
+// Also resume toasts when modal is closed via back button (Internal)
+const origCloseModalInternal = closeModalInternal;
+closeModalInternal = function() {
+  toastPaused = false;
+  origCloseModalInternal();
 };
