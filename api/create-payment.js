@@ -6,14 +6,14 @@ const payos = new PayOS(
   process.env.PAYOS_CHECKSUM_KEY
 );
 
-// Valid packages with server-side price validation
+// Valid packages with server-side price validation + short labels for bank transfer
 const VALID_PACKAGES = {
-  'Cấu trúc + Luyện dịch - 69K':     69000,
-  'Từ vựng HSK1-HSK6 - 39K':          39000,
-  'Luyện gõ Hán tự HSK1-HSK3 - 39K':  39000,
-  '1200 câu giao tiếp + Video - 99K': 99000,
-  '60 bộ thủ chữ Hán - 39K':          39000,
-  'Full trọn bộ - 199K':              199000
+  'Cấu trúc + Luyện dịch - 69K':     { amount: 69000,  label: 'CauTruc' },
+  'Từ vựng HSK1-HSK6 - 39K':          { amount: 39000,  label: 'TuVung' },
+  'Luyện gõ Hán tự HSK1-HSK3 - 39K':  { amount: 39000,  label: 'HanTu' },
+  '1200 câu giao tiếp + Video - 99K': { amount: 99000,  label: 'GiaoTiep' },
+  '60 bộ thủ chữ Hán - 39K':          { amount: 39000,  label: 'BoThu' },
+  'Full trọn bộ - 199K':              { amount: 199000, label: 'TronBo' }
 };
 
 module.exports = async function handler(req, res) {
@@ -38,12 +38,14 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const amount = VALID_PACKAGES[packageName];
-    if (!amount) {
+    const pkg = VALID_PACKAGES[packageName];
+    if (!pkg) {
       return res.status(400).json({ error: 'Invalid package' });
     }
 
-    // Generate professional order code: TCHD-YYMMDDXXXX
+    const amount = pkg.amount;
+
+    // Generate professional order code: HD-YYMMDDXXXX
     // Format: 10-digit number = YYMMDD (6) + random (4)
     const now = new Date(Date.now() + 7 * 60 * 60 * 1000); // UTC+7
     const yy = String(now.getUTCFullYear()).slice(-2);
@@ -52,8 +54,9 @@ module.exports = async function handler(req, res) {
     const rand = Math.floor(1000 + Math.random() * 9000);
     const orderCode = parseInt(`${yy}${mm}${dd}${rand}`);
 
-    // Description max 25 chars — shown as bank transfer content
-    const description = `TCHD ${orderCode}`;
+    // Description max 25 chars — shown as nội dung chuyển khoản
+    // Format: "HoangDiem [GoiTen]" — professional & readable
+    const description = `HoangDiem ${pkg.label}`;
 
     const BASE_URL = process.env.BASE_URL || 'https://tailieutiengtrung.com';
 
