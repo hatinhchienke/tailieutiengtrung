@@ -262,6 +262,11 @@ async function submitOrder(e) {
   customerName = name;
   customerPhone = phone;
 
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  document.getElementById('btnText').classList.add('hidden');
+  document.getElementById('btnLoading').classList.remove('hidden');
+
   const now = new Date();
   const timestamp = now.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
 
@@ -287,33 +292,7 @@ async function submitOrder(e) {
     fbq('track', 'CompleteRegistration', { content_name: selectedPackage, value: value, currency: 'VND' });
   }
 
-  // 3. Show PayOS preparation screen with instructions
-  const step2Body = document.querySelector('#step2 .modal-body');
-  step2Body.innerHTML = `
-    <div style="text-align:center;padding:16px 0;">
-      <div style="font-size:48px;margin-bottom:12px;">
-        <i class="fas fa-spinner fa-spin" style="color:#ee4d2d;"></i>
-      </div>
-      <h3 style="font-size:18px;color:#222;margin-bottom:16px;">Đang tạo đơn thanh toán...</h3>
-      <div style="text-align:left;background:#fff8e1;padding:16px;border-radius:12px;border:1px solid #ffe082;margin-bottom:16px;">
-        <p style="font-size:14px;color:#e65100;font-weight:700;margin-bottom:10px;">
-          <i class="fas fa-exclamation-triangle"></i> LƯU Ý QUAN TRỌNG
-        </p>
-        <ul style="font-size:13px;color:#555;line-height:2;padding-left:18px;margin:0;">
-          <li><strong>KHÔNG đóng trình duyệt</strong> sau khi thanh toán. Hệ thống sẽ tự động chuyển về trang nhận tài liệu trong vài giây.</li>
-          <li>Sau khi quét QR và chuyển khoản xong, vui lòng <strong>quay lại trình duyệt này</strong> để nhận link tải.</li>
-          <li><strong>Chụp lại màn hình</strong> giao dịch thành công từ app ngân hàng để đối soát nếu cần.</li>
-        </ul>
-      </div>
-      <div style="background:#e8f5e9;padding:12px 16px;border-radius:10px;border:1px solid #c8e6c9;">
-        <p style="font-size:13px;color:#2e7d32;margin:0;">
-          <i class="fas fa-shield-alt"></i> Thanh toán bảo mật qua <strong>PayOS / Napas 247</strong> — Được bảo vệ bởi Ngân hàng Nhà nước
-        </p>
-      </div>
-    </div>
-  `;
-
-  // 4. Call PayOS API
+  // 3. Call PayOS API → redirect directly
   try {
     const pkgData = PACKAGE_DATA[selectedPackage];
     if (!pkgData) throw new Error('Invalid package');
@@ -342,9 +321,6 @@ async function submitOrder(e) {
       fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: val2, currency: 'VND' });
     }
 
-    // Brief delay so user can read instructions
-    await new Promise(r => setTimeout(r, 1500));
-
     // Redirect to PayOS checkout
     window.location.href = checkoutUrl;
 
@@ -359,6 +335,10 @@ async function submitOrder(e) {
       const val3 = priceMatch3 ? parseInt(priceMatch3[1]) * 1000 : 0;
       fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: val3, currency: 'VND' });
     }
+
+    btn.disabled = false;
+    document.getElementById('btnText').classList.remove('hidden');
+    document.getElementById('btnLoading').classList.add('hidden');
   }
 }
 
