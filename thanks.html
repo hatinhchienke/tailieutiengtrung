@@ -14,20 +14,26 @@
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Roboto',sans-serif;background:#f5f5f5;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
-    .card{background:#fff;border-radius:16px;padding:40px 24px;max-width:420px;width:100%;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+    .card{background:#fff;border-radius:16px;padding:40px 24px;max-width:440px;width:100%;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08)}
     .icon{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px;color:#fff}
     .icon-success{background:linear-gradient(135deg,#00bfa5,#4dd0e1)}
     .icon-pending{background:linear-gradient(135deg,#ff9800,#ffc107)}
     .icon-cancel{background:linear-gradient(135deg,#e53935,#ef5350)}
+    .icon-loading{background:linear-gradient(135deg,#5c6bc0,#7986cb)}
     h1{font-size:22px;color:#222;margin-bottom:8px}
     .highlight{color:#ee4d2d;font-weight:700}
     p{font-size:14px;color:#555;line-height:1.7;margin-bottom:12px}
     .pkg-info{background:#f0faf7;padding:12px;border-radius:8px;margin:16px 0;font-weight:500;color:#00897b;border:1px solid #b2dfdb}
     .order-code{background:#f3e5f5;padding:10px;border-radius:8px;margin:8px 0 16px;font-weight:500;color:#7b1fa2;border:1px solid #ce93d8;font-size:13px}
-    .steps{text-align:left;margin:20px 0;padding:16px;background:#fafafa;border-radius:8px}
-    .steps h3{font-size:14px;margin-bottom:10px;color:#333}
-    .steps ol{padding-left:20px}
-    .steps li{font-size:13px;line-height:2;color:#555}
+
+    /* Download button — premium style */
+    .download-section{margin:20px 0;padding:20px;background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-radius:12px;border:2px solid #66bb6a}
+    .download-section h3{font-size:16px;color:#2e7d32;margin-bottom:12px}
+    .download-section p{font-size:13px;color:#555;margin-bottom:14px}
+    .download-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:linear-gradient(135deg,#43a047,#66bb6a);color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 4px 15px rgba(67,160,71,.3)}
+    .download-btn:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 6px 20px rgba(67,160,71,.4)}
+    .download-btn i{font-size:20px}
+
     .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#0068ff,#0099ff);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:10px;transition:all .2s}
     .zalo-btn:hover{filter:brightness(1.1)}
     .back-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#f5f5f5;color:#555;border:1px solid #ddd;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;margin-top:10px;transition:all .2s}
@@ -37,14 +43,18 @@
     .hotline-box p{font-size:13px;color:#555;margin:0}
     .hotline-box a{color:#ee4d2d;text-decoration:none}
     .hotline-box i{color:#ee4d2d;margin-right:6px}
-    .status-paid{color:#00897b;font-weight:700}
-    .status-pending{color:#f57c00;font-weight:700}
+    .support-note{font-size:12px;color:#888;margin-top:12px;padding:10px;background:#fafafa;border-radius:6px}
+    .spinner{animation:spin 1s linear infinite;font-size:40px;color:#5c6bc0}
+    @keyframes spin{to{transform:rotate(360deg)}}
   </style>
 </head>
 <body>
   <div class="card" id="card">
-    <!-- Content populated by JS based on payment status -->
+    <div class="icon icon-loading"><i class="fas fa-spinner spinner"></i></div>
+    <h1>Đang xác minh thanh toán...</h1>
+    <p>Vui lòng chờ trong giây lát</p>
   </div>
+
   <script>
     const params = new URLSearchParams(window.location.search);
     const name = params.get('name') || 'bạn';
@@ -59,6 +69,101 @@
 
     // Check if payment was cancelled
     if (payosCancel === 'true' || payosStatus === 'CANCELLED') {
+      showCancelled();
+    }
+    // Payment looks successful — verify with server
+    else if (payosStatus === 'PAID' || payosCode === '00') {
+      verifyAndDeliver();
+    }
+    // Pending / old flow
+    else {
+      showPending();
+    }
+
+    async function verifyAndDeliver() {
+      try {
+        const res = await fetch(`/api/verify-payment?orderCode=${encodeURIComponent(orderCode)}&pkg=${encodeURIComponent(pkg)}`);
+        const data = await res.json();
+
+        if (data.status === 'PAID' && data.downloadUrl) {
+          showSuccess(data.downloadUrl);
+        } else if (data.status === 'PAID') {
+          // PAID but no download link found — show Zalo fallback
+          showSuccessNoLink();
+        } else {
+          // Not yet paid — show pending
+          showPending();
+        }
+      } catch (err) {
+        console.error('Verify error:', err);
+        // API error — still show success UI with Zalo fallback
+        showSuccessNoLink();
+      }
+    }
+
+    function showSuccess(downloadUrl) {
+      // FB Pixel: Purchase — only when PayOS confirms PAID
+      if (typeof fbq !== 'undefined') {
+        const priceMatch = pkg.match(/(\d+)K/);
+        const val = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
+        fbq('track', 'Purchase', { content_name: pkg, value: val, currency: 'VND' });
+      }
+
+      card.innerHTML = `
+        <div class="icon icon-success"><i class="fas fa-check"></i></div>
+        <h1>Thanh toán thành công! 🎉</h1>
+        <p>Cảm ơn <span class="highlight">${esc(name)}</span>! Đơn hàng của bạn đã được xác nhận.</p>
+        <div class="pkg-info">📦 ${esc(pkg)}</div>
+
+        <div class="download-section">
+          <h3>📥 Tài liệu của bạn đã sẵn sàng!</h3>
+          <p>Nhấn nút bên dưới để mở/tải tài liệu ngay. Bạn có thể lưu trên điện thoại hoặc mang đi in.</p>
+          <a href="${esc(downloadUrl)}" class="download-btn" target="_blank" rel="noopener">
+            <i class="fas fa-cloud-arrow-down"></i> MỞ TÀI LIỆU NGAY
+          </a>
+        </div>
+
+        <p class="support-note">💡 <strong>Mẹo:</strong> Lưu link tài liệu lại để truy cập mọi lúc. Nếu cần in ra sách, mang file đến tiệm in gần nhất.</p>
+
+        <a href="https://zalo.me/0528786710" class="zalo-btn" target="_blank">
+          <i class="fas fa-comment-dots"></i> Chat Zalo nếu cần hỗ trợ
+        </a>
+
+        <div class="hotline-box">
+          <p><i class="fas fa-phone"></i> Hotline: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
+        </div>
+      `;
+    }
+
+    function showSuccessNoLink() {
+      // FB Pixel
+      if (typeof fbq !== 'undefined') {
+        const priceMatch = pkg.match(/(\d+)K/);
+        const val = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
+        fbq('track', 'Purchase', { content_name: pkg, value: val, currency: 'VND' });
+      }
+
+      card.innerHTML = `
+        <div class="icon icon-success"><i class="fas fa-check"></i></div>
+        <h1>Thanh toán thành công! 🎉</h1>
+        <p>Cảm ơn <span class="highlight">${esc(name)}</span>! Đơn hàng của bạn đã được xác nhận.</p>
+        <div class="pkg-info">📦 ${esc(pkg)}</div>
+
+        <p>Vui lòng nhấn nút Zalo bên dưới để nhận tài liệu ngay.</p>
+
+        <a href="https://zalo.me/0528786710" class="zalo-btn" target="_blank">
+          <i class="fas fa-comment-dots"></i> Nhận tài liệu qua Zalo
+        </a>
+
+        <div class="hotline-box">
+          <p><i class="fas fa-phone"></i> Hotline: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
+        </div>
+
+        <p class="note">⏰ Xử lý trong vài phút (8h - 22h)</p>
+      `;
+    }
+
+    function showCancelled() {
       card.innerHTML = `
         <div class="icon icon-cancel"><i class="fas fa-times"></i></div>
         <h1>Đơn hàng đã bị huỷ</h1>
@@ -69,79 +174,31 @@
         </div>
       `;
     }
-    // Payment successful (PAID)
-    else if (payosStatus === 'PAID' || payosCode === '00') {
-      // FB Pixel: Purchase event — chỉ fire khi PayOS xác nhận PAID
-      if (typeof fbq !== 'undefined') {
-        const priceMatch = pkg.match(/(\d+)K/);
-        const val = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
-        fbq('track', 'Purchase', { content_name: pkg, value: val, currency: 'VND' });
-      }
 
-      // Build Zalo message with order info
-      const zaloMsg = encodeURIComponent(
-        `Xin chào, mình là ${name}` +
-        (phone ? ` (SĐT: ${phone})` : '') +
-        `. Mình vừa thanh toán đơn hàng: ${pkg}` +
-        (orderCode ? ` (Mã: TCHD-${orderCode})` : '') +
-        `. Mình gửi ảnh xác nhận thanh toán ạ.`
-      );
-
-      card.innerHTML = `
-        <div class="icon icon-success"><i class="fas fa-check"></i></div>
-        <h1>Thanh toán thành công! 🎉</h1>
-        <p>Cảm ơn <span class="highlight">${name}</span>! Đơn hàng của bạn đã được thanh toán thành công.</p>
-        <div class="pkg-info">📦 ${pkg}</div>
-        ${orderCode ? `<div class="order-code">🧾 Mã đơn hàng: <strong>TCHD-${orderCode}</strong></div>` : ''}
-
-        <div class="steps">
-          <h3>📋 Để nhận tài liệu, vui lòng:</h3>
-          <ol>
-            <li><strong>Nhấn nút Zalo</strong> bên dưới</li>
-            <li>Gửi <strong>ảnh chụp màn hình</strong> xác nhận thanh toán</li>
-            <li>Nhận <strong>file gốc tài liệu</strong> trong vài phút</li>
-          </ol>
-        </div>
-
-        <a href="https://zalo.me/0528786710" class="zalo-btn" target="_blank">
-          <i class="fas fa-comment-dots"></i> Gửi ảnh CK qua Zalo — Nhận FILE ngay
-        </a>
-
-        <div class="hotline-box">
-          <p><i class="fas fa-phone"></i> Gọi trực tiếp nếu cần hỗ trợ: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
-        </div>
-
-        <p class="note">⏰ Thời gian xử lý: vài phút trong giờ hành chính (8h - 22h).<br>Ngoài giờ sẽ phản hồi sớm nhất có thể.</p>
-      `;
-    }
-    // Pending or unknown status (old flow or processing)
-    else {
+    function showPending() {
       card.innerHTML = `
         <div class="icon icon-pending"><i class="fas fa-hourglass-half"></i></div>
-        <h1>Cảm ơn <span class="highlight">${name}</span>!</h1>
-        <p>Đơn hàng của bạn đã được ghi nhận. Vui lòng hoàn tất thanh toán và gửi ảnh xác nhận qua Zalo.</p>
-        <div class="pkg-info">📦 ${pkg}</div>
-        ${orderCode ? `<div class="order-code">🧾 Mã đơn hàng: <strong>TCHD-${orderCode}</strong></div>` : ''}
-
-        <div class="steps">
-          <h3>📋 Để nhận tài liệu, vui lòng:</h3>
-          <ol>
-            <li><strong>Chụp màn hình</strong> xác nhận chuyển khoản thành công</li>
-            <li><strong>Gửi ảnh chụp</strong> qua Zalo bằng nút bên dưới</li>
-            <li>Nhận tài liệu <strong>trong vài phút</strong> sau khi xác nhận</li>
-          </ol>
-        </div>
+        <h1>Cảm ơn <span class="highlight">${esc(name)}</span>!</h1>
+        <p>Đơn hàng đang được xử lý. Vui lòng hoàn tất thanh toán và liên hệ Zalo để nhận tài liệu.</p>
+        <div class="pkg-info">📦 ${esc(pkg)}</div>
 
         <a href="https://zalo.me/0528786710" class="zalo-btn" target="_blank">
-          <i class="fas fa-comment-dots"></i> Gửi ảnh thanh toán qua Zalo
+          <i class="fas fa-comment-dots"></i> Liên hệ Zalo nhận tài liệu
         </a>
 
         <div class="hotline-box">
-          <p><i class="fas fa-phone"></i> Gọi trực tiếp nếu cần hỗ trợ: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
+          <p><i class="fas fa-phone"></i> Hotline: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
         </div>
 
-        <p class="note">⏰ Thời gian xử lý: vài phút trong giờ hành chính (8h - 22h).<br>Ngoài giờ sẽ phản hồi sớm nhất có thể.</p>
+        <p class="note">⏰ Xử lý trong vài phút (8h - 22h)</p>
       `;
+    }
+
+    // Simple HTML escaping to prevent XSS from URL params
+    function esc(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
     }
   </script>
 </body>
