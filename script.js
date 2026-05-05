@@ -270,52 +270,76 @@ async function submitOrder(e) {
   const now = new Date();
   const timestamp = now.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
 
-  try {
-    const payload = {
-      submittedAt: timestamp,
-      name: name,
-      phone: phone,
-      package: selectedPackage,
-      source: 'landing-tieng-trung-v2'
-    };
+  // 1. Google Sheet — fire and forget (kept from old flow)
+  const payload = {
+    submittedAt: timestamp,
+    name: name,
+    phone: phone,
+    package: selectedPackage,
+    source: 'landing-tieng-trung-v2'
+  };
 
-    fetch(SCRIPT_URL, {
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  // 2. FB Pixel: khách điền form = Lead + Hoàn tất đăng ký
+  if (typeof fbq !== 'undefined') {
+    const priceMatch = selectedPackage.match(/(\d+)K/);
+    const value = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
+    fbq('track', 'Lead', { content_name: selectedPackage, value: value, currency: 'VND' });
+    fbq('track', 'CompleteRegistration', { content_name: selectedPackage, value: value, currency: 'VND' });
+  }
+
+  // 3. PayOS — tạo link thanh toán
+  try {
+    const pkgData = PACKAGE_DATA[selectedPackage];
+    if (!pkgData) throw new Error('Invalid package');
+
+    const payRes = await fetch('/api/create-payment', {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        packageName: selectedPackage,
+        name: name,
+        phone: phone
+      })
     });
 
-    // FB Pixel: khách điền form = Lead + Hoàn tất đăng ký
-    if (typeof fbq !== 'undefined') {
-      const priceMatch = selectedPackage.match(/(\d+)K/);
-      const value = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
-      fbq('track', 'Lead', { content_name: selectedPackage, value: value, currency: 'VND' });
-      fbq('track', 'CompleteRegistration', { content_name: selectedPackage, value: value, currency: 'VND' });
+    if (!payRes.ok) {
+      const errData = await payRes.json().catch(() => ({}));
+      throw new Error(errData.message || 'API error ' + payRes.status);
     }
 
-    await new Promise(r => setTimeout(r, 1000));
+    const { checkoutUrl } = await payRes.json();
 
-    // Show QR payment step
-    generateQR(selectedPackage);
-    showStep('step3');
-
-    // FB Pixel: khách thấy QR = sẵn sàng thanh toán
+    // FB Pixel: InitiateCheckout trước khi chuyển hướng
     if (typeof fbq !== 'undefined') {
       const priceMatch2 = selectedPackage.match(/(\d+)K/);
       const val2 = priceMatch2 ? parseInt(priceMatch2[1]) * 1000 : 0;
       fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: val2, currency: 'VND' });
     }
 
-    // Reset button
-    btn.disabled = false;
-    document.getElementById('btnText').classList.remove('hidden');
-    document.getElementById('btnLoading').classList.add('hidden');
+    // Chuyển hướng đến trang thanh toán PayOS
+    window.location.href = checkoutUrl;
 
   } catch (err) {
-    console.error(err);
+    // FALLBACK: Nếu PayOS lỗi → hiện QR tĩnh như cũ
+    console.error('PayOS error, fallback to QR:', err);
+
     generateQR(selectedPackage);
     showStep('step3');
+
+    // FB Pixel: InitiateCheckout (fallback QR)
+    if (typeof fbq !== 'undefined') {
+      const priceMatch3 = selectedPackage.match(/(\d+)K/);
+      const val3 = priceMatch3 ? parseInt(priceMatch3[1]) * 1000 : 0;
+      fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: val3, currency: 'VND' });
+    }
+
     btn.disabled = false;
     document.getElementById('btnText').classList.remove('hidden');
     document.getElementById('btnLoading').classList.add('hidden');
