@@ -205,12 +205,13 @@ function toggleZaloBtn() {
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuK1o1PdjrfvhJwutbSzn7y3-TVP4qWl8tDvgKALnJyCyaNlTHWCh8SJM2kGgWVeY/exec';
 
 // Package → QR data mapping (dual pricing: file vs book)
+// Sách giấy = file số + 120K. Luyện gõ Hán tự chỉ có file số (không có sách giấy).
 const PACKAGE_PRICING = {
-  cautruc:  { name: 'Cấu trúc + Luyện dịch',             file: { amount: 69000,  label: '69K',  content: 'tai lieu tieng trung 1' }, book: { amount: 199000, label: '199K', content: 'sach giay tieng trung 1' } },
-  tuvung:   { name: 'Từ vựng HSK1-HSK6',                  file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 2' }, book: { amount: 99000,  label: '99K',  content: 'sach giay tieng trung 2' } },
-  luyen:    { name: 'Luyện gõ Hán tự HSK1-HSK3',          file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 3' }, book: { amount: 99000,  label: '99K',  content: 'sach giay tieng trung 3' } },
-  giaotiep: { name: '1200 câu giao tiếp + Video',         file: { amount: 99000,  label: '99K',  content: 'tai lieu tieng trung 4' }, book: { amount: 199000, label: '199K', content: 'sach giay tieng trung 4' } },
-  bothu:    { name: '60 bộ thủ chữ Hán',                  file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 5' }, book: { amount: 99000,  label: '99K',  content: 'sach giay tieng trung 5' } },
+  cautruc:  { name: 'Cấu trúc + Luyện dịch',             file: { amount: 69000,  label: '69K',  content: 'tai lieu tieng trung 1' }, book: { amount: 189000, label: '189K', content: 'sach giay tieng trung 1' } },
+  tuvung:   { name: 'Từ vựng HSK1-HSK6',                  file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 2' }, book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 2' } },
+  luyen:    { name: 'Luyện gõ Hán tự HSK1-HSK3',          file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 3' }, book: null },
+  giaotiep: { name: '1200 câu giao tiếp + Video',         file: { amount: 99000,  label: '99K',  content: 'tai lieu tieng trung 4' }, book: { amount: 219000, label: '219K', content: 'sach giay tieng trung 4' } },
+  bothu:    { name: '60 bộ thủ chữ Hán',                  file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 5' }, book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 5' } },
   full:     { name: 'Full trọn bộ',                        file: { amount: 199000, label: '199K', content: 'tai lieu tieng trung 6' }, book: { amount: 499000, label: '499K', content: 'sach giay tieng trung 6' } }
 };
 
@@ -220,9 +221,11 @@ function rebuildPackageData() {
   PACKAGE_DATA = {};
   for (const [key, pkg] of Object.entries(PACKAGE_PRICING)) {
     const fData = pkg.file;
-    const bData = pkg.book;
     PACKAGE_DATA[`${pkg.name} - ${fData.label}`] = { amount: fData.amount, content: fData.content };
-    PACKAGE_DATA[`${pkg.name} (Sách giấy) - ${bData.label}`] = { amount: bData.amount, content: bData.content };
+    if (pkg.book) {
+      const bData = pkg.book;
+      PACKAGE_DATA[`${pkg.name} (Sách giấy) - ${bData.label}`] = { amount: bData.amount, content: bData.content };
+    }
   }
 }
 rebuildPackageData();
@@ -237,6 +240,22 @@ function selectType(type) {
   document.querySelectorAll('#variantType .variant-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.type === type);
   });
+  // Update package button states (disable packages without book option)
+  document.querySelectorAll('#packageOptions .pkg-btn').forEach(btn => {
+    const pkgKey = btn.dataset.pkg;
+    if (!pkgKey || !PACKAGE_PRICING[pkgKey]) return;
+    const hasBook = PACKAGE_PRICING[pkgKey].book !== null;
+    if (type === 'book' && !hasBook) {
+      btn.classList.add('pkg-disabled');
+      // If this disabled package was selected, deselect it
+      if (currentPkg === pkgKey) {
+        currentPkg = null;
+        btn.classList.remove('selected');
+      }
+    } else {
+      btn.classList.remove('pkg-disabled');
+    }
+  });
   // Update all prices with animation
   updateAllPrices();
   // Update summary if a package is already selected
@@ -244,6 +263,10 @@ function selectType(type) {
 }
 
 function selectContent(pkgKey) {
+  // Prevent selecting packages without book option when book type is active
+  if (currentType === 'book' && PACKAGE_PRICING[pkgKey] && PACKAGE_PRICING[pkgKey].book === null) {
+    return; // Do nothing
+  }
   currentPkg = pkgKey;
   // Update package buttons
   document.querySelectorAll('#packageOptions .pkg-btn').forEach(btn => {
@@ -258,7 +281,12 @@ function updateAllPrices() {
     const pkgKey = priceEl.dataset.pkg;
     if (!pkgKey || !PACKAGE_PRICING[pkgKey]) return;
     const pricing = PACKAGE_PRICING[pkgKey][currentType];
-    const newPrice = pricing.amount.toLocaleString('vi-VN') + '₫';
+    let newPrice;
+    if (pricing === null) {
+      newPrice = 'Chỉ có file số';
+    } else {
+      newPrice = pricing.amount.toLocaleString('vi-VN') + '₫';
+    }
     // Animate price change
     priceEl.classList.add('price-updating');
     setTimeout(() => {
@@ -276,6 +304,11 @@ function updateVariantSummary() {
   }
   const pkg = PACKAGE_PRICING[currentPkg];
   const pricing = pkg[currentType];
+  // Hide summary if selected package has no book option
+  if (pricing === null) {
+    summary.style.display = 'none';
+    return;
+  }
   const typeLabel = currentType === 'file' ? 'File số' : 'Sách giấy';
 
   document.getElementById('variantPkgName').textContent = `${pkg.name} (${typeLabel})`;
