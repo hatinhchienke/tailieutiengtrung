@@ -262,31 +262,24 @@ async function submitOrder(e) {
   customerName = name;
   customerPhone = phone;
 
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  document.getElementById('btnText').classList.add('hidden');
-  document.getElementById('btnLoading').classList.remove('hidden');
-
   const now = new Date();
   const timestamp = now.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
 
-  // 1. Google Sheet — fire and forget (kept from old flow)
-  const payload = {
-    submittedAt: timestamp,
-    name: name,
-    phone: phone,
-    package: selectedPackage,
-    source: 'landing-tieng-trung-v2'
-  };
-
+  // 1. Google Sheet — fire and forget
   fetch(SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
+    body: JSON.stringify({
+      submittedAt: timestamp,
+      name: name,
+      phone: phone,
+      package: selectedPackage,
+      source: 'landing-tieng-trung-v2'
+    })
   });
 
-  // 2. FB Pixel: khách điền form = Lead + Hoàn tất đăng ký
+  // 2. FB Pixel: Lead + CompleteRegistration
   if (typeof fbq !== 'undefined') {
     const priceMatch = selectedPackage.match(/(\d+)K/);
     const value = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
@@ -294,7 +287,33 @@ async function submitOrder(e) {
     fbq('track', 'CompleteRegistration', { content_name: selectedPackage, value: value, currency: 'VND' });
   }
 
-  // 3. PayOS — tạo link thanh toán
+  // 3. Show PayOS preparation screen with instructions
+  const step2Body = document.querySelector('#step2 .modal-body');
+  step2Body.innerHTML = `
+    <div style="text-align:center;padding:16px 0;">
+      <div style="font-size:48px;margin-bottom:12px;">
+        <i class="fas fa-spinner fa-spin" style="color:#ee4d2d;"></i>
+      </div>
+      <h3 style="font-size:18px;color:#222;margin-bottom:16px;">Đang tạo đơn thanh toán...</h3>
+      <div style="text-align:left;background:#fff8e1;padding:16px;border-radius:12px;border:1px solid #ffe082;margin-bottom:16px;">
+        <p style="font-size:14px;color:#e65100;font-weight:700;margin-bottom:10px;">
+          <i class="fas fa-exclamation-triangle"></i> LƯU Ý QUAN TRỌNG
+        </p>
+        <ul style="font-size:13px;color:#555;line-height:2;padding-left:18px;margin:0;">
+          <li><strong>KHÔNG đóng trình duyệt</strong> sau khi thanh toán. Hệ thống sẽ tự động chuyển về trang nhận tài liệu trong vài giây.</li>
+          <li>Sau khi quét QR và chuyển khoản xong, vui lòng <strong>quay lại trình duyệt này</strong> để nhận link tải.</li>
+          <li><strong>Chụp lại màn hình</strong> giao dịch thành công từ app ngân hàng để đối soát nếu cần.</li>
+        </ul>
+      </div>
+      <div style="background:#e8f5e9;padding:12px 16px;border-radius:10px;border:1px solid #c8e6c9;">
+        <p style="font-size:13px;color:#2e7d32;margin:0;">
+          <i class="fas fa-shield-alt"></i> Thanh toán bảo mật qua <strong>PayOS / Napas 247</strong> — Được bảo vệ bởi Ngân hàng Nhà nước
+        </p>
+      </div>
+    </div>
+  `;
+
+  // 4. Call PayOS API
   try {
     const pkgData = PACKAGE_DATA[selectedPackage];
     if (!pkgData) throw new Error('Invalid package');
@@ -316,33 +335,30 @@ async function submitOrder(e) {
 
     const { checkoutUrl } = await payRes.json();
 
-    // FB Pixel: InitiateCheckout trước khi chuyển hướng
+    // FB Pixel: InitiateCheckout
     if (typeof fbq !== 'undefined') {
       const priceMatch2 = selectedPackage.match(/(\d+)K/);
       const val2 = priceMatch2 ? parseInt(priceMatch2[1]) * 1000 : 0;
       fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: val2, currency: 'VND' });
     }
 
-    // Chuyển hướng đến trang thanh toán PayOS
+    // Brief delay so user can read instructions
+    await new Promise(r => setTimeout(r, 1500));
+
+    // Redirect to PayOS checkout
     window.location.href = checkoutUrl;
 
   } catch (err) {
-    // FALLBACK: Nếu PayOS lỗi → hiện QR tĩnh như cũ
+    // FALLBACK: PayOS lỗi → hiện QR tĩnh
     console.error('PayOS error, fallback to QR:', err);
-
     generateQR(selectedPackage);
     showStep('step3');
 
-    // FB Pixel: InitiateCheckout (fallback QR)
     if (typeof fbq !== 'undefined') {
       const priceMatch3 = selectedPackage.match(/(\d+)K/);
       const val3 = priceMatch3 ? parseInt(priceMatch3[1]) * 1000 : 0;
       fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: val3, currency: 'VND' });
     }
-
-    btn.disabled = false;
-    document.getElementById('btnText').classList.remove('hidden');
-    document.getElementById('btnLoading').classList.add('hidden');
   }
 }
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đặt hàng thành công</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>Đặt hàng thành công — Tiếng Trung Hoàng Diễm</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -13,37 +13,49 @@
   </script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Roboto',sans-serif;background:#f5f5f5;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
-    .card{background:#fff;border-radius:16px;padding:40px 24px;max-width:440px;width:100%;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.08)}
-    .icon{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px;color:#fff}
-    .icon-success{background:linear-gradient(135deg,#00bfa5,#4dd0e1)}
+    body{font-family:'Roboto',sans-serif;background:linear-gradient(180deg,#f8f9fa 0%,#e9ecef 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+    .card{background:#fff;border-radius:20px;padding:36px 24px;max-width:440px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.08)}
+
+    .icon{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:36px;color:#fff}
+    .icon-success{background:linear-gradient(135deg,#43a047,#66bb6a);box-shadow:0 4px 20px rgba(67,160,71,.3)}
     .icon-pending{background:linear-gradient(135deg,#ff9800,#ffc107)}
     .icon-cancel{background:linear-gradient(135deg,#e53935,#ef5350)}
     .icon-loading{background:linear-gradient(135deg,#5c6bc0,#7986cb)}
-    h1{font-size:22px;color:#222;margin-bottom:8px}
+
+    h1{font-size:22px;color:#222;margin-bottom:6px}
     .highlight{color:#ee4d2d;font-weight:700}
-    p{font-size:14px;color:#555;line-height:1.7;margin-bottom:12px}
-    .pkg-info{background:#f0faf7;padding:12px;border-radius:8px;margin:16px 0;font-weight:500;color:#00897b;border:1px solid #b2dfdb}
-    .order-code{background:#f3e5f5;padding:10px;border-radius:8px;margin:8px 0 16px;font-weight:500;color:#7b1fa2;border:1px solid #ce93d8;font-size:13px}
+    p{font-size:14px;color:#555;line-height:1.7;margin-bottom:10px}
+    .pkg-info{background:#f0faf7;padding:12px;border-radius:10px;margin:14px 0;font-weight:600;color:#00897b;border:1px solid #b2dfdb;font-size:15px}
 
-    /* Download button — premium style */
-    .download-section{margin:20px 0;padding:20px;background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-radius:12px;border:2px solid #66bb6a}
-    .download-section h3{font-size:16px;color:#2e7d32;margin-bottom:12px}
-    .download-section p{font-size:13px;color:#555;margin-bottom:14px}
-    .download-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:linear-gradient(135deg,#43a047,#66bb6a);color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 4px 15px rgba(67,160,71,.3)}
-    .download-btn:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 6px 20px rgba(67,160,71,.4)}
-    .download-btn i{font-size:20px}
+    /* ===== DOWNLOAD SECTION — hero CTA ===== */
+    .download-hero{margin:20px 0;padding:24px 20px;background:linear-gradient(135deg,#fbe9e7,#fff3e0);border-radius:16px;border:2px solid #ee4d2d}
+    .download-hero h3{font-size:18px;color:#c62828;margin-bottom:8px}
+    .download-hero p{font-size:13px;color:#555;margin-bottom:16px}
+    .download-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:18px;background:linear-gradient(135deg,#d32f2f,#ee4d2d);color:#fff;border:none;border-radius:12px;font-size:18px;font-weight:900;cursor:pointer;text-decoration:none;transition:all .25s;box-shadow:0 6px 20px rgba(238,77,45,.35);text-transform:uppercase;letter-spacing:.5px}
+    .download-btn:hover{filter:brightness(1.1);transform:translateY(-2px);box-shadow:0 8px 28px rgba(238,77,45,.45)}
+    .download-btn:active{transform:translateY(0)}
+    .download-btn i{font-size:22px}
 
-    .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#0068ff,#0099ff);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:10px;transition:all .2s}
+    /* ===== OWNERSHIP NOTE ===== */
+    .ownership-note{background:#e8f5e9;padding:14px 16px;border-radius:10px;margin:16px 0;text-align:left;border:1px solid #c8e6c9}
+    .ownership-note p{font-size:13px;color:#2e7d32;margin:0;line-height:1.6}
+    .ownership-note i{color:#43a047;margin-right:6px}
+
+    /* ===== LOOKUP NOTE ===== */
+    .lookup-note{background:#e3f2fd;padding:14px 16px;border-radius:10px;margin:12px 0;text-align:left;border:1px solid #bbdefb}
+    .lookup-note p{font-size:13px;color:#0d47a1;margin:0;line-height:1.6}
+    .lookup-note a{color:#1565c0;font-weight:700;text-decoration:underline}
+    .lookup-note i{color:#1976d2;margin-right:6px}
+
+    /* ===== OTHER BUTTONS ===== */
+    .zalo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#0068ff,#0099ff);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:8px;transition:all .2s}
     .zalo-btn:hover{filter:brightness(1.1)}
-    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#f5f5f5;color:#555;border:1px solid #ddd;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;margin-top:10px;transition:all .2s}
-    .back-btn:hover{background:#eee}
-    .note{font-size:12px;color:#999;margin-top:16px}
-    .hotline-box{margin-top:16px;padding:12px;background:#fff3f0;border-radius:8px;border:1px solid #ffccbc}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#f5f5f5;color:#555;border:1px solid #ddd;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;margin-top:10px}
+    .hotline-box{margin-top:16px;padding:12px;background:#fff3f0;border-radius:10px;border:1px solid #ffccbc}
     .hotline-box p{font-size:13px;color:#555;margin:0}
-    .hotline-box a{color:#ee4d2d;text-decoration:none}
-    .hotline-box i{color:#ee4d2d;margin-right:6px}
-    .support-note{font-size:12px;color:#888;margin-top:12px;padding:10px;background:#fafafa;border-radius:6px}
+    .hotline-box a{color:#ee4d2d;text-decoration:none;font-weight:700}
+    .note{font-size:12px;color:#999;margin-top:14px}
+
     .spinner{animation:spin 1s linear infinite;font-size:40px;color:#5c6bc0}
     @keyframes spin{to{transform:rotate(360deg)}}
   </style>
@@ -67,16 +79,11 @@
 
     const card = document.getElementById('card');
 
-    // Check if payment was cancelled
     if (payosCancel === 'true' || payosStatus === 'CANCELLED') {
       showCancelled();
-    }
-    // Payment looks successful — verify with server
-    else if (payosStatus === 'PAID' || payosCode === '00') {
+    } else if (payosStatus === 'PAID' || payosCode === '00') {
       verifyAndDeliver();
-    }
-    // Pending / old flow
-    else {
+    } else {
       showPending();
     }
 
@@ -84,25 +91,21 @@
       try {
         const res = await fetch(`/api/verify-payment?orderCode=${encodeURIComponent(orderCode)}&pkg=${encodeURIComponent(pkg)}`);
         const data = await res.json();
-
         if (data.status === 'PAID' && data.downloadUrl) {
-          showSuccess(data.downloadUrl);
+          showSuccess(data.downloadUrl, data.packageName || pkg);
         } else if (data.status === 'PAID') {
-          // PAID but no download link found — show Zalo fallback
           showSuccessNoLink();
         } else {
-          // Not yet paid — show pending
           showPending();
         }
       } catch (err) {
         console.error('Verify error:', err);
-        // API error — still show success UI with Zalo fallback
         showSuccessNoLink();
       }
     }
 
-    function showSuccess(downloadUrl) {
-      // FB Pixel: Purchase — only when PayOS confirms PAID
+    function showSuccess(downloadUrl, packageName) {
+      // FB Pixel: Purchase
       if (typeof fbq !== 'undefined') {
         const priceMatch = pkg.match(/(\d+)K/);
         const val = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
@@ -113,30 +116,35 @@
         <div class="icon icon-success"><i class="fas fa-check"></i></div>
         <h1>Thanh toán thành công! 🎉</h1>
         <p>Cảm ơn <span class="highlight">${esc(name)}</span>! Đơn hàng của bạn đã được xác nhận.</p>
-        <div class="pkg-info">📦 ${esc(pkg)}</div>
+        <div class="pkg-info">📦 ${esc(packageName)}</div>
 
-        <div class="download-section">
-          <h3>📥 Tài liệu của bạn đã sẵn sàng!</h3>
-          <p>Nhấn nút bên dưới để mở/tải tài liệu ngay. Bạn có thể lưu trên điện thoại hoặc mang đi in.</p>
+        <div class="download-hero">
+          <h3>📥 Tài liệu đã sẵn sàng!</h3>
+          <p>Nhấn nút bên dưới để mở và tải tài liệu ngay lập tức.</p>
           <a href="${esc(downloadUrl)}" class="download-btn" target="_blank" rel="noopener">
-            <i class="fas fa-cloud-arrow-down"></i> MỞ TÀI LIỆU NGAY
+            <i class="fas fa-cloud-arrow-down"></i> TẢI TÀI LIỆU NGAY
           </a>
         </div>
 
-        <p class="support-note">💡 <strong>Mẹo:</strong> Lưu link tài liệu lại để truy cập mọi lúc. Nếu cần in ra sách, mang file đến tiệm in gần nhất.</p>
+        <div class="ownership-note">
+          <p><i class="fas fa-infinity"></i> <strong>Tài liệu này thuộc quyền sở hữu vĩnh viễn của bạn.</strong> Hãy tải về máy hoặc lưu vào Google Drive ngay để học tập thuận tiện nhất.</p>
+        </div>
+
+        <div class="lookup-note">
+          <p><i class="fas fa-rotate"></i> Nếu vô tình làm mất link, bạn luôn có thể truy cập <a href="/tracuu.html?orderCode=${esc(orderCode)}">tailieutiengtrung.com/tracuu</a> và nhập mã đơn hàng để lấy lại link.</p>
+        </div>
 
         <a href="https://zalo.me/0528786710" class="zalo-btn" target="_blank">
           <i class="fas fa-comment-dots"></i> Chat Zalo nếu cần hỗ trợ
         </a>
 
         <div class="hotline-box">
-          <p><i class="fas fa-phone"></i> Hotline: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
+          <p><i class="fas fa-phone"></i> Hotline: <a href="tel:0528786710">0528786710</a></p>
         </div>
       `;
     }
 
     function showSuccessNoLink() {
-      // FB Pixel
       if (typeof fbq !== 'undefined') {
         const priceMatch = pkg.match(/(\d+)K/);
         const val = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
@@ -146,20 +154,18 @@
       card.innerHTML = `
         <div class="icon icon-success"><i class="fas fa-check"></i></div>
         <h1>Thanh toán thành công! 🎉</h1>
-        <p>Cảm ơn <span class="highlight">${esc(name)}</span>! Đơn hàng của bạn đã được xác nhận.</p>
+        <p>Cảm ơn <span class="highlight">${esc(name)}</span>! Đơn hàng đã được xác nhận.</p>
         <div class="pkg-info">📦 ${esc(pkg)}</div>
-
         <p>Vui lòng nhấn nút Zalo bên dưới để nhận tài liệu ngay.</p>
-
         <a href="https://zalo.me/0528786710" class="zalo-btn" target="_blank">
           <i class="fas fa-comment-dots"></i> Nhận tài liệu qua Zalo
         </a>
-
-        <div class="hotline-box">
-          <p><i class="fas fa-phone"></i> Hotline: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
+        <div class="lookup-note">
+          <p><i class="fas fa-rotate"></i> Bạn luôn có thể tra cứu lại tại <a href="/tracuu.html">tailieutiengtrung.com/tracuu</a></p>
         </div>
-
-        <p class="note">⏰ Xử lý trong vài phút (8h - 22h)</p>
+        <div class="hotline-box">
+          <p><i class="fas fa-phone"></i> Hotline: <a href="tel:0528786710">0528786710</a></p>
+        </div>
       `;
     }
 
@@ -170,7 +176,7 @@
         <p>Bạn đã huỷ thanh toán. Nếu đây là nhầm lẫn, bạn có thể quay lại và thử lại.</p>
         <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Quay lại trang chủ</a>
         <div class="hotline-box">
-          <p><i class="fas fa-phone"></i> Cần hỗ trợ? Gọi: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
+          <p><i class="fas fa-phone"></i> Cần hỗ trợ? Gọi: <a href="tel:0528786710">0528786710</a></p>
         </div>
       `;
     }
@@ -179,22 +185,21 @@
       card.innerHTML = `
         <div class="icon icon-pending"><i class="fas fa-hourglass-half"></i></div>
         <h1>Cảm ơn <span class="highlight">${esc(name)}</span>!</h1>
-        <p>Đơn hàng đang được xử lý. Vui lòng hoàn tất thanh toán và liên hệ Zalo để nhận tài liệu.</p>
+        <p>Đơn hàng đang xử lý. Vui lòng hoàn tất thanh toán và liên hệ Zalo để nhận tài liệu.</p>
         <div class="pkg-info">📦 ${esc(pkg)}</div>
-
         <a href="https://zalo.me/0528786710" class="zalo-btn" target="_blank">
           <i class="fas fa-comment-dots"></i> Liên hệ Zalo nhận tài liệu
         </a>
-
-        <div class="hotline-box">
-          <p><i class="fas fa-phone"></i> Hotline: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
+        <div class="lookup-note">
+          <p><i class="fas fa-rotate"></i> Tra cứu lại tài liệu tại <a href="/tracuu.html">tailieutiengtrung.com/tracuu</a></p>
         </div>
-
+        <div class="hotline-box">
+          <p><i class="fas fa-phone"></i> Hotline: <a href="tel:0528786710">0528786710</a></p>
+        </div>
         <p class="note">⏰ Xử lý trong vài phút (8h - 22h)</p>
       `;
     }
 
-    // Simple HTML escaping to prevent XSS from URL params
     function esc(str) {
       const div = document.createElement('div');
       div.textContent = str;
