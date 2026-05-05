@@ -204,15 +204,140 @@ function toggleZaloBtn() {
 // ===== FORM SUBMIT =====
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuK1o1PdjrfvhJwutbSzn7y3-TVP4qWl8tDvgKALnJyCyaNlTHWCh8SJM2kGgWVeY/exec';
 
-// Package → QR data mapping
-const PACKAGE_DATA = {
-  'Cấu trúc + Luyện dịch - 69K':       { amount: 69000,  content: 'tai lieu tieng trung 1' },
-  'Từ vựng HSK1-HSK6 - 39K':            { amount: 39000,  content: 'tai lieu tieng trung 2' },
-  'Luyện gõ Hán tự HSK1-HSK3 - 39K':    { amount: 39000,  content: 'tai lieu tieng trung 3' },
-  '1200 câu giao tiếp + Video - 99K':   { amount: 99000,  content: 'tai lieu tieng trung 4' },
-  '60 bộ thủ chữ Hán - 39K':            { amount: 39000,  content: 'tai lieu tieng trung 5' },
-  'Full trọn bộ - 199K':                { amount: 199000, content: 'tai lieu tieng trung 6' }
+// Package → QR data mapping (dual pricing: file vs book)
+const PACKAGE_PRICING = {
+  cautruc:  { name: 'Cấu trúc + Luyện dịch',             file: { amount: 69000,  label: '69K',  content: 'tai lieu tieng trung 1' }, book: { amount: 199000, label: '199K', content: 'sach giay tieng trung 1' } },
+  tuvung:   { name: 'Từ vựng HSK1-HSK6',                  file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 2' }, book: { amount: 99000,  label: '99K',  content: 'sach giay tieng trung 2' } },
+  luyen:    { name: 'Luyện gõ Hán tự HSK1-HSK3',          file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 3' }, book: { amount: 99000,  label: '99K',  content: 'sach giay tieng trung 3' } },
+  giaotiep: { name: '1200 câu giao tiếp + Video',         file: { amount: 99000,  label: '99K',  content: 'tai lieu tieng trung 4' }, book: { amount: 199000, label: '199K', content: 'sach giay tieng trung 4' } },
+  bothu:    { name: '60 bộ thủ chữ Hán',                  file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 5' }, book: { amount: 99000,  label: '99K',  content: 'sach giay tieng trung 5' } },
+  full:     { name: 'Full trọn bộ',                        file: { amount: 199000, label: '199K', content: 'tai lieu tieng trung 6' }, book: { amount: 499000, label: '499K', content: 'sach giay tieng trung 6' } }
 };
+
+// Legacy PACKAGE_DATA for QR generation (will be populated dynamically)
+let PACKAGE_DATA = {};
+function rebuildPackageData() {
+  PACKAGE_DATA = {};
+  for (const [key, pkg] of Object.entries(PACKAGE_PRICING)) {
+    const fData = pkg.file;
+    const bData = pkg.book;
+    PACKAGE_DATA[`${pkg.name} - ${fData.label}`] = { amount: fData.amount, content: fData.content };
+    PACKAGE_DATA[`${pkg.name} (Sách giấy) - ${bData.label}`] = { amount: bData.amount, content: bData.content };
+  }
+}
+rebuildPackageData();
+
+// ===== VARIANT PICKER STATE =====
+let currentType = 'file'; // 'file' or 'book'
+let currentPkg = null;    // package key: 'cautruc', 'tuvung', etc.
+
+function selectType(type) {
+  currentType = type;
+  // Update type buttons
+  document.querySelectorAll('#variantType .variant-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.type === type);
+  });
+  // Update all prices with animation
+  updateAllPrices();
+  // Update summary if a package is already selected
+  updateVariantSummary();
+}
+
+function selectContent(pkgKey) {
+  currentPkg = pkgKey;
+  // Update package buttons
+  document.querySelectorAll('#packageOptions .pkg-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.dataset.pkg === pkgKey);
+  });
+  // Show/update summary
+  updateVariantSummary();
+}
+
+function updateAllPrices() {
+  document.querySelectorAll('#packageOptions .pkg-price').forEach(priceEl => {
+    const pkgKey = priceEl.dataset.pkg;
+    if (!pkgKey || !PACKAGE_PRICING[pkgKey]) return;
+    const pricing = PACKAGE_PRICING[pkgKey][currentType];
+    const newPrice = pricing.amount.toLocaleString('vi-VN') + '₫';
+    // Animate price change
+    priceEl.classList.add('price-updating');
+    setTimeout(() => {
+      priceEl.textContent = newPrice;
+      priceEl.classList.remove('price-updating');
+    }, 150);
+  });
+}
+
+function updateVariantSummary() {
+  const summary = document.getElementById('variantSummary');
+  if (!currentPkg) {
+    summary.style.display = 'none';
+    return;
+  }
+  const pkg = PACKAGE_PRICING[currentPkg];
+  const pricing = pkg[currentType];
+  const typeLabel = currentType === 'file' ? 'File số' : 'Sách giấy';
+
+  document.getElementById('variantPkgName').textContent = `${pkg.name} (${typeLabel})`;
+  document.getElementById('variantTotalPrice').textContent = pricing.amount.toLocaleString('vi-VN') + '₫';
+  summary.style.display = 'block';
+}
+
+function confirmVariant() {
+  if (!currentPkg) {
+    alert('Vui lòng chọn gói tài liệu!');
+    return;
+  }
+  const pkg = PACKAGE_PRICING[currentPkg];
+  const pricing = pkg[currentType];
+  const typeLabel = currentType === 'file' ? '' : ' (Sách giấy)';
+  selectedPackage = `${pkg.name}${typeLabel} - ${pricing.label}`;
+  document.getElementById('selectedPkg').textContent = '📦 ' + selectedPackage;
+  setupFormForType(currentType);
+  showStep('step2');
+}
+
+// Adapt Step 2 form based on file vs book
+function setupFormForType(type) {
+  const isBook = type === 'book';
+  // Title & subtitle
+  document.getElementById('formTitle').textContent = isBook ? 'Thông tin nhận sách' : 'Thông tin nhận tài liệu';
+  document.getElementById('formSubtitle').textContent = isBook
+    ? 'Vui lòng nhập chính xác địa chỉ để giao sách!'
+    : 'Vui lòng nhập chính xác thông tin để nhận tài liệu!';
+  // Notices
+  document.getElementById('noticeFile').classList.toggle('hidden', isBook);
+  document.getElementById('noticeBook').classList.toggle('hidden', !isBook);
+  // Phone label
+  document.getElementById('phoneLabel').innerHTML = isBook
+    ? 'Số điện thoại <span class="req">*</span>'
+    : 'Số Zalo <span class="req">*</span>';
+  // Address field
+  const addrGroup = document.getElementById('addressGroup');
+  const addrInput = document.getElementById('address');
+  addrGroup.classList.toggle('hidden', !isBook);
+  if (isBook) {
+    addrInput.setAttribute('required', 'required');
+  } else {
+    addrInput.removeAttribute('required');
+  }
+  // Submit button text
+  document.getElementById('btnText').textContent = isBook ? 'ĐẶT HÀNG' : 'TIẾP TỤC THANH TOÁN';
+  // Bottom notes
+  document.getElementById('noteFileBottom').classList.toggle('hidden', isBook);
+  document.getElementById('noteFileZalo').classList.toggle('hidden', isBook);
+  document.getElementById('noteBookBottom').classList.toggle('hidden', !isBook);
+}
+
+// Legacy selectPackage — still used by catalog buy buttons
+function selectPackage(pkg) {
+  selectedPackage = pkg;
+  document.getElementById('selectedPkg').textContent = '📦 ' + pkg;
+  // Legacy catalog buttons default to file type
+  currentType = 'file';
+  setupFormForType('file');
+  showStep('step2');
+}
 
 function generateQR(pkg) {
   const data = PACKAGE_DATA[pkg];
@@ -258,6 +383,12 @@ async function submitOrder(e) {
   const phone = document.getElementById('phone').value.trim();
   if (!name || !phone) return alert('Vui lòng nhập đầy đủ thông tin!');
 
+  // Book orders require address
+  if (currentType === 'book') {
+    const address = document.getElementById('address').value.trim();
+    if (!address) return alert('Vui lòng nhập địa chỉ nhận hàng!');
+  }
+
   // Save customer info for Zalo message
   customerName = name;
   customerPhone = phone;
@@ -271,17 +402,22 @@ async function submitOrder(e) {
   const timestamp = now.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
 
   // 1. Google Sheet — fire and forget
+  const sheetData = {
+    submittedAt: timestamp,
+    name: name,
+    phone: phone,
+    package: selectedPackage,
+    source: 'landing-tieng-trung-v2',
+    type: currentType
+  };
+  if (currentType === 'book') {
+    sheetData.address = document.getElementById('address').value.trim();
+  }
   fetch(SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      submittedAt: timestamp,
-      name: name,
-      phone: phone,
-      package: selectedPackage,
-      source: 'landing-tieng-trung-v2'
-    })
+    body: JSON.stringify(sheetData)
   });
 
   // 2. FB Pixel: Lead + CompleteRegistration
@@ -292,7 +428,24 @@ async function submitOrder(e) {
     fbq('track', 'CompleteRegistration', { content_name: selectedPackage, value: value, currency: 'VND' });
   }
 
-  // 3. Call PayOS API → redirect directly
+  // === BOOK ORDER: redirect to thank you page ===
+  if (currentType === 'book') {
+    if (typeof fbq !== 'undefined') {
+      const priceMatchB = selectedPackage.match(/(\d+)K/);
+      const valB = priceMatchB ? parseInt(priceMatchB[1]) * 1000 : 0;
+      fbq('track', 'Purchase', { content_name: selectedPackage, value: valB, currency: 'VND' });
+    }
+    const thanksParams = new URLSearchParams({
+      name: name,
+      phone: phone,
+      pkg: selectedPackage,
+      type: 'book'
+    });
+    window.location.href = `/thanks?${thanksParams.toString()}`;
+    return;
+  }
+
+  // === FILE ORDER: PayOS payment flow ===
   try {
     const pkgData = PACKAGE_DATA[selectedPackage];
     if (!pkgData) throw new Error('Invalid package');

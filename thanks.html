@@ -76,15 +76,52 @@
     const payosStatus = params.get('status') || '';
     const payosCancel = params.get('cancel');
     const payosCode = params.get('code');
+    const orderType = params.get('type') || 'file';
 
     const card = document.getElementById('card');
 
-    if (payosCancel === 'true' || payosStatus === 'CANCELLED') {
+    // Book order — simple thank you, no payment verification
+    if (orderType === 'book') {
+      showBookOrderSuccess();
+    } else if (payosCancel === 'true' || payosStatus === 'CANCELLED') {
       showCancelled();
     } else if (payosStatus === 'PAID' || payosCode === '00') {
       verifyAndDeliver();
     } else {
       showPending();
+    }
+
+    function showBookOrderSuccess() {
+      if (typeof fbq !== 'undefined') {
+        const priceMatch = pkg.match(/(\d+)K/);
+        const val = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
+        fbq('track', 'Purchase', { content_name: pkg, value: val, currency: 'VND' });
+      }
+
+      card.innerHTML = `
+        <div class="icon icon-success"><i class="fas fa-check"></i></div>
+        <h1>Cảm ơn bạn đã đặt hàng! 🎉</h1>
+        <p>Xin chào <span class="highlight">${esc(name)}</span>, đơn hàng sách giấy của bạn đã được ghi nhận thành công.</p>
+        <div class="pkg-info">📦 ${esc(pkg)}</div>
+
+        <div class="ownership-note" style="background:#fff3e0;border-color:#ffe0b2;">
+          <p><i class="fas fa-truck" style="color:#e65100"></i> Sách sẽ được <strong>giao về tận nhà</strong> trong <strong>2-4 ngày làm việc</strong>. Chúng tôi sẽ liên hệ qua số điện thoại <strong>${esc(phone)}</strong> để xác nhận đơn hàng.</p>
+        </div>
+
+        <div class="ownership-note" style="background:#e8f5e9;border-color:#c8e6c9;">
+          <p><i class="fas fa-shield-alt" style="color:#43a047"></i> <strong>Cam kết:</strong> Thanh toán khi nhận hàng (COD). Kiểm tra hàng trước khi thanh toán. Không hài lòng — hoàn tiền 100%.</p>
+        </div>
+
+        <a href="https://zalo.me/0528786710" class="zalo-btn" target="_blank">
+          <i class="fas fa-comment-dots"></i> Chat Zalo nếu cần hỗ trợ
+        </a>
+
+        <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Quay lại trang chủ</a>
+
+        <div class="hotline-box">
+          <p><i class="fas fa-phone"></i> Hotline: <a href="tel:0528786710">0528786710</a></p>
+        </div>
+      `;
     }
 
     async function verifyAndDeliver() {

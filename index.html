@@ -750,32 +750,65 @@
               thoại.</span>
           </div>
 
-          <p class="choose-text">Vui lòng chọn gói bạn muốn mua</p>
-          <div class="package-options">
-            <button class="pkg-btn" onclick="selectPackage('Cấu trúc + Luyện dịch - 69K')">
-              <span>Cấu trúc và luyện dịch tiếng Trung</span>
-              <span class="pkg-price">69,000₫</span>
-            </button>
-            <button class="pkg-btn" onclick="selectPackage('Từ vựng HSK1-HSK6 - 39K')">
-              <span>Từ vựng tiếng Trung từ HSK1 - HSK6</span>
-              <span class="pkg-price">39,000₫</span>
-            </button>
-            <button class="pkg-btn" onclick="selectPackage('Luyện gõ Hán tự HSK1-HSK3 - 39K')">
-              <span>Luyện gõ Hán tự từ HSK1 - HSK3</span>
-              <span class="pkg-price">39,000₫</span>
-            </button>
-            <button class="pkg-btn" onclick="selectPackage('1200 câu giao tiếp + Video - 99K')">
-              <span>1200 câu giao tiếp thông dụng + Video hướng dẫn chi tiết</span>
-              <span class="pkg-price">99,000₫</span>
-            </button>
-            <button class="pkg-btn" onclick="selectPackage('60 bộ thủ chữ Hán - 39K')">
-              <span>60 bộ thủ thường gặp trong chữ Hán</span>
-              <span class="pkg-price">39,000₫</span>
-            </button>
-            <button class="pkg-btn featured" onclick="selectPackage('Full trọn bộ - 199K')">
-              <span>🔥 Full trọn bộ + Video phát âm + Nhóm hỗ trợ</span>
-              <span class="pkg-price">199,000₫</span>
-            </button>
+          <!-- VARIANT PICKER: Hàng 1 - Chọn loại -->
+          <div class="variant-section">
+            <p class="variant-label"><i class="fas fa-box"></i> Chọn hình thức nhận hàng</p>
+            <div class="variant-row" id="variantType">
+              <button class="variant-btn active" data-type="file" onclick="selectType('file')">
+                <i class="fas fa-file-pdf"></i>
+                <span class="variant-btn-text">File số</span>
+                <span class="variant-btn-sub">Nhận link tải ngay</span>
+              </button>
+              <button class="variant-btn" data-type="book" onclick="selectType('book')">
+                <i class="fas fa-book"></i>
+                <span class="variant-btn-text">Sách giấy</span>
+                <span class="variant-btn-sub">Gửi về tận nhà</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- VARIANT PICKER: Hàng 2 - Chọn nội dung -->
+          <div class="variant-section">
+            <p class="variant-label"><i class="fas fa-list"></i> Chọn gói tài liệu</p>
+            <div class="package-options" id="packageOptions">
+              <button class="pkg-btn" data-pkg="cautruc" onclick="selectContent('cautruc')">
+                <span>Cấu trúc và luyện dịch tiếng Trung</span>
+                <span class="pkg-price" data-pkg="cautruc">69,000₫</span>
+              </button>
+              <button class="pkg-btn" data-pkg="tuvung" onclick="selectContent('tuvung')">
+                <span>Từ vựng tiếng Trung từ HSK1 - HSK6</span>
+                <span class="pkg-price" data-pkg="tuvung">39,000₫</span>
+              </button>
+              <button class="pkg-btn" data-pkg="luyen" onclick="selectContent('luyen')">
+                <span>Luyện gõ Hán tự từ HSK1 - HSK3</span>
+                <span class="pkg-price" data-pkg="luyen">39,000₫</span>
+              </button>
+              <button class="pkg-btn" data-pkg="giaotiep" onclick="selectContent('giaotiep')">
+                <span>1200 câu giao tiếp + Video hướng dẫn</span>
+                <span class="pkg-price" data-pkg="giaotiep">99,000₫</span>
+              </button>
+              <button class="pkg-btn" data-pkg="bothu" onclick="selectContent('bothu')">
+                <span>60 bộ thủ thường gặp trong chữ Hán</span>
+                <span class="pkg-price" data-pkg="bothu">39,000₫</span>
+              </button>
+              <button class="pkg-btn featured" data-pkg="full" onclick="selectContent('full')">
+                <span>🔥 Full trọn bộ + Video phát âm + Nhóm hỗ trợ</span>
+                <span class="pkg-price" data-pkg="full">199,000₫</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tổng giá hiển thị -->
+          <div class="variant-summary" id="variantSummary" style="display:none;">
+            <div class="variant-summary-row">
+              <span class="variant-summary-label">Đã chọn:</span>
+              <span class="variant-summary-pkg" id="variantPkgName"></span>
+            </div>
+            <div class="variant-summary-row">
+              <span class="variant-summary-label">Giá:</span>
+              <span class="variant-summary-price" id="variantTotalPrice"></span>
+            </div>
+            <button class="btn-variant-continue" id="btnVariantContinue" onclick="confirmVariant()">TIẾP TỤC <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -787,13 +820,21 @@
           <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body">
-          <h4 class="form-title">Thông tin nhận tài liệu</h4>
-          <p class="form-subtitle">Vui lòng nhập chính xác thông tin để nhận tài liệu!</p>
-          <div class="modal-digital-notice" style="background:#e3f2fd; color:#0d47a1; border-color:#bbdefb;">
+          <h4 class="form-title" id="formTitle">Thông tin nhận tài liệu</h4>
+          <p class="form-subtitle" id="formSubtitle">Vui lòng nhập chính xác thông tin để nhận tài liệu!</p>
+
+          <!-- Notice for FILE -->
+          <div class="modal-digital-notice" id="noticeFile" style="background:#e3f2fd; color:#0d47a1; border-color:#bbdefb;">
             <i class="fas fa-bolt" style="color:#fbc02d;"></i>
             <span>Nhận <strong>link tải tự động</strong> ngay sau thanh toán. Tự in ra sách hoặc đọc trên điện
               thoại.</span>
           </div>
+          <!-- Notice for BOOK -->
+          <div class="modal-digital-notice hidden" id="noticeBook" style="background:#fff3e0; color:#e65100; border-color:#ffe0b2;">
+            <i class="fas fa-truck" style="color:#e65100;"></i>
+            <span>Sách giấy sẽ được <strong>gửi về tận nhà</strong> trong 2-4 ngày. Vui lòng nhập đúng địa chỉ nhận hàng.</span>
+          </div>
+
           <div class="selected-pkg" id="selectedPkg"></div>
           <form id="orderForm" onsubmit="submitOrder(event)">
             <div class="form-group">
@@ -801,18 +842,28 @@
               <input type="text" id="fullName" placeholder="Nguyễn Văn A" required>
             </div>
             <div class="form-group">
-              <label>Số Zalo <span class="req">*</span></label>
+              <label id="phoneLabel">Số Zalo <span class="req">*</span></label>
               <input type="tel" id="phone" placeholder="0xxxxxxxxx" required>
+            </div>
+            <!-- Address field (book only) -->
+            <div class="form-group hidden" id="addressGroup">
+              <label>Địa chỉ nhận hàng <span class="req">*</span></label>
+              <textarea id="address" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố" rows="3" style="width:100%;padding:12px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;transition:border .2s;"></textarea>
             </div>
             <button type="submit" class="btn-submit" id="submitBtn">
               <span id="btnText">TIẾP TỤC THANH TOÁN</span>
               <span id="btnLoading" class="hidden"><i class="fas fa-spinner fa-spin"></i> Đang gửi...</span>
             </button>
-            <p class="form-note">*Tài liệu được gửi tự động qua link tải ngay sau khi thanh toán. Có thể in ra sách
+            <!-- Note for FILE -->
+            <p class="form-note" id="noteFileBottom">*Tài liệu được gửi tự động qua link tải ngay sau khi thanh toán. Có thể in ra sách
               hoặc học trên điện thoại.
             </p>
-            <p class="form-note" style="color:#0d47a1;background:#e3f2fd;padding:8px 12px;border-radius:8px;margin-top:8px;">
+            <p class="form-note" id="noteFileZalo" style="color:#0d47a1;background:#e3f2fd;padding:8px 12px;border-radius:8px;margin-top:8px;">
               <i class="fas fa-comment-dots" style="color:#0068ff;"></i> Gặp vấn đề nhận file sau thanh toán? Nhắn ngay <a href="https://zalo.me/0528786710" target="_blank" style="color:#0068ff;font-weight:700;">Zalo 0528786710</a> để được hỗ trợ tức thì!
+            </p>
+            <!-- Note for BOOK -->
+            <p class="form-note hidden" id="noteBookBottom" style="color:#e65100;background:#fff3e0;padding:8px 12px;border-radius:8px;margin-top:8px;">
+              <i class="fas fa-truck" style="color:#e65100;"></i> Sách sẽ được giao trong 2-4 ngày làm việc. Thanh toán khi nhận hàng (COD) hoặc chuyển khoản trước.
             </p>
           </form>
         </div>
