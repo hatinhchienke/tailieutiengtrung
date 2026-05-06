@@ -75,6 +75,13 @@
         <!-- Slide 5: SP hot #2 — Cấu trúc + Luyện dịch -->
         <div class="slide"><img src="ảnh slider/8.webp" alt="Cấu trúc và Luyện dịch tiếng Trung" loading="lazy"><span
             class="slide-label">📖 Cấu trúc + Luyện dịch — 69K</span></div>
+        <!-- Slide 6-8: Feedback học viên -->
+        <div class="slide"><img src="review/1.webp" alt="Phản hồi học viên 1" loading="lazy"><span
+            class="slide-label">⭐ Phản hồi từ học viên</span></div>
+        <div class="slide"><img src="review/2.webp" alt="Phản hồi học viên 2" loading="lazy"><span
+            class="slide-label">⭐ Phản hồi từ học viên</span></div>
+        <div class="slide"><img src="review/3.webp" alt="Phản hồi học viên 3" loading="lazy"><span
+            class="slide-label">⭐ Phản hồi từ học viên</span></div>
       </div>
       <div class="slide-dots">
         <span class="dot active" data-index="0"></span>
@@ -82,8 +89,11 @@
         <span class="dot" data-index="2"></span>
         <span class="dot" data-index="3"></span>
         <span class="dot" data-index="4"></span>
+        <span class="dot" data-index="5"></span>
+        <span class="dot" data-index="6"></span>
+        <span class="dot" data-index="7"></span>
       </div>
-      <div class="slide-counter"><span id="currentSlide">1</span>/5</div>
+      <div class="slide-counter"><span id="currentSlide">1</span>/8</div>
     </div>
   </section>
 
@@ -401,6 +411,7 @@
               <span class="catalog-sale">199,000₫</span>
               <span class="catalog-old">450,000₫</span>
             </div>
+            <div class="catalog-book-note">🚚 Sách giấy: 499,000₫</div>
           </div>
         </div>
         <div class="catalog-save">Tiết kiệm 56% so với mua lẻ</div>
@@ -426,7 +437,7 @@
           </li>
         </ul>
         <button class="catalog-buy featured-buy"
-          onclick="selectPackage('Full trọn bộ - 199K'); openModal(); showStep('step2');">MUA TRỌN BỘ — 199K</button>
+          onclick="openModalWithPkg('full')">MUA TRỌN BỘ — 199K</button>
       </div>
 
       <!-- SP1: Cấu trúc + Luyện dịch -->
@@ -438,6 +449,7 @@
             <div class="catalog-pricing">
               <span class="catalog-sale">69,000₫</span>
             </div>
+            <div class="catalog-book-note">🚚 Sách giấy: 189,000₫</div>
           </div>
         </div>
         <div class="catalog-preview">
@@ -455,8 +467,7 @@
           <li><i class="fas fa-check"></i> Luyện dịch thực chiến Trung ↔ Việt</li>
         </ul>
         <button class="catalog-buy"
-          onclick="selectPackage('Cấu trúc + Luyện dịch - 69K'); openModal(); showStep('step2');">MUA NGAY —
-          69K</button>
+          onclick="openModalWithPkg('cautruc')">MUA NGAY — 69K</button>
       </div>
 
       <!-- SP2: Từ vựng HSK -->
@@ -468,6 +479,7 @@
             <div class="catalog-pricing">
               <span class="catalog-sale">39,000₫</span>
             </div>
+            <div class="catalog-book-note">🚚 Sách giấy: 159,000₫</div>
           </div>
         </div>
         <div class="catalog-preview">
@@ -483,7 +495,7 @@
           <li><i class="fas fa-check"></i> Tra cứu cực nhanh trên điện thoại</li>
         </ul>
         <button class="catalog-buy"
-          onclick="selectPackage('Từ vựng HSK1-HSK6 - 39K'); openModal(); showStep('step2');">MUA NGAY — 39K</button>
+          onclick="openModalWithPkg('tuvung')">MUA NGAY — 39K</button>
       </div>
 
       <!-- SP3: Luyện gõ Hán tự -->
@@ -495,6 +507,7 @@
             <div class="catalog-pricing">
               <span class="catalog-sale">39,000₫</span>
             </div>
+            <div class="catalog-book-note" style="color:#999;">📲 Chỉ có file số</div>
           </div>
         </div>
         <div class="catalog-preview">
@@ -510,8 +523,7 @@
           <li><i class="fas fa-check"></i> Nhớ mặt chữ Hán lâu hơn gấp 3 lần</li>
         </ul>
         <button class="catalog-buy"
-          onclick="selectPackage('Luyện gõ Hán tự HSK1-HSK3 - 39K'); openModal(); showStep('step2');">MUA NGAY —
-          39K</button>
+          onclick="openModalWithPkg('luyen')">MUA NGAY — 39K</button>
       </div>
 
       <!-- SP4: 1200 câu giao tiếp -->
@@ -523,6 +535,7 @@
             <div class="catalog-pricing">
               <span class="catalog-sale">99,000₫</span>
             </div>
+            <div class="catalog-book-note">🚚 Sách giấy: 219,000₫</div>
           </div>
         </div>
         <div class="catalog-preview">
@@ -540,8 +553,7 @@
           <li><i class="fas fa-check"></i> Học vẹt nói ngay, không cần cày ngữ pháp</li>
         </ul>
         <button class="catalog-buy"
-          onclick="selectPackage('1200 câu giao tiếp + Video - 99K'); openModal(); showStep('step2');">MUA NGAY —
-          99K</button>
+          onclick="openModalWithPkg('giaotiep')">MUA NGAY — 99K</button>
       </div>
 
       <!-- SP5: 60 bộ thủ -->
@@ -553,6 +565,7 @@
             <div class="catalog-pricing">
               <span class="catalog-sale">39,000₫</span>
             </div>
+            <div class="catalog-book-note">🚚 Sách giấy: 159,000₫</div>
           </div>
         </div>
         <div class="catalog-preview">
@@ -568,14 +581,14 @@
           <li><i class="fas fa-check"></i> Nhìn chữ Hán đoán ngay được nghĩa</li>
         </ul>
         <button class="catalog-buy"
-          onclick="selectPackage('60 bộ thủ chữ Hán - 39K'); openModal(); showStep('step2');">MUA NGAY — 39K</button>
+          onclick="openModalWithPkg('bothu')">MUA NGAY — 39K</button>
       </div>
 
       <!-- CTA mua Full -->
       <div class="catalog-cta">
         <p>💡 <strong>Mua trọn bộ chỉ 199K</strong> — tiết kiệm hơn 56% so với mua lẻ từng phần!</p>
         <button class="catalog-buy featured-buy"
-          onclick="selectPackage('Full trọn bộ - 199K'); openModal(); showStep('step2');">🔥 MUA TRỌN BỘ — 199K</button>
+          onclick="openModalWithPkg('full')">🔥 MUA TRỌN BỘ — 199K</button>
       </div>
     </div>
 
@@ -591,29 +604,34 @@
 
     <div class="desc-block digital-block">
       <h4>📦 2 HÌNH THỨC NHẬN TÀI LIỆU — BẠN CHỌN!</h4>
-      <div class="digital-warning-banner" style="background:#e3f2fd; color:#0d47a1; border-color:#bbdefb;">
-        <i class="fas fa-info-circle" style="color:#1976d2;"></i>
-        <span>Cùng một nội dung tài liệu — bạn chọn hình thức nhận phù hợp nhất với mình.</span>
+      <div class="digital-warning-banner" style="background:#e8f5e9; color:#2e7d32; border-color:#c8e6c9;">
+        <i class="fas fa-bolt" style="color:#fbc02d;"></i>
+        <span><strong>90% khách hàng</strong> chọn File số vì nhận ngay, giá rẻ hơn & có thể tự in ra sách!</span>
       </div>
       <div class="digital-benefits-grid">
-        <div class="benefit-card">
-          <div class="benefit-icon" style="background:#e3f2fd;"><i class="fas fa-file-pdf" style="color:#1976d2;"></i></div>
+        <!-- FILE SỐ - Card chính, nổi bật -->
+        <div class="benefit-card" style="border:2px solid #43a047; background:linear-gradient(135deg, #f1f8e9, #e8f5e9); position:relative; padding-top:28px;">
+          <div style="position:absolute; top:-1px; left:16px; background:linear-gradient(135deg, #43a047, #2e7d32); color:#fff; font-size:11px; font-weight:700; padding:3px 12px; border-radius:0 0 8px 8px; letter-spacing:0.5px;">⭐ ĐỀ XUẤT</div>
+          <div class="benefit-icon" style="background:#c8e6c9;"><i class="fas fa-file-pdf" style="color:#2e7d32;"></i></div>
           <div class="benefit-content">
-            <h4>📲 File số (PDF/Excel)</h4>
-            <p>✅ Nhận link tải <strong>ngay sau thanh toán</strong><br>
-              ✅ Giá chỉ từ <strong>39K</strong><br>
-              ✅ Học trên điện thoại mọi lúc<br>
-              ✅ Có thể tự in ra thành sách</p>
+            <h4 style="color:#2e7d32; font-size:16px;">📲 File số (PDF/Excel)</h4>
+            <p>✅ Nhận link tải <strong>ngay sau thanh toán</strong> — không chờ đợi<br>
+              ✅ Giá chỉ từ <strong>39K</strong> — rẻ hơn sách giấy<br>
+              ✅ Học trên điện thoại mọi lúc mọi nơi<br>
+              ✅ <strong>Tự in ra thành sách</strong> nếu muốn — giống hệt sách trong video<br>
+              ✅ Lưu trữ vĩnh viễn, không sợ mất<br>
+              ✅ Tra cứu nhanh bằng tìm kiếm trên điện thoại</p>
           </div>
         </div>
-        <div class="benefit-card">
+        <!-- SÁCH GIẤY - Card phụ, nhỏ hơn -->
+        <div class="benefit-card" style="border:1px dashed #ccc; background:#fafafa; opacity:0.85;">
           <div class="benefit-icon" style="background:#fff3e0;"><i class="fas fa-book" style="color:#e65100;"></i></div>
           <div class="benefit-content">
-            <h4>🚚 Sách giấy (giao tận nhà)</h4>
-            <p>✅ Sách in sẵn, <strong>giao tận nhà</strong> trong 2-4 ngày<br>
+            <h4 style="font-size:14px; color:#777;">🚚 Sách giấy (giao tận nhà)</h4>
+            <p style="color:#888;">✅ Sách in sẵn, giao tận nhà trong 2-4 ngày<br>
               ✅ Cầm nắm thật, đánh dấu, ghi chú<br>
-              ✅ Thanh toán khi nhận hàng (COD)<br>
-              ✅ Không cần màn hình, học mọi nơi</p>
+              ✅ Thanh toán khi nhận hàng (COD)</p>
+            <p style="font-size:12px; color:#999; margin-top:6px; font-style:italic;">💡 Giá sách giấy = giá file số + 120K phí in & ship</p>
           </div>
         </div>
       </div>
@@ -643,7 +661,7 @@
           <i class="fas fa-chevron-down faq-arrow"></i>
         </div>
         <div class="faq-answer">
-          <p><strong>File số</strong> phù hợp nếu bạn muốn nhận ngay, học trên điện thoại, hoặc tự in ra theo ý mình. <strong>Sách giấy</strong> phù hợp nếu bạn thích cầm sách thật, ghi chú trực tiếp, không muốn dùng màn hình.</p>
+          <p><strong>Nên chọn File số!</strong> Đây là lựa chọn phổ biến nhất — nhận ngay sau thanh toán, giá rẻ hơn, học trên điện thoại mọi lúc, và <strong>có thể tự in ra thành sách</strong> giống hệt trong video. Nếu bạn thực sự cần sách giấy sẵn, có thể chọn sách giấy nhưng giá sẽ cao hơn 120K và chờ 2-4 ngày giao hàng.</p>
         </div>
       </div>
       <div class="faq-item">
@@ -710,12 +728,11 @@
 
   <!-- STICKY BOTTOM BAR -->
   <div class="sticky-bar">
-    <div class="bar-icons">
-      <div class="bar-icon" onclick="window.open('https://zalo.me/0528786710','_blank')"><i
-          class="fas fa-store"></i><span>Cửa hàng</span></div>
-      <div class="bar-icon" onclick="window.open('https://zalo.me/0528786710','_blank')"><i
-          class="fas fa-comment-dots"></i><span>Trò chuyện</span></div>
-    </div>
+    <a href="https://zalo.me/0528786710" target="_blank" class="bar-zalo">
+      <div class="bar-zalo-ring"></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo"
+        onerror="this.src='https://stc-zaloprofile.zdn.vn/pc/v1/images/zalo_sharelogo.png'">
+    </a>
     <button class="btn-demo" onclick="playDemo()">Demo</button>
     <button class="btn-buy" onclick="openModal()">Mua Ngay</button>
   </div>
@@ -1034,13 +1051,7 @@
     <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
   </div>
 
-  <!-- FLOATING ZALO BUTTON -->
-  <a href="https://zalo.me/0528786710" target="_blank" class="floating-zalo" id="floatingZalo">
-    <div class="zalo-ring"></div>
-    <div class="zalo-circle"></div>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo Chat"
-      onerror="this.src='https://stc-zaloprofile.zdn.vn/pc/v1/images/zalo_sharelogo.png'">
-  </a>
+  <!-- Floating Zalo moved to sticky bar -->
 
   <!-- SOCIAL PROOF TOAST -->
   <div class="social-proof-toast" id="socialProofToast">

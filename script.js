@@ -53,6 +53,35 @@ function loadYouTube(ytLazy) {
   iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
   iframe.allowFullscreen = true;
   ytLazy.appendChild(iframe);
+
+  // Add swipe overlay so user can still swipe to next slide over the iframe
+  const overlay = document.createElement('div');
+  overlay.className = 'yt-swipe-overlay';
+  let oStartX = 0, oStartY = 0, swiping = false;
+  overlay.addEventListener('touchstart', e => {
+    oStartX = e.touches[0].clientX;
+    oStartY = e.touches[0].clientY;
+    swiping = false;
+  }, { passive: true });
+  overlay.addEventListener('touchmove', e => {
+    const dx = Math.abs(e.touches[0].clientX - oStartX);
+    const dy = Math.abs(e.touches[0].clientY - oStartY);
+    if (dx > 15 && dx > dy) swiping = true; // horizontal swipe detected
+  }, { passive: true });
+  overlay.addEventListener('touchend', e => {
+    if (swiping) {
+      const diff = oStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0 && currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
+        else if (diff < 0 && currentIndex > 0) goToSlide(currentIndex - 1);
+      }
+    } else {
+      // It was a tap — hide overlay briefly so user can interact with iframe
+      overlay.style.display = 'none';
+      setTimeout(() => { overlay.style.display = ''; }, 300);
+    }
+  });
+  ytLazy.appendChild(overlay);
   
   const playBtn = ytLazy.querySelector('.play-btn');
   if (playBtn) playBtn.classList.add('playing');
@@ -360,6 +389,16 @@ function setupFormForType(type) {
   document.getElementById('noteFileBottom').classList.toggle('hidden', isBook);
   document.getElementById('noteFileZalo').classList.toggle('hidden', isBook);
   document.getElementById('noteBookBottom').classList.toggle('hidden', !isBook);
+}
+
+// Open modal with a specific package pre-selected in variant picker (step1)
+function openModalWithPkg(pkgKey) {
+  openModal(); // opens modal at step1
+  // Pre-select the package in the variant picker
+  selectContent(pkgKey);
+  // Scroll the selected button into view
+  const selectedBtn = document.querySelector(`#packageOptions .pkg-btn[data-pkg="${pkgKey}"]`);
+  if (selectedBtn) selectedBtn.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 
 // Legacy selectPackage — still used by catalog buy buttons
