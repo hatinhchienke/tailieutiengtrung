@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kho Tài Liệu Tiếng Trung — Tiếng Trung Hoàng Diễm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0e1a;color:#e0e0e0;min-height:100vh;overflow-x:hidden}
+.hub-header{background:linear-gradient(135deg,rgba(15,20,40,.95),rgba(25,15,50,.95));backdrop-filter:blur(20px);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.06)}
+.hub-logo{display:flex;align-items:center;gap:10px}
+.hub-logo img{width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.15)}
+.hub-logo-text{font-size:14px;font-weight:700;background:linear-gradient(135deg,#f8d56e,#f0a040);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hub-badge{font-size:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:4px 10px;border-radius:20px;font-weight:600}
+.hub-welcome{text-align:center;padding:40px 20px 20px;position:relative}
+.hub-welcome::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(99,102,241,.15) 0%,transparent 70%);pointer-events:none}
+.hub-welcome h1{font-size:22px;font-weight:800;background:linear-gradient(135deg,#fff,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1.3}
+.hub-welcome p{font-size:13px;color:rgba(255,255,255,.5);max-width:340px;margin:0 auto 20px;line-height:1.6}
+.hub-stats{display:flex;justify-content:center;gap:24px}
+.hub-stat-val{font-size:20px;font-weight:800;background:linear-gradient(135deg,#f8d56e,#f0a040);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hub-stat-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.hub-stat{text-align:center}
+.hub-grid{padding:20px 16px;display:grid;gap:16px;max-width:500px;margin:0 auto}
+.hub-card{background:linear-gradient(145deg,rgba(30,35,60,.8),rgba(20,25,50,.9));border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;transition:all .35s;position:relative}
+.hub-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(99,102,241,.15)}
+.hub-card.featured{border-color:rgba(248,213,110,.3)}
+.card-badge{position:absolute;top:12px;left:12px;z-index:5;font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px}
+.badge-hot{background:linear-gradient(135deg,rgba(239,68,68,.9),rgba(220,38,38,.9));color:#fff}
+.badge-popular{background:linear-gradient(135deg,rgba(99,102,241,.9),rgba(139,92,246,.9));color:#fff}
+.card-cover{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#111}
+.card-cover img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.hub-card:hover .card-cover img{transform:scale(1.05)}
+.card-lock-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.7) 100%);display:flex;align-items:flex-end;justify-content:flex-end;padding:12px}
+.lock-icon{width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:13px;border:1px solid rgba(255,255,255,.15)}
+.card-body{padding:16px}
+.card-emoji{font-size:20px;margin-bottom:6px;display:block}
+.card-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.3}
+.card-social{font-size:11px;color:rgba(255,255,255,.35);text-align:center;margin-top:10px}
+.card-social i{margin-right:3px;font-size:10px}
+.live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;margin-right:4px;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+/* PASSWORD GATE */
+.pw-gate{margin-top:12px;text-align:center}
+.pw-input-row{display:flex;gap:8px;margin-top:8px}
+.pw-input{flex:1;padding:10px 14px;border:1.5px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.05);color:#fff;font-size:14px;font-family:inherit;outline:none;transition:border .2s}
+.pw-input:focus{border-color:#6366f1}
+.pw-input::placeholder{color:rgba(255,255,255,.25)}
+.pw-submit{padding:10px 18px;border:none;border-radius:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.pw-submit:hover{filter:brightness(1.15)}
+.pw-error{color:#f87171;font-size:12px;margin-top:6px;display:none}
+.pw-error.show{display:block;animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.pw-label{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:4px}
+.pw-label i{margin-right:4px}
+/* UNLOCKED STATE */
+.unlock-area{display:none;margin-top:12px;text-align:center}
+.unlock-area.show{display:block;animation:fadeIn .5s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.unlock-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.12);color:#22c55e;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;margin-bottom:10px;border:1px solid rgba(34,197,94,.2)}
+.download-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .25s;box-shadow:0 4px 20px rgba(34,197,94,.3)}
+.download-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+/* BUY LINK */
+.buy-link{display:inline-block;margin-top:10px;font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.buy-link:hover{color:#a5b4fc}
+.buy-link i{margin-right:4px}
+/* COMBO CTA */
+.combo-cta{margin:24px 16px;max-width:468px;margin-left:auto;margin-right:auto;background:linear-gradient(145deg,rgba(99,102,241,.12),rgba(139,92,246,.08));border:1px solid rgba(99,102,241,.2);border-radius:20px;padding:28px 20px;text-align:center;position:relative;overflow:hidden}
+.combo-emoji{font-size:40px;margin-bottom:12px;display:block;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.combo-title{font-size:18px;font-weight:800;background:linear-gradient(135deg,#f8d56e,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
+.combo-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:6px}
+.combo-highlight{font-size:14px;color:#c4b5fd;font-weight:600;margin:12px 0}
+.combo-code{display:inline-block;background:rgba(248,213,110,.12);border:1px dashed rgba(248,213,110,.4);color:#f8d56e;padding:6px 16px;border-radius:8px;font-size:15px;font-weight:800;letter-spacing:1.5px;margin:8px 0 16px}
+.combo-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .25s;box-shadow:0 4px 20px rgba(34,197,94,.3)}
+.combo-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.combo-note{font-size:11px;color:rgba(255,255,255,.3);margin-top:12px}
+/* TRUST + FOOTER */
+.hub-trust{display:flex;justify-content:center;gap:20px;padding:20px 16px;flex-wrap:wrap}
+.hub-trust-item{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.4)}
+.hub-trust-item i{color:rgba(99,102,241,.6);font-size:13px}
+.hub-footer{text-align:center;padding:24px 20px 40px;border-top:1px solid rgba(255,255,255,.05)}
+.hub-footer-brand{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px}
+.hub-footer-brand img{width:28px;height:28px;border-radius:50%}
+.hub-footer-brand span{font-size:13px;font-weight:600;color:rgba(255,255,255,.5)}
+.hub-footer p{font-size:11px;color:rgba(255,255,255,.25);margin-top:4px}
+.hub-footer-links{display:flex;justify-content:center;gap:12px;margin-top:12px}
+.hub-footer-links a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;font-size:14px;transition:all .2s}
+.hub-footer-links a:hover{background:rgba(99,102,241,.2);color:#a5b4fc}
+.fade-up{opacity:0;transform:translateY(24px);transition:all .6s cubic-bezier(.4,0,.2,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.hub-card{cursor:pointer}
+/* DETAIL MODAL */
+.detail-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);z-index:200;display:none;align-items:flex-end;justify-content:center}
+.detail-overlay.active{display:flex}
+.detail-sheet{background:#12162a;border-radius:20px 20px 0 0;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;animation:slideUp .35s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.detail-close{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:linear-gradient(180deg,#12162a 80%,transparent);}
+.detail-close span{font-size:14px;font-weight:700;color:rgba(255,255,255,.6)}
+.detail-close button{background:rgba(255,255,255,.08);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:14px;cursor:pointer}
+.detail-cover{width:100%;aspect-ratio:16/9;object-fit:cover}
+.detail-body{padding:20px 16px}
+.detail-title{font-size:18px;font-weight:800;color:#fff;margin-bottom:6px}
+.detail-price{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.detail-price .sale{font-size:20px;font-weight:800;color:#34d399}
+.detail-price .old{font-size:14px;color:rgba(255,255,255,.3);text-decoration:line-through}
+.detail-price .disc{font-size:11px;background:rgba(239,68,68,.15);color:#f87171;padding:2px 8px;border-radius:4px;font-weight:600}
+.detail-features{margin-bottom:20px}
+.detail-features h4{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.detail-features li{list-style:none;font-size:13px;color:rgba(255,255,255,.7);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:8px}
+.detail-features li i{color:#6366f1;font-size:12px;min-width:16px}
+.detail-previews{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:20px}
+.detail-previews img{height:140px;border-radius:10px;flex-shrink:0;border:1px solid rgba(255,255,255,.08)}
+.detail-social{font-size:12px;color:rgba(255,255,255,.35);text-align:center;margin-bottom:16px}
+.detail-divider{height:1px;background:rgba(255,255,255,.06);margin:16px 0}
+  </style>
+</head>
+<body>
+  <header class="hub-header">
+    <div class="hub-logo">
+      <img src="images/avatar.webp" alt="Tiếng Trung Hoàng Diễm">
+      <span class="hub-logo-text">Tiếng Trung Hoàng Diễm</span>
+    </div>
+    <span class="hub-badge"><i class="fas fa-crown"></i> Dashboard</span>
+  </header>
+
+  <section class="hub-welcome fade-up">
+    <h1>🏫 Hệ Sinh Thái Kiến Thức Tiếng Trung</h1>
+    <p>Nhập mật khẩu được cung cấp sau khi thanh toán để truy cập tài liệu của bạn.</p>
+    <div class="hub-stats">
+      <div class="hub-stat"><div class="hub-stat-val">9,300+</div><div class="hub-stat-label">Học viên</div></div>
+      <div class="hub-stat"><div class="hub-stat-val">6</div><div class="hub-stat-label">Gói tài liệu</div></div>
+      <div class="hub-stat"><div class="hub-stat-val">4.9/5</div><div class="hub-stat-label">Đánh giá</div></div>
+    </div>
+  </section>
+
+  <section class="hub-grid" id="hubGrid"></section>
+
+  <div class="hub-trust fade-up">
+    <div class="hub-trust-item"><i class="fas fa-shield-halved"></i> Thanh toán bảo mật</div>
+    <div class="hub-trust-item"><i class="fas fa-rotate-left"></i> Hoàn tiền 100%</div>
+    <div class="hub-trust-item"><i class="fas fa-headset"></i> Hỗ trợ 24/7</div>
+  </div>
+
+  <section class="combo-cta fade-up">
+    <span class="combo-emoji">🎁</span>
+    <h2 class="combo-title">ĐẶC QUYỀN HỌC VIÊN CŨ</h2>
+    <p class="combo-desc">Bạn muốn sở hữu <strong style="color:#c4b5fd;">toàn bộ 6 gói</strong> tài liệu ở trên?<br>Thay vì mua lẻ từng gói, hãy nhắn tin ngay cho ad để nhận mã:</p>
+    <div class="combo-code">FULL_PASS</div>
+    <p class="combo-highlight">🔓 Mở khóa TẤT CẢ tài liệu với giá chỉ bằng 3 gói lẻ!</p>
+    <a href="https://zalo.me/0528786710" target="_blank" class="combo-btn"><i class="fas fa-comment-dots"></i> Nhắn Zalo ngay để nhận mã</a>
+    <p class="combo-note">⏰ Ưu đãi có thể kết thúc bất cứ lúc nào</p>
+  </section>
+
+  <footer class="hub-footer fade-up">
+    <div class="hub-footer-brand">
+      <img src="images/avatar.webp" alt="Tiếng Trung Hoàng Diễm">
+      <span>Tiếng Trung Hoàng Diễm</span>
+    </div>
+    <p>Hệ thống phân phối tài liệu số tự động</p>
+    <p>Hotline/Zalo: <a href="tel:0528786710" style="color:#a5b4fc;text-decoration:none;">0528786710</a></p>
+    <div class="hub-footer-links">
+      <a href="https://www.facebook.com/tuhoctiengtrung202568" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.tiktok.com/@tuhoctiengtrung2025" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://zalo.me/0528786710" target="_blank"><i class="fas fa-comment-dots"></i></a>
+      <a href="/"><i class="fas fa-home"></i></a>
+    </div>
+    <p style="margin-top:12px;">© 2026 Tiếng Trung Hoàng Diễm</p>
+  </footer>
+
+  <!-- DETAIL MODAL -->
+  <div class="detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
+    <div class="detail-sheet" id="detailSheet"></div>
+  </div>
+
+<script>
+// ============================================================
+// CẤU HÌNH: Thay đổi mật khẩu và link tải tại đây
+// ============================================================
+const PACKAGES = [
+  { id:'full', emoji:'👑', title:'Full Trọn Bộ — Combo 6 TRONG 1', cover:'images/combo-overview.webp',
+    priceSale:'199,000₫', priceOld:'450,000₫', discount:'-56%', badge:'hot', badgeText:'🔥 BÁN CHẠY #1',
+    students:'3.120', featured:true, password:'FULL2026',
+    downloadUrl:'https://drive.google.com/drive/folders/XXXXX', downloadLabel:'Mở toàn bộ tài liệu',
+    previews:['ảnh slider/5.webp','ảnh slider/1.webp','ảnh slider/9.webp','ảnh slider/11.webp','ảnh slider/13.webp'],
+    desc:'Sở hữu trọn bộ 6 gói tài liệu tiếng Trung — từ ngữ pháp, từ vựng, giao tiếp đến luyện viết chữ Hán. Bao gồm tất cả nội dung bên dưới + quà tặng độc quyền. Tiết kiệm 56% so với mua lẻ!',
+    features:['📖 34 cấu trúc ngữ pháp HSK1–HSK3 + bài luyện dịch 2 chiều','📚 Full từ vựng HSK1–HSK6 có Pinyin + ví dụ câu thực tế','💬 1200 câu giao tiếp thông dụng + Video hướng dẫn phát âm','⌨️ File luyện gõ Hán tự HSK1–HSK3 có tính năng check tự động','🀄 60 bộ thủ thường gặp — gốc rễ của chữ Hán','🎁 TẶNG: Video phát âm chuẩn bản xứ','🎁 TẶNG: Vào nhóm Facebook hỗ trợ học tập'] },
+
+  { id:'cautruc', emoji:'📖', title:'Cấu trúc và Luyện dịch tiếng Trung', cover:'ảnh slider/5.webp',
+    priceSale:'69,000₫', priceOld:'150,000₫', discount:'-54%', badge:'popular', badgeText:'⭐ PHỔ BIẾN',
+    students:'1.850', password:'CAUTRUC2026',
+    downloadUrl:'https://drive.google.com/drive/folders/XXXXX', downloadLabel:'Mở tài liệu Cấu trúc',
+    previews:['ảnh slider/5.webp','ảnh slider/6.webp','ảnh slider/7.webp','ảnh slider/8.webp'],
+    desc:'Tổng hợp 34 cấu trúc ngữ pháp thường gặp nhất từ HSK1 đến HSK3. Mỗi phần đều có công thức, giải thích cách dùng, ví dụ thực tế và lưu ý khi sử dụng. Đặc biệt có bài luyện dịch 2 chiều Trung ↔ Việt kèm đáp án để tự kiểm tra.',
+    features:['34 cấu trúc ngữ pháp HSK1–HSK3 thường gặp nhất','Mỗi cấu trúc: công thức + giải thích + ví dụ + lưu ý','Luyện dịch Trung → Việt và Việt → Trung sau mỗi phần','Đáp án đi kèm cuối file để dễ dàng đối chiếu','Phù hợp cho người hay nói ngược, yếu ngữ pháp','Dùng để ôn thi HSK hoặc nâng cao trình độ','Xem trên điện thoại mọi lúc mọi nơi, hoặc in ra sách'] },
+
+  { id:'giaotiep', emoji:'💬', title:'1200 Câu Giao Tiếp Thông Dụng + Video', cover:'ảnh slider/1.webp',
+    priceSale:'99,000₫', priceOld:'200,000₫', discount:'-50%', students:'2.340', password:'GIAOTIEP2026',
+    downloadUrl:'https://drive.google.com/drive/folders/XXXXX', downloadLabel:'Mở tài liệu 1200 câu',
+    previews:['ảnh slider/1.webp','ảnh slider/2.webp','ảnh slider/3.webp','ảnh slider/4.webp'],
+    desc:'1200 câu giao tiếp tiếng Trung thông dụng với đa dạng chủ đề: chào hỏi, giới thiệu, công việc, phỏng vấn xin việc, tình cảm... Bỏ qua ngữ pháp rắc rối — học theo câu ngắn, đơn giản, tính thực chiến cao. Học câu nào dùng được ngay câu đó!',
+    features:['1200 câu giao tiếp chia theo 100+ chủ đề thực tế','Có âm bồi (phiên âm) đi kèm từng câu','Kèm video hướng dẫn đọc — nghe nhại theo và nói ngay','Câu ngắn, đơn giản, không cần học ngữ pháp phức tạp','Trình bày rõ ràng, dễ hiểu, tính thực chiến cao','Xem trên điện thoại hoặc in ra sách đều được','Phù hợp người cần giao tiếp nhanh cho công việc, du lịch'] },
+
+  { id:'tuvung', emoji:'📚', title:'Từ Vựng Tiếng Trung HSK1 – HSK6', cover:'ảnh slider/9.webp',
+    priceSale:'39,000₫', priceOld:'100,000₫', discount:'-61%', students:'1.560', password:'TUVUNG2026',
+    downloadUrl:'https://drive.google.com/drive/folders/XXXXX', downloadLabel:'Mở tài liệu Từ vựng',
+    previews:['ảnh slider/9.webp','ảnh slider/10.webp'],
+    desc:'Full từ vựng từ HSK1 đến HSK6, chia rõ ràng theo từng cấp độ. Không chỉ có từ đơn mà còn kèm ví dụ câu thực tế để hiểu cách dùng. Giúp tra cứu dễ dàng, ứng dụng đặt câu hiệu quả — hỗ trợ quá trình học tập và chinh phục bằng HSK.',
+    features:['Full từ vựng HSK1–HSK6 chia theo từng cấp độ rõ ràng','Mỗi từ có Pinyin + ví dụ câu thực tế (không chỉ từ đơn)','Tra cứu cực nhanh trên điện thoại hoặc máy tính','Phù hợp người lười tra từ, học từ không biết đặt câu','Hỗ trợ chinh phục tấm bằng HSK các cấp','Học mọi lúc mọi nơi chỉ với một chiếc điện thoại'] },
+
+  { id:'luyen', emoji:'⌨️', title:'Luyện Gõ Hán Tự HSK1 – HSK3', cover:'ảnh slider/11.webp',
+    priceSale:'39,000₫', priceOld:'100,000₫', discount:'-61%', students:'980', password:'LUYEN2026',
+    downloadUrl:'https://drive.google.com/drive/folders/XXXXX', downloadLabel:'Mở tài liệu Luyện gõ',
+    previews:['ảnh slider/11.webp','ảnh slider/12.webp'],
+    desc:'Dành cho bạn nhìn chữ Hán thì hiểu nhưng không nhớ phiên âm để gõ, hoặc ngồi chép cả trang mà vẫn không nhớ mặt chữ. File chia rõ từ vựng 3 cấp độ HSK1–HSK3, có tính năng check tự động: gõ đúng hiện xanh, gõ sai hiện đỏ!',
+    features:['Chia rõ từ vựng 3 cấp: HSK1, HSK2, HSK3','Mỗi từ có sẵn phiên âm + nghĩa tiếng Việt','Tính năng check tự động: đúng = xanh, sai = đỏ','Vừa gõ vừa ôn tập — nhớ cả mặt chữ lẫn phiên âm','Luyện gõ trên máy tính hoặc điện thoại đều được','Không cần sách vở — chỉ cần điện thoại là học được'] },
+
+  { id:'bothu', emoji:'🀄', title:'60 Bộ Thủ Thường Gặp Trong Chữ Hán', cover:'ảnh slider/13.webp',
+    priceSale:'39,000₫', priceOld:'100,000₫', discount:'-61%', students:'1.200', password:'BOTHU2026',
+    downloadUrl:'https://drive.google.com/drive/folders/XXXXX', downloadLabel:'Mở tài liệu 60 bộ thủ',
+    previews:['ảnh slider/13.webp','ảnh slider/14.webp'],
+    desc:'Bộ thủ được ví như bảng chữ cái tiếng Trung — là gốc rễ của chữ Hán. File giải nghĩa 60 bộ thủ thường gặp nhất, giúp nhớ mặt chữ nhanh hơn và lâu hơn thông qua ý nghĩa của từng con chữ. Nâng cao tư duy ngôn ngữ, hiểu được logic hình thành chữ viết.',
+    features:['60 bộ thủ thường gặp nhất — gốc rễ của chữ Hán','Giải thích ý nghĩa từng bộ thủ rõ ràng, dễ hiểu','Nhớ mặt chữ có logic — nhanh hơn và lâu hơn','Hiểu văn hóa và logic hình thành chữ viết tiếng Trung','Ví dụ: bộ Nhân (人) = con người, bộ Nữ (女) = phái nữ','Nền tảng vững chắc cho HSK3 trở lên'] }
+];
+
+// Render cards (overview only, no password on card)
+const grid = document.getElementById('hubGrid');
+PACKAGES.forEach((pkg, i) => {
+  const isUnlocked = localStorage.getItem('hub_' + pkg.id) === '1';
+  const badgeHtml = pkg.badge ? `<div class="card-badge badge-${pkg.badge}">${pkg.badgeText}</div>` : '';
+  const statusHtml = isUnlocked
+    ? '<div class="unlock-badge" style="margin-top:10px"><i class="fas fa-check-circle"></i> Đã mở khóa</div>'
+    : '<div class="card-lock-overlay"><div class="lock-icon"><i class="fas fa-lock"></i></div></div>';
+  grid.innerHTML += `
+    <div class="hub-card ${pkg.featured?'featured':''} fade-up" onclick="openDetail('${pkg.id}')" style="transition-delay:${i*0.08}s">
+      ${badgeHtml}
+      <div class="card-cover"><img src="${pkg.cover}" alt="${pkg.title}" loading="lazy">${isUnlocked?'':statusHtml}</div>
+      <div class="card-body">
+        <span class="card-emoji">${pkg.emoji}</span>
+        <h3 class="card-title">${pkg.title}</h3>
+        <div class="card-social"><span class="live-dot"></span>Đang có <strong>${pkg.students}</strong> học viên đang học bộ này</div>
+        ${isUnlocked?statusHtml:''}
+      </div>
+    </div>`;
+});
+
+// Open detail modal
+function openDetail(pkgId) {
+  const pkg = PACKAGES.find(p => p.id === pkgId);
+  const isUnlocked = localStorage.getItem('hub_' + pkgId) === '1';
+  const previewsHtml = pkg.previews.map(src => `<img src="${src}" loading="lazy">`).join('');
+  const featuresHtml = pkg.features.map(f => `<li><i class="fas fa-check-circle"></i>${f}</li>`).join('');
+
+  let accessHtml;
+  if (isUnlocked) {
+    accessHtml = `<div class="unlock-area show">
+      <div class="unlock-badge"><i class="fas fa-check-circle"></i> Đã mở khóa</div>
+      <a href="${pkg.downloadUrl}" target="_blank" class="download-btn" onclick="event.stopPropagation()">
+        <i class="fas fa-cloud-arrow-down"></i> ${pkg.downloadLabel}</a></div>`;
+  } else {
+    accessHtml = `<div class="pw-gate">
+      <div class="pw-label"><i class="fas fa-key"></i> Nhập mật khẩu để truy cập tài liệu</div>
+      <div class="pw-input-row">
+        <input type="password" class="pw-input" id="mpw-${pkgId}" placeholder="Nhập mật khẩu..." onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.stopPropagation();unlockModal('${pkgId}')}">
+        <button class="pw-submit" onclick="event.stopPropagation();unlockModal('${pkgId}')"><i class="fas fa-unlock"></i> Mở</button>
+      </div>
+      <div class="pw-error" id="merr-${pkgId}"><i class="fas fa-times-circle"></i> Sai mật khẩu!</div>
+      <a href="/" class="buy-link" onclick="event.stopPropagation()"><i class="fas fa-cart-plus"></i> Chưa có mật khẩu? Mua ngay →</a>
+    </div>`;
+  }
+
+  document.getElementById('detailSheet').innerHTML = `
+    <div class="detail-close"><span>${pkg.emoji} Chi tiết sản phẩm</span><button onclick="closeDetail()"><i class="fas fa-times"></i></button></div>
+    <img src="${pkg.cover}" class="detail-cover" alt="${pkg.title}">
+    <div class="detail-body">
+      <h2 class="detail-title">${pkg.title}</h2>
+      <div class="detail-price"><span class="sale">${pkg.priceSale}</span><span class="old">${pkg.priceOld}</span><span class="disc">${pkg.discount}</span></div>
+      <div class="detail-social"><span class="live-dot"></span>Đang có <strong>${pkg.students}</strong> học viên đang học bộ này</div>
+      <p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;margin:12px 0 16px;padding:12px;background:rgba(255,255,255,.03);border-radius:10px;border:1px solid rgba(255,255,255,.05)">${pkg.desc}</p>
+      <div class="detail-features"><h4><i class="fas fa-list-check"></i> Bao gồm</h4><ul>${featuresHtml}</ul></div>
+      <div class="detail-previews">${previewsHtml}</div>
+      <div class="detail-divider"></div>
+      ${accessHtml}
+    </div>`;
+  document.getElementById('detailOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detailOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function unlockModal(pkgId) {
+  const pkg = PACKAGES.find(p => p.id === pkgId);
+  const input = document.getElementById('mpw-' + pkgId);
+  const err = document.getElementById('merr-' + pkgId);
+  if (input.value.trim().toUpperCase() === pkg.password.toUpperCase()) {
+    localStorage.setItem('hub_' + pkgId, '1');
+    closeDetail();
+    // Re-render grid + reopen detail
+    grid.innerHTML = '';
+    PACKAGES.forEach((p, i) => {
+      const u = localStorage.getItem('hub_'+p.id)==='1';
+      const b = p.badge?`<div class="card-badge badge-${p.badge}">${p.badgeText}</div>`:'';
+      const s = u?'<div class="unlock-badge" style="margin-top:10px"><i class="fas fa-check-circle"></i> Đã mở khóa</div>':'<div class="card-lock-overlay"><div class="lock-icon"><i class="fas fa-lock"></i></div></div>';
+      grid.innerHTML += `<div class="hub-card ${p.featured?'featured':''} fade-up visible" onclick="openDetail('${p.id}')">${b}<div class="card-cover"><img src="${p.cover}" alt="${p.title}">${u?'':s}</div><div class="card-body"><span class="card-emoji">${p.emoji}</span><h3 class="card-title">${p.title}</h3><div class="card-social"><span class="live-dot"></span>Đang có <strong>${p.students}</strong> học viên</div>${u?s:''}</div></div>`;
+    });
+    setTimeout(() => openDetail(pkgId), 100);
+  } else {
+    err.classList.remove('show'); void err.offsetWidth; err.classList.add('show');
+    input.value = ''; input.focus();
+  }
+}
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});
+}, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

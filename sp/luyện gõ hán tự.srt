@@ -1,0 +1,88 @@
+1
+00:00:00,066 --> 00:00:03,333
+đây là file luyện gõ hán tự từ hsk một đến hsk ba
+
+2
+00:00:03,700 --> 00:00:04,966
+nếu bạn nhìn chữ hán thì hiểu
+
+3
+00:00:05,333 --> 00:00:06,600
+nhưng lại không nhớ được phiên âm
+
+4
+00:00:06,700 --> 00:00:09,066
+để gõ trên điện thoại hay là ngồi chép cả trang giấy
+
+5
+00:00:09,300 --> 00:00:10,466
+nhưng vẫn không nhớ được mặt chữ
+
+6
+00:00:10,800 --> 00:00:13,166
+thì file luyện gõ hán tự này sinh ra là để cho bạn đấy
+
+7
+00:00:13,266 --> 00:00:15,266
+file này chia rõ ràng từ vựng của ba cấp độ
+
+8
+00:00:15,366 --> 00:00:16,966
+từ hsk một đến hsk ba
+
+9
+00:00:17,166 --> 00:00:19,700
+mỗi từ đều có sẵn của phiên âm và nghĩa tiếng việt
+
+10
+00:00:19,966 --> 00:00:21,733
+để mình vừa gõ vừa ôn tập ý nghĩa
+
+11
+00:00:21,933 --> 00:00:23,400
+ở đây sẽ có tính năng check tự động
+
+12
+00:00:23,600 --> 00:00:25,700
+nếu mình gõ đúng thì sẽ hiện ra dòng chữ màu xanh này
+
+13
+00:00:25,966 --> 00:00:27,900
+còn nếu gõ sai thì sẽ hiện dòng chữ màu đỏ
+
+14
+00:00:28,200 --> 00:00:30,333
+cách học này sẽ giúp chúng ta nhớ được mặt chữ hán
+
+15
+00:00:30,466 --> 00:00:31,566
+và nhớ cả phiên âm nữa
+
+16
+00:00:31,733 --> 00:00:33,700
+vì là dạng file xem trên điện thoại nên là rất tiện
+
+17
+00:00:33,900 --> 00:00:35,100
+mình có thể luyện gõ trên máy tính
+
+18
+00:00:35,300 --> 00:00:36,266
+hoặc là trên điện thoại đều được
+
+19
+00:00:36,400 --> 00:00:38,366
+học từ vựng mà không cần sách vở lỉnh kỉnh
+
+20
+00:00:38,666 --> 00:00:40,600
+chỉ cần có điện thoại là có thể học mọi lúc mọi nơi
+
+21
+00:00:40,800 --> 00:00:41,700
+muốn chinh phục được tiếng
+
+22
+00:00:41,800 --> 00:00:43,866
+trung thì không thể thiếu bộ luyện gõ này các bác nha
+

@@ -1,0 +1,124 @@
+1
+00:00:00,133 --> 00:00:01,866
+đây là file cấu trúc và thực hành
+
+2
+00:00:02,333 --> 00:00:03,766
+file này sẽ tổng hợp những cấu trúc
+
+3
+00:00:03,866 --> 00:00:04,900
+ngữ pháp thường gặp nhất
+
+4
+00:00:04,933 --> 00:00:06,766
+từ hsk một đến hsk ba
+
+5
+00:00:06,933 --> 00:00:08,800
+file này bao gồm 34 cấu trúc ngữ pháp
+
+6
+00:00:09,100 --> 00:00:10,400
+mỗi phần đều đưa ra công thức
+
+7
+00:00:10,600 --> 00:00:11,800
+giải thích cách dùng của công thức
+
+8
+00:00:12,100 --> 00:00:13,966
+nêu ra ví dụ để mọi người dễ hiểu hơn
+
+9
+00:00:14,366 --> 00:00:16,333
+có cả phần lưu ý nhỏ khi sử dụng cấu trúc
+
+10
+00:00:16,600 --> 00:00:17,466
+sau mỗi phần cấu trúc
+
+11
+00:00:17,700 --> 00:00:18,766
+sẽ là phần luyện tập dịch
+
+12
+00:00:18,866 --> 00:00:19,900
+từ tiếng trung sang tiếng việt
+
+13
+00:00:20,300 --> 00:00:22,100
+và phần luyện tập dịch từ tiếng việt sang tiếng trung
+
+14
+00:00:22,366 --> 00:00:24,000
+cuối file sẽ có đáp án đi kèm
+
+15
+00:00:24,133 --> 00:00:25,333
+để mọi người dễ dàng đối chiếu
+
+16
+00:00:25,600 --> 00:00:27,866
+file này sẽ phù hợp cho những ai hay nói ngược
+
+17
+00:00:28,166 --> 00:00:30,900
+nói sai hoặc là những ai đang yếu phần ngữ pháp
+
+18
+00:00:31,200 --> 00:00:32,900
+hoặc là muốn nâng cao trình độ tiếng trung
+
+19
+00:00:33,166 --> 00:00:34,600
+hay muốn ôn thi hsk
+
+20
+00:00:34,866 --> 00:00:36,466
+file tài liệu này là xem trên điện thoại
+
+21
+00:00:36,666 --> 00:00:37,566
+nên rất là linh động
+
+22
+00:00:37,900 --> 00:00:39,333
+chúng ta có thể học mọi lúc mọi nơi
+
+23
+00:00:39,866 --> 00:00:41,766
+chỉ cần mở điện thoại ra là có thể học được rồi
+
+24
+00:00:41,966 --> 00:00:43,600
+không cần mang theo sách vở lỉnh kỉnh
+
+25
+00:00:43,800 --> 00:00:44,566
+nếu mọi người muốn in
+
+26
+00:00:44,566 --> 00:00:45,566
+ra dạng giấy như thế này
+
+27
+00:00:45,666 --> 00:00:47,400
+thì chỉ cần mang ra quán photo là in được
+
+28
+00:00:47,566 --> 00:00:49,066
+file cấu trúc và thực hành này
+
+29
+00:00:49,200 --> 00:00:50,766
+sẽ giúp mình cải thiện những kiến thức tiếng
+
+30
+00:00:50,900 --> 00:00:51,700
+trung cơ bản nhất
+
+31
+00:00:51,900 --> 00:00:53,333
+và hỗ trợ mình học tiếng trung tốt hơn
+

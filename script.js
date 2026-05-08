@@ -832,3 +832,19 @@ closeModalInternal = function() {
   toastPaused = false;
   origCloseModalInternal();
 };
+
+// === AUTO-OPEN MODAL FROM HUB PAGE ===
+// When user comes from /tailieu with ?pkg= parameter, auto-open modal
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const hubPkg = params.get('pkg') || sessionStorage.getItem('openPkg');
+  if (hubPkg && PACKAGE_PRICING[hubPkg]) {
+    sessionStorage.removeItem('openPkg');
+    // Clean URL
+    if (params.get('pkg')) {
+      history.replaceState({}, '', window.location.pathname);
+    }
+    // Delay to let page fully load
+    setTimeout(() => { openModalWithPkg(hubPkg); }, 600);
+  }
+})();

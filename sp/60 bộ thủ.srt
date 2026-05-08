@@ -1,0 +1,76 @@
+1
+00:00:00,066 --> 00:00:00,866
+đây là file giải
+
+2
+00:00:00,933 --> 00:00:02,866
+nghĩa sáu mươi bộ thủ thường gặp nhất trong tiếng trung
+
+3
+00:00:03,066 --> 00:00:05,300
+việc học bộ thủ được ví như học bảng chữ cái
+
+4
+00:00:05,366 --> 00:00:07,733
+tiếng trung vì nó là gốc rễ của chữ hán
+
+5
+00:00:08,200 --> 00:00:10,733
+nên bộ thủ sẽ hỗ trợ mình nhớ được mặt chữ nhanh hơn
+
+6
+00:00:10,800 --> 00:00:13,100
+và lâu hơn thông qua ý nghĩa của từng con chữ
+
+7
+00:00:13,400 --> 00:00:15,400
+mỗi phần sẽ giải thích ý nghĩa của một bộ thủ
+
+8
+00:00:15,900 --> 00:00:17,600
+giúp chúng ta nâng cao tư duy ngôn ngữ
+
+9
+00:00:17,966 --> 00:00:19,400
+hiểu được văn hóa và logic
+
+10
+00:00:19,533 --> 00:00:20,733
+hình thành chữ viết của tiếng trung
+
+11
+00:00:20,966 --> 00:00:23,366
+ví dụ ý nghĩa của bộ nhân là chỉ con người
+
+12
+00:00:23,966 --> 00:00:26,000
+thường xuất hiện trong các chữ liên quan tới con người
+
+13
+00:00:26,466 --> 00:00:28,133
+đặc biệt thiên về giới tính nam
+
+14
+00:00:28,600 --> 00:00:30,733
+hai bộ nữ là con gái nữ giới
+
+15
+00:00:31,200 --> 00:00:33,500
+thường xuất hiện trong các chữ liên quan đến phái nữ
+
+16
+00:00:33,766 --> 00:00:34,700
+hàm ý tốt đẹp
+
+17
+00:00:35,300 --> 00:00:36,100
+đây sẽ là giải pháp
+
+18
+00:00:36,266 --> 00:00:38,400
+giúp chúng ta nhớ mặt chữ một cách có logic
+
+19
+00:00:38,600 --> 00:00:39,666
+nhanh chóng và hiệu quả hơn
+

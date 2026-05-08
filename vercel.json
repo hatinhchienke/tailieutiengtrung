@@ -1,4 +1,7 @@
 {
+  "rewrites": [
+    { "source": "/tailieu", "destination": "/tailieu.html" }
+  ],
   "functions": {
     "api/*.js": {
       "maxDuration": 10
