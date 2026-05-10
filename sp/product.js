@@ -166,6 +166,41 @@ P.features.forEach(f => {
   fl.appendChild(li);
 });
 
+// Delivery Compare
+const dc = document.getElementById('deliveryCompare');
+const filePrice = P.file.amount.toLocaleString('vi-VN');
+const bookPrice = P.book ? P.book.amount.toLocaleString('vi-VN') : null;
+let dcHTML = '<h4>📋 2 HÌNH THỨC NHẬN TÀI LIỆU — BẠN CHỌN!</h4>' +
+  '<div class="dc-hint"><i class="fas fa-bolt"></i> <strong>90% khách hàng</strong> chọn File số vì nhận ngay, giá rẻ hơn & có thể tự in ra sách!</div>' +
+  '<div class="dc-options">' +
+  '<div class="dc-card dc-file"><div class="dc-rec">⭐ ĐỀ XUẤT</div>' +
+  '<div class="dc-icon"><i class="fas fa-file-pdf"></i></div>' +
+  '<h5>📄 File số (PDF/Excel)</h5>' +
+  '<ul>' +
+  '<li>✅ Nhận link tải <strong>ngay sau thanh toán</strong> — không chờ đợi</li>' +
+  '<li>✅ Giá chỉ từ <strong>' + filePrice + '₫</strong> — rẻ hơn sách giấy</li>' +
+  '<li>✅ Học trên điện thoại mọi lúc mọi nơi</li>' +
+  '<li>✅ <strong>Tự in ra thành sách</strong> nếu muốn — giống hệt sách trong video</li>' +
+  '<li>✅ Lưu trữ vĩnh viễn, không sợ mất</li>' +
+  '<li>✅ Tra cứu nhanh bằng tìm kiếm trên điện thoại</li>' +
+  '</ul></div>';
+
+if (P.book) {
+  dcHTML += '<div class="dc-card dc-book">' +
+    '<div class="dc-icon"><i class="fas fa-book"></i></div>' +
+    '<h5>📕 Sách giấy (giao tận nhà)</h5>' +
+    '<ul>' +
+    '<li>✅ Sách in sẵn, giao tận nhà trong 2-4 ngày</li>' +
+    '<li>✅ Cầm nắm thật, đánh dấu, ghi chú</li>' +
+    '<li>✅ Thanh toán khi nhận hàng (COD)</li>' +
+    '</ul>' +
+    '<div class="dc-note">💡 Giá sách giấy = giá file số + 120K phí in & ship</div>' +
+    '</div>';
+}
+
+dcHTML += '</div>';
+dc.innerHTML = dcHTML;
+
 // Reviews
 const reviewsEl = document.getElementById('reviewsSection');
 if (P.reviews && P.reviews.length) {
