@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -166,16 +166,15 @@ renderGrid();
 function openDetail(pkgId) {
   const pkg = PACKAGES.find(p => p.id === pkgId);
   const isUnlocked = localStorage.getItem('hub_' + pkgId) === '1';
+  
+  if (isUnlocked) {
+    window.open(pkg.downloadUrl, '_blank');
+    return;
+  }
+  
   const featuresHtml = pkg.features.map(f => '<li><i class="fas fa-check-circle"></i>'+f+'</li>').join('');
 
-  let accessHtml;
-  if (isUnlocked) {
-    accessHtml = '<div class="unlock-area show">' +
-      '<div class="unlock-badge"><i class="fas fa-check-circle"></i> Mật khẩu hợp lệ</div>' +
-      '<a href="'+pkg.downloadUrl+'" target="_blank" class="download-btn" onclick="event.stopPropagation()">' +
-      '<i class="fas fa-cloud-arrow-down"></i> '+pkg.downloadLabel+'</a></div>';
-  } else {
-    accessHtml = '<div class="pw-gate">' +
+  let accessHtml = '<div class="pw-gate">' +
       '<div class="pw-label"><i class="fas fa-key"></i> Nhập mật khẩu để mở khóa</div>' +
       '<div class="pw-input-row">' +
       '<input type="password" class="pw-input" id="mpw-'+pkgId+'" placeholder="Mật khẩu..." onclick="event.stopPropagation()" onkeydown="if(event.key===\'Enter\'){event.stopPropagation();unlockModal(\''+pkgId+'\')}">' +
@@ -184,7 +183,6 @@ function openDetail(pkgId) {
       '<div class="pw-error" id="merr-'+pkgId+'"><i class="fas fa-times-circle"></i> Sai mật khẩu! Vui lòng thử lại.</div>' +
       '<a href="/sp/'+(pkg.id==='full'?'tron-bo':(pkg.id==='luyen'?'luyen-go':(pkg.id==='bothu'?'60-bo-thu':pkg.id)))+'" class="buy-link" onclick="event.stopPropagation()"><i class="fas fa-cart-plus"></i> Chưa có mật khẩu? Mua ngay →</a>' +
       '</div>';
-  }
 
   document.getElementById('detailSheet').innerHTML = '<div class="detail-close"><span>'+pkg.emoji+' Mở khóa tài liệu</span><button onclick="closeDetail()"><i class="fas fa-times"></i></button></div>' +
     '<img src="'+pkg.cover+'" class="detail-cover" alt="'+pkg.title+'">' +
