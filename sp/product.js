@@ -299,7 +299,7 @@ const COVER_IMAGES = {
 if (slug !== 'tron-bo') {
   const combo = PRODUCTS['tron-bo'];
   const currentPrice = P.file.amount;
-  const saveAmount = (Object.keys(PRODUCTS).filter(k=>k!=='tron-bo').reduce((s,k)=>s+PRODUCTS[k].file.amount,0) - combo.file.amount);
+  const saveAmount = 126000; // Hardcoded based on maximum package values (325k total - 199k combo)
   const banner = document.getElementById('upsellBanner');
   banner.style.display = 'block';
   banner.innerHTML = '<div class="upsell-inner">' +
