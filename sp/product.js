@@ -178,19 +178,64 @@ if (P.reviews && P.reviews.length) {
   reviewsEl.innerHTML = html;
 }
 
-// Slides
+// Slides — video first, then images
 const slidesEl = document.getElementById('heroSlides');
 const dotsEl = document.getElementById('heroDots');
+const totalCount = P.slides.length + (P.videoId ? 1 : 0);
+document.getElementById('totalSlides').textContent = totalCount;
+let slideIdx = 0;
+
+// Video slide (first)
+if (P.videoId) {
+  const vdiv = document.createElement('div');
+  vdiv.className = 'slide slide-video active';
+  vdiv.innerHTML = '<div class="yt-lazy" id="ytLazy" data-id="'+P.videoId+'">' +
+    '<img src="'+P.slides[0]+'" alt="Xem video giới thiệu" class="yt-poster" style="object-fit:contain;background:#fff;">' +
+    '<button class="play-btn" id="playBtn"><i class="fas fa-play"></i></button></div>' +
+    '<span class="slide-label">▶ Nhấn để xem video giới thiệu</span>';
+  slidesEl.appendChild(vdiv);
+  const dot0 = document.createElement('span');
+  dot0.className = 'dot active';
+  dot0.dataset.index = 0;
+  dotsEl.appendChild(dot0);
+  slideIdx = 1;
+}
+
+// Image slides
 P.slides.forEach((src, i) => {
   const div = document.createElement('div');
-  div.className = 'slide' + (i===0?' active':'');
+  div.className = 'slide';
   div.innerHTML = '<img src="'+src+'" alt="'+P.headerTitle+'" loading="'+(i<2?'eager':'lazy')+'">';
   slidesEl.appendChild(div);
   const dot = document.createElement('span');
-  dot.className = 'dot'+(i===0?' active':'');
-  dot.dataset.index = i;
+  dot.className = 'dot';
+  dot.dataset.index = slideIdx;
   dotsEl.appendChild(dot);
+  slideIdx++;
 });
+
+// YouTube lazy load
+const ytLazy = document.getElementById('ytLazy');
+if (ytLazy) {
+  function loadYT() {
+    if (ytLazy.querySelector('iframe')) return;
+    const vid = ytLazy.dataset.id;
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/'+vid+'?autoplay=1&rel=0&modestbranding=1';
+    iframe.allow = 'accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+    ytLazy.appendChild(iframe);
+    const btn = ytLazy.querySelector('.play-btn');
+    const poster = ytLazy.querySelector('.yt-poster');
+    if (btn) btn.style.display = 'none';
+    if (poster) poster.style.display = 'none';
+  }
+  const playBtn = ytLazy.querySelector('.play-btn');
+  const poster = ytLazy.querySelector('.yt-poster');
+  if (playBtn) playBtn.addEventListener('click', loadYT);
+  if (poster) poster.addEventListener('click', loadYT);
+}
 
 // Hide book option if not available
 if (!P.book) {
