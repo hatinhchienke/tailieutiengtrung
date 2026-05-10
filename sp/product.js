@@ -1,4 +1,4 @@
-// ============ PRODUCT DATA ============
+﻿// ============ PRODUCT DATA ============
 const PRODUCTS = {
   'tron-bo': {
     title: 'BỘ TÀI LIỆU TỰ HỌC TIẾNG TRUNG — COMBO 6 TRONG 1',
@@ -20,9 +20,9 @@ const PRODUCTS = {
     file: { amount: 199000, label: '199K', content: 'tai lieu tieng trung 6' },
     book: { amount: 499000, label: '499K', content: 'sach giay tieng trung 6' },
     reviews: [
-      { name: 'Ng** Minh', letter: 'N', text: 'Mua trọn bộ vì thấy giá quá hời. Có đủ từ vựng, ngữ pháp, giao tiếp — học theo lộ trình rõ ràng. 2 tháng mình đã thi đỗ HSK2!', date: '5 - 6' },
-      { name: 'Tr** Hương', letter: 'T', text: 'Làm ở công ty Trung Quốc, mình tự học theo combo và tiếng Trung đã cải thiện rõ rệt. Giao tiếp được cơ bản trong công việc rồi.', date: '5 - 3' },
-      { name: 'Lê** Dũng', letter: 'L', text: 'Ban đầu định mua lẻ nhưng thấy combo tiết kiệm 56% nên mua luôn. Không hối hận, tài liệu chất lượng, hỗ trợ nhiệt tình.', date: '4 - 28' }
+      { name: 'Ng Minh', letter: 'N', text: 'Mua trọn bộ vì thấy giá quá hời. Có đủ từ vựng, ngữ pháp, giao tiếp — học theo lộ trình rõ ràng. 2 tháng mình đã thi đỗ HSK2!', date: '5 - 6' },
+      { name: 'Tr Hương', letter: 'T', text: 'Làm ở công ty Trung Quốc, mình tự học theo combo và tiếng Trung đã cải thiện rõ rệt. Giao tiếp được cơ bản trong công việc rồi.', date: '5 - 3' },
+      { name: 'Lê Dũng', letter: 'L', text: 'Ban đầu định mua lẻ nhưng thấy combo tiết kiệm 56% nên mua luôn. Không hối hận, tài liệu chất lượng, hỗ trợ nhiệt tình.', date: '4 - 28' }
     ]
   },
   'cau-truc': {
@@ -43,9 +43,9 @@ const PRODUCTS = {
     file: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1' },
     book: { amount: 189000, label: '189K', content: 'sach giay tieng trung 1' },
     reviews: [
-      { name: 'T** Minh', letter: 'T', text: 'Mình yếu phần ngữ pháp, học mãi không nhớ gì. Mua bộ này về tự học theo cấu trúc, 2 tuần đã đặt câu được. Trình bày rõ ràng, dễ hiểu cực kỳ!', date: '5 - 8' },
-      { name: 'H** Anh', letter: 'H', text: 'Đang học năm 2 chuyên ngành tiếng Trung mà vẫn thấy hữu ích. Phần luyện dịch 2 chiều quá hay, giúp mình phản xạ nhanh hơn nhiều.', date: '5 - 5' },
-      { name: 'Ph** Lan', letter: 'P', text: 'Hay nhất là phần luyện dịch Việt → Trung, ép mình phải tư duy ngược lại. Sau 1 tháng mình đã tự tin nói câu dài hơn rồi.', date: '4 - 20' }
+      { name: 'T Minh', letter: 'T', text: 'Mình yếu phần ngữ pháp, học mãi không nhớ gì. Mua bộ này về tự học theo cấu trúc, 2 tuần đã đặt câu được. Trình bày rõ ràng, dễ hiểu cực kỳ!', date: '5 - 8' },
+      { name: 'H Anh', letter: 'H', text: 'Đang học năm 2 chuyên ngành tiếng Trung mà vẫn thấy hữu ích. Phần luyện dịch 2 chiều quá hay, giúp mình phản xạ nhanh hơn nhiều.', date: '5 - 5' },
+      { name: 'Ph Lan', letter: 'P', text: 'Hay nhất là phần luyện dịch Việt → Trung, ép mình phải tư duy ngược lại. Sau 1 tháng mình đã tự tin nói câu dài hơn rồi.', date: '4 - 20' }
     ]
   },
   '1200-cau': {
@@ -66,9 +66,9 @@ const PRODUCTS = {
     file: { amount: 99000, label: '99K', content: 'tai lieu tieng trung 4' },
     book: { amount: 219000, label: '219K', content: 'sach giay tieng trung 4' },
     reviews: [
-      { name: 'Vũ** Hải', letter: 'V', text: 'Đi công tác Trung Quốc, mình chỉ học theo 1200 câu này thôi mà giao tiếp ổn lắm. Câu ngắn gọn, dễ nhớ, thực tế!', date: '5 - 7' },
-      { name: 'Đỗ** Linh', letter: 'Đ', text: 'Có video phát âm kèm theo nên mình bắt chước được luôn. Trước toàn đọc sai thanh điệu, giờ chuẩn hơn nhiều rồi.', date: '5 - 2' },
-      { name: 'Bù** Trang', letter: 'B', text: 'Mình học song song với bộ cấu trúc. 1200 câu giúp mình nói tự nhiên hơn, không còn phải dịch từng từ trong đầu nữa.', date: '4 - 25' }
+      { name: 'Vũ Hải', letter: 'V', text: 'Đi công tác Trung Quốc, mình chỉ học theo 1200 câu này thôi mà giao tiếp ổn lắm. Câu ngắn gọn, dễ nhớ, thực tế!', date: '5 - 7' },
+      { name: 'Đỗ Linh', letter: 'Đ', text: 'Có video phát âm kèm theo nên mình bắt chước được luôn. Trước toàn đọc sai thanh điệu, giờ chuẩn hơn nhiều rồi.', date: '5 - 2' },
+      { name: 'Bù Trang', letter: 'B', text: 'Mình học song song với bộ cấu trúc. 1200 câu giúp mình nói tự nhiên hơn, không còn phải dịch từng từ trong đầu nữa.', date: '4 - 25' }
     ]
   },
   'tu-vung': {
@@ -89,9 +89,9 @@ const PRODUCTS = {
     file: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 2' },
     book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 2' },
     reviews: [
-      { name: 'Đinh** Nam', letter: 'Đ', text: 'Tra từ vựng trên điện thoại cực nhanh, không cần mở app. Có ví dụ câu nên hiểu ngay cách dùng, không phải đoán.', date: '5 - 4' },
-      { name: 'Ng** Thắng', letter: 'N', text: 'Mình đang ôn thi HSK3, file từ vựng này chia theo cấp nên biết mình cần học gì. Pinyin đầy đủ, rất tiện!', date: '5 - 1' },
-      { name: 'Lý** Quân', letter: 'L', text: 'Giá 39K mà được từ HSK1 đến HSK6 luôn thì quá rẻ. Mình lưu trên điện thoại, rảnh lúc nào mở ra học lúc đó.', date: '4 - 22' }
+      { name: 'Đinh Nam', letter: 'Đ', text: 'Tra từ vựng trên điện thoại cực nhanh, không cần mở app. Có ví dụ câu nên hiểu ngay cách dùng, không phải đoán.', date: '5 - 4' },
+      { name: 'Ng Thắng', letter: 'N', text: 'Mình đang ôn thi HSK3, file từ vựng này chia theo cấp nên biết mình cần học gì. Pinyin đầy đủ, rất tiện!', date: '5 - 1' },
+      { name: 'Lý Quân', letter: 'L', text: 'Giá 39K mà được từ HSK1 đến HSK6 luôn thì quá rẻ. Mình lưu trên điện thoại, rảnh lúc nào mở ra học lúc đó.', date: '4 - 22' }
     ]
   },
   'luyen-go': {
@@ -110,9 +110,9 @@ const PRODUCTS = {
     pkgKey: 'luyen',
     file: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 3' },
     reviews: [
-      { name: 'Ho** Yến', letter: 'H', text: 'Trước mình nhìn chữ Hán thì hiểu nhưng không nhớ pinyin để gõ. Luyện file này 2 tuần, giờ gõ nhanh hơn hẳn!', date: '5 - 5' },
-      { name: 'Tr** Đức', letter: 'T', text: 'Tính năng check tự động hay lắm — gõ đúng hiện xanh, sai hiện đỏ. Như chơi game vậy, không nhàm chán.', date: '4 - 30' },
-      { name: 'Lê** Mai', letter: 'L', text: 'Mình hay quên mặt chữ, nhưng từ khi luyện gõ thì nhớ lâu hơn nhiều. Vừa nhớ pinyin vừa nhớ mặt chữ luôn.', date: '4 - 18' }
+      { name: 'Ho Yến', letter: 'H', text: 'Trước mình nhìn chữ Hán thì hiểu nhưng không nhớ pinyin để gõ. Luyện file này 2 tuần, giờ gõ nhanh hơn hẳn!', date: '5 - 5' },
+      { name: 'Tr Đức', letter: 'T', text: 'Tính năng check tự động hay lắm — gõ đúng hiện xanh, sai hiện đỏ. Như chơi game vậy, không nhàm chán.', date: '4 - 30' },
+      { name: 'Lê Mai', letter: 'L', text: 'Mình hay quên mặt chữ, nhưng từ khi luyện gõ thì nhớ lâu hơn nhiều. Vừa nhớ pinyin vừa nhớ mặt chữ luôn.', date: '4 - 18' }
     ],
     book: null // chỉ có file số
   },
@@ -133,9 +133,9 @@ const PRODUCTS = {
     file: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 5' },
     book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 5' },
     reviews: [
-      { name: 'Ph** Mai', letter: 'P', text: 'Học bộ thủ xong mới hiểu tại sao chữ Hán viết như vậy. Nhìn chữ mới đoán được nghĩa luôn, quá hay!', date: '5 - 6' },
-      { name: 'Võ** Ngọc', letter: 'V', text: 'Trước mình sợ chữ Hán lắm vì nhìn như vẽ. Học 60 bộ thủ xong thấy logic hẳn, nhớ chữ nhanh hơn gấp mấy lần.', date: '4 - 29' },
-      { name: 'Đặ** Huy', letter: 'Đ', text: 'File trình bày đẹp, giải thích dễ hiểu. Mỗi bộ thủ có ví dụ cụ thể nên nhớ rất nhanh. Nền tảng tốt để học HSK.', date: '4 - 15' }
+      { name: 'Ph Mai', letter: 'P', text: 'Học bộ thủ xong mới hiểu tại sao chữ Hán viết như vậy. Nhìn chữ mới đoán được nghĩa luôn, quá hay!', date: '5 - 6' },
+      { name: 'Võ Ngọc', letter: 'V', text: 'Trước mình sợ chữ Hán lắm vì nhìn như vẽ. Học 60 bộ thủ xong thấy logic hẳn, nhớ chữ nhanh hơn gấp mấy lần.', date: '4 - 29' },
+      { name: 'Đặ Huy', letter: 'Đ', text: 'File trình bày đẹp, giải thích dễ hiểu. Mỗi bộ thủ có ví dụ cụ thể nên nhớ rất nhanh. Nền tảng tốt để học HSK.', date: '4 - 15' }
     ]
   }
 };
