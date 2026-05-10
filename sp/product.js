@@ -202,7 +202,7 @@ if (P.book) {
     '<li>✅ Cầm nắm thật, đánh dấu, ghi chú</li>' +
     '<li>✅ Thanh toán khi nhận hàng (COD)</li>' +
     '</ul>' +
-    '<div class="dc-note">💡 Giá sách giấy = giá file số + 120K phí in & ship</div>' +
+    '<div class="dc-note">💡 Giá sách giấy = giá file số + phí in & ship</div>' +
     '</div>';
 }
 
