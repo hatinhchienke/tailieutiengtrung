@@ -3072,3 +3072,39 @@ img {
     box-shadow: 0 0 20px rgba(0, 0, 0, .1);
   }
 }
+
+/* ===== UPSELL BANNER ===== */
+.sp-upsell-banner{margin:8px 0 0;padding:0}
+.upsell-inner{background:linear-gradient(135deg,#fff5f2,#ffe8e0);border:2px solid #ee4d2d;border-radius:12px;padding:18px 16px;margin:0 12px;text-align:center}
+.upsell-badge{display:inline-block;background:linear-gradient(135deg,#ee4d2d,#d0011b);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+.upsell-inner h4{font-size:16px;font-weight:800;color:#c0392b;margin-bottom:8px}
+.upsell-inner p{font-size:13px;color:#555;line-height:1.5;margin-bottom:14px}
+.upsell-cta{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#ee4d2d,#d0011b);color:#fff;font-size:14px;font-weight:700;padding:10px 24px;border-radius:8px;text-decoration:none;transition:all .2s;box-shadow:0 4px 12px rgba(238,77,45,.3)}
+.upsell-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(238,77,45,.4)}
+
+/* ===== OTHER PRODUCTS ===== */
+.sp-other-products{background:#fff;margin-top:8px;padding:14px 12px}
+.sp-other-products h3{font-size:15px;font-weight:700;color:#333;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sp-other-products h3 i{color:#ee4d2d;font-size:14px}
+.sp-other-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sp-other-card{display:block;background:#f9f9f9;border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;transition:all .2s;border:1px solid #f0f0f0}
+.sp-other-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.sp-other-card:active{transform:scale(.98)}
+.sp-other-featured{border:2px solid #ee4d2d;grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(135deg,#fff5f2,#fff)}
+.sp-other-img{aspect-ratio:1/1;overflow:hidden;background:#f5f5f5}
+.sp-other-featured .sp-other-img{aspect-ratio:auto}
+.sp-other-img img{width:100%;height:100%;object-fit:cover}
+.sp-other-body{padding:8px 10px}
+.sp-other-body h4{font-size:12px;font-weight:600;color:#333;line-height:1.4;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sp-other-price{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.sp-price-sale{font-size:14px;font-weight:700;color:#ee4d2d}
+.sp-price-old{font-size:11px;color:#999;text-decoration:line-through}
+
+/* ===== ALREADY BOUGHT ===== */
+.sp-already-bought{padding:12px;margin-top:8px}
+.sp-access-btn{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border:1.5px solid #66bb6a;border-radius:12px;padding:14px 16px;text-decoration:none;color:#2e7d32;transition:all .2s}
+.sp-access-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(76,175,80,.2)}
+.sp-access-btn i{font-size:22px;color:#43a047}
+.sp-access-btn div{display:flex;flex-direction:column}
+.sp-access-btn strong{font-size:14px;font-weight:700;color:#2e7d32}
+.sp-access-btn span{font-size:12px;color:#66bb6a;margin-top:2px}

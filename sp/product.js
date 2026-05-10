@@ -1,4 +1,4 @@
-﻿// ============ PRODUCT DATA ============
+// ============ PRODUCT DATA ============
 const PRODUCTS = {
   'tron-bo': {
     title: 'BỘ TÀI LIỆU TỰ HỌC TIẾNG TRUNG — COMBO 6 TRONG 1',
@@ -242,6 +242,45 @@ if (!P.book) {
   const bookBtn = document.getElementById('bookTypeBtn');
   if (bookBtn) bookBtn.style.display = 'none';
 }
+
+// ============ UPSELL BANNER ============
+const COVER_IMAGES = {
+  'tron-bo': '/images/combo-overview.webp',
+  'cau-truc': '/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png',
+  '1200-cau': '/ảnh cover sp/1200 câu.png',
+  'tu-vung': '/ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png',
+  'luyen-go': '/ảnh cover sp/Luyện gõ Hán tự.png',
+  '60-bo-thu': '/ảnh cover sp/60 bộ thủ chữ hán.png'
+};
+
+if (slug !== 'tron-bo') {
+  const combo = PRODUCTS['tron-bo'];
+  const currentPrice = P.file.amount;
+  const saveAmount = (Object.keys(PRODUCTS).filter(k=>k!=='tron-bo').reduce((s,k)=>s+PRODUCTS[k].file.amount,0) - combo.file.amount);
+  const banner = document.getElementById('upsellBanner');
+  banner.style.display = 'block';
+  banner.innerHTML = '<div class="upsell-inner">' +
+    '<div class="upsell-badge">🔥 TIẾT KIỆM ' + saveAmount.toLocaleString('vi-VN') + '₫</div>' +
+    '<h4>Nâng cấp lên Full Trọn Bộ 6 trong 1</h4>' +
+    '<p>Bạn đang xem <strong>' + P.headerTitle + '</strong> — ' + P.priceSale + '. Mua combo trọn bộ chỉ <strong>' + combo.priceSale + '</strong>, bao gồm cả 6 gói!</p>' +
+    '<a href="/sp/tron-bo" class="upsell-cta"><i class="fas fa-arrow-right"></i> XEM COMBO TRỌN BỘ</a>' +
+    '</div>';
+}
+
+// ============ OTHER PRODUCTS ============
+const grid = document.getElementById('otherProductsGrid');
+Object.keys(PRODUCTS).forEach(key => {
+  if (key === slug) return;
+  const p = PRODUCTS[key];
+  const card = document.createElement('a');
+  card.href = '/sp/' + key;
+  card.className = 'sp-other-card' + (key === 'tron-bo' ? ' sp-other-featured' : '');
+  card.innerHTML = '<div class="sp-other-img"><img src="' + (COVER_IMAGES[key]||p.slides[0]) + '" alt="' + p.headerTitle + '" loading="lazy"></div>' +
+    '<div class="sp-other-body"><h4>' + p.headerTitle + '</h4>' +
+    '<div class="sp-other-price"><span class="sp-price-sale">' + p.priceSale + '</span><span class="sp-price-old">' + p.priceOld + '</span></div></div>';
+  grid.appendChild(card);
+});
+
 
 // ============ SLIDER ============
 let currentIndex = 0;
