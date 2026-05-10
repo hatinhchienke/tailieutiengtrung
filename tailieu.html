@@ -188,6 +188,8 @@ function openDetail(pkgId) {
     '<img src="'+pkg.cover+'" class="detail-cover" alt="'+pkg.title+'">' +
     '<div class="detail-body">' +
     '<h2 class="detail-title">'+pkg.title+'</h2>' +
+    '<div class="detail-price"><span class="sale">'+pkg.priceSale+'</span><span class="old">'+pkg.priceOld+'</span><span class="disc">'+pkg.discount+'</span></div>' +
+    '<p style="font-size:13px;color:#555;line-height:1.6;margin:12px 0 16px;padding:12px;background:#f9f9f9;border-radius:10px;border:1px solid #eee;">'+pkg.desc+'</p>' +
     '<div class="detail-social">Trạng thái: <strong>'+(isUnlocked?'Đã mở khóa':'Đã khóa <i class="fas fa-lock"></i>')+'</strong></div>' +
     '<div class="detail-divider"></div>' +
     accessHtml +
