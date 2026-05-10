@@ -153,6 +153,39 @@ const slug = window.location.pathname.split('/sp/')[1]?.replace(/\.html$/,'').re
 const P = PRODUCTS[slug];
 if (!P) { window.location.href = '/'; }
 
+let upgradeDiscount = 0;
+let ownedPackageNames = [];
+
+if (slug === 'tron-bo') {
+  const pkgPrices = {
+    'cautruc': { amount: 69000, name: 'Cấu trúc & Luyện dịch' },
+    'tuvung': { amount: 39000, name: 'Từ vựng HSK1-6' },
+    'giaotiep': { amount: 99000, name: '1200 câu giao tiếp' },
+    'bothu': { amount: 39000, name: '60 bộ thủ' }
+  };
+  Object.keys(pkgPrices).forEach(key => {
+    if (localStorage.getItem('hub_' + key) !== null) {
+      upgradeDiscount += pkgPrices[key].amount;
+      ownedPackageNames.push(pkgPrices[key].name);
+    }
+  });
+
+  const luyenPass = localStorage.getItem('hub_luyen');
+  if (luyenPass) {
+    if (luyenPass === 'LG41WIN') { upgradeDiscount += 39000; ownedPackageNames.push('Luyện gõ Hán tự Gói 1'); }
+    else if (luyenPass === 'LG99PRO') { upgradeDiscount += 49000; ownedPackageNames.push('Luyện gõ Hán tự Gói 2'); }
+    else if (luyenPass === 'LG88MAX') { upgradeDiscount += 79000; ownedPackageNames.push('Luyện gõ Hán tự Gói 3'); }
+    else { upgradeDiscount += 39000; ownedPackageNames.push('Luyện gõ Hán tự'); }
+  }
+
+  if (upgradeDiscount > 0) {
+    P.file.amount = Math.max(0, P.file.amount - upgradeDiscount);
+    P.priceSale = (P.file.amount === 0 ? '0' : P.file.amount.toLocaleString('vi-VN')) + '₫';
+    P.file.label = P.priceSale;
+    P.desc = `🎁 [Hỗ trợ Nâng cấp] Bạn đã mua ${ownedPackageNames.join(', ')}. Hệ thống tự động giảm trừ ${upgradeDiscount.toLocaleString('vi-VN')}₫ cho gói Full Combo.\n\n` + P.desc;
+  }
+}
+
 // ============ RENDER PAGE ============
 document.getElementById('pageTitle').textContent = P.title + ' — Tiếng Trung Hoàng Diễm';
 document.getElementById('pageMeta').content = P.desc;
@@ -486,22 +519,34 @@ async function submitOrder(e) {
   btn.disabled=true;
   document.getElementById('btnText').classList.add('hidden');
   document.getElementById('btnLoading').classList.remove('hidden');
+
+  let finalPackageName = selectedPackage;
+  if (upgradeDiscount > 0 && slug === 'tron-bo' && !isBook) {
+    if (pricing.amount === 0) {
+      alert('Bạn đã đủ điều kiện nhận gói Full miễn phí do đã mua các gói lẻ! Hệ thống sẽ mở khóa ngay lập tức.');
+      localStorage.setItem('hub_full', 'DIEM99VIP');
+      window.location.href = '/tailieu';
+      return;
+    }
+    finalPackageName = `Nâng cấp Full Trọn Bộ (${upgradeDiscount/1000}K)`;
+  }
+
   const now=new Date(),timestamp=now.toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'});
-  const sheetData={submittedAt:timestamp,name,phone,package:selectedPackage,source:'sp-'+slug,type:isBook?'book':'file'};
+  const sheetData={submittedAt:timestamp,name,phone,package:finalPackageName,source:'sp-'+slug,type:isBook?'book':'file'};
   if(isBook)sheetData.address=document.getElementById('address').value.trim();
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(sheetData)});
-  if(typeof fbq!=='undefined'){fbq('track','Lead',{content_name:selectedPackage,value:pricing.amount,currency:'VND'});}
+  if(typeof fbq!=='undefined'){fbq('track','Lead',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
 
   if(isBook){
-    if(typeof fbq!=='undefined'){fbq('track','Purchase',{content_name:selectedPackage,value:pricing.amount,currency:'VND'});}
-    const tp=new URLSearchParams({name,phone,pkg:selectedPackage,type:'book'});
-    window.location.href='/thanks?'+tp.toString(); return;
+    if(typeof fbq!=='undefined'){fbq('track','Purchase',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
+    const tp=new URLSearchParams({name,phone,pkg:finalPackageName,type:'book'});
+    window.location.href='/thanks.html?'+tp.toString(); return;
   }
   try {
-    const payRes=await fetch('/api/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({packageName:selectedPackage,name,phone})});
+    const payRes=await fetch('/api/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({packageName:finalPackageName,name,phone,amount:pricing.amount})});
     if(!payRes.ok)throw new Error('API error');
     const{checkoutUrl}=await payRes.json();
-    if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:selectedPackage,value:pricing.amount,currency:'VND'});
+    if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});
     window.location.href=checkoutUrl;
   } catch(err) {
     console.error('PayOS error:',err);

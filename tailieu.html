@@ -148,9 +148,38 @@ const PACKAGES = [
 const grid = document.getElementById('hubGrid');
 function renderGrid() {
   grid.innerHTML = '';
+  let upgradeDiscount = 0;
+  const pkgPrices = {
+    'cautruc': 69000,
+    'tuvung': 39000,
+    'giaotiep': 99000,
+    'bothu': 39000
+  };
+  Object.keys(pkgPrices).forEach(key => {
+    if (localStorage.getItem('hub_' + key) !== null) {
+      upgradeDiscount += pkgPrices[key];
+    }
+  });
+
+  const luyenPass = localStorage.getItem('hub_luyen');
+  if (luyenPass) {
+    if (luyenPass === 'LG41WIN') { upgradeDiscount += 39000; }
+    else if (luyenPass === 'LG99PRO') { upgradeDiscount += 49000; }
+    else if (luyenPass === 'LG88MAX') { upgradeDiscount += 79000; }
+    else { upgradeDiscount += 39000; }
+  }
+
   PACKAGES.forEach((p, i) => {
-    const isUnlocked = localStorage.getItem('hub_' + p.id) === '1';
-    const badgeHtml = p.badge ? '<div class="h-card-badge h-badge-' + p.badge + '">' + p.badgeText + '</div>' : '';
+    const isUnlocked = localStorage.getItem('hub_' + p.id) !== null;
+    let priceSaleDisplay = p.priceSale;
+    let badgeHtml = p.badge ? '<div class="h-card-badge h-badge-' + p.badge + '">' + p.badgeText + '</div>' : '';
+
+    if (p.id === 'full' && upgradeDiscount > 0 && !isUnlocked) {
+      const finalPrice = Math.max(0, 199000 - upgradeDiscount);
+      priceSaleDisplay = (finalPrice === 0 ? '0' : finalPrice.toLocaleString('vi-VN')) + '₫';
+      badgeHtml = '<div class="h-card-badge h-badge-hot">🎁 CHỈ BÙ ' + priceSaleDisplay + '</div>';
+    }
+
     const lockHtml = isUnlocked 
       ? '<div class="h-card-unlocked"><i class="fas fa-check-circle"></i> Đã mở</div>' 
       : '<div class="h-card-lock-overlay"><div class="h-lock-icon"><i class="fas fa-lock"></i></div></div>';
@@ -160,7 +189,7 @@ function renderGrid() {
       '<div class="h-card-img"><img src="' + p.cover + '" alt="' + p.title + '">' + lockHtml + '</div>' +
       '<div class="h-card-body">' +
       '<h3>' + p.title + '</h3>' +
-      '<div class="h-card-price"><span class="h-price-sale">' + p.priceSale + '</span><span class="h-price-old">' + p.priceOld + '</span></div>' +
+      '<div class="h-card-price"><span class="h-price-sale">' + priceSaleDisplay + '</span><span class="h-price-old">' + p.priceOld + '</span></div>' +
       '<div class="h-card-meta"><i class="fas fa-star"></i> 4.9 | ' + (isUnlocked ? 'Đã mở khóa' : 'Đã bán ' + p.students) + '</div>' +
       '</div></div>';
   });

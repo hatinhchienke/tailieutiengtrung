@@ -151,7 +151,7 @@
 
       // Tự động mở khóa trên trình duyệt hiện tại
       if (pkgId) {
-        localStorage.setItem('hub_' + pkgId, '1');
+        localStorage.setItem('hub_' + pkgId, password ? password.toUpperCase() : '1');
       }
 
       const pwBlock = password ? `

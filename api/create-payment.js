@@ -40,12 +40,23 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const pkg = VALID_PACKAGES[packageName];
-    if (!pkg) {
-      return res.status(400).json({ error: 'Invalid package' });
-    }
+    let amount;
+    let descLabel;
 
-    const amount = pkg.amount;
+    if (packageName.startsWith('Nâng cấp Full Trọn Bộ')) {
+      amount = req.body.amount;
+      if (!amount || amount < 1000) {
+        return res.status(400).json({ error: 'Invalid upgrade amount' });
+      }
+      descLabel = 'NangCap';
+    } else {
+      const pkg = VALID_PACKAGES[packageName];
+      if (!pkg) {
+        return res.status(400).json({ error: 'Invalid package' });
+      }
+      amount = pkg.amount;
+      descLabel = pkg.label;
+    }
 
     // Generate professional order code: HD-YYMMDDXXXX
     // Format: 10-digit number = YYMMDD (6) + random (4)
@@ -57,8 +68,8 @@ module.exports = async function handler(req, res) {
     const orderCode = parseInt(`${yy}${mm}${dd}${rand}`);
 
     // Description max 25 chars — shown as nội dung chuyển khoản
-    // Format: "HoangDiem [GoiTen]" — professional & readable
-    const description = `HoangDiem ${pkg.label}`;
+    // Format: "HDiem [GoiTen]" — professional & readable
+    const description = `HDiem ${descLabel}`.substring(0, 25);
 
     const BASE_URL = process.env.BASE_URL || 'https://tailieutiengtrung.com';
 

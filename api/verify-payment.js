@@ -78,7 +78,12 @@ module.exports = async function handler(req, res) {
     }
 
     // Payment confirmed PAID — find the download link
-    const pkgData = PACKAGE_DATA[pkg] || null;
+    let pkgData = PACKAGE_DATA[pkg] || null;
+
+    // Handle dynamic upgrade package name mapping to Full combo
+    if (pkg && pkg.startsWith('Nâng cấp Full Trọn Bộ')) {
+      pkgData = PACKAGE_DATA['Full trọn bộ - 199K'];
+    }
 
     if (!pkgData) {
       console.warn(`[Verify] No package data found for package: ${pkg}`);
