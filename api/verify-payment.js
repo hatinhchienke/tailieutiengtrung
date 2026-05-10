@@ -24,13 +24,13 @@ const PACKAGE_DATA = {
     id: 'luyen'
   },
   'Luyện gõ Hán tự (Gói 2: HSK4-6) - 49K': {
-    url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy',
-    password: 'LG41WIN',
+    url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy', // Placeholder, user can update later
+    password: 'LG99PRO',
     id: 'luyen'
   },
   'Luyện gõ Hán tự (Gói 3: HSK1-6) - 79K': {
-    url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy',
-    password: 'LG41WIN',
+    url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy', // Placeholder, user can update later
+    password: 'LG88MAX',
     id: 'luyen'
   },
   '1200 câu giao tiếp + Video - 99K': {

@@ -126,7 +126,13 @@ const PACKAGES = [
     features:['Full từ vựng HSK1–HSK6 chia theo từng cấp độ rõ ràng','Mỗi từ có Pinyin + ví dụ câu thực tế (không chỉ từ đơn)','Tra cứu cực nhanh trên điện thoại hoặc máy tính','Hỗ trợ chinh phục tấm bằng HSK các cấp'] },
 
   { id:'luyen', emoji:'⌨️', title:'Luyện Gõ Hán Tự', cover:'ảnh cover sp/Luyện gõ Hán tự.png',
-    priceSale:'39,000₫', priceOld:'100,000₫', discount:'-61%', students:'980+', password:'LG41WIN',
+    priceSale:'39,000₫ - 79,000₫', priceOld:'100,000₫', discount:'-61%', students:'980+', 
+    passwords: {
+      'LG41WIN': { url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy', label: 'Mở gói HSK1-3' },
+      'LG99PRO': { url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy', label: 'Mở gói HSK4-6' },
+      'LG88MAX': { url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy', label: 'Mở gói HSK1-6' }
+    },
+    password:'LG41WIN',
     downloadUrl:'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy', downloadLabel:'Mở tài liệu Luyện gõ',
     desc:'Dành cho bạn nhìn chữ Hán thì hiểu nhưng không nhớ phiên âm để gõ. File chia rõ từ vựng cấp độ, có tính năng check tự động: gõ đúng hiện xanh, gõ sai hiện đỏ!',
     features:['Từ vựng phân chia theo cấp HSK','Mỗi từ có sẵn phiên âm + nghĩa tiếng Việt','Tính năng check tự động: đúng = xanh, sai = đỏ','Vừa gõ vừa ôn tập — nhớ cả mặt chữ lẫn phiên âm'] },
@@ -165,10 +171,15 @@ renderGrid();
 // Modal logic
 function openDetail(pkgId) {
   const pkg = PACKAGES.find(p => p.id === pkgId);
-  const isUnlocked = localStorage.getItem('hub_' + pkgId) === '1';
+  const storedVal = localStorage.getItem('hub_' + pkgId);
+  const isUnlocked = storedVal !== null;
   
   if (isUnlocked) {
-    window.open(pkg.downloadUrl, '_blank');
+    let dlUrl = pkg.downloadUrl;
+    if (pkg.passwords && pkg.passwords[storedVal]) {
+      dlUrl = pkg.passwords[storedVal].url;
+    }
+    window.open(dlUrl, '_blank');
     return;
   }
   
@@ -216,8 +227,17 @@ function unlockModal(pkgId) {
   const pkg = PACKAGES.find(p => p.id === pkgId);
   const input = document.getElementById('mpw-' + pkgId);
   const err = document.getElementById('merr-' + pkgId);
-  if (input.value.trim().toUpperCase() === pkg.password.toUpperCase()) {
-    localStorage.setItem('hub_' + pkgId, '1');
+  const val = input.value.trim().toUpperCase();
+
+  let matched = false;
+  if (pkg.passwords && pkg.passwords[val]) {
+    matched = true;
+  } else if (val === (pkg.password || '').toUpperCase()) {
+    matched = true;
+  }
+
+  if (matched) {
+    localStorage.setItem('hub_' + pkgId, val);
     closeDetail();
     renderGrid();
     setTimeout(() => openDetail(pkgId), 100);
