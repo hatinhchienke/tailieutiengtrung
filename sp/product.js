@@ -6,7 +6,7 @@ const PRODUCTS = {
     priceSale: '199,000₫', priceOld: '450,000₫', discount: 'Tiết kiệm 56%',
     sold: 'Đã bán 3.1K+', headerTitle: 'Combo 6 trong 1',
     videoId: 'g8p1BpPhAUY',
-    slides: ['/images/combo-overview.webp','/ảnh slider/5.webp','/ảnh slider/1.webp','/ảnh slider/9.webp','/ảnh slider/11.webp','/ảnh slider/13.webp'],
+    slides: ['/images/combo-overview.webp','/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png','/ảnh cover sp/1200 câu.png','/ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png','/ảnh cover sp/Luyện gõ Hán tự.png','/ảnh cover sp/60 bộ thủ chữ hán.png'],
     features: [
       'Cấu trúc câu + Luyện dịch tiếng Trung (30+ cấu trúc)',
       'Từ vựng HSK1 – HSK6 đầy đủ (5000+ từ)',
@@ -31,7 +31,7 @@ const PRODUCTS = {
     priceSale: '69,000₫', priceOld: '150,000₫', discount: 'Tiết kiệm 54%',
     sold: 'Đã bán 1.8K+', headerTitle: 'Cấu trúc + Luyện dịch',
     videoId: 'fBMha7GPcmY',
-    slides: ['/ảnh slider/5.webp','/ảnh slider/6.webp','/ảnh slider/7.webp','/ảnh slider/8.webp'],
+    slides: ['/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png'],
     features: [
       '34 cấu trúc ngữ pháp HSK1–HSK3 thường gặp nhất',
       'Mỗi cấu trúc: công thức + giải thích + ví dụ + lưu ý',
@@ -54,7 +54,7 @@ const PRODUCTS = {
     priceSale: '99,000₫', priceOld: '200,000₫', discount: 'Tiết kiệm 50%',
     sold: 'Đã bán 2.3K+', headerTitle: '1200 câu giao tiếp',
     videoId: 'kgH3MEUr6CY',
-    slides: ['/ảnh slider/1.webp','/ảnh slider/2.webp','/ảnh slider/3.webp','/ảnh slider/4.webp'],
+    slides: ['/ảnh cover sp/1200 câu.png'],
     features: [
       '1200 câu giao tiếp chia theo 100+ chủ đề thực tế',
       'Có âm bồi (phiên âm) đi kèm từng câu',
@@ -77,7 +77,7 @@ const PRODUCTS = {
     priceSale: '39,000₫', priceOld: '100,000₫', discount: 'Tiết kiệm 61%',
     sold: 'Đã bán 1.5K+', headerTitle: 'Từ vựng HSK1-HSK6',
     videoId: 'FQPgp6mjnEM',
-    slides: ['/ảnh slider/9.webp','/ảnh slider/10.webp'],
+    slides: ['/ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png'],
     features: [
       'Full từ vựng HSK1–HSK6 chia theo cấp độ',
       'Mỗi từ có Pinyin + ví dụ câu thực tế',
@@ -100,7 +100,7 @@ const PRODUCTS = {
     priceSale: '39K - 79K', priceOld: '100K - 200K', discount: 'Tiết kiệm 61%',
     sold: 'Đã bán 980+', headerTitle: 'Luyện gõ Hán tự',
     videoId: 'FbMDnTSfHF4',
-    slides: ['/ảnh slider/11.webp','/ảnh slider/12.webp'],
+    slides: ['/ảnh cover sp/Luyện gõ Hán tự.png'],
     features: [
       'Luyện gõ Hán tự từ HSK1 đến HSK6',
       'Tính năng check tự động: đúng = xanh, sai = đỏ',
@@ -130,7 +130,7 @@ const PRODUCTS = {
     priceSale: '39,000₫', priceOld: '100,000₫', discount: 'Tiết kiệm 61%',
     sold: 'Đã bán 1.2K+', headerTitle: '60 bộ thủ chữ Hán',
     videoId: 'SwL2V_aaxu4',
-    slides: ['/ảnh slider/13.webp','/ảnh slider/14.webp'],
+    slides: ['/ảnh cover sp/60 bộ thủ chữ hán.png'],
     features: [
       '60 bộ thủ thường gặp nhất — gốc rễ của chữ Hán',
       'Giải thích ý nghĩa rõ ràng, dễ hiểu',
