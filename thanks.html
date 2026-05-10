@@ -129,7 +129,7 @@
         const res = await fetch(`/api/verify-payment?orderCode=${encodeURIComponent(orderCode)}&pkg=${encodeURIComponent(pkg)}`);
         const data = await res.json();
         if (data.status === 'PAID' && data.downloadUrl) {
-          showSuccess(data.downloadUrl, data.packageName || pkg);
+          showSuccess(data.downloadUrl, data.packageName || pkg, data.password, data.pkgId);
         } else if (data.status === 'PAID') {
           showSuccessNoLink();
         } else {
@@ -141,7 +141,7 @@
       }
     }
 
-    function showSuccess(downloadUrl, packageName) {
+    function showSuccess(downloadUrl, packageName, password, pkgId) {
       // FB Pixel: Purchase
       if (typeof fbq !== 'undefined') {
         const priceMatch = pkg.match(/(\d+)K/);
@@ -149,11 +149,26 @@
         fbq('track', 'Purchase', { content_name: pkg, value: val, currency: 'VND' });
       }
 
+      // Tự động mở khóa trên trình duyệt hiện tại
+      if (pkgId) {
+        localStorage.setItem('hub_' + pkgId, '1');
+      }
+
+      const pwBlock = password ? `
+        <div class="ownership-note" style="background:#e3f2fd;border-color:#bbdefb;text-align:center;padding:16px;">
+          <p style="color:#0d47a1;font-size:14px;margin-bottom:8px">Mật khẩu Kho Tài Liệu của bạn là:</p>
+          <div style="font-size:22px;font-weight:900;letter-spacing:2px;color:#1565c0;background:#fff;padding:8px;border-radius:8px;border:2px dashed #90caf9;display:inline-block">${esc(password)}</div>
+          <p style="font-size:12px;color:#1976d2;margin-top:8px">Hệ thống đã tự động lưu lại mật khẩu này trên máy của bạn.</p>
+        </div>
+      ` : '';
+
       card.innerHTML = `
         <div class="icon icon-success"><i class="fas fa-check"></i></div>
         <h1>Thanh toán thành công! 🎉</h1>
         <p>Cảm ơn <span class="highlight">${esc(name)}</span>! Đơn hàng của bạn đã được xác nhận.</p>
         <div class="pkg-info">📦 ${esc(packageName)}</div>
+
+        ${pwBlock}
 
         <div class="download-hero">
           <h3>📥 Tài liệu đã sẵn sàng!</h3>
@@ -161,14 +176,13 @@
           <a href="${esc(downloadUrl)}" class="download-btn" target="_blank" rel="noopener">
             <i class="fas fa-cloud-arrow-down"></i> TẢI TÀI LIỆU NGAY
           </a>
+          <a href="/tailieu" class="back-btn" style="width:100%;justify-content:center;margin-top:12px;background:#fff;border-color:#ee4d2d;color:#ee4d2d;font-weight:700">
+            <i class="fas fa-book"></i> ĐI TỚI KHO TÀI LIỆU
+          </a>
         </div>
 
         <div class="ownership-note">
           <p><i class="fas fa-exclamation-triangle" style="color:#e65100"></i> <strong>QUAN TRỌNG:</strong> Hãy <strong>tải về máy</strong> hoặc <strong>lưu link vào ghi chú</strong> ngay bây giờ để tránh bị thất lạc!</p>
-        </div>
-
-        <div class="ownership-note" style="background:#e8f5e9;border-color:#c8e6c9;">
-          <p><i class="fas fa-infinity" style="color:#43a047"></i> Tài liệu này thuộc quyền sở hữu vĩnh viễn của bạn. Bạn có thể tải về máy, lưu vào Google Drive, hoặc in ra sách.</p>
         </div>
 
         <div class="lookup-note">

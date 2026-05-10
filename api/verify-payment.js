@@ -6,20 +6,48 @@ const payos = new PayOS(
   process.env.PAYOS_CHECKSUM_KEY
 );
 
-// Download links — SERVER-SIDE ONLY, không bao giờ lộ ra frontend
-const DOWNLOAD_LINKS = {
-  'Cấu trúc + Luyện dịch - 69K':
-    'https://drive.google.com/file/d/10Frf9M-BIluqYBkcTXgYdh5jBdjgoJX0/view',
-  'Từ vựng HSK1-HSK6 - 39K':
-    'https://docs.google.com/spreadsheets/d/1gIBAQ-_clQkX_mzLe0HpmelDwj35PsSF/edit?gid=518976149#gid=518976149',
-  'Luyện gõ Hán tự HSK1-HSK3 - 39K':
-    'https://docs.google.com/spreadsheets/d/1BoYLupjss_nxIkkS3uhjQ3mbYEgCu7e7O1xpVo5Moco/copy',
-  '1200 câu giao tiếp + Video - 99K':
-    'https://drive.google.com/file/d/1qd3WcPoTv7J-nXayE_sYEkO0AV0ePE0Q/view',
-  '60 bộ thủ chữ Hán - 39K':
-    'https://drive.google.com/file/d/1cTEl3a0AFVTGKkmcwBOU-1YJiZhHMQV1/view',
-  'Full trọn bộ - 199K':
-    'https://www.notion.so/T-i-li-u-ti-ng-Trung-34ffa37e953c80a7ae1efed159e95f30'
+// Download links and passwords — SERVER-SIDE ONLY
+const PACKAGE_DATA = {
+  'Cấu trúc + Luyện dịch - 69K': {
+    url: 'https://drive.google.com/file/d/1BLLvejMm4wsywmJNV6AHjGVeIzGEqZ56/view',
+    password: 'CT83MAX',
+    id: 'cautruc'
+  },
+  'Từ vựng HSK1-HSK6 - 39K': {
+    url: 'https://docs.google.com/spreadsheets/d/1gIBAQ-_clQkX_mzLe0HpmelDwj35PsSF/edit?gid=518976149#gid=518976149',
+    password: 'TV55TOP',
+    id: 'tuvung'
+  },
+  'Luyện gõ Hán tự (Gói 1: HSK1-3) - 39K': {
+    url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy',
+    password: 'LG41WIN',
+    id: 'luyen'
+  },
+  'Luyện gõ Hán tự (Gói 2: HSK4-6) - 49K': {
+    url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy',
+    password: 'LG41WIN',
+    id: 'luyen'
+  },
+  'Luyện gõ Hán tự (Gói 3: HSK1-6) - 79K': {
+    url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy',
+    password: 'LG41WIN',
+    id: 'luyen'
+  },
+  '1200 câu giao tiếp + Video - 99K': {
+    url: 'https://drive.google.com/file/d/1qd3WcPoTv7J-nXayE_sYEkO0AV0ePE0Q/view',
+    password: 'GT27PRO',
+    id: 'giaotiep'
+  },
+  '60 bộ thủ chữ Hán - 39K': {
+    url: 'https://drive.google.com/file/d/1cTEl3a0AFVTGKkmcwBOU-1YJiZhHMQV1/view',
+    password: 'BT76HOT',
+    id: 'bothu'
+  },
+  'Full trọn bộ - 199K': {
+    url: 'https://www.notion.so/T-i-li-u-ti-ng-Trung-full-tr-n-b-34ffa37e953c80a7ae1efed159e95f30',
+    password: 'DIEM99VIP',
+    id: 'full'
+  }
 };
 
 module.exports = async function handler(req, res) {
@@ -50,16 +78,18 @@ module.exports = async function handler(req, res) {
     }
 
     // Payment confirmed PAID — find the download link
-    const downloadUrl = DOWNLOAD_LINKS[pkg] || null;
+    const pkgData = PACKAGE_DATA[pkg] || null;
 
-    if (!downloadUrl) {
-      console.warn(`[Verify] No download link found for package: ${pkg}`);
+    if (!pkgData) {
+      console.warn(`[Verify] No package data found for package: ${pkg}`);
     }
 
     return res.status(200).json({
       status: 'PAID',
       amount: paymentInfo.amount,
-      downloadUrl
+      downloadUrl: pkgData ? pkgData.url : null,
+      password: pkgData ? pkgData.password : null,
+      pkgId: pkgData ? pkgData.id : null
     });
 
   } catch (error) {

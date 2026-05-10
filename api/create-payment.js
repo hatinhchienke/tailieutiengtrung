@@ -10,7 +10,9 @@ const payos = new PayOS(
 const VALID_PACKAGES = {
   'Cấu trúc + Luyện dịch - 69K':     { amount: 69000,  label: 'CauTruc' },
   'Từ vựng HSK1-HSK6 - 39K':          { amount: 39000,  label: 'TuVung' },
-  'Luyện gõ Hán tự HSK1-HSK3 - 39K':  { amount: 39000,  label: 'HanTu' },
+  'Luyện gõ Hán tự (Gói 1: HSK1-3) - 39K':  { amount: 39000,  label: 'HanTu1' },
+  'Luyện gõ Hán tự (Gói 2: HSK4-6) - 49K':  { amount: 49000,  label: 'HanTu2' },
+  'Luyện gõ Hán tự (Gói 3: HSK1-6) - 79K':  { amount: 79000,  label: 'HanTu3' },
   '1200 câu giao tiếp + Video - 99K': { amount: 99000,  label: 'GiaoTiep' },
   '60 bộ thủ chữ Hán - 39K':          { amount: 39000,  label: 'BoThu' },
   'Full trọn bộ - 199K':              { amount: 199000, label: 'TronBo' }
