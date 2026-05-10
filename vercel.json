@@ -1,6 +1,12 @@
 {
   "rewrites": [
-    { "source": "/tailieu", "destination": "/tailieu.html" }
+    { "source": "/tailieu", "destination": "/tailieu.html" },
+    { "source": "/sp/tron-bo", "destination": "/sp/product.html" },
+    { "source": "/sp/cau-truc", "destination": "/sp/product.html" },
+    { "source": "/sp/tu-vung", "destination": "/sp/product.html" },
+    { "source": "/sp/luyen-go", "destination": "/sp/product.html" },
+    { "source": "/sp/1200-cau", "destination": "/sp/product.html" },
+    { "source": "/sp/60-bo-thu", "destination": "/sp/product.html" }
   ],
   "functions": {
     "api/*.js": {

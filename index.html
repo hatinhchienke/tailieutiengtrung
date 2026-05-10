@@ -1,1080 +1,189 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Bộ Tài Liệu Tự Học Tiếng Trung 0→HSK3</title>
-  <meta name="description"
-    content="Bộ tài liệu tự học tiếng Trung từ 0 đến HSK3: cấu trúc câu, luyện dịch 2 chiều, từ vựng HSK1–HSK6, video phát âm.">
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tailieutiengtrung.com/">
-  <meta property="og:title" content="Bộ tài liệu tự học tiếng Trung dành cho người mới">
-  <meta property="og:description"
-    content="Bộ tài liệu tự học tiếng Trung từ 0 đến HSK3: cấu trúc câu, luyện dịch 2 chiều, từ vựng HSK1–HSK6, video phát âm. Học có lộ trình, giao tiếp được sau vài tuần.">
+  <title>Tiếng Trung Hoàng Diễm — Tài liệu tự học tiếng Trung #1</title>
+  <meta name="description" content="Hệ sinh thái tài liệu tự học tiếng Trung từ 0 đến HSK3. 80K+ người theo dõi, 9300+ học viên tin dùng.">
+  <meta property="og:title" content="Tiếng Trung Hoàng Diễm — Tài liệu tự học #1">
+  <meta property="og:description" content="Hệ sinh thái tài liệu tự học tiếng Trung từ 0 đến HSK3.">
   <meta property="og:image" content="https://www.tailieutiengtrung.com/images/og-banner.jpg?v=2">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bộ tài liệu tự học tiếng Trung dành cho người mới">
-  <meta name="twitter:description"
-    content="Bộ tài liệu tự học tiếng Trung từ 0 đến HSK3: cấu trúc câu, luyện dịch 2 chiều, từ vựng HSK1–HSK6, video phát âm. Học có lộ trình, giao tiếp được sau vài tuần.">
-  <meta name="twitter:image" content="https://www.tailieutiengtrung.com/images/og-banner.jpg?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-  <script>
-    !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s) }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1518933582936427');
-    fbq('track', 'PageView');
-  </script>
+  <link rel="stylesheet" href="home.css">
 </head>
-
 <body>
   <!-- HEADER -->
-  <header class="shopee-header">
-    <div class="header-left">
-      <i class="fas fa-arrow-left"></i>
+  <header class="h-header">
+    <div class="h-header-left">
+      <img src="images/avatar.webp" alt="Logo" class="h-logo-img">
+      <span class="h-logo-text">Tiếng Trung Hoàng Diễm</span>
     </div>
-    <div class="header-search">
-      <i class="fas fa-search"></i>
-      <span>Tài liệu tiếng Trung HSK3</span>
-    </div>
-    <div class="header-right">
-      <i class="fas fa-share-alt"></i>
-      <i class="fas fa-shopping-cart"></i>
-      <i class="fas fa-ellipsis-vertical"></i>
-    </div>
+    <a href="https://zalo.me/0528786710" target="_blank" class="h-header-zalo"><i class="fas fa-comment-dots"></i></a>
   </header>
 
-  <!-- HERO VIDEO/IMAGE SLIDER -->
-  <section class="hero-slider">
-    <div class="slider-container">
-      <div class="slides">
-        <!-- Slide 1: Video giới thiệu — anchor tin cậy -->
-        <div class="slide slide-video active">
-          <div class="yt-lazy" id="ytLazy" data-id="g8p1BpPhAUY">
-            <img src="images/avatar.webp" alt="Tiếng Trung Hoàng Diễm — Xem video giới thiệu" class="yt-poster"
-              style="object-fit: contain; background: #fff;">
-            <button class="play-btn" id="playBtn"><i class="fas fa-play"></i></button>
-          </div>
-          <span class="slide-label">▶ Nhấn để xem video giới thiệu</span>
-        </div>
-        <!-- Slide 2: Banner thương hiệu Hoàng Diễm -->
-        <div class="slide"><img src="images/banner.webp" alt="Tiếng Trung Hoàng Diễm" loading="lazy"><span
-            class="slide-label">🏫 Tiếng Trung Hoàng Diễm</span></div>
-        <!-- Slide 3: Tổng quan COMBO 6 trong 1 -->
-        <div class="slide"><img src="images/combo-overview.webp" alt="Combo 6 trong 1 — Chỉ 199K" loading="lazy"><span
-            class="slide-label">🔥 Combo 6 trong 1 — Chỉ 199K</span></div>
-        <!-- Slide 4: SP hot #1 — 1200 câu giao tiếp -->
-        <div class="slide"><img src="ảnh slider/4.webp" alt="1200 câu giao tiếp thực tế" loading="lazy"><span
-            class="slide-label">💬 1200 câu giao tiếp — 99K</span></div>
-        <!-- Slide 5: SP hot #2 — Cấu trúc + Luyện dịch -->
-        <div class="slide"><img src="ảnh slider/8.webp" alt="Cấu trúc và Luyện dịch tiếng Trung" loading="lazy"><span
-            class="slide-label">📖 Cấu trúc + Luyện dịch — 69K</span></div>
-        <!-- Slide 6-8: Feedback học viên -->
-        <div class="slide"><img src="review/1.webp" alt="Phản hồi học viên 1" loading="lazy"><span
-            class="slide-label">⭐ Phản hồi từ học viên</span></div>
-        <div class="slide"><img src="review/2.webp" alt="Phản hồi học viên 2" loading="lazy"><span
-            class="slide-label">⭐ Phản hồi từ học viên</span></div>
-        <div class="slide"><img src="review/3.webp" alt="Phản hồi học viên 3" loading="lazy"><span
-            class="slide-label">⭐ Phản hồi từ học viên</span></div>
-      </div>
-      <div class="slide-dots">
-        <span class="dot active" data-index="0"></span>
-        <span class="dot" data-index="1"></span>
-        <span class="dot" data-index="2"></span>
-        <span class="dot" data-index="3"></span>
-        <span class="dot" data-index="4"></span>
-        <span class="dot" data-index="5"></span>
-        <span class="dot" data-index="6"></span>
-        <span class="dot" data-index="7"></span>
-      </div>
-      <div class="slide-counter"><span id="currentSlide">1</span>/8</div>
+  <!-- HERO -->
+  <section class="h-hero">
+    <div class="h-hero-bg"></div>
+    <img src="images/avatar.webp" alt="Tiếng Trung Hoàng Diễm" class="h-avatar">
+    <h1 class="h-brand-name">Tiếng Trung Hoàng Diễm</h1>
+    <p class="h-tagline">Hệ sinh thái tài liệu tự học tiếng Trung #1 Việt Nam</p>
+    <div class="h-stats">
+      <div class="h-stat"><span class="h-stat-val">80K+</span><span class="h-stat-label">Người theo dõi</span></div>
+      <div class="h-stat-sep"></div>
+      <div class="h-stat"><span class="h-stat-val">9,300+</span><span class="h-stat-label">Học viên</span></div>
+      <div class="h-stat-sep"></div>
+      <div class="h-stat"><span class="h-stat-val">4.9/5</span><span class="h-stat-label">Đánh giá</span></div>
     </div>
   </section>
 
-
-
-  <!-- FLASH SALE -->
-  <section class="flash-sale-bar">
-    <div class="flash-sale-header">
-      <div class="flash-sale-title">
-        <i class="fas fa-bolt"></i>
-        <span class="flash-text">FLASH SALE</span>
-        <span class="flash-badge">Hôm nay</span>
-      </div>
-      <div class="flash-countdown">
-        <span class="countdown-label">Kết thúc sau</span>
-        <div class="countdown-boxes">
-          <span class="cd-box" id="cdHours">00</span>
-          <span class="cd-sep">:</span>
-          <span class="cd-box" id="cdMins">00</span>
-          <span class="cd-sep">:</span>
-          <span class="cd-box" id="cdSecs">00</span>
-        </div>
-      </div>
-    </div>
-    <div class="flash-sale-progress">
-      <div class="progress-bar">
-        <div class="progress-fill" id="flashProgress"></div>
-      </div>
-      <span class="progress-text">Đã bán <strong id="flashSold">87</strong>%</span>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing-section">
-    <div class="price-row">
-      <span class="price-icon">🔥</span>
-      <span class="price-sale">39,000₫</span>
-      <span class="price-range"> - 199,000₫</span>
-    </div>
-    <div class="price-original">
-      <span class="price-old">450,000₫</span>
-      <span class="discount-badge">Tiết kiệm tới 56%</span>
-    </div>
-  </section>
-
-  <!-- PRODUCT TITLE -->
-  <section class="product-title">
-    <h1 style="font-size: 26px; line-height: 1.3; margin-bottom: 8px;">BỘ TÀI LIỆU TỰ HỌC TIẾNG TRUNG CHO NGƯỜI MẤT GỐC
-      (TỪ 0 ĐẾN GIAO TIẾP HSK3)</h1>
-    <h2 style="font-size: 15px; color: #555; font-weight: normal; margin-bottom: 15px; line-height: 1.4;">Combo 6 TRONG
-      1: Bao gồm toàn bộ Từ vựng, Ngữ pháp, Luyện dịch và 1200 câu giao tiếp thực chiến.</h2>
-    <div class="product-meta">
-      <span class="rating"><i class="fas fa-star"></i> 4.9/5</span>
-      <span class="rating-count">(3.8k)</span>
-      <span class="sep">|</span>
-      <span class="sold">Đã bán 9.3K</span>
-    </div>
-    <div class="admin-trust-badge">
-      <i class="fas fa-certificate"></i>
-      <span>Bộ tài liệu được phát triển bởi thương hiệu <strong>Tiếng Trung Hoàng Diễm</strong> — gần 80k người theo dõi
-        trên các nền tảng</span>
-    </div>
-    <!-- VIDEO BRIDGE BANNER -->
-    <div class="video-bridge-banner">
-      <div class="bridge-icon"><i class="fas fa-video"></i></div>
-      <div class="bridge-content">
-        <strong>📹 Đây chính là bộ tài liệu bạn thấy trong video!</strong>
-        <p>Bạn được <strong>chọn nhận file số hoặc sách giấy giao tận nhà</strong>. File số nhận ngay sau thanh toán, sách giấy giao trong 2-4 ngày.</p>
-      </div>
-    </div>
-    <div class="free-ship"><i class="fas fa-bolt"></i> 📲 File số: nhận ngay sau thanh toán &nbsp;|&nbsp; 🚚 Sách giấy: giao tận nhà trong 2-4 ngày
-    </div>
-  </section>
-
-  <!-- OPTIONS -->
-  <section class="options-section" onclick="openModal()">
-    <div class="option-row">
-      <span class="opt-label">Chọn gói tài liệu</span>
-      <span class="opt-value">6 gói từ 39K - 199K <i class="fas fa-chevron-right"></i></span>
-    </div>
-  </section>
-
-  <!-- SHIPPING -->
-  <section class="shipping-section">
-    <div class="ship-row">
-      <span class="ship-label"><i class="fas fa-bolt"></i> Giao hàng</span>
-      <div class="ship-detail">
-        <span class="ship-old">30,000₫</span>
-        <span class="ship-new">0₫</span>
-        <div class="ship-note">📲 File số: nhận link tải ngay sau thanh toán</div>
-        <div class="ship-note">🚚 Sách giấy: ship COD toàn quốc trong 2-4 ngày</div>
-      </div>
+  <!-- VIDEO INTRO -->
+  <section class="h-video-section">
+    <h2><i class="fas fa-play-circle"></i> Video giới thiệu</h2>
+    <div class="h-video-wrap" id="ytLazy" data-id="g8p1BpPhAUY">
+      <img src="images/avatar.webp" alt="Xem video giới thiệu" class="h-video-poster" style="object-fit:contain;background:#fff;">
+      <button class="h-play-btn" id="playBtn"><i class="fas fa-play"></i></button>
     </div>
   </section>
 
   <!-- TRUST BADGES -->
-  <section class="trust-section">
-    <div class="trust-item"><i class="fas fa-shield-halved"></i><span>Thanh toán bảo mật</span></div>
-    <div class="trust-item"><i class="fas fa-rotate-left"></i><span>Hoàn tiền 100%</span></div>
-    <div class="trust-item"><i class="fas fa-headset"></i><span>Hỗ trợ nhanh</span></div>
+  <section class="h-trust">
+    <div class="h-trust-item"><i class="fas fa-robot"></i><span>Gửi tài liệu <strong>tự động 24/7</strong></span></div>
+    <div class="h-trust-item"><i class="fas fa-shield-halved"></i><span>Hoàn tiền <strong>100%</strong> nếu không hài lòng</span></div>
+    <div class="h-trust-item"><i class="fas fa-headset"></i><span>Hỗ trợ <strong>nhanh chóng</strong> qua Zalo</span></div>
   </section>
 
-  <!-- GUARANTEE -->
-  <section class="guarantee-section">
-    <div class="guarantee-icon"><i class="fas fa-shield-halved"></i></div>
-    <div class="guarantee-content">
-      <h4>CAM KẾT HOÀN TIỀN 100%</h4>
-      <p>Nếu tài liệu không đúng như mô tả hoặc bạn không hài lòng — hoàn tiền <strong>100% trong 24h</strong>, không
-        hỏi lý do.</p>
-      <div class="guarantee-tags">
-        <span><i class="fas fa-check-circle"></i> Không rủi ro</span>
-        <span><i class="fas fa-check-circle"></i> Hoàn tiền nhanh</span>
-        <span><i class="fas fa-check-circle"></i> Không hỏi lý do</span>
-      </div>
-    </div>
+  <!-- SOCIAL PROOF -->
+  <section class="h-social">
+    <a href="https://www.facebook.com/tuhoctiengtrung202568" target="_blank" class="h-social-card h-social-fb">
+      <i class="fab fa-facebook-f"></i>
+      <div><strong>74K</strong><span>Followers</span></div>
+    </a>
+    <a href="https://www.tiktok.com/@tuhoctiengtrung2025" target="_blank" class="h-social-card h-social-tt">
+      <i class="fab fa-tiktok"></i>
+      <div><strong>14.3K</strong><span>Followers</span></div>
+    </a>
   </section>
 
-  <!-- PAYMENT INFO -->
-  <section class="payment-section">
-    <h3><i class="fas fa-credit-card"></i> Hình thức thanh toán</h3>
-    <p>📲 File số: chuyển khoản → nhận link tải tự động.<br>🚚 Sách giấy: thanh toán khi nhận hàng (COD).</p>
-    <div class="payment-method">
-      <div class="method-tag"><i class="fas fa-building-columns"></i> CHUYỂN KHOẢN</div>
-      <div class="method-tag" style="background:#fff3e0;color:#e65100;border-color:#ffe0b2;"><i class="fas fa-truck"></i> COD</div>
-    </div>
-    <p class="payment-note">Có group Facebook hỗ trợ học viên. Hoàn tiền 100% nếu không hài lòng.</p>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="reviews-section">
-    <div class="reviews-header">
-      <h3>Đánh giá của học viên (3.8k)</h3>
-      <a href="#" class="see-more">Xem thêm <i class="fas fa-chevron-right"></i></a>
-    </div>
-    <div class="review-summary">
-      <div class="review-score">4.9<span>/5</span></div>
-      <div class="review-stars">
-        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-          class="fas fa-star"></i>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-user">
-        <div class="avatar">T</div><span class="name">T** Minh</span>
-      </div>
-      <div class="review-stars-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-          class="fas fa-star"></i><i class="fas fa-star"></i></div>
-      <p>Mình yếu phần ngữ pháp, học mãi không nhớ gì. Mua bộ này về tự học, 2 tuần đã nói được mấy câu cơ bản. Cấu trúc
-        câu trình bày rõ ràng, dễ hiểu cực kỳ. Recommend mọi người!</p>
-      <div class="review-date">4 - 28</div>
-      <div class="review-actions"><i class="fas fa-ellipsis"></i> <i class="fas fa-thumbs-up"></i></div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-user">
-        <div class="avatar">H</div><span class="name">H** Anh</span>
-      </div>
-      <div class="review-stars-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-          class="fas fa-star"></i><i class="fas fa-star"></i></div>
-      <p>Đang học năm 2 chuyên ngành tiếng Trung mà vẫn thấy bộ tài liệu này hữu ích. Phần luyện dịch 2 chiều quá hay,
-        giúp mình phản xạ nhanh hơn nhiều. Giá 199k mà được nhiều thế này thì quá rẻ.</p>
-      <div class="review-date">4 - 25</div>
-      <div class="review-actions"><i class="fas fa-ellipsis"></i> <i class="fas fa-thumbs-up"></i></div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-user">
-        <div class="avatar">N</div><span class="name">Ng** Dũng</span>
-      </div>
-      <div class="review-stars-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-          class="fas fa-star"></i><i class="fas fa-star"></i></div>
-      <p>Làm ở công ty Trung Quốc, mình tự học theo combo và tiếng Trung đã cải thiện rõ rệt, giao tiếp được cơ bản
-        trong công việc.</p>
-      <div class="review-date">4 - 15</div>
-      <div class="review-actions"><i class="fas fa-ellipsis"></i> <i class="fas fa-thumbs-up"></i></div>
+  <!-- REVIEW SLIDER -->
+  <section class="h-reviews">
+    <h2><i class="fas fa-star"></i> Phản hồi từ học viên</h2>
+    <div class="h-review-slider" id="reviewSlider">
+      <div class="h-review-slide"><img src="review/1.webp" alt="Review 1" loading="lazy"></div>
+      <div class="h-review-slide"><img src="review/2.webp" alt="Review 2" loading="lazy"></div>
+      <div class="h-review-slide"><img src="review/3.webp" alt="Review 3" loading="lazy"></div>
     </div>
   </section>
 
-  <!-- SHOP INFO -->
-  <section class="shop-section">
-    <div class="shop-stats">
-      <div class="stat"><span class="stat-val">4.9</span><span class="stat-label">Đánh giá</span></div>
-      <div class="stat"><span class="stat-val">92%</span><span class="stat-label">Phản hồi</span></div>
-      <div class="stat"><span class="stat-val">99%</span><span class="stat-label">Gửi trong 1h</span></div>
-      <div class="stat"><span class="stat-val">9.3k</span><span class="stat-label">Đã bán</span></div>
-    </div>
-  </section>
-
-  <!-- BRAND INTRODUCTION -->
-  <section class="brand-intro-section" id="brandIntro">
-    <div class="brand-intro-header">
-      <div class="brand-avatar">
-        <img src="images/avatar.webp" alt="Tiếng Trung Hoàng Diễm" loading="lazy">
-      </div>
-      <div class="brand-info">
-        <h3 class="brand-name">Tiếng Trung Hoàng Diễm</h3>
-        <div class="brand-verified">
-          <i class="fas fa-check-circle"></i>
-          <span>Thương hiệu đã xác minh</span>
-        </div>
-        <div class="brand-tagline">Hệ thống phân phối tài liệu số tự động</div>
-      </div>
-    </div>
-    <div class="brand-banner">
-      <img src="images/banner.webp" alt="Banner Tiếng Trung Hoàng Diễm" loading="lazy">
-    </div>
-    <div class="brand-commitments">
-      <div class="brand-commit-item">
-        <i class="fas fa-robot"></i>
-        <span>Hệ thống phân phối tài liệu số <strong>tự động 24/7</strong></span>
-      </div>
-      <div class="brand-commit-item">
-        <i class="fas fa-headset"></i>
-        <span>Cam kết hỗ trợ <strong>24/7</strong> bởi đội ngũ <strong>Hoàng Diễm Team</strong></span>
-      </div>
-      <div class="brand-commit-item">
-        <i class="fas fa-award"></i>
-        <span>Thương hiệu uy tín với <strong>gần 80,000+</strong> người theo dõi</span>
-      </div>
-    </div>
-  </section>
-  <!-- SOCIAL PROOF - COMMUNITY -->
-  <section class="social-community-section">
-    <div class="social-community-title">
-      <i class="fas fa-users"></i>
-      <span>Cộng đồng <strong>88,000+</strong> người học tiếng Trung</span>
-    </div>
-
-    <div class="social-cards">
-      <!-- Facebook -->
-      <a href="https://www.facebook.com/tuhoctiengtrung202568" target="_blank" rel="noopener noreferrer"
-        class="social-card social-card-fb">
-        <div class="social-card-icon">
-          <i class="fab fa-facebook-f"></i>
-        </div>
-        <div class="social-card-info">
-          <span class="social-card-count">74K</span>
-          <span class="social-card-label">Followers</span>
-        </div>
-        <div class="social-card-action">
-          <span>Theo dõi</span>
-          <i class="fas fa-chevron-right"></i>
+  <!-- PRODUCT GRID -->
+  <section class="h-products">
+    <h2><i class="fas fa-book-open"></i> Sản phẩm của shop</h2>
+    <div class="h-grid">
+      <!-- FULL COMBO - Featured, full width -->
+      <a href="/sp/tron-bo" class="h-card h-card-featured">
+        <div class="h-card-badge h-badge-hot">🔥 BÁN CHẠY #1</div>
+        <div class="h-card-img"><img src="images/combo-overview.webp" alt="Full Trọn Bộ Combo" loading="lazy"></div>
+        <div class="h-card-body">
+          <h3>Full Trọn Bộ — Combo 6 TRONG 1</h3>
+          <div class="h-card-price"><span class="h-price-sale">199,000₫</span><span class="h-price-old">450,000₫</span><span class="h-price-disc">-56%</span></div>
+          <div class="h-card-meta"><i class="fas fa-star"></i> 4.9 | Đã bán 3.1K+</div>
         </div>
       </a>
 
-      <!-- TikTok -->
-      <a href="https://www.tiktok.com/@tuhoctiengtrung2025" target="_blank" rel="noopener noreferrer"
-        class="social-card social-card-tiktok">
-        <div class="social-card-icon">
-          <i class="fab fa-tiktok"></i>
-        </div>
-        <div class="social-card-info">
-          <span class="social-card-count">14.3K</span>
-          <span class="social-card-label">Followers</span>
-        </div>
-        <div class="social-card-action">
-          <span>Theo dõi</span>
-          <i class="fas fa-chevron-right"></i>
+      <!-- SP1: Cấu trúc -->
+      <a href="/sp/cau-truc" class="h-card">
+        <div class="h-card-badge h-badge-pop">⭐ Phổ biến</div>
+        <div class="h-card-img"><img src="ảnh slider/5.webp" alt="Cấu trúc và Luyện dịch" loading="lazy"></div>
+        <div class="h-card-body">
+          <h3>Cấu trúc và Luyện dịch tiếng Trung</h3>
+          <div class="h-card-price"><span class="h-price-sale">69,000₫</span><span class="h-price-old">150,000₫</span></div>
+          <div class="h-card-meta"><i class="fas fa-star"></i> 4.9 | 1.8K+</div>
         </div>
       </a>
-    </div>
 
-    <div class="social-highlights">
-      <div class="social-highlight-item">
-        <i class="fas fa-video"></i>
-        <span>Video mẹo học tiếng Trung mỗi ngày</span>
-      </div>
-      <div class="social-highlight-item">
-        <i class="fas fa-graduation-cap"></i>
-        <span>Cộng đồng tự học lớn & uy tín</span>
-      </div>
-    </div>
-  </section>
+      <!-- SP2: 1200 câu -->
+      <a href="/sp/1200-cau" class="h-card">
+        <div class="h-card-img"><img src="ảnh cover sp/1200 câu.png" alt="1200 câu giao tiếp" loading="lazy"></div>
+        <div class="h-card-body">
+          <h3>1200 Câu Giao Tiếp + Video</h3>
+          <div class="h-card-price"><span class="h-price-sale">99,000₫</span><span class="h-price-old">200,000₫</span></div>
+          <div class="h-card-meta"><i class="fas fa-star"></i> 4.9 | 2.3K+</div>
+        </div>
+      </a>
 
-  <!-- PRODUCT DESCRIPTION -->
-  <section class="description-section">
-    <div class="desc-block warning-block">
-      <h4>📌 LƯU Ý</h4>
-      <p><strong>Bộ tài liệu này KHÔNG DÀNH CHO:</strong></p>
-      <ul>
-        <li>Người muốn "học 1 ngày giỏi tiếng Trung" — không có phép màu.</li>
-        <li>Người lười, không chịu luyện tập mỗi ngày ít nhất 30 phút.</li>
-        <li>Người đã có HSK4+ và cần tài liệu nâng cao.</li>
-      </ul>
-    </div>
+      <!-- SP3: Từ vựng -->
+      <a href="/sp/tu-vung" class="h-card">
+        <div class="h-card-img"><img src="ảnh slider/9.webp" alt="Từ vựng HSK" loading="lazy"></div>
+        <div class="h-card-body">
+          <h3>Từ Vựng HSK1 – HSK6</h3>
+          <div class="h-card-price"><span class="h-price-sale">39,000₫</span><span class="h-price-old">100,000₫</span></div>
+          <div class="h-card-meta"><i class="fas fa-star"></i> 4.9 | 1.5K+</div>
+        </div>
+      </a>
 
-    <div class="desc-block highlight-block">
-      <h4>🎯 Bộ tài liệu này DÀNH CHO:</h4>
-      <ul>
-        <li>Người mất gốc hoàn toàn, muốn bắt đầu từ con số 0.</li>
-        <li>Người đã học trung tâm nhưng không nhớ, không nói được.</li>
-        <li>Người cần giao tiếp tiếng Trung cho công việc.</li>
-        <li>Sinh viên chuẩn bị thi HSK1 - HSK3.</li>
-        <li>Người tự học tại nhà, cần lộ trình rõ ràng.</li>
-      </ul>
-    </div>
-
-    <div class="desc-block content-block">
-      <h4>📦 Bên trong bộ tài liệu có gì?</h4>
-      <p style="font-size:13px;color:#555;margin-bottom:10px;">Chọn mua từng phần hoặc mua trọn bộ tiết kiệm hơn 56%!
-      </p>
-    </div>
-
-    <!-- PRODUCT CATALOG -->
-    <div class="product-catalog">
-      <!-- GÓI FULL - Featured -->
-      <div class="catalog-card featured-card">
-        <div class="catalog-badge">🔥 BÁN CHẠY NHẤT</div>
-        <div class="catalog-header">
-          <div class="catalog-icon">👑</div>
-          <div class="catalog-info">
-            <h4>Full Trọn Bộ</h4>
-            <div class="catalog-pricing">
-              <span class="catalog-sale">199,000₫</span>
-              <span class="catalog-old">450,000₫</span>
-            </div>
-            <div class="catalog-book-note">🚚 Sách giấy: 499,000₫</div>
-          </div>
+      <!-- SP4: Luyện gõ -->
+      <a href="/sp/luyen-go" class="h-card">
+        <div class="h-card-img"><img src="ảnh slider/11.webp" alt="Luyện gõ Hán tự" loading="lazy"></div>
+        <div class="h-card-body">
+          <h3>Luyện Gõ Hán Tự HSK1–3</h3>
+          <div class="h-card-price"><span class="h-price-sale">39,000₫</span><span class="h-price-old">100,000₫</span></div>
+          <div class="h-card-meta"><i class="fas fa-star"></i> 4.8 | 980+</div>
         </div>
-        <div class="catalog-save">Tiết kiệm 56% so với mua lẻ</div>
-        <div class="catalog-preview">
-          <div class="video-thumb" data-id="g8p1BpPhAUY">
-            <img src="images/ảnh bìa video.webp" alt="Video review" loading="lazy">
-            <i class="fas fa-play play-icon"></i>
-          </div>
-          <img src="ảnh slider/1.webp" alt="1200 câu giao tiếp" loading="lazy">
-          <img src="ảnh slider/5.webp" alt="Cấu trúc + Luyện dịch" loading="lazy">
-          <img src="ảnh slider/9.webp" alt="Từ vựng HSK" loading="lazy">
-          <img src="ảnh slider/11.webp" alt="Luyện gõ Hán tự" loading="lazy">
-          <img src="ảnh slider/13.webp" alt="60 bộ thủ" loading="lazy">
-        </div>
-        <ul class="catalog-features">
-          <li><i class="fas fa-check"></i> Cấu trúc câu + Luyện dịch tiếng Trung</li>
-          <li><i class="fas fa-check"></i> Từ vựng HSK1 – HSK6 đầy đủ</li>
-          <li><i class="fas fa-check"></i> Luyện gõ Hán tự HSK1 – HSK3</li>
-          <li><i class="fas fa-check"></i> 1200 câu giao tiếp + Video hướng dẫn</li>
-          <li><i class="fas fa-check"></i> 60 bộ thủ thường gặp trong chữ Hán</li>
-          <li class="bonus-item"><i class="fas fa-gift"></i> <strong>TẶNG:</strong> Video phát âm chuẩn</li>
-          <li class="bonus-item"><i class="fas fa-gift"></i> <strong>TẶNG:</strong> Vào nhóm Facebook hỗ trợ học tập
-          </li>
-        </ul>
-        <button class="catalog-buy featured-buy"
-          onclick="openModalWithPkg('full')">MUA TRỌN BỘ — 199K</button>
-      </div>
-
-      <!-- SP1: Cấu trúc + Luyện dịch -->
-      <div class="catalog-card">
-        <div class="catalog-header">
-          <div class="catalog-icon">📖</div>
-          <div class="catalog-info">
-            <h4>Cấu trúc và luyện dịch tiếng Trung</h4>
-            <div class="catalog-pricing">
-              <span class="catalog-sale">69,000₫</span>
-            </div>
-            <div class="catalog-book-note">🚚 Sách giấy: 189,000₫</div>
-          </div>
-        </div>
-        <div class="catalog-preview">
-          <div class="video-thumb" data-id="fBMha7GPcmY">
-            <img src="ảnh slider/5.webp" alt="Video review" loading="lazy">
-            <i class="fas fa-play play-icon"></i>
-          </div>
-          <img src="ảnh slider/5.webp" alt="Cấu trúc 1" loading="lazy">
-          <img src="ảnh slider/6.webp" alt="Cấu trúc 2" loading="lazy">
-          <img src="ảnh slider/7.webp" alt="Cấu trúc 3" loading="lazy">
-          <img src="ảnh slider/8.webp" alt="Cấu trúc 4" loading="lazy">
-        </div>
-        <ul class="catalog-features">
-          <li><i class="fas fa-check"></i> Nắm trọn 30+ cấu trúc ngữ pháp cốt lõi</li>
-          <li><i class="fas fa-check"></i> Luyện dịch thực chiến Trung ↔ Việt</li>
-        </ul>
-        <button class="catalog-buy"
-          onclick="openModalWithPkg('cautruc')">MUA NGAY — 69K</button>
-      </div>
-
-      <!-- SP2: Từ vựng HSK -->
-      <div class="catalog-card">
-        <div class="catalog-header">
-          <div class="catalog-icon">📚</div>
-          <div class="catalog-info">
-            <h4>Từ vựng tiếng Trung HSK1 – HSK6</h4>
-            <div class="catalog-pricing">
-              <span class="catalog-sale">39,000₫</span>
-            </div>
-            <div class="catalog-book-note">🚚 Sách giấy: 159,000₫</div>
-          </div>
-        </div>
-        <div class="catalog-preview">
-          <div class="video-thumb" data-id="FQPgp6mjnEM">
-            <img src="ảnh slider/9.webp" alt="Video review" loading="lazy">
-            <i class="fas fa-play play-icon"></i>
-          </div>
-          <img src="ảnh slider/9.webp" alt="Từ vựng 1" loading="lazy">
-          <img src="ảnh slider/10.webp" alt="Từ vựng 2" loading="lazy">
-        </div>
-        <ul class="catalog-features">
-          <li><i class="fas fa-check"></i> Hơn 5000 từ vựng HSK1 - HSK6 (Đủ Pinyin, ví dụ)</li>
-          <li><i class="fas fa-check"></i> Tra cứu cực nhanh trên điện thoại</li>
-        </ul>
-        <button class="catalog-buy"
-          onclick="openModalWithPkg('tuvung')">MUA NGAY — 39K</button>
-      </div>
-
-      <!-- SP3: Luyện gõ Hán tự -->
-      <div class="catalog-card">
-        <div class="catalog-header">
-          <div class="catalog-icon">⌨️</div>
-          <div class="catalog-info">
-            <h4>Luyện gõ Hán tự HSK1 – HSK3</h4>
-            <div class="catalog-pricing">
-              <span class="catalog-sale">39,000₫</span>
-            </div>
-            <div class="catalog-book-note" style="color:#999;">📲 Chỉ có file số</div>
-          </div>
-        </div>
-        <div class="catalog-preview">
-          <div class="video-thumb" data-id="FbMDnTSfHF4">
-            <img src="ảnh slider/11.webp" alt="Video review" loading="lazy">
-            <i class="fas fa-play play-icon"></i>
-          </div>
-          <img src="ảnh slider/11.webp" alt="Luyện gõ 1" loading="lazy">
-          <img src="ảnh slider/12.webp" alt="Luyện gõ 2" loading="lazy">
-        </div>
-        <ul class="catalog-features">
-          <li><i class="fas fa-check"></i> Luyện phản xạ gõ phím Pinyin cực chuẩn</li>
-          <li><i class="fas fa-check"></i> Nhớ mặt chữ Hán lâu hơn gấp 3 lần</li>
-        </ul>
-        <button class="catalog-buy"
-          onclick="openModalWithPkg('luyen')">MUA NGAY — 39K</button>
-      </div>
-
-      <!-- SP4: 1200 câu giao tiếp -->
-      <div class="catalog-card">
-        <div class="catalog-header">
-          <div class="catalog-icon">💬</div>
-          <div class="catalog-info">
-            <h4>1200 câu giao tiếp thông dụng + Video</h4>
-            <div class="catalog-pricing">
-              <span class="catalog-sale">99,000₫</span>
-            </div>
-            <div class="catalog-book-note">🚚 Sách giấy: 219,000₫</div>
-          </div>
-        </div>
-        <div class="catalog-preview">
-          <div class="video-thumb" data-id="kgH3MEUr6CY">
-            <img src="ảnh slider/1.webp" alt="Video review" loading="lazy">
-            <i class="fas fa-play play-icon"></i>
-          </div>
-          <img src="ảnh slider/1.webp" alt="1200 câu 1" loading="lazy">
-          <img src="ảnh slider/2.webp" alt="1200 câu 2" loading="lazy">
-          <img src="ảnh slider/3.webp" alt="1200 câu 3" loading="lazy">
-          <img src="ảnh slider/4.webp" alt="1200 câu 4" loading="lazy">
-        </div>
-        <ul class="catalog-features">
-          <li><i class="fas fa-check"></i> Giao tiếp mượt mà 100+ chủ đề thực tế</li>
-          <li><i class="fas fa-check"></i> Học vẹt nói ngay, không cần cày ngữ pháp</li>
-        </ul>
-        <button class="catalog-buy"
-          onclick="openModalWithPkg('giaotiep')">MUA NGAY — 99K</button>
-      </div>
+      </a>
 
       <!-- SP5: 60 bộ thủ -->
-      <div class="catalog-card">
-        <div class="catalog-header">
-          <div class="catalog-icon">🀄</div>
-          <div class="catalog-info">
-            <h4>60 bộ thủ thường gặp trong chữ Hán</h4>
-            <div class="catalog-pricing">
-              <span class="catalog-sale">39,000₫</span>
-            </div>
-            <div class="catalog-book-note">🚚 Sách giấy: 159,000₫</div>
-          </div>
+      <a href="/sp/60-bo-thu" class="h-card">
+        <div class="h-card-img"><img src="ảnh slider/13.webp" alt="60 bộ thủ" loading="lazy"></div>
+        <div class="h-card-body">
+          <h3>60 Bộ Thủ Chữ Hán</h3>
+          <div class="h-card-price"><span class="h-price-sale">39,000₫</span><span class="h-price-old">100,000₫</span></div>
+          <div class="h-card-meta"><i class="fas fa-star"></i> 4.9 | 1.2K+</div>
         </div>
-        <div class="catalog-preview">
-          <div class="video-thumb" data-id="SwL2V_aaxu4">
-            <img src="ảnh slider/13.webp" alt="Video review" loading="lazy">
-            <i class="fas fa-play play-icon"></i>
-          </div>
-          <img src="ảnh slider/13.webp" alt="60 bộ thủ 1" loading="lazy">
-          <img src="ảnh slider/14.webp" alt="60 bộ thủ 2" loading="lazy">
-        </div>
-        <ul class="catalog-features">
-          <li><i class="fas fa-check"></i> Mẹo nhớ nhanh chữ Hán qua 60 bộ thủ cốt lõi</li>
-          <li><i class="fas fa-check"></i> Nhìn chữ Hán đoán ngay được nghĩa</li>
-        </ul>
-        <button class="catalog-buy"
-          onclick="openModalWithPkg('bothu')">MUA NGAY — 39K</button>
-      </div>
-
-      <!-- CTA mua Full -->
-      <div class="catalog-cta">
-        <p>💡 <strong>Mua trọn bộ chỉ 199K</strong> — tiết kiệm hơn 56% so với mua lẻ từng phần!</p>
-        <button class="catalog-buy featured-buy"
-          onclick="openModalWithPkg('full')">🔥 MUA TRỌN BỘ — 199K</button>
-      </div>
-    </div>
-
-    <!-- Review screenshots slider -->
-    <div class="review-slider-section">
-      <h4 class="review-slider-title">💬 Phản hồi từ học viên</h4>
-      <div class="review-slider" id="reviewSlider">
-        <div class="review-slide"><img src="review/1.webp" alt="Review 1" loading="lazy"></div>
-        <div class="review-slide"><img src="review/2.webp" alt="Review 2" loading="lazy"></div>
-        <div class="review-slide"><img src="review/3.webp" alt="Review 3" loading="lazy"></div>
-      </div>
-    </div>
-
-    <div class="desc-block digital-block">
-      <h4>📦 2 HÌNH THỨC NHẬN TÀI LIỆU — BẠN CHỌN!</h4>
-      <div class="digital-warning-banner" style="background:#e8f5e9; color:#2e7d32; border-color:#c8e6c9;">
-        <i class="fas fa-bolt" style="color:#fbc02d;"></i>
-        <span><strong>90% khách hàng</strong> chọn File số vì nhận ngay, giá rẻ hơn & có thể tự in ra sách!</span>
-      </div>
-      <div class="digital-benefits-grid">
-        <!-- FILE SỐ - Card chính, nổi bật -->
-        <div class="benefit-card" style="border:2px solid #43a047; background:linear-gradient(135deg, #f1f8e9, #e8f5e9); position:relative; padding-top:28px;">
-          <div style="position:absolute; top:-1px; left:16px; background:linear-gradient(135deg, #43a047, #2e7d32); color:#fff; font-size:11px; font-weight:700; padding:3px 12px; border-radius:0 0 8px 8px; letter-spacing:0.5px;">⭐ ĐỀ XUẤT</div>
-          <div class="benefit-icon" style="background:#c8e6c9;"><i class="fas fa-file-pdf" style="color:#2e7d32;"></i></div>
-          <div class="benefit-content">
-            <h4 style="color:#2e7d32; font-size:16px;">📲 File số (PDF/Excel)</h4>
-            <p>✅ Nhận link tải <strong>ngay sau thanh toán</strong> — không chờ đợi<br>
-              ✅ Giá chỉ từ <strong>39K</strong> — rẻ hơn sách giấy<br>
-              ✅ Học trên điện thoại mọi lúc mọi nơi<br>
-              ✅ <strong>Tự in ra thành sách</strong> nếu muốn — giống hệt sách trong video<br>
-              ✅ Lưu trữ vĩnh viễn, không sợ mất<br>
-              ✅ Tra cứu nhanh bằng tìm kiếm trên điện thoại</p>
-          </div>
-        </div>
-        <!-- SÁCH GIẤY - Card phụ, nhỏ hơn -->
-        <div class="benefit-card" style="border:1px dashed #ccc; background:#fafafa; opacity:0.85;">
-          <div class="benefit-icon" style="background:#fff3e0;"><i class="fas fa-book" style="color:#e65100;"></i></div>
-          <div class="benefit-content">
-            <h4 style="font-size:14px; color:#777;">🚚 Sách giấy (giao tận nhà)</h4>
-            <p style="color:#888;">✅ Sách in sẵn, giao tận nhà trong 2-4 ngày<br>
-              ✅ Cầm nắm thật, đánh dấu, ghi chú<br>
-              ✅ Thanh toán khi nhận hàng (COD)</p>
-            <p style="font-size:12px; color:#999; margin-top:6px; font-style:italic;">💡 Giá sách giấy = giá file số + 120K phí in & ship</p>
-          </div>
-        </div>
-      </div>
+      </a>
     </div>
   </section>
 
-  <!-- FAQ SECTION -->
-  <section class="faq-section" id="faq">
-    <h3 class="faq-title"><i class="fas fa-circle-question"></i> Câu hỏi thường gặp</h3>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Tôi có thể nhận sách giấy không?</span>
-          <i class="fas fa-chevron-down faq-arrow"></i>
-        </div>
-        <div class="faq-answer">
-          <p><strong>Có!</strong> Bạn được chọn khi đặt hàng:</p>
-          <ul>
-            <li>📲 <strong>File số</strong> — nhận link tải ngay sau thanh toán, giá từ 39K</li>
-            <li>🚚 <strong>Sách giấy</strong> — giao tận nhà trong 2-4 ngày, thanh toán khi nhận hàng</li>
-          </ul>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Nên chọn file số hay sách giấy?</span>
-          <i class="fas fa-chevron-down faq-arrow"></i>
-        </div>
-        <div class="faq-answer">
-          <p><strong>Nên chọn File số!</strong> Đây là lựa chọn phổ biến nhất — nhận ngay sau thanh toán, giá rẻ hơn, học trên điện thoại mọi lúc, và <strong>có thể tự in ra thành sách</strong> giống hệt trong video. Nếu bạn thực sự cần sách giấy sẵn, có thể chọn sách giấy nhưng giá sẽ cao hơn 120K và chờ 2-4 ngày giao hàng.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Nhận tài liệu bằng cách nào?</span>
-          <i class="fas fa-chevron-down faq-arrow"></i>
-        </div>
-        <div class="faq-answer">
-          <p><strong>File số:</strong> Sau khi thanh toán, hệ thống <strong>tự động hiện link tải ngay trên màn hình</strong>. Tải về là học được ngay.<br>
-            <strong>Sách giấy:</strong> Đặt hàng xong, shop sẽ liên hệ xác nhận và giao sách trong 2-4 ngày. Thanh toán khi nhận hàng (COD).</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Sách giấy có giống trong video không?</span>
-          <i class="fas fa-chevron-down faq-arrow"></i>
-        </div>
-        <div class="faq-answer">
-          <p><strong>Giống 100%!</strong> Sách trong video chính là bản in từ tài liệu này. Sách giấy bạn nhận được sẽ giống y hệt.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span>Không hài lòng thì sao?</span>
-          <i class="fas fa-chevron-down faq-arrow"></i>
-        </div>
-        <div class="faq-answer">
-          <p><strong>Hoàn tiền 100% trong 24h</strong>, không hỏi lý do. Bạn hoàn toàn yên tâm khi mua hàng.</p>
-        </div>
-      </div>
+  <!-- FOOTER -->
+  <footer class="h-footer">
+    <div class="h-footer-brand">
+      <img src="images/avatar.webp" alt="Logo">
+      <span>Tiếng Trung Hoàng Diễm</span>
     </div>
-  </section>
-
-  <!-- FOOTER INFO -->
-  <section class="footer-info" id="footer">
-    <div class="footer-brand">
-      <img src="images/avatar.webp" alt="Tiếng Trung Hoàng Diễm" class="footer-brand-logo" loading="lazy">
-      <div class="footer-brand-name">Tiếng Trung Hoàng Diễm</div>
+    <p>Hệ thống phân phối tài liệu số tự động</p>
+    <p>Hotline/Zalo: <a href="tel:0528786710">0528786710</a></p>
+    <div class="h-footer-links">
+      <a href="https://www.facebook.com/tuhoctiengtrung202568" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.tiktok.com/@tuhoctiengtrung2025" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://zalo.me/0528786710" target="_blank"><i class="fas fa-comment-dots"></i></a>
     </div>
-    <div class="footer-divider"></div>
-    <div class="footer-statement">
-      <i class="fas fa-building"></i>
-      <span>Hệ thống phân phối tài liệu số tự động thuộc thương hiệu <strong>Tiếng Trung Hoàng Diễm</strong></span>
-    </div>
-    <div class="footer-statement">
-      <i class="fas fa-headset"></i>
-      <span>Cam kết hỗ trợ <strong>24/7</strong> bởi đội ngũ <strong>Hoàng Diễm Team</strong></span>
-    </div>
-    <div class="footer-divider"></div>
-    <div class="footer-contact">
-      <div class="footer-row"><i class="fas fa-phone"></i> Hotline/Zalo: <a href="tel:0528786710">0528786710</a></div>
-      <div class="footer-row"><i class="fas fa-globe"></i> Website: <a href="https://tailieutiengtrung.com" target="_blank">tailieutiengtrung.com</a></div>
-    </div>
-    <div class="footer-social">
-      <a href="https://www.facebook.com/tuhoctiengtrung202568" target="_blank" rel="noopener noreferrer"
-        class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.tiktok.com/@tuhoctiengtrung2025" target="_blank" rel="noopener noreferrer"
-        class="footer-social-link"><i class="fab fa-tiktok"></i></a>
-      <a href="https://zalo.me/0528786710" target="_blank" class="footer-social-link"><i
-          class="fas fa-comment-dots"></i></a>
-    </div>
-    <p class="copyright">© 2026 Tiếng Trung Hoàng Diễm — Tất cả quyền được bảo lưu</p>
-  </section>
+    <p class="h-copyright">© 2026 Tiếng Trung Hoàng Diễm — Tất cả quyền được bảo lưu</p>
+  </footer>
 
-  <!-- STICKY BOTTOM BAR -->
-  <div class="sticky-bar">
-    <a href="https://zalo.me/0528786710" target="_blank" class="bar-zalo">
-      <div class="bar-zalo-ring"></div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo"
-        onerror="this.src='https://stc-zaloprofile.zdn.vn/pc/v1/images/zalo_sharelogo.png'">
-    </a>
-    <button class="btn-demo" onclick="playDemo()">Demo</button>
-    <button class="btn-buy" onclick="openModal()">Mua Ngay</button>
-  </div>
-
-  <!-- MODAL: Step 1 - Chọn gói -->
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <!-- Step 1 -->
-      <div class="modal-step" id="step1">
-        <div class="modal-header">
-          <button class="modal-back" onclick="closeModal()"><i class="fas fa-arrow-left"></i></button>
-          <h3>HOÀN TẤT ĐƠN HÀNG</h3>
-          <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="modal-body">
-          <div class="modal-digital-notice" style="background:#e3f2fd; color:#0d47a1; border-color:#bbdefb;">
-            <i class="fas fa-bolt" style="color:#fbc02d;"></i>
-            <span><strong>Nhận link tải tự động</strong> ngay sau thanh toán. In ra sách hoặc đọc trên điện
-              thoại.</span>
-          </div>
-
-          <!-- VARIANT PICKER: Hàng 1 - Chọn loại -->
-          <div class="variant-section">
-            <p class="variant-label"><i class="fas fa-box"></i> Chọn hình thức nhận hàng</p>
-            <div class="variant-row" id="variantType">
-              <button class="variant-btn active" data-type="file" onclick="selectType('file')">
-                <i class="fas fa-file-pdf"></i>
-                <span class="variant-btn-text">File số</span>
-                <span class="variant-btn-sub">Nhận link tải ngay</span>
-              </button>
-              <button class="variant-btn" data-type="book" onclick="selectType('book')">
-                <i class="fas fa-book"></i>
-                <span class="variant-btn-text">Sách giấy</span>
-                <span class="variant-btn-sub">Gửi về tận nhà</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- VARIANT PICKER: Hàng 2 - Chọn nội dung -->
-          <div class="variant-section">
-            <p class="variant-label"><i class="fas fa-list"></i> Chọn gói tài liệu</p>
-            <div class="package-options" id="packageOptions">
-              <button class="pkg-btn" data-pkg="cautruc" onclick="selectContent('cautruc')">
-                <span>Cấu trúc và luyện dịch tiếng Trung</span>
-                <span class="pkg-price" data-pkg="cautruc">69,000₫</span>
-              </button>
-              <button class="pkg-btn" data-pkg="tuvung" onclick="selectContent('tuvung')">
-                <span>Từ vựng tiếng Trung từ HSK1 - HSK6</span>
-                <span class="pkg-price" data-pkg="tuvung">39,000₫</span>
-              </button>
-              <button class="pkg-btn" data-pkg="luyen" onclick="selectContent('luyen')">
-                <span>Luyện gõ Hán tự từ HSK1 - HSK3</span>
-                <span class="pkg-price" data-pkg="luyen">39,000₫</span>
-              </button>
-              <button class="pkg-btn" data-pkg="giaotiep" onclick="selectContent('giaotiep')">
-                <span>1200 câu giao tiếp + Video hướng dẫn</span>
-                <span class="pkg-price" data-pkg="giaotiep">99,000₫</span>
-              </button>
-              <button class="pkg-btn" data-pkg="bothu" onclick="selectContent('bothu')">
-                <span>60 bộ thủ thường gặp trong chữ Hán</span>
-                <span class="pkg-price" data-pkg="bothu">39,000₫</span>
-              </button>
-              <button class="pkg-btn featured" data-pkg="full" onclick="selectContent('full')">
-                <span>🔥 Full trọn bộ + Video phát âm + Nhóm hỗ trợ</span>
-                <span class="pkg-price" data-pkg="full">199,000₫</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Tổng giá hiển thị -->
-          <div class="variant-summary" id="variantSummary" style="display:none;">
-            <div class="variant-summary-row">
-              <span class="variant-summary-label">Đã chọn:</span>
-              <span class="variant-summary-pkg" id="variantPkgName"></span>
-            </div>
-            <div class="variant-summary-row">
-              <span class="variant-summary-label">Giá:</span>
-              <span class="variant-summary-price" id="variantTotalPrice"></span>
-            </div>
-            <button class="btn-variant-continue" id="btnVariantContinue" onclick="confirmVariant()">TIẾP TỤC <i class="fas fa-arrow-right"></i></button>
-          </div>
-        </div>
-      </div>
-      <!-- Step 2 -->
-      <div class="modal-step hidden" id="step2">
-        <div class="modal-header">
-          <button class="modal-back" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
-          <h3>HOÀN TẤT ĐƠN HÀNG</h3>
-          <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="modal-body">
-          <h4 class="form-title" id="formTitle">Thông tin nhận tài liệu</h4>
-          <p class="form-subtitle" id="formSubtitle">Vui lòng nhập chính xác thông tin để nhận tài liệu!</p>
-
-          <!-- Notice for FILE -->
-          <div class="modal-digital-notice" id="noticeFile" style="background:#e3f2fd; color:#0d47a1; border-color:#bbdefb;">
-            <i class="fas fa-bolt" style="color:#fbc02d;"></i>
-            <span>Nhận <strong>link tải tự động</strong> ngay sau thanh toán. Tự in ra sách hoặc đọc trên điện
-              thoại.</span>
-          </div>
-          <!-- Notice for BOOK -->
-          <div class="modal-digital-notice hidden" id="noticeBook" style="background:#fff3e0; color:#e65100; border-color:#ffe0b2;">
-            <i class="fas fa-truck" style="color:#e65100;"></i>
-            <span>Sách giấy sẽ được <strong>gửi về tận nhà</strong> trong 2-4 ngày. Vui lòng nhập đúng địa chỉ nhận hàng.</span>
-          </div>
-
-          <div class="selected-pkg" id="selectedPkg"></div>
-          <form id="orderForm" onsubmit="submitOrder(event)">
-            <div class="form-group">
-              <label>Họ và tên <span class="req">*</span></label>
-              <input type="text" id="fullName" placeholder="Nguyễn Văn A" required>
-            </div>
-            <div class="form-group">
-              <label id="phoneLabel">Số Zalo <span class="req">*</span></label>
-              <input type="tel" id="phone" placeholder="0xxxxxxxxx" required>
-            </div>
-            <!-- Address field (book only) -->
-            <div class="form-group hidden" id="addressGroup">
-              <label>Địa chỉ nhận hàng <span class="req">*</span></label>
-              <textarea id="address" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố" rows="3" style="width:100%;padding:12px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;transition:border .2s;"></textarea>
-            </div>
-            <button type="submit" class="btn-submit" id="submitBtn">
-              <span id="btnText">TIẾP TỤC THANH TOÁN</span>
-              <span id="btnLoading" class="hidden"><i class="fas fa-spinner fa-spin"></i> Đang gửi...</span>
-            </button>
-            <!-- Note for FILE -->
-            <p class="form-note" id="noteFileBottom">*Tài liệu được gửi tự động qua link tải ngay sau khi thanh toán. Có thể in ra sách
-              hoặc học trên điện thoại.
-            </p>
-            <p class="form-note" id="noteFileZalo" style="color:#0d47a1;background:#e3f2fd;padding:8px 12px;border-radius:8px;margin-top:8px;">
-              <i class="fas fa-comment-dots" style="color:#0068ff;"></i> Gặp vấn đề nhận file sau thanh toán? Nhắn ngay <a href="https://zalo.me/0528786710" target="_blank" style="color:#0068ff;font-weight:700;">Zalo 0528786710</a> để được hỗ trợ tức thì!
-            </p>
-            <!-- Note for BOOK -->
-            <p class="form-note hidden" id="noteBookBottom" style="color:#e65100;background:#fff3e0;padding:8px 12px;border-radius:8px;margin-top:8px;">
-              <i class="fas fa-truck" style="color:#e65100;"></i> Sách sẽ được giao trong 2-4 ngày làm việc. Thanh toán khi nhận hàng (COD) hoặc chuyển khoản trước.
-            </p>
-          </form>
-        </div>
-      </div>
-      <!-- Step 3: QR Thanh toán -->
-      <div class="modal-step hidden" id="step3">
-        <div class="modal-header">
-          <button class="modal-back" onclick="showStep('step2')"><i class="fas fa-arrow-left"></i></button>
-          <h3>THANH TOÁN</h3>
-          <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="modal-body" style="text-align:center;">
-          <!-- Bước 1: QR nổi bật -->
-          <div class="qr-step-label"><span class="step-num">1</span> Chuyển khoản theo thông tin bên dưới</div>
-          <div class="qr-pkg-info" id="qrPkgInfo"></div>
-          <div class="qr-container">
-            <img id="qrImage" src="" alt="QR Thanh toán" loading="lazy" crossorigin="anonymous">
-          </div>
-          <div class="qr-amount">
-            <span>Số tiền thanh toán</span>
-            <strong id="qrAmount"></strong>
-          </div>
-          <div class="qr-bank-info">
-            <div class="bank-row"><span>Ngân hàng</span><strong>Techcombank</strong></div>
-            <div class="bank-row"><span>Số tài khoản</span><strong>19032738533021 <i class="fas fa-copy"
-                  onclick="copyText('19032738533021')"
-                  style="cursor:pointer;color:#ee4d2d;font-size:12px;"></i></strong></div>
-            <div class="bank-row"><span>Chủ tài khoản</span><strong>PHAM NGOC TRAI</strong></div>
-            <div class="bank-row"><span>Nội dung CK</span><strong id="qrContent"></strong> <i class="fas fa-copy"
-                id="copyContentBtn" onclick="copyTransferContent()"
-                style="cursor:pointer;color:#ee4d2d;font-size:12px;"></i></div>
-          </div>
-
-          <!-- Payment proofs -->
-          <div class="qr-proof-section">
-            <h4>📸 CHÚNG TÔI LUÔN ĐẶT UY TÍN VÀ CHẤT LƯỢNG PHỤC VỤ LÊN HÀNG ĐẦU</h4>
-            <div class="qr-proof-scroll">
-              <img src="ảnh ck/0960cc3a564cd7128e5d.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/0cc6610b950e14504d1f.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/100988868485631801.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/1036186626969467289.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/104493626153809315.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/1078450868381749484.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/1158670563082098751.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/1211099821052326270.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/1422815959074855624.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/1523397457153161756.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/1554874031950889933.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/1789213417930458788.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/1979428820442745093.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/2016948068299165103.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/2221813299436632563.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/2294729921570824790.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/233153205137364265.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/23d979a3afd22e8c77c3.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/2472285584674156297.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/273c3da7-a639-4b80-88e9-43dd725d5b03.jfif" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/2766164142221923874.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/2890039922049302457.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/2991956447009393646.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/3110516910243010667.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/3254026146274265358.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/3263555510524357448.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/3515331421644531620.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/3622332599798098343.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/3711477505726005161.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/3734758362662603270.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/4024487134859053593.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/4065341290990066807.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/422283975826575007.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/4250092067163875060.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/486920507381861950.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/5ce359ac68aee9f0b0bf.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/810781218170452918.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/81659c87f78776d92f96.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/84212681429525521.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/946465713043894960.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/c66c68edf8ec79b220fd.jpg" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-              <img src="ảnh ck/e0ddf92b-5e71-4412-b5c4-25965bd3eaf6.jfif" alt="Giao dịch thành công" loading="lazy"
-                onclick="openLightbox(this)">
-            </div>
-            <p class="qr-proof-note"><i class="fas fa-check-circle"></i> Hàng ngàn học viên đã thanh toán và nhận tài
-              liệu thành công</p>
-          </div>
-
-          <!-- Bước 2: Xác nhận đã thanh toán -->
-          <div class="qr-step-label"><span class="step-num">2</span> Sau khi chuyển khoản xong</div>
-          <div class="qr-confirm-section">
-            <label class="confirm-checkbox" id="confirmLabel">
-              <input type="checkbox" id="confirmPaid" onchange="toggleZaloBtn()">
-              <span class="checkmark"></span>
-              <span class="confirm-text">Tôi đã chuyển khoản thành công ✅</span>
-            </label>
-          </div>
-
-          <!-- Bước 3: Gửi ảnh CK qua Zalo (để đối soát nếu cần) -->
-          <div class="qr-step-label"><span class="step-num">3</span> Gửi ảnh chụp màn hình CK qua Zalo</div>
-          <div class="qr-receive-guide">
-            <h4>📋 Hướng dẫn:</h4>
-            <ol>
-              <li><strong>Chụp màn hình</strong> xác nhận chuyển khoản thành công</li>
-              <li>Nhấn nút bên dưới để <strong>gửi ảnh qua Zalo</strong></li>
-              <li>Nhận <strong>link tải tài liệu</strong> trong vài phút — in ra sách hoặc đọc trên điện thoại</li>
-            </ol>
-          </div>
-
-          <a id="zaloPaymentBtn" class="qr-zalo-btn qr-zalo-btn-disabled" onclick="return false;">
-            <i class="fas fa-lock"></i> Vui lòng xác nhận đã thanh toán ở trên
-          </a>
-          <p class="zalo-unlock-hint" id="zaloUnlockHint">👆 Tick xác nhận đã chuyển khoản để mở nút gửi Zalo</p>
-
-          <div class="qr-guarantee-note">
-            <i class="fas fa-shield-alt"></i>
-            <span><strong>Cam kết hỗ trợ:</strong> Nếu sau 1 phút chưa nhận được link, nhấn nút Chat Zalo để admin hỗ trợ ngay!</span>
-          </div>
-
-          <div class="qr-digital-reminder">
-            <i class="fas fa-mobile-alt"></i>
-            <span>Nhận <strong>link tải tài liệu</strong> ngay sau khi xác nhận. Tự in ra sách hoặc lưu trên điện thoại để
-              học ngay.</span>
-          </div>
-
-          <div class="qr-zalo-note">
-            <p><i class="fas fa-phone"></i> Hotline/Zalo: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
-            <p>⏰ Xử lý trong vài phút (8h - 22h)</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox-overlay" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
-    <div class="lightbox-counter" id="lightboxCounter"></div>
-    <div class="lightbox-img-wrap" id="lightboxWrap">
-      <img src="" alt="Preview" id="lightboxImg">
-    </div>
-    <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
-    <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
-  </div>
-
-  <!-- Floating Zalo moved to sticky bar -->
-
-  <!-- SOCIAL PROOF TOAST -->
-  <div class="social-proof-toast" id="socialProofToast">
-    <div class="toast-avatar" id="toastAvatar">N</div>
-    <div class="toast-content">
-      <p class="toast-name" id="toastName">Ng** Minh</p>
-      <p class="toast-pkg" id="toastPkg">vừa mua <strong>Full trọn bộ</strong></p>
-      <p class="toast-time" id="toastTime">3 phút trước</p>
-    </div>
-    <button class="toast-close" onclick="closeToast()"><i class="fas fa-times"></i></button>
-  </div>
-
-  <!-- VIDEO MODAL -->
-  <div class="lightbox-overlay" id="videoModal">
-    <button class="lightbox-close" onclick="closeVideoModal()"><i class="fas fa-times"></i></button>
-    <div class="lightbox-img-wrap" style="padding: 0; background: transparent; box-shadow: none;">
-      <iframe id="videoModalIframe" src="" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
-        style="width:100%; aspect-ratio:9/16; max-height:80vh; max-width:400px; border-radius:12px; background:#000;"></iframe>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+  <script>
+  // YouTube lazy load
+  const ytLazy = document.getElementById('ytLazy');
+  if(ytLazy){
+    const btn = ytLazy.querySelector('.h-play-btn');
+    const poster = ytLazy.querySelector('.h-video-poster');
+    function loadYT(){
+      if(ytLazy.querySelector('iframe')) return;
+      const id = ytLazy.dataset.id;
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';
+      iframe.allow = 'accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+      ytLazy.appendChild(iframe);
+      if(btn) btn.style.display='none';
+      if(poster) poster.style.display='none';
+    }
+    if(btn) btn.addEventListener('click', loadYT);
+    if(poster) poster.addEventListener('click', loadYT);
+  }
+  // Review slider auto-scroll
+  const slider = document.getElementById('reviewSlider');
+  if(slider){ let pos=0; setInterval(()=>{ pos=(pos+1)%3; slider.scrollTo({left:pos*slider.offsetWidth,behavior:'smooth'}); },4000); }
+  </script>
 </body>
-
 </html>
