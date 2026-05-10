@@ -95,26 +95,34 @@ const PRODUCTS = {
     ]
   },
   'luyen-go': {
-    title: 'LUYỆN GÕ HÁN TỰ HSK1 – HSK3',
+    title: 'LUYỆN GÕ HÁN TỰ HSK1 – HSK6',
     desc: 'File luyện gõ Hán tự có tính năng check tự động: gõ đúng = xanh, sai = đỏ. Nhớ lâu hơn gấp 3 lần.',
-    priceSale: '39,000₫', priceOld: '100,000₫', discount: 'Tiết kiệm 61%',
+    priceSale: '39K - 79K', priceOld: '100K - 200K', discount: 'Tiết kiệm 61%',
     sold: 'Đã bán 980+', headerTitle: 'Luyện gõ Hán tự',
     videoId: 'FbMDnTSfHF4',
     slides: ['/ảnh slider/11.webp','/ảnh slider/12.webp'],
     features: [
-      'Chia rõ từ vựng 3 cấp: HSK1, HSK2, HSK3',
+      'Luyện gõ Hán tự từ HSK1 đến HSK6',
       'Tính năng check tự động: đúng = xanh, sai = đỏ',
       'Vừa gõ vừa ôn tập — nhớ cả mặt chữ lẫn phiên âm',
       'Luyện gõ trên máy tính hoặc điện thoại'
     ],
     pkgKey: 'luyen',
-    file: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 3' },
+    packages: [
+      { id: 'goi1', amount: 39000, label: '39K', name: 'Gói 1 (HSK1-3)', content: 'tai lieu tieng trung 3' },
+      { id: 'goi2', amount: 49000, label: '49K', name: 'Gói 2 (HSK4-6)', content: 'tai lieu luyen go 2' },
+      { id: 'goi3', amount: 79000, label: '79K', name: 'Gói 3 (Full 1-6)', content: 'tai lieu luyen go 3' }
+    ],
+    file: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 3' }, // For fallback reference
+    goi1: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 3', isFile: true },
+    goi2: { amount: 49000, label: '49K', content: 'tai lieu luyen go 2', isFile: true },
+    goi3: { amount: 79000, label: '79K', content: 'tai lieu luyen go 3', isFile: true },
     reviews: [
       { name: 'Ho Yến', letter: 'H', text: 'Trước mình nhìn chữ Hán thì hiểu nhưng không nhớ pinyin để gõ. Luyện file này 2 tuần, giờ gõ nhanh hơn hẳn!', date: '5 - 5' },
       { name: 'Tr Đức', letter: 'T', text: 'Tính năng check tự động hay lắm — gõ đúng hiện xanh, sai hiện đỏ. Như chơi game vậy, không nhàm chán.', date: '4 - 30' },
       { name: 'Lê Mai', letter: 'L', text: 'Mình hay quên mặt chữ, nhưng từ khi luyện gõ thì nhớ lâu hơn nhiều. Vừa nhớ pinyin vừa nhớ mặt chữ luôn.', date: '4 - 18' }
     ],
-    book: null // chỉ có file số
+    book: null
   },
   '60-bo-thu': {
     title: '60 BỘ THỦ THƯỜNG GẶP TRONG CHỮ HÁN',
@@ -374,6 +382,26 @@ function openModal() {
   document.getElementById('modalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
   showStep('step1');
+  
+  const variantRow = document.getElementById('variantType');
+  if (P.packages) {
+    document.querySelector('.variant-label').innerHTML = '<i class="fas fa-box"></i> Chọn gói sản phẩm';
+    let html = '';
+    P.packages.forEach((pkg, idx) => {
+      html += '<button class="variant-btn '+(idx===0?'active':'')+'" data-type="'+pkg.id+'" onclick="selectType(\''+pkg.id+'\')" style="flex-direction:column;gap:4px;padding:12px 6px;height:auto;">' +
+        '<span class="variant-btn-text" style="font-size:12px;white-space:normal;line-height:1.3;text-align:center;">'+pkg.name+'</span>' +
+        '<span class="variant-btn-sub" style="font-size:13px;font-weight:bold;">'+pkg.amount.toLocaleString('vi-VN')+'₫</span>' +
+        '</button>';
+    });
+    variantRow.innerHTML = html;
+    variantRow.style.display = 'grid';
+    variantRow.style.gridTemplateColumns = '1fr 1fr 1fr';
+    variantRow.style.gap = '8px';
+    currentType = P.packages[0].id;
+  } else {
+    currentType = 'file';
+  }
+  
   updateVariantSummary();
   if(typeof fbq!=='undefined') fbq('track','ViewContent',{content_name:P.headerTitle});
 }
@@ -396,7 +424,14 @@ function selectType(type) {
 function updateVariantSummary() {
   const pricing = P[currentType];
   if (!pricing) { currentType='file'; selectType('file'); return; }
-  const typeLabel = currentType==='file'?'File số':'Sách giấy';
+  
+  let typeLabel = '';
+  if (P.packages) {
+    typeLabel = P.packages.find(p => p.id === currentType)?.name || '';
+  } else {
+    typeLabel = currentType==='file'?'File số':'Sách giấy';
+  }
+  
   document.getElementById('variantPkgName').textContent = P.headerTitle + ' ('+typeLabel+')';
   document.getElementById('variantTotalPrice').textContent = pricing.amount.toLocaleString('vi-VN')+'₫';
   document.getElementById('variantSummary').style.display = 'block';
@@ -404,10 +439,19 @@ function updateVariantSummary() {
 
 function confirmVariant() {
   const pricing = P[currentType];
-  const typeLabel = currentType==='file'?'':' (Sách giấy)';
+  
+  let typeLabel = '';
+  if (P.packages) {
+    typeLabel = ' (' + (P.packages.find(p => p.id === currentType)?.name || '') + ')';
+  } else {
+    typeLabel = currentType==='file'?'':' (Sách giấy)';
+  }
+  
   selectedPackage = P.headerTitle + typeLabel + ' - ' + pricing.label;
   document.getElementById('selectedPkg').textContent = '📦 ' + selectedPackage;
-  setupFormForType(currentType);
+  
+  const isBook = pricing.isFile === undefined ? currentType==='book' : !pricing.isFile;
+  setupFormForType(isBook ? 'book' : 'file');
   showStep('step2');
 }
 
@@ -432,25 +476,28 @@ async function submitOrder(e) {
   const name = document.getElementById('fullName').value.trim();
   const phone = document.getElementById('phone').value.trim();
   if(!name||!phone) return alert('Vui lòng nhập đầy đủ thông tin!');
-  if(currentType==='book'){const addr=document.getElementById('address').value.trim();if(!addr)return alert('Vui lòng nhập địa chỉ!');}
+  
+  const pricing = P[currentType];
+  const isBook = pricing.isFile === undefined ? currentType==='book' : !pricing.isFile;
+  
+  if(isBook){const addr=document.getElementById('address').value.trim();if(!addr)return alert('Vui lòng nhập địa chỉ!');}
   customerName=name; customerPhone=phone;
   const btn=document.getElementById('submitBtn');
   btn.disabled=true;
   document.getElementById('btnText').classList.add('hidden');
   document.getElementById('btnLoading').classList.remove('hidden');
   const now=new Date(),timestamp=now.toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'});
-  const sheetData={submittedAt:timestamp,name,phone,package:selectedPackage,source:'sp-'+slug,type:currentType};
-  if(currentType==='book')sheetData.address=document.getElementById('address').value.trim();
+  const sheetData={submittedAt:timestamp,name,phone,package:selectedPackage,source:'sp-'+slug,type:isBook?'book':'file'};
+  if(isBook)sheetData.address=document.getElementById('address').value.trim();
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(sheetData)});
-  if(typeof fbq!=='undefined'){const pricing=P[currentType];fbq('track','Lead',{content_name:selectedPackage,value:pricing.amount,currency:'VND'});}
+  if(typeof fbq!=='undefined'){fbq('track','Lead',{content_name:selectedPackage,value:pricing.amount,currency:'VND'});}
 
-  if(currentType==='book'){
-    if(typeof fbq!=='undefined'){fbq('track','Purchase',{content_name:selectedPackage,value:P.book.amount,currency:'VND'});}
+  if(isBook){
+    if(typeof fbq!=='undefined'){fbq('track','Purchase',{content_name:selectedPackage,value:pricing.amount,currency:'VND'});}
     const tp=new URLSearchParams({name,phone,pkg:selectedPackage,type:'book'});
     window.location.href='/thanks?'+tp.toString(); return;
   }
   try {
-    const pricing=P.file;
     const payRes=await fetch('/api/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({packageName:selectedPackage,name,phone})});
     if(!payRes.ok)throw new Error('API error');
     const{checkoutUrl}=await payRes.json();
