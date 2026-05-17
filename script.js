@@ -234,7 +234,7 @@ function toggleZaloBtn() {
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuK1o1PdjrfvhJwutbSzn7y3-TVP4qWl8tDvgKALnJyCyaNlTHWCh8SJM2kGgWVeY/exec';
 
 // Package → QR data mapping (dual pricing: file vs book)
-// Sách giấy = file số + 120K. Luyện gõ Hán tự chỉ có file số (không có sách giấy).
+// Tài liệu in sẵn = file số + 120K. Luyện gõ Hán tự chỉ có file số (không có tài liệu in sẵn).
 const PACKAGE_PRICING = {
   cautruc:  { name: 'Cấu trúc + Luyện dịch',             file: { amount: 69000,  label: '69K',  content: 'tai lieu tieng trung 1' }, book: { amount: 189000, label: '189K', content: 'sach giay tieng trung 1' } },
   tuvung:   { name: 'Từ vựng HSK1-HSK6',                  file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 2' }, book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 2' } },
@@ -253,7 +253,7 @@ function rebuildPackageData() {
     PACKAGE_DATA[`${pkg.name} - ${fData.label}`] = { amount: fData.amount, content: fData.content };
     if (pkg.book) {
       const bData = pkg.book;
-      PACKAGE_DATA[`${pkg.name} (Sách giấy) - ${bData.label}`] = { amount: bData.amount, content: bData.content };
+      PACKAGE_DATA[`${pkg.name} (Tài liệu in sẵn) - ${bData.label}`] = { amount: bData.amount, content: bData.content };
     }
   }
 }
@@ -338,7 +338,7 @@ function updateVariantSummary() {
     summary.style.display = 'none';
     return;
   }
-  const typeLabel = currentType === 'file' ? 'File số' : 'Sách giấy';
+  const typeLabel = currentType === 'file' ? 'File số' : 'Tài liệu in sẵn';
 
   document.getElementById('variantPkgName').textContent = `${pkg.name} (${typeLabel})`;
   document.getElementById('variantTotalPrice').textContent = pricing.amount.toLocaleString('vi-VN') + '₫';
@@ -352,7 +352,7 @@ function confirmVariant() {
   }
   const pkg = PACKAGE_PRICING[currentPkg];
   const pricing = pkg[currentType];
-  const typeLabel = currentType === 'file' ? '' : ' (Sách giấy)';
+  const typeLabel = currentType === 'file' ? '' : ' (Tài liệu in sẵn)';
   selectedPackage = `${pkg.name}${typeLabel} - ${pricing.label}`;
   document.getElementById('selectedPkg').textContent = '📦 ' + selectedPackage;
   setupFormForType(currentType);

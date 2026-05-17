@@ -219,7 +219,7 @@ let dcHTML = '<h4>📋 2 HÌNH THỨC NHẬN TÀI LIỆU — BẠN CHỌN!</h4>'
   '<h5>📄 File số (PDF/Excel)</h5>' +
   '<ul>' +
   '<li>✅ Nhận link tải <strong>ngay sau thanh toán</strong> — không chờ đợi</li>' +
-  '<li>✅ Giá chỉ từ <strong>' + filePrice + '₫</strong> — rẻ hơn sách giấy</li>' +
+  '<li>✅ Giá chỉ từ <strong>' + filePrice + '₫</strong> — rẻ hơn tài liệu in sẵn</li>' +
   '<li>✅ Học trên điện thoại mọi lúc mọi nơi</li>' +
   '<li>✅ <strong>Tự in ra thành sách</strong> nếu muốn — giống hệt sách trong video</li>' +
   '<li>✅ Lưu trữ vĩnh viễn, không sợ mất</li>' +
@@ -229,13 +229,13 @@ let dcHTML = '<h4>📋 2 HÌNH THỨC NHẬN TÀI LIỆU — BẠN CHỌN!</h4>'
 if (P.book) {
   dcHTML += '<div class="dc-card dc-book">' +
     '<div class="dc-icon"><i class="fas fa-book"></i></div>' +
-    '<h5>📕 Sách giấy (giao tận nhà)</h5>' +
+    '<h5>📕 Tài liệu in sẵn (giao tận nhà)</h5>' +
     '<ul>' +
-    '<li>✅ Sách in sẵn, giao tận nhà trong 2-4 ngày</li>' +
+    '<li>✅ Sách <strong>in đen trắng</strong>, giao tận nhà trong 2-4 ngày</li>' +
     '<li>✅ Cầm nắm thật, đánh dấu, ghi chú</li>' +
     '<li>✅ Thanh toán khi nhận hàng (COD)</li>' +
     '</ul>' +
-    '<div class="dc-note">💡 Giá sách giấy = giá file số + phí in & ship</div>' +
+    '<div class="dc-note">💡 Giá tài liệu in sẵn = giá file số + phí in & ship</div>' +
     '</div>';
 }
 
@@ -462,7 +462,7 @@ function updateVariantSummary() {
   if (P.packages) {
     typeLabel = P.packages.find(p => p.id === currentType)?.name || '';
   } else {
-    typeLabel = currentType==='file'?'File số':'Sách giấy';
+    typeLabel = currentType==='file'?'File số':'Tài liệu in sẵn';
   }
   
   document.getElementById('variantPkgName').textContent = P.headerTitle + ' ('+typeLabel+')';
@@ -477,7 +477,7 @@ function confirmVariant() {
   if (P.packages) {
     typeLabel = ' (' + (P.packages.find(p => p.id === currentType)?.name || '') + ')';
   } else {
-    typeLabel = currentType==='file'?'':' (Sách giấy)';
+    typeLabel = currentType==='file'?'':' (Tài liệu in sẵn)';
   }
   
   selectedPackage = P.headerTitle + typeLabel + ' - ' + pricing.label;

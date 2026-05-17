@@ -59,8 +59,8 @@
     <h2 id="productDesc" style="font-size:15px;color:#555;font-weight:normal;margin-bottom:15px;line-height:1.4;"></h2>
     <div class="product-meta"><span class="rating"><i class="fas fa-star"></i> 4.9/5</span><span class="sep">|</span><span class="sold" id="soldCount"></span></div>
     <div class="admin-trust-badge"><i class="fas fa-certificate"></i><span>Bộ tài liệu được phát triển bởi thương hiệu <strong>Tiếng Trung Hoàng Diễm</strong> — gần 80k người theo dõi trên các nền tảng</span></div>
-    <div class="video-bridge-banner"><div class="bridge-icon"><i class="fas fa-video"></i></div><div class="bridge-content"><strong>📹 Đây chính là bộ tài liệu bạn thấy trong video!</strong><p>Bạn được <strong>chọn nhận file số hoặc sách giấy giao tận nhà</strong>. File số nhận ngay sau thanh toán, sách giấy giao trong 2-4 ngày.</p></div></div>
-    <div class="free-ship"><i class="fas fa-bolt"></i> 📲 File số: nhận ngay sau thanh toán &nbsp;|&nbsp; 🚚 Sách giấy: giao tận nhà trong 2-4 ngày</div>
+    <div class="video-bridge-banner"><div class="bridge-icon"><i class="fas fa-video"></i></div><div class="bridge-content"><strong>📹 Đây chính là bộ tài liệu bạn thấy trong video!</strong><p>Bạn được <strong>chọn nhận file số hoặc tài liệu in sẵn (bản in đen trắng) giao tận nhà</strong>. File số nhận ngay sau thanh toán, tài liệu in sẵn giao trong 2-4 ngày.</p></div></div>
+    <div class="free-ship"><i class="fas fa-bolt"></i> 📲 File số: nhận ngay sau thanh toán &nbsp;|&nbsp; 🚚 Tài liệu in sẵn (in đen trắng): giao tận nhà trong 2-4 ngày</div>
   </section>
 
   <!-- FEATURES -->
@@ -116,6 +116,15 @@
     <div class="footer-divider"></div>
     <div class="footer-statement"><i class="fas fa-building"></i><span>Hệ thống phân phối tài liệu số tự động thuộc thương hiệu <strong>Tiếng Trung Hoàng Diễm</strong></span></div>
     <div class="footer-contact"><div class="footer-row"><i class="fas fa-phone"></i> Hotline/Zalo: <a href="tel:0528786710">0528786710</a></div></div>
+    
+    <div class="footer-policies" style="margin: 20px 0; padding-top: 20px; border-top: 1px solid #eee; display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+      <a href="/chinh-sach.html#huong-dan" style="color: #666; text-decoration: none;">Hướng dẫn mua hàng</a>
+      <a href="/chinh-sach.html#thanh-toan" style="color: #666; text-decoration: none;">Chính sách thanh toán</a>
+      <a href="/chinh-sach.html#giao-nhan" style="color: #666; text-decoration: none;">Chính sách giao nhận, vận chuyển</a>
+      <a href="/chinh-sach.html#doi-tra" style="color: #666; text-decoration: none;">Chính sách đổi trả & hoàn tiền</a>
+      <a href="/chinh-sach.html#bao-mat" style="color: #666; text-decoration: none;">Chính sách bảo mật thông tin</a>
+    </div>
+
     <p class="copyright">© 2026 Tiếng Trung Hoàng Diễm</p>
   </section>
 
@@ -137,7 +146,7 @@
             <p class="variant-label"><i class="fas fa-box"></i> Chọn hình thức nhận hàng</p>
             <div class="variant-row" id="variantType">
               <button class="variant-btn active" data-type="file" onclick="selectType('file')"><i class="fas fa-file-pdf"></i><span class="variant-btn-text">File số</span><span class="variant-btn-sub">Nhận link tải ngay</span></button>
-              <button class="variant-btn" data-type="book" onclick="selectType('book')" id="bookTypeBtn"><i class="fas fa-book"></i><span class="variant-btn-text">Sách giấy</span><span class="variant-btn-sub">Gửi về tận nhà</span></button>
+              <button class="variant-btn" data-type="book" onclick="selectType('book')" id="bookTypeBtn"><i class="fas fa-book"></i><span class="variant-btn-text">Tài liệu in sẵn</span><span class="variant-btn-sub">In đen trắng, gửi tận nhà</span></button>
             </div>
           </div>
           <div class="variant-summary" id="variantSummary">
@@ -154,7 +163,7 @@
           <h4 class="form-title" id="formTitle">Thông tin nhận tài liệu</h4>
           <p class="form-subtitle" id="formSubtitle">Vui lòng nhập chính xác thông tin!</p>
           <div class="modal-digital-notice" id="noticeFile" style="background:#e3f2fd;color:#0d47a1;border-color:#bbdefb;"><i class="fas fa-bolt" style="color:#fbc02d;"></i><span>Nhận <strong>link tải tự động</strong> ngay sau thanh toán.</span></div>
-          <div class="modal-digital-notice hidden" id="noticeBook" style="background:#fff3e0;color:#e65100;border-color:#ffe0b2;"><i class="fas fa-truck" style="color:#e65100;"></i><span>Sách giấy sẽ được <strong>gửi về tận nhà</strong> trong 2-4 ngày.</span></div>
+          <div class="modal-digital-notice hidden" id="noticeBook" style="background:#fff3e0;color:#e65100;border-color:#ffe0b2;"><i class="fas fa-truck" style="color:#e65100;"></i><span>Tài liệu in sẵn <strong>(bản in đen trắng)</strong> sẽ được <strong>gửi về tận nhà</strong> trong 2-4 ngày.</span></div>
           <div class="selected-pkg" id="selectedPkg"></div>
           <form id="orderForm" onsubmit="submitOrder(event)">
             <div class="form-group"><label>Họ và tên <span class="req">*</span></label><input type="text" id="fullName" placeholder="Nguyễn Văn A" required></div>
@@ -163,7 +172,7 @@
             <button type="submit" class="btn-submit" id="submitBtn"><span id="btnText">TIẾP TỤC THANH TOÁN</span><span id="btnLoading" class="hidden"><i class="fas fa-spinner fa-spin"></i> Đang gửi...</span></button>
             <p class="form-note" id="noteFileBottom">*Tài liệu được gửi tự động qua link tải ngay sau khi thanh toán.</p>
             <p class="form-note" id="noteFileZalo" style="color:#0d47a1;background:#e3f2fd;padding:8px 12px;border-radius:8px;margin-top:8px;"><i class="fas fa-comment-dots" style="color:#0068ff;"></i> Gặp vấn đề? Nhắn ngay <a href="https://zalo.me/0528786710" target="_blank" style="color:#0068ff;font-weight:700;">Zalo 0528786710</a></p>
-            <p class="form-note hidden" id="noteBookBottom" style="color:#e65100;background:#fff3e0;padding:8px 12px;border-radius:8px;margin-top:8px;"><i class="fas fa-truck" style="color:#e65100;"></i> Sách giao trong 2-4 ngày. Thanh toán COD.</p>
+            <p class="form-note hidden" id="noteBookBottom" style="color:#e65100;background:#fff3e0;padding:8px 12px;border-radius:8px;margin-top:8px;"><i class="fas fa-truck" style="color:#e65100;"></i> Tài liệu in đen trắng, giao trong 2-4 ngày. Thanh toán COD.</p>
           </form>
         </div>
       </div>

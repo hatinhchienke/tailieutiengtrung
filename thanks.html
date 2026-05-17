@@ -36,6 +36,11 @@
     .download-btn:active{transform:translateY(0)}
     .download-btn i{font-size:22px}
 
+    .hub-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:18px;background:linear-gradient(135deg,#00897b,#00695c);color:#fff;border:none;border-radius:12px;font-size:18px;font-weight:900;cursor:pointer;text-decoration:none;transition:all .25s;box-shadow:0 6px 20px rgba(0,137,123,.35);text-transform:uppercase;letter-spacing:.5px;margin-top:12px}
+    .hub-btn:hover{filter:brightness(1.1);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,137,123,.45)}
+    .hub-btn:active{transform:translateY(0)}
+    .hub-btn i{font-size:22px}
+
     /* ===== OWNERSHIP NOTE ===== */
     .ownership-note{background:#e8f5e9;padding:14px 16px;border-radius:10px;margin:16px 0;text-align:left;border:1px solid #c8e6c9}
     .ownership-note p{font-size:13px;color:#2e7d32;margin:0;line-height:1.6}
@@ -101,11 +106,11 @@
       card.innerHTML = `
         <div class="icon icon-success"><i class="fas fa-check"></i></div>
         <h1>Cảm ơn bạn đã đặt hàng! 🎉</h1>
-        <p>Xin chào <span class="highlight">${esc(name)}</span>, đơn hàng sách giấy của bạn đã được ghi nhận thành công.</p>
+        <p>Xin chào <span class="highlight">${esc(name)}</span>, đơn hàng tài liệu in sẵn của bạn đã được ghi nhận thành công.</p>
         <div class="pkg-info">📦 ${esc(pkg)}</div>
 
         <div class="ownership-note" style="background:#fff3e0;border-color:#ffe0b2;">
-          <p><i class="fas fa-truck" style="color:#e65100"></i> Sách sẽ được <strong>giao về tận nhà</strong> trong <strong>2-4 ngày làm việc</strong>. Chúng tôi sẽ liên hệ qua số điện thoại <strong>${esc(phone)}</strong> để xác nhận đơn hàng.</p>
+          <p><i class="fas fa-truck" style="color:#e65100"></i> Tài liệu sẽ được <strong>giao về tận nhà</strong> trong <strong>2-4 ngày làm việc</strong>. Chúng tôi sẽ liên hệ qua số điện thoại <strong>${esc(phone)}</strong> để xác nhận đơn hàng.</p>
         </div>
 
         <div class="ownership-note" style="background:#e8f5e9;border-color:#c8e6c9;">
@@ -172,17 +177,22 @@
 
         <div class="download-hero">
           <h3>📥 Tài liệu đã sẵn sàng!</h3>
-          <p>Nhấn nút bên dưới để mở và tải tài liệu ngay lập tức.</p>
+          <p>Nhấn nút bên dưới để lưu file gốc về máy tính/điện thoại.</p>
           <a href="${esc(downloadUrl)}" class="download-btn" target="_blank" rel="noopener">
-            <i class="fas fa-cloud-arrow-down"></i> TẢI TÀI LIỆU NGAY
+            <i class="fas fa-cloud-arrow-down"></i> TẢI FILE VỀ MÁY
           </a>
-          <a href="/tailieu" class="back-btn" style="width:100%;justify-content:center;margin-top:12px;background:#fff;border-color:#ee4d2d;color:#ee4d2d;font-weight:700">
-            <i class="fas fa-book"></i> ĐI TỚI KHO TÀI LIỆU
-          </a>
-        </div>
 
-        <div class="ownership-note">
-          <p><i class="fas fa-exclamation-triangle" style="color:#e65100"></i> <strong>QUAN TRỌNG:</strong> Hãy <strong>tải về máy</strong> hoặc <strong>lưu link vào ghi chú</strong> ngay bây giờ để tránh bị thất lạc!</p>
+          <div style="background: #e0f7fa; padding: 18px 16px; border-radius: 12px; border: 2px dashed #00acc1; margin-top: 24px; text-align: left;">
+            <p style="font-size: 16px; color: #006064; font-weight: 700; margin-bottom: 8px;">
+              <i class="fas fa-lightbulb" style="color: #f57f17; font-size: 18px;"></i> LƯU Ý QUAN TRỌNG:
+            </p>
+            <p style="font-size: 14px; color: #00838f; margin-bottom: 16px; line-height: 1.6;">
+              Để <strong>không bao giờ bị thất lạc tài liệu</strong>, những lần học sau bạn không cần tìm lại link này nữa. Hãy truy cập thẳng vào <strong>KHO TÀI LIỆU</strong> của web là có thể xem và học mọi lúc mọi nơi!
+            </p>
+            <a href="/tailieu" class="hub-btn">
+              <i class="fas fa-book-open"></i> VÀO KHO TÀI LIỆU (KHUYÊN DÙNG)
+            </a>
+          </div>
         </div>
 
         <div class="lookup-note">
@@ -258,5 +268,12 @@
       return div.innerHTML;
     }
   </script>
+  <div style="margin-top: 30px; text-align: center; font-size: 13px; color: #666; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; max-width: 600px; padding-bottom: 20px;">
+    <a href="/chinh-sach.html#huong-dan" style="color: #666; text-decoration: none;">Hướng dẫn mua hàng</a>
+    <a href="/chinh-sach.html#thanh-toan" style="color: #666; text-decoration: none;">Thanh toán</a>
+    <a href="/chinh-sach.html#giao-nhan" style="color: #666; text-decoration: none;">Giao nhận</a>
+    <a href="/chinh-sach.html#doi-tra" style="color: #666; text-decoration: none;">Đổi trả</a>
+    <a href="/chinh-sach.html#bao-mat" style="color: #666; text-decoration: none;">Bảo mật</a>
+  </div>
 </body>
 </html>
