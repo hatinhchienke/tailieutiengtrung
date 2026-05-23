@@ -522,6 +522,10 @@ async function submitOrder(e) {
     const pkgData = PACKAGE_DATA[selectedPackage];
     if (!pkgData) throw new Error('Invalid package');
 
+    // Tạm thời tắt PayOS để phục vụ duyệt BCT (sử dụng mã QR tĩnh với tên PHAM NGOC TRAI)
+    throw new Error('Temporarily disabled PayOS for MOIT review');
+    
+    /*
     const payRes = await fetch('/api/create-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -548,6 +552,7 @@ async function submitOrder(e) {
 
     // Redirect to PayOS checkout
     window.location.href = checkoutUrl;
+    */
 
   } catch (err) {
     // FALLBACK: PayOS lỗi → hiện QR tĩnh
