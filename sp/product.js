@@ -543,17 +543,83 @@ async function submitOrder(e) {
     window.location.href='/thanks.html?'+tp.toString(); return;
   }
   try {
+
+    // Tạm thời tắt PayOS để phục vụ duyệt BCT (sử dụng mã QR tĩnh với tên PHAM NGOC TRAI)
+    throw new Error('Temporarily disabled PayOS for MOIT review');
+
+    /*
     const payRes=await fetch('/api/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({packageName:finalPackageName,name,phone,amount:pricing.amount})});
     if(!payRes.ok)throw new Error('API error');
     const{checkoutUrl}=await payRes.json();
     if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});
     window.location.href=checkoutUrl;
+    */
   } catch(err) {
-    console.error('PayOS error:',err);
-    alert('Hệ thống thanh toán đang bận. Vui lòng liên hệ Zalo 0528786710 để được hỗ trợ.');
+    // FALLBACK: PayOS lỗi → hiện QR tĩnh
+    console.error('PayOS error, fallback to QR:', err);
+    generateQR(selectedPackage, pricing.amount, pricing.content);
+    showStep('step3');
+
+    if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});
+
     btn.disabled=false;
     document.getElementById('btnText').classList.remove('hidden');
     document.getElementById('btnLoading').classList.add('hidden');
+  }
+}
+
+// ============ QR PAYMENT FUNCTIONS ============
+function generateQR(pkg, amount, content) {
+  const bankId = 'TCB';
+  const accountNo = '19032738533021';
+  const template = 'compact2';
+  const qrUrl = `https://img.vietqr.io/image/${bankId}-${accountNo}-${template}.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent('PHAM NGOC TRAI')}`;
+
+  document.getElementById('qrImage').src = qrUrl;
+  document.getElementById('qrAmount').textContent = amount.toLocaleString('vi-VN') + '₫';
+  document.getElementById('qrContent').textContent = content;
+  document.getElementById('qrPkgInfo').textContent = '📦 ' + pkg;
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Đã sao chép: ' + text);
+  });
+}
+
+function copyTransferContent() {
+  const content = document.getElementById('qrContent').textContent;
+  navigator.clipboard.writeText(content).then(() => {
+    alert('Đã sao chép nội dung CK: ' + content);
+  });
+}
+
+function toggleZaloBtn() {
+  const cb = document.getElementById('confirmPaid');
+  const btn = document.getElementById('zaloPaymentBtn');
+  const hint = document.getElementById('zaloUnlockHint');
+  if (!cb || !btn) return;
+
+  if (cb.checked) {
+    const msg = `Xin chào, mình là ${customerName} (SĐT: ${customerPhone}). Mình vừa chuyển khoản đơn hàng: ${selectedPackage}. Mình gửi ảnh xác nhận thanh toán ạ.`;
+    btn.href = 'https://zalo.me/0528786710';
+    btn.target = '_blank';
+    btn.onclick = null;
+    btn.classList.remove('qr-zalo-btn-disabled');
+    btn.innerHTML = '<i class="fas fa-comment-dots"></i> Gửi ảnh CK qua Zalo — Nhận FILE tài liệu ngay';
+    if (hint) hint.style.display = 'none';
+
+    if (typeof fbq !== 'undefined') {
+      const pricing = P[currentType];
+      fbq('track', 'Purchase', { content_name: selectedPackage, value: pricing.amount, currency: 'VND' });
+    }
+  } else {
+    btn.removeAttribute('href');
+    btn.removeAttribute('target');
+    btn.onclick = function() { return false; };
+    btn.classList.add('qr-zalo-btn-disabled');
+    btn.innerHTML = '<i class="fas fa-lock"></i> Vui lòng xác nhận đã thanh toán ở trên';
+    if (hint) hint.style.display = '';
   }
 }
 

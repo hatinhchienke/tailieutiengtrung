@@ -183,6 +183,73 @@
           </form>
         </div>
       </div>
+      <!-- Step 3: QR Thanh toán -->
+      <div class="modal-step hidden" id="step3">
+        <div class="modal-header">
+          <button class="modal-back" onclick="showStep('step2')"><i class="fas fa-arrow-left"></i></button>
+          <h3>THANH TOÁN</h3>
+          <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" style="text-align:center;">
+          <!-- Bước 1: QR -->
+          <div class="qr-step-label"><span class="step-num">1</span> Chuyển khoản theo thông tin bên dưới</div>
+          <div class="qr-pkg-info" id="qrPkgInfo"></div>
+          <div class="qr-container">
+            <img id="qrImage" src="" alt="QR Thanh toán" loading="lazy" crossorigin="anonymous">
+          </div>
+          <div class="qr-amount">
+            <span>Số tiền thanh toán</span>
+            <strong id="qrAmount"></strong>
+          </div>
+          <div class="qr-bank-info">
+            <div class="bank-row"><span>Ngân hàng</span><strong>Techcombank</strong></div>
+            <div class="bank-row"><span>Số tài khoản</span><strong>19032738533021 <i class="fas fa-copy" onclick="copyText('19032738533021')" style="cursor:pointer;color:#ee4d2d;font-size:12px;"></i></strong></div>
+            <div class="bank-row"><span>Chủ tài khoản</span><strong>PHAM NGOC TRAI</strong></div>
+            <div class="bank-row"><span>Nội dung CK</span><strong id="qrContent"></strong> <i class="fas fa-copy" id="copyContentBtn" onclick="copyTransferContent()" style="cursor:pointer;color:#ee4d2d;font-size:12px;"></i></div>
+          </div>
+
+          <!-- Bước 2: Xác nhận đã thanh toán -->
+          <div class="qr-step-label"><span class="step-num">2</span> Sau khi chuyển khoản xong</div>
+          <div class="qr-confirm-section">
+            <label class="confirm-checkbox" id="confirmLabel">
+              <input type="checkbox" id="confirmPaid" onchange="toggleZaloBtn()">
+              <span class="checkmark"></span>
+              <span class="confirm-text">Tôi đã chuyển khoản thành công ✅</span>
+            </label>
+          </div>
+
+          <!-- Bước 3: Gửi ảnh CK qua Zalo -->
+          <div class="qr-step-label"><span class="step-num">3</span> Gửi ảnh chụp màn hình CK qua Zalo</div>
+          <div class="qr-receive-guide">
+            <h4>📋 Hướng dẫn:</h4>
+            <ol>
+              <li><strong>Chụp màn hình</strong> xác nhận chuyển khoản thành công</li>
+              <li>Nhấn nút bên dưới để <strong>gửi ảnh qua Zalo</strong></li>
+              <li>Nhận <strong>link tải tài liệu</strong> trong vài phút</li>
+            </ol>
+          </div>
+
+          <a id="zaloPaymentBtn" class="qr-zalo-btn qr-zalo-btn-disabled" onclick="return false;">
+            <i class="fas fa-lock"></i> Vui lòng xác nhận đã thanh toán ở trên
+          </a>
+          <p class="zalo-unlock-hint" id="zaloUnlockHint">👆 Tick xác nhận đã chuyển khoản để mở nút gửi Zalo</p>
+
+          <div class="qr-guarantee-note">
+            <i class="fas fa-shield-alt"></i>
+            <span><strong>Cam kết hỗ trợ:</strong> Nếu sau 1 phút chưa nhận được link, nhấn nút Chat Zalo để admin hỗ trợ ngay!</span>
+          </div>
+
+          <div class="qr-digital-reminder">
+            <i class="fas fa-mobile-alt"></i>
+            <span>Nhận <strong>link tải tài liệu</strong> ngay sau khi xác nhận.</span>
+          </div>
+
+          <div class="qr-zalo-note">
+            <p><i class="fas fa-phone"></i> Hotline/Zalo: <a href="tel:0528786710"><strong>0528786710</strong></a></p>
+            <p>⏰ Xử lý trong vài phút (8h - 22h)</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
