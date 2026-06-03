@@ -538,6 +538,7 @@ async function submitOrder(e) {
   if(typeof fbq!=='undefined'){fbq('track','Lead',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
 
   if(isBook){
+    if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
     if(typeof fbq!=='undefined'){fbq('track','Purchase',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
     const tp=new URLSearchParams({name,phone,pkg:finalPackageName,type:'book'});
     window.location.href='/thanks.html?'+tp.toString(); return;

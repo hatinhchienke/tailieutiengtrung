@@ -492,12 +492,11 @@ async function submitOrder(e) {
     body: JSON.stringify(sheetData)
   });
 
-  // 2. FB Pixel: Lead + CompleteRegistration
+  // 2. FB Pixel: Lead
   if (typeof fbq !== 'undefined') {
     const priceMatch = selectedPackage.match(/(\d+)K/);
     const value = priceMatch ? parseInt(priceMatch[1]) * 1000 : 0;
     fbq('track', 'Lead', { content_name: selectedPackage, value: value, currency: 'VND' });
-    fbq('track', 'CompleteRegistration', { content_name: selectedPackage, value: value, currency: 'VND' });
   }
 
   // === BOOK ORDER: redirect to thank you page ===
@@ -505,6 +504,7 @@ async function submitOrder(e) {
     if (typeof fbq !== 'undefined') {
       const priceMatchB = selectedPackage.match(/(\d+)K/);
       const valB = priceMatchB ? parseInt(priceMatchB[1]) * 1000 : 0;
+      fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: valB, currency: 'VND' });
       fbq('track', 'Purchase', { content_name: selectedPackage, value: valB, currency: 'VND' });
     }
     const thanksParams = new URLSearchParams({
