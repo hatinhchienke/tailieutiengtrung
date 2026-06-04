@@ -14,6 +14,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="home.css">
+
+  <!-- Facebook Pixel — Trang tài liệu (chỉ khách đã mua) -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1518933582936427');
+    fbq('init','1115143273896245');
+    fbq('track','PageView');
+
+    // Đánh dấu đây là KHÁCH ĐÃ MUA — tệp chất lượng cao
+    fbq('track', 'ViewContent', {
+      content_name: 'Kho Tài Liệu Khách Hàng',
+      content_category: 'customer_hub',
+      content_type: 'product_group'
+    });
+  </script>
+
   <style>
     /* DASHBOARD SPECIFIC */
     .h-header-icon { font-size: 20px; color: #ee4d2d; text-decoration: none; padding: 8px; }
@@ -274,6 +290,21 @@ function unlockModal(pkgId) {
 
   if (matched) {
     localStorage.setItem('hub_' + pkgId, val);
+
+    // Pixel: Bắn Purchase khi khách mở khóa thành công
+    if (typeof fbq !== 'undefined') {
+      // Parse giá từ priceSale (VD: "199,000₫" → 199000)
+      const priceNum = parseInt((pkg.priceSale || '0').replace(/[^\d]/g, '')) || 0;
+      fbq('track', 'Purchase', {
+        content_name: pkg.title,
+        content_category: 'customer_hub',
+        content_ids: [pkgId],
+        content_type: 'product',
+        value: priceNum,
+        currency: 'VND'
+      });
+    }
+
     closeDetail();
     renderGrid();
     setTimeout(() => openDetail(pkgId), 100);
