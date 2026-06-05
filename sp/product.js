@@ -437,7 +437,7 @@ function openModal() {
   
   updateVariantSummary();
   if(typeof fbq!=='undefined') fbq('track','ViewContent',{content_name:P.headerTitle});
-  if(typeof ttq!=='undefined') ttq.track('ViewContent',{content_name:P.headerTitle});
+  if(typeof ttq!=='undefined') ttq.track('ViewContent',{content_name:P.headerTitle,content_id:slug,content_type:'product'});
 }
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('active');
@@ -537,13 +537,13 @@ async function submitOrder(e) {
   if(isBook)sheetData.address=document.getElementById('address').value.trim();
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(sheetData)});
   if(typeof fbq!=='undefined'){fbq('track','Lead',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
-  if(typeof ttq!=='undefined'){ttq.track('SubmitForm',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
+  if(typeof ttq!=='undefined'){ttq.track('SubmitForm',{content_name:finalPackageName,content_id:slug,content_type:'product',value:pricing.amount,currency:'VND'});}
 
   if(isBook){
     if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
-    if(typeof ttq!=='undefined'){ttq.track('InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
+    if(typeof ttq!=='undefined'){ttq.track('InitiateCheckout',{content_name:finalPackageName,content_id:slug,content_type:'product',value:pricing.amount,currency:'VND'});}
     if(typeof fbq!=='undefined'){fbq('track','Purchase',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
-    if(typeof ttq!=='undefined'){ttq.track('CompletePayment',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
+    if(typeof ttq!=='undefined'){ttq.track('CompletePayment',{content_name:finalPackageName,content_id:slug,content_type:'product',value:pricing.amount,currency:'VND'});}
     const tp=new URLSearchParams({name,phone,pkg:finalPackageName,type:'book'});
     window.location.href='/thanks.html?'+tp.toString(); return;
   }
@@ -566,7 +566,7 @@ async function submitOrder(e) {
     showStep('step3');
 
     if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});
-    if(typeof ttq!=='undefined')ttq.track('InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});
+    if(typeof ttq!=='undefined')ttq.track('InitiateCheckout',{content_name:finalPackageName,content_id:slug,content_type:'product',value:pricing.amount,currency:'VND'});
 
     btn.disabled=false;
     document.getElementById('btnText').classList.remove('hidden');
@@ -621,7 +621,7 @@ function toggleZaloBtn() {
     }
     if (typeof ttq !== 'undefined') {
       const pricing = P[currentType];
-      ttq.track('CompletePayment', { content_name: selectedPackage, value: pricing.amount, currency: 'VND' });
+      ttq.track('CompletePayment', { content_name: selectedPackage, content_id: slug, content_type: 'product', value: pricing.amount, currency: 'VND' });
     }
   } else {
     btn.removeAttribute('href');
