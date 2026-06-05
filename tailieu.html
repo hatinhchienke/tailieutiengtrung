@@ -29,6 +29,23 @@
       content_type: 'product_group'
     });
   </script>
+  <!-- TikTok Pixel Code Start -->
+  <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.load('D8HAR4JC77UB4KU2E8C0');
+      ttq.page();
+      // TikTok: ViewContent — khách đã mua
+      ttq.track('ViewContent', {
+        content_name: 'Kho Tài Liệu Khách Hàng',
+        content_category: 'customer_hub',
+        content_type: 'product_group'
+      });
+    }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
 
   <style>
     /* DASHBOARD SPECIFIC */
@@ -299,6 +316,17 @@ function unlockModal(pkgId) {
         content_name: pkg.title,
         content_category: 'customer_hub',
         content_ids: [pkgId],
+        content_type: 'product',
+        value: priceNum,
+        currency: 'VND'
+      });
+    }
+    // TikTok Pixel: CompletePayment khi khách mở khóa thành công
+    if (typeof ttq !== 'undefined') {
+      const priceNum = parseInt((pkg.priceSale || '0').replace(/[^\d]/g, '')) || 0;
+      ttq.track('CompletePayment', {
+        content_name: pkg.title,
+        content_id: pkgId,
         content_type: 'product',
         value: priceNum,
         currency: 'VND'
