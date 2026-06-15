@@ -6,7 +6,7 @@ const PRODUCTS = {
     priceSale: '199,000₫', priceOld: '450,000₫', discount: 'Tiết kiệm 56%',
     sold: 'Đã bán 3.1K+', headerTitle: 'Combo 6 trong 1',
     videoId: 'g8p1BpPhAUY',
-    slides: ['/images/combo-overview.webp','/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png','/ảnh cover sp/1200 câu.png','/ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png','/ảnh cover sp/Luyện gõ Hán tự.png','/ảnh cover sp/60 bộ thủ chữ hán.png'],
+    slides: ['/images/combo-overview.webp', '/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png', '/ảnh cover sp/1200 câu.png', '/ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png', '/ảnh cover sp/Luyện gõ Hán tự.png', '/ảnh cover sp/60 bộ thủ chữ hán.png'],
     features: [
       'Cấu trúc câu + Luyện dịch tiếng Trung (30+ cấu trúc)',
       'Từ vựng HSK1 – HSK6 đầy đủ (5000+ từ)',
@@ -149,7 +149,7 @@ const PRODUCTS = {
 };
 
 // ============ DETECT PRODUCT FROM URL ============
-const slug = window.location.pathname.split('/sp/')[1]?.replace(/\.html$/,'').replace(/\/$/,'') || '';
+const slug = window.location.pathname.split('/sp/')[1]?.replace(/\.html$/, '').replace(/\/$/, '') || '';
 const P = PRODUCTS[slug];
 if (!P) { window.location.href = '/'; }
 
@@ -247,9 +247,9 @@ const reviewsEl = document.getElementById('reviewsSection');
 if (P.reviews && P.reviews.length) {
   const stars5 = '<i class="fas fa-star"></i>'.repeat(5);
   let html = '<div class="reviews-header"><h3>Đánh giá của học viên</h3></div>';
-  html += '<div class="review-summary"><div class="review-score">4.9<span>/5</span></div><div class="review-stars">'+stars5+'</div></div>';
+  html += '<div class="review-summary"><div class="review-score">4.9<span>/5</span></div><div class="review-stars">' + stars5 + '</div></div>';
   P.reviews.forEach(r => {
-    html += '<div class="review-card"><div class="review-user"><div class="avatar">'+r.letter+'</div><span class="name">'+r.name+'</span></div><div class="review-stars-sm">'+stars5+'</div><p>'+r.text+'</p><div class="review-date">'+r.date+'</div></div>';
+    html += '<div class="review-card"><div class="review-user"><div class="avatar">' + r.letter + '</div><span class="name">' + r.name + '</span></div><div class="review-stars-sm">' + stars5 + '</div><p>' + r.text + '</p><div class="review-date">' + r.date + '</div></div>';
   });
   reviewsEl.innerHTML = html;
 }
@@ -265,8 +265,8 @@ let slideIdx = 0;
 if (P.videoId) {
   const vdiv = document.createElement('div');
   vdiv.className = 'slide slide-video active';
-  vdiv.innerHTML = '<div class="yt-lazy" id="ytLazy" data-id="'+P.videoId+'">' +
-    '<img src="'+P.slides[0]+'" alt="Xem video giới thiệu" class="yt-poster" style="object-fit:contain;background:#fff;">' +
+  vdiv.innerHTML = '<div class="yt-lazy" id="ytLazy" data-id="' + P.videoId + '">' +
+    '<img src="' + P.slides[0] + '" alt="Xem video giới thiệu" class="yt-poster" style="object-fit:contain;background:#fff;">' +
     '<button class="play-btn" id="playBtn"><i class="fas fa-play"></i></button></div>' +
     '<span class="slide-label">▶ Nhấn để xem video giới thiệu</span>';
   slidesEl.appendChild(vdiv);
@@ -281,7 +281,7 @@ if (P.videoId) {
 P.slides.forEach((src, i) => {
   const div = document.createElement('div');
   div.className = 'slide';
-  div.innerHTML = '<img src="'+src+'" alt="'+P.headerTitle+'" loading="'+(i<2?'eager':'lazy')+'">';
+  div.innerHTML = '<img src="' + src + '" alt="' + P.headerTitle + '" loading="' + (i < 2 ? 'eager' : 'lazy') + '">';
   slidesEl.appendChild(div);
   const dot = document.createElement('span');
   dot.className = 'dot';
@@ -297,7 +297,7 @@ if (ytLazy) {
     if (ytLazy.querySelector('iframe')) return;
     const vid = ytLazy.dataset.id;
     const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/'+vid+'?autoplay=1&rel=0&modestbranding=1';
+    iframe.src = 'https://www.youtube.com/embed/' + vid + '?autoplay=1&rel=0&modestbranding=1';
     iframe.allow = 'accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';
     iframe.allowFullscreen = true;
     iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
@@ -351,7 +351,7 @@ Object.keys(PRODUCTS).forEach(key => {
   const card = document.createElement('a');
   card.href = '/sp/' + key;
   card.className = 'sp-other-card' + (key === 'tron-bo' ? ' sp-other-featured' : '');
-  card.innerHTML = '<div class="sp-other-img"><img src="' + (COVER_IMAGES[key]||p.slides[0]) + '" alt="' + p.headerTitle + '" loading="lazy"></div>' +
+  card.innerHTML = '<div class="sp-other-img"><img src="' + (COVER_IMAGES[key] || p.slides[0]) + '" alt="' + p.headerTitle + '" loading="lazy"></div>' +
     '<div class="sp-other-body"><h4>' + p.headerTitle + '</h4>' +
     '<div class="sp-other-price"><span class="sp-price-sale">' + p.priceSale + '</span><span class="sp-price-old">' + p.priceOld + '</span></div></div>';
   grid.appendChild(card);
@@ -367,9 +367,9 @@ const slidesContainer = document.querySelector('.slides');
 
 function goToSlide(i) {
   currentIndex = i;
-  slidesContainer.style.transform = 'translateX(-'+i*100+'%)';
-  dots.forEach((d,idx) => d.classList.toggle('active', idx===i));
-  counter.textContent = i+1;
+  slidesContainer.style.transform = 'translateX(-' + i * 100 + '%)';
+  dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+  counter.textContent = i + 1;
 }
 dots.forEach(d => d.addEventListener('click', () => goToSlide(+d.dataset.index)));
 
@@ -380,29 +380,31 @@ sliderEl.addEventListener('touchstart', e => { startX = e.touches[0].clientX; })
 sliderEl.addEventListener('touchend', e => {
   const diff = startX - e.changedTouches[0].clientX;
   if (Math.abs(diff) > 40) {
-    if (diff > 0 && currentIndex < slides.length-1) goToSlide(currentIndex+1);
-    else if (diff < 0 && currentIndex > 0) goToSlide(currentIndex-1);
+    if (diff > 0 && currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
+    else if (diff < 0 && currentIndex > 0) goToSlide(currentIndex - 1);
   }
 });
-setInterval(() => { goToSlide(currentIndex < slides.length-1 ? currentIndex+1 : 0); }, 5000);
+setInterval(() => { goToSlide(currentIndex < slides.length - 1 ? currentIndex + 1 : 0); }, 5000);
 
 // ============ COUNTDOWN ============
 function updateCountdown() {
   const now = new Date();
-  const end = new Date(now); end.setHours(23,59,59,0);
-  const diff = end - now; if(diff<=0) return;
-  const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
-  const cdH=document.getElementById('cdHours'),cdM=document.getElementById('cdMins'),cdS=document.getElementById('cdSecs');
-  if(cdH)cdH.textContent=String(h).padStart(2,'0');
-  if(cdM)cdM.textContent=String(m).padStart(2,'0');
-  if(cdS)cdS.textContent=String(s).padStart(2,'0');
+  const end = new Date(now); end.setHours(23, 59, 59, 0);
+  const diff = end - now; if (diff <= 0) return;
+  const h = Math.floor(diff / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
+  const cdH = document.getElementById('cdHours'), cdM = document.getElementById('cdMins'), cdS = document.getElementById('cdSecs');
+  if (cdH) cdH.textContent = String(h).padStart(2, '0');
+  if (cdM) cdM.textContent = String(m).padStart(2, '0');
+  if (cdS) cdS.textContent = String(s).padStart(2, '0');
 }
-updateCountdown(); setInterval(updateCountdown,1000);
+updateCountdown(); setInterval(updateCountdown, 1000);
 
 // Flash sold
-(function(){const d=new Date(),seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate(),pct=82+(seed%11);
-const el=document.getElementById('flashSold'),bar=document.getElementById('flashProgress');
-if(el)el.textContent=pct;if(bar)bar.style.width=pct+'%';})();
+(function () {
+  const d = new Date(), seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate(), pct = 82 + (seed % 11);
+  const el = document.getElementById('flashSold'), bar = document.getElementById('flashProgress');
+  if (el) el.textContent = pct; if (bar) bar.style.width = pct + '%';
+})();
 
 // ============ MODAL & PAYMENT ============
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuK1o1PdjrfvhJwutbSzn7y3-TVP4qWl8tDvgKALnJyCyaNlTHWCh8SJM2kGgWVeY/exec';
@@ -415,15 +417,15 @@ function openModal() {
   document.getElementById('modalOverlay').classList.add('active');
   document.body.style.overflow = 'hidden';
   showStep('step1');
-  
+
   const variantRow = document.getElementById('variantType');
   if (P.packages) {
     document.querySelector('.variant-label').innerHTML = '<i class="fas fa-box"></i> Chọn gói sản phẩm';
     let html = '';
     P.packages.forEach((pkg, idx) => {
-      html += '<button class="variant-btn '+(idx===0?'active':'')+'" data-type="'+pkg.id+'" onclick="selectType(\''+pkg.id+'\')" style="flex-direction:column;gap:4px;padding:12px 6px;height:auto;">' +
-        '<span class="variant-btn-text" style="font-size:12px;white-space:normal;line-height:1.3;text-align:center;">'+pkg.name+'</span>' +
-        '<span class="variant-btn-sub" style="font-size:13px;font-weight:bold;">'+pkg.amount.toLocaleString('vi-VN')+'₫</span>' +
+      html += '<button class="variant-btn ' + (idx === 0 ? 'active' : '') + '" data-type="' + pkg.id + '" onclick="selectType(\'' + pkg.id + '\')" style="flex-direction:column;gap:4px;padding:12px 6px;height:auto;">' +
+        '<span class="variant-btn-text" style="font-size:12px;white-space:normal;line-height:1.3;text-align:center;">' + pkg.name + '</span>' +
+        '<span class="variant-btn-sub" style="font-size:13px;font-weight:bold;">' + pkg.amount.toLocaleString('vi-VN') + '₫</span>' +
         '</button>';
     });
     variantRow.innerHTML = html;
@@ -434,10 +436,10 @@ function openModal() {
   } else {
     currentType = 'file';
   }
-  
+
   updateVariantSummary();
-  if(typeof fbq!=='undefined') fbq('track','ViewContent',{content_name:P.headerTitle});
-  if(typeof ttq!=='undefined') ttq.track('ViewContent',{content_name:P.headerTitle,content_id:slug,content_type:'product'});
+  if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', { content_name: P.headerTitle, content_ids: [slug], content_type: 'product', value: P.file.amount, currency: 'VND' });
+  if (typeof ttq !== 'undefined') ttq.track('ViewContent', { content_name: P.headerTitle, content_id: slug, content_type: 'product' });
 }
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('active');
@@ -451,73 +453,73 @@ function goBack() { showStep('step1'); }
 
 function selectType(type) {
   currentType = type;
-  document.querySelectorAll('#variantType .variant-btn').forEach(b => b.classList.toggle('active', b.dataset.type===type));
+  document.querySelectorAll('#variantType .variant-btn').forEach(b => b.classList.toggle('active', b.dataset.type === type));
   updateVariantSummary();
 }
 
 function updateVariantSummary() {
   const pricing = P[currentType];
-  if (!pricing) { currentType='file'; selectType('file'); return; }
-  
+  if (!pricing) { currentType = 'file'; selectType('file'); return; }
+
   let typeLabel = '';
   if (P.packages) {
     typeLabel = P.packages.find(p => p.id === currentType)?.name || '';
   } else {
-    typeLabel = currentType==='file'?'File số':'Tài liệu in sẵn';
+    typeLabel = currentType === 'file' ? 'File số' : 'Tài liệu in sẵn';
   }
-  
-  document.getElementById('variantPkgName').textContent = P.headerTitle + ' ('+typeLabel+')';
-  document.getElementById('variantTotalPrice').textContent = pricing.amount.toLocaleString('vi-VN')+'₫';
+
+  document.getElementById('variantPkgName').textContent = P.headerTitle + ' (' + typeLabel + ')';
+  document.getElementById('variantTotalPrice').textContent = pricing.amount.toLocaleString('vi-VN') + '₫';
   document.getElementById('variantSummary').style.display = 'block';
 }
 
 function confirmVariant() {
   const pricing = P[currentType];
-  
+
   let typeLabel = '';
   if (P.packages) {
     typeLabel = ' (' + (P.packages.find(p => p.id === currentType)?.name || '') + ')';
   } else {
-    typeLabel = currentType==='file'?'':' (Tài liệu in sẵn)';
+    typeLabel = currentType === 'file' ? '' : ' (Tài liệu in sẵn)';
   }
-  
+
   selectedPackage = P.headerTitle + typeLabel + ' - ' + pricing.label;
   document.getElementById('selectedPkg').textContent = '📦 ' + selectedPackage;
-  
-  const isBook = pricing.isFile === undefined ? currentType==='book' : !pricing.isFile;
+
+  const isBook = pricing.isFile === undefined ? currentType === 'book' : !pricing.isFile;
   setupFormForType(isBook ? 'book' : 'file');
   showStep('step2');
 }
 
 function setupFormForType(type) {
-  const isBook = type==='book';
-  document.getElementById('formTitle').textContent = isBook?'Thông tin nhận sách':'Thông tin nhận tài liệu';
-  document.getElementById('formSubtitle').textContent = isBook?'Vui lòng nhập chính xác địa chỉ!':'Vui lòng nhập chính xác thông tin!';
-  document.getElementById('noticeFile').classList.toggle('hidden',isBook);
-  document.getElementById('noticeBook').classList.toggle('hidden',!isBook);
-  document.getElementById('phoneLabel').innerHTML = isBook?'Số điện thoại <span class="req">*</span>':'Số Zalo <span class="req">*</span>';
-  const ag=document.getElementById('addressGroup'),ai=document.getElementById('address');
-  ag.classList.toggle('hidden',!isBook);
-  if(isBook)ai.setAttribute('required','required');else ai.removeAttribute('required');
-  document.getElementById('btnText').textContent = isBook?'ĐẶT HÀNG':'TIẾP TỤC THANH TOÁN';
-  document.getElementById('noteFileBottom').classList.toggle('hidden',isBook);
-  document.getElementById('noteFileZalo').classList.toggle('hidden',isBook);
-  document.getElementById('noteBookBottom').classList.toggle('hidden',!isBook);
+  const isBook = type === 'book';
+  document.getElementById('formTitle').textContent = isBook ? 'Thông tin nhận sách' : 'Thông tin nhận tài liệu';
+  document.getElementById('formSubtitle').textContent = isBook ? 'Vui lòng nhập chính xác địa chỉ!' : 'Vui lòng nhập chính xác thông tin!';
+  document.getElementById('noticeFile').classList.toggle('hidden', isBook);
+  document.getElementById('noticeBook').classList.toggle('hidden', !isBook);
+  document.getElementById('phoneLabel').innerHTML = isBook ? 'Số điện thoại <span class="req">*</span>' : 'Số Zalo <span class="req">*</span>';
+  const ag = document.getElementById('addressGroup'), ai = document.getElementById('address');
+  ag.classList.toggle('hidden', !isBook);
+  if (isBook) ai.setAttribute('required', 'required'); else ai.removeAttribute('required');
+  document.getElementById('btnText').textContent = isBook ? 'ĐẶT HÀNG' : 'TIẾP TỤC THANH TOÁN';
+  document.getElementById('noteFileBottom').classList.toggle('hidden', isBook);
+  document.getElementById('noteFileZalo').classList.toggle('hidden', isBook);
+  document.getElementById('noteBookBottom').classList.toggle('hidden', !isBook);
 }
 
 async function submitOrder(e) {
   e.preventDefault();
   const name = document.getElementById('fullName').value.trim();
   const phone = document.getElementById('phone').value.trim();
-  if(!name||!phone) return alert('Vui lòng nhập đầy đủ thông tin!');
-  
+  if (!name || !phone) return alert('Vui lòng nhập đầy đủ thông tin!');
+
   const pricing = P[currentType];
-  const isBook = pricing.isFile === undefined ? currentType==='book' : !pricing.isFile;
-  
-  if(isBook){const addr=document.getElementById('address').value.trim();if(!addr)return alert('Vui lòng nhập địa chỉ!');}
-  customerName=name; customerPhone=phone;
-  const btn=document.getElementById('submitBtn');
-  btn.disabled=true;
+  const isBook = pricing.isFile === undefined ? currentType === 'book' : !pricing.isFile;
+
+  if (isBook) { const addr = document.getElementById('address').value.trim(); if (!addr) return alert('Vui lòng nhập địa chỉ!'); }
+  customerName = name; customerPhone = phone;
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
   document.getElementById('btnText').classList.add('hidden');
   document.getElementById('btnLoading').classList.remove('hidden');
 
@@ -529,23 +531,23 @@ async function submitOrder(e) {
       window.location.href = '/tailieu';
       return;
     }
-    finalPackageName = `Nâng cấp Full Trọn Bộ (${upgradeDiscount/1000}K)`;
+    finalPackageName = `Nâng cấp Full Trọn Bộ (${upgradeDiscount / 1000}K)`;
   }
 
-  const now=new Date(),timestamp=now.toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'});
-  const sheetData={submittedAt:timestamp,name,phone,package:finalPackageName,source:'sp-'+slug,type:isBook?'book':'file'};
-  if(isBook)sheetData.address=document.getElementById('address').value.trim();
-  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(sheetData)});
-  if(typeof fbq!=='undefined'){fbq('track','Lead',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
-  if(typeof ttq!=='undefined'){ttq.track('SubmitForm',{content_name:finalPackageName,content_id:slug,content_type:'product',value:pricing.amount,currency:'VND'});}
+  const now = new Date(), timestamp = now.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
+  const sheetData = { submittedAt: timestamp, name, phone, package: finalPackageName, source: 'sp-' + slug, type: isBook ? 'book' : 'file' };
+  if (isBook) sheetData.address = document.getElementById('address').value.trim();
+  fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(sheetData) });
+  if (typeof fbq !== 'undefined') { fbq('track', 'Lead', { content_name: finalPackageName, content_ids: [slug], content_type: 'product', value: pricing.amount, currency: 'VND' }); }
+  if (typeof ttq !== 'undefined') { ttq.track('SubmitForm', { content_name: finalPackageName, content_id: slug, content_type: 'product', value: pricing.amount, currency: 'VND' }); }
 
-  if(isBook){
-    if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
-    if(typeof ttq!=='undefined'){ttq.track('InitiateCheckout',{content_name:finalPackageName,content_id:slug,content_type:'product',value:pricing.amount,currency:'VND'});}
-    if(typeof fbq!=='undefined'){fbq('track','Purchase',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});}
-    if(typeof ttq!=='undefined'){ttq.track('CompletePayment',{content_name:finalPackageName,content_id:slug,content_type:'product',value:pricing.amount,currency:'VND'});}
-    const tp=new URLSearchParams({name,phone,pkg:finalPackageName,type:'book'});
-    window.location.href='/thanks.html?'+tp.toString(); return;
+  if (isBook) {
+    if (typeof fbq !== 'undefined') { fbq('track', 'InitiateCheckout', { content_name: finalPackageName, content_ids: [slug], content_type: 'product', value: pricing.amount, currency: 'VND' }); }
+    if (typeof ttq !== 'undefined') { ttq.track('InitiateCheckout', { content_name: finalPackageName, content_id: slug, content_type: 'product', value: pricing.amount, currency: 'VND' }); }
+    if (typeof fbq !== 'undefined') { fbq('track', 'Purchase', { content_name: finalPackageName, content_ids: [slug], content_type: 'product', value: pricing.amount, currency: 'VND' }); }
+    if (typeof ttq !== 'undefined') { ttq.track('CompletePayment', { content_name: finalPackageName, content_id: slug, content_type: 'product', value: pricing.amount, currency: 'VND' }); }
+    const tp = new URLSearchParams({ name, phone, pkg: finalPackageName, type: 'book' });
+    window.location.href = '/thanks.html?' + tp.toString(); return;
   }
   try {
 
@@ -559,16 +561,16 @@ async function submitOrder(e) {
     if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});
     window.location.href=checkoutUrl;
     */
-  } catch(err) {
+  } catch (err) {
     // FALLBACK: PayOS lỗi → hiện QR tĩnh
     console.error('PayOS error, fallback to QR:', err);
     generateQR(selectedPackage, pricing.amount, pricing.content);
     showStep('step3');
 
-    if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});
-    if(typeof ttq!=='undefined')ttq.track('InitiateCheckout',{content_name:finalPackageName,content_id:slug,content_type:'product',value:pricing.amount,currency:'VND'});
+    if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_name: finalPackageName, content_ids: [slug], content_type: 'product', value: pricing.amount, currency: 'VND' });
+    if (typeof ttq !== 'undefined') ttq.track('InitiateCheckout', { content_name: finalPackageName, content_id: slug, content_type: 'product', value: pricing.amount, currency: 'VND' });
 
-    btn.disabled=false;
+    btn.disabled = false;
     document.getElementById('btnText').classList.remove('hidden');
     document.getElementById('btnLoading').classList.add('hidden');
   }
@@ -617,7 +619,7 @@ function toggleZaloBtn() {
 
     if (typeof fbq !== 'undefined') {
       const pricing = P[currentType];
-      fbq('track', 'Purchase', { content_name: selectedPackage, value: pricing.amount, currency: 'VND' });
+      fbq('track', 'Purchase', { content_name: selectedPackage, content_ids: [slug], content_type: 'product', value: pricing.amount, currency: 'VND' });
     }
     if (typeof ttq !== 'undefined') {
       const pricing = P[currentType];
@@ -626,7 +628,7 @@ function toggleZaloBtn() {
   } else {
     btn.removeAttribute('href');
     btn.removeAttribute('target');
-    btn.onclick = function() { return false; };
+    btn.onclick = function () { return false; };
     btn.classList.add('qr-zalo-btn-disabled');
     btn.innerHTML = '<i class="fas fa-lock"></i> Vui lòng xác nhận đã thanh toán ở trên';
     if (hint) hint.style.display = '';
@@ -634,18 +636,18 @@ function toggleZaloBtn() {
 }
 
 // ============ LIGHTBOX ============
-const lightbox=document.getElementById('lightbox'),lightboxImg=document.getElementById('lightboxImg'),lightboxCounter=document.getElementById('lightboxCounter');
-let lbImages=[],lbIndex=0;
-function openLightbox(imgEl){
-  lbImages=P.slides;lbIndex=lbImages.indexOf(imgEl.src.replace(window.location.origin,''));
-  if(lbIndex===-1)lbIndex=0;showLbImg();lightbox.classList.add('active');document.body.style.overflow='hidden';
+const lightbox = document.getElementById('lightbox'), lightboxImg = document.getElementById('lightboxImg'), lightboxCounter = document.getElementById('lightboxCounter');
+let lbImages = [], lbIndex = 0;
+function openLightbox(imgEl) {
+  lbImages = P.slides; lbIndex = lbImages.indexOf(imgEl.src.replace(window.location.origin, ''));
+  if (lbIndex === -1) lbIndex = 0; showLbImg(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden';
 }
-function showLbImg(){lightboxImg.src=lbImages[lbIndex];lightboxCounter.textContent=(lbIndex+1)+' / '+lbImages.length;}
-function closeLb(){lightbox.classList.remove('active');document.body.style.overflow='';}
-document.getElementById('lightboxClose').addEventListener('click',closeLb);
-document.getElementById('lightboxPrev').addEventListener('click',()=>{lbIndex=(lbIndex-1+lbImages.length)%lbImages.length;showLbImg();});
-document.getElementById('lightboxNext').addEventListener('click',()=>{lbIndex=(lbIndex+1)%lbImages.length;showLbImg();});
-lightbox.addEventListener('click',e=>{if(e.target===lightbox||e.target.id==='lightboxWrap')closeLb();});
+function showLbImg() { lightboxImg.src = lbImages[lbIndex]; lightboxCounter.textContent = (lbIndex + 1) + ' / ' + lbImages.length; }
+function closeLb() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+document.getElementById('lightboxClose').addEventListener('click', closeLb);
+document.getElementById('lightboxPrev').addEventListener('click', () => { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; showLbImg(); });
+document.getElementById('lightboxNext').addEventListener('click', () => { lbIndex = (lbIndex + 1) % lbImages.length; showLbImg(); });
+lightbox.addEventListener('click', e => { if (e.target === lightbox || e.target.id === 'lightboxWrap') closeLb(); });
 
 // Click on slide images to open lightbox
-document.querySelectorAll('.slide img').forEach(img=>{img.style.cursor='pointer';img.addEventListener('click',()=>openLightbox(img));});
+document.querySelectorAll('.slide img').forEach(img => { img.style.cursor = 'pointer'; img.addEventListener('click', () => openLightbox(img)); });

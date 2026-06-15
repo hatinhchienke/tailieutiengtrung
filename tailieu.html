@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Kho Tài Liệu Tiếng Trung — Tiếng Trung Hoàng Diễm</title>
-  <meta name="description" content="Truy cập Kho Tài Liệu tiếng Trung trọn bộ. Tự học dễ dàng, nhận tài liệu tức thì từ Tiếng Trung Hoàng Diễm.">
+  <meta name="description"
+    content="Truy cập Kho Tài Liệu tiếng Trung trọn bộ. Tự học dễ dàng, nhận tài liệu tức thì từ Tiếng Trung Hoàng Diễm.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kho Tài Liệu Tiếng Trung — Tiếng Trung Hoàng Diễm">
-  <meta property="og:description" content="Truy cập Kho Tài Liệu tiếng Trung trọn bộ. Tự học dễ dàng, nhận tài liệu tức thì.">
+  <meta property="og:description"
+    content="Truy cập Kho Tài Liệu tiếng Trung trọn bộ. Tự học dễ dàng, nhận tài liệu tức thì.">
   <meta property="og:url" content="https://tailieutiengtrung.com/tailieu">
   <meta property="og:image" content="https://www.tailieutiengtrung.com/images/og-banner.jpg?v=2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="home.css">
 
   <!-- Facebook Pixel — Trang tài liệu (chỉ khách đã mua) -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1518933582936427');
-    fbq('init','1115143273896245');
-    fbq('track','PageView');
+    !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s) }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1518933582936427');
+    fbq('init', '1115143273896245');
+    fbq('track', 'PageView');
 
     // Đánh dấu đây là KHÁCH ĐÃ MUA — tệp chất lượng cao
     fbq('track', 'ViewContent', {
       content_name: 'Kho Tài Liệu Khách Hàng',
+      content_ids: ['kho-tai-lieu'],
       content_category: 'customer_hub',
       content_type: 'product_group'
     });
@@ -32,14 +37,19 @@
   <!-- TikTok Pixel Code Start -->
   <script>
     !function (w, d, t) {
-      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-      var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-      ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+        for (
+          var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
+      }, ttq.load = function (e, n) {
+        var r = "https://analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {}; n = document.createElement("script")
+          ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+      };
       ttq.load('D8HAR4JC77UB4KU2E8C0');
       ttq.page();
       // TikTok: ViewContent — khách đã mua
       ttq.track('ViewContent', {
         content_name: 'Kho Tài Liệu Khách Hàng',
+        content_id: 'kho-tai-lieu',
         content_category: 'customer_hub',
         content_type: 'product_group'
       });
@@ -49,65 +59,414 @@
 
   <style>
     /* DASHBOARD SPECIFIC */
-    .h-header-icon { font-size: 20px; color: #ee4d2d; text-decoration: none; padding: 8px; }
-    .pw-gate { margin-top: 12px; text-align: center; }
-    .pw-input-row { display: flex; gap: 8px; margin-top: 8px; }
-    .pw-input { flex: 1; padding: 10px 14px; border: 1.5px solid #e0e0e0; border-radius: 10px; background: #f9f9f9; color: #333; font-size: 14px; outline: none; transition: border .2s; }
-    .pw-input:focus { border-color: #ee4d2d; }
-    .pw-submit { padding: 10px 18px; border: none; border-radius: 10px; background: linear-gradient(135deg, #ee4d2d, #d0011b); color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; transition: all .2s; white-space: nowrap; }
-    .pw-submit:hover { filter: brightness(1.1); }
-    .pw-error { color: #d0011b; font-size: 12px; margin-top: 6px; display: none; }
-    .pw-error.show { display: block; animation: shake .4s; }
-    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
-    .pw-label { font-size: 12px; color: #555; margin-bottom: 4px; }
-    .unlock-area { display: none; margin-top: 12px; text-align: center; }
-    .unlock-area.show { display: block; animation: fadeIn .5s; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .unlock-badge { display: inline-flex; align-items: center; gap: 6px; background: #e8f5e9; color: #2e7d32; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; margin-bottom: 10px; border: 1px solid #c8e6c9; }
-    .download-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: linear-gradient(135deg, #2e7d32, #1b5e20); color: #fff; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; transition: all .25s; box-shadow: 0 4px 12px rgba(46,125,50,.3); }
-    .download-btn:hover { transform: translateY(-2px); }
-    .buy-link { display: inline-block; margin-top: 10px; font-size: 12px; color: #0056b3; text-decoration: none; }
-    
+    .h-header-icon {
+      font-size: 20px;
+      color: #ee4d2d;
+      text-decoration: none;
+      padding: 8px;
+    }
+
+    .pw-gate {
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .pw-input-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pw-input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      background: #f9f9f9;
+      color: #333;
+      font-size: 14px;
+      outline: none;
+      transition: border .2s;
+    }
+
+    .pw-input:focus {
+      border-color: #ee4d2d;
+    }
+
+    .pw-submit {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ee4d2d, #d0011b);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+
+    .pw-submit:hover {
+      filter: brightness(1.1);
+    }
+
+    .pw-error {
+      color: #d0011b;
+      font-size: 12px;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .pw-error.show {
+      display: block;
+      animation: shake .4s;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-6px);
+      }
+
+      75% {
+        transform: translateX(6px);
+      }
+    }
+
+    .pw-label {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .unlock-area {
+      display: none;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .unlock-area.show {
+      display: block;
+      animation: fadeIn .5s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .unlock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      border: 1px solid #c8e6c9;
+    }
+
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .25s;
+      box-shadow: 0 4px 12px rgba(46, 125, 50, .3);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .buy-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #0056b3;
+      text-decoration: none;
+    }
+
     /* MODAL LIGHT THEME */
-    .detail-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); z-index: 200; display: none; align-items: flex-end; justify-content: center; }
-    .detail-overlay.active { display: flex; }
-    .detail-sheet { background: #fff; border-radius: 20px 20px 0 0; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; animation: slideUp .35s ease; }
-    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-    .detail-close { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; background: rgba(255,255,255,.95); border-bottom: 1px solid #f0f0f0; backdrop-filter: blur(10px); }
-    .detail-close span { font-size: 14px; font-weight: 700; color: #333; }
-    .detail-close button { background: #f5f5f5; border: none; color: #555; width: 32px; height: 32px; border-radius: 50%; font-size: 14px; cursor: pointer; }
-    .detail-cover { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #f9f9f9; }
-    .detail-body { padding: 20px 16px; }
-    .detail-title { font-size: 18px; font-weight: 800; color: #333; margin-bottom: 6px; }
-    .detail-price { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
-    .detail-price .sale { font-size: 20px; font-weight: 800; color: #ee4d2d; }
-    .detail-price .old { font-size: 14px; color: #999; text-decoration: line-through; }
-    .detail-price .disc { font-size: 11px; background: #ffebee; color: #c62828; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
-    .detail-features { margin-bottom: 20px; }
-    .detail-features h4 { font-size: 13px; color: #666; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .5px; }
-    .detail-features li { list-style: none; font-size: 13px; color: #444; padding: 6px 0; border-bottom: 1px solid #f5f5f5; display: flex; align-items: center; gap: 8px; }
-    .detail-features li i { color: #ee4d2d; font-size: 12px; min-width: 16px; }
-    .detail-previews { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; }
-    .detail-previews img { height: 140px; border-radius: 10px; flex-shrink: 0; border: 1px solid #eee; }
-    .detail-social { font-size: 12px; color: #777; text-align: center; margin-bottom: 16px; }
-    .detail-divider { height: 1px; background: #eee; margin: 16px 0; }
-    
+    .detail-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .detail-overlay.active {
+      display: flex;
+    }
+
+    .detail-sheet {
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp .35s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .detail-close {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, .95);
+      border-bottom: 1px solid #f0f0f0;
+      backdrop-filter: blur(10px);
+    }
+
+    .detail-close span {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .detail-close button {
+      background: #f5f5f5;
+      border: none;
+      color: #555;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .detail-cover {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      background: #f9f9f9;
+    }
+
+    .detail-body {
+      padding: 20px 16px;
+    }
+
+    .detail-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .detail-price {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .detail-price .sale {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ee4d2d;
+    }
+
+    .detail-price .old {
+      font-size: 14px;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .detail-price .disc {
+      font-size: 11px;
+      background: #ffebee;
+      color: #c62828;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .detail-features {
+      margin-bottom: 20px;
+    }
+
+    .detail-features h4 {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .detail-features li {
+      list-style: none;
+      font-size: 13px;
+      color: #444;
+      padding: 6px 0;
+      border-bottom: 1px solid #f5f5f5;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .detail-features li i {
+      color: #ee4d2d;
+      font-size: 12px;
+      min-width: 16px;
+    }
+
+    .detail-previews {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+
+    .detail-previews img {
+      height: 140px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      border: 1px solid #eee;
+    }
+
+    .detail-social {
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .detail-divider {
+      height: 1px;
+      background: #eee;
+      margin: 16px 0;
+    }
+
     /* OVERLAYS */
-    .h-card-lock-overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.7); backdrop-filter: blur(2px); display: flex; align-items: center; justify-content: center; z-index: 10; border-radius: 12px 12px 0 0; }
-    .h-lock-icon { width: 40px; height: 40px; border-radius: 50%; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.15); display: flex; align-items: center; justify-content: center; color: #666; font-size: 16px; }
-    .h-card { cursor: pointer; position: relative; }
-    .h-card-img { position: relative; }
-    .h-card-unlocked { position: absolute; bottom: 8px; right: 8px; background: rgba(255,255,255,.9); color: #2e7d32; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,.1); z-index: 5; display: flex; align-items: center; gap: 4px; }
-    
+    .h-card-lock-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .h-lock-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 16px;
+    }
+
+    .h-card {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .h-card-img {
+      position: relative;
+    }
+
+    .h-card-unlocked {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(255, 255, 255, .9);
+      color: #2e7d32;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
     /* WELCOME SECTION */
-    .t-welcome { padding: 24px 16px; text-align: center; background: #fff; margin-bottom: 8px; }
-    .t-welcome h1 { font-size: 20px; font-weight: 800; color: #333; margin-bottom: 8px; }
-    .t-welcome p { font-size: 13px; color: #666; margin-bottom: 16px; }
-    
-    .fade-up { opacity: 0; transform: translateY(24px); transition: all .6s ease-out; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .t-welcome {
+      padding: 24px 16px;
+      text-align: center;
+      background: #fff;
+      margin-bottom: 8px;
+    }
+
+    .t-welcome h1 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .t-welcome p {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all .6s ease-out;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
+
 <body>
   <!-- HEADER -->
   <header class="h-header">
@@ -121,7 +480,8 @@
   <section class="t-welcome">
     <h1>Kho Tài Liệu Của Bạn</h1>
     <p style="margin-bottom: 8px;">Chào mừng bạn đến với hệ thống học tập của Tiếng Trung Hoàng Diễm!</p>
-    <p style="color: #ee4d2d; font-weight: 600; margin-bottom: 0;">Vui lòng chọn tài liệu mà bạn đã mua, nhập mật khẩu để mở khóa và truy cập tài liệu nhé!</p>
+    <p style="color: #ee4d2d; font-weight: 600; margin-bottom: 0;">Vui lòng chọn tài liệu mà bạn đã mua, nhập mật khẩu
+      để mở khóa và truy cập tài liệu nhé!</p>
   </section>
 
   <!-- PRODUCT GRID -->
@@ -134,217 +494,231 @@
     <div class="detail-sheet" id="detailSheet"></div>
   </div>
 
-<script>
-// ============================================================
-// CẤU HÌNH GÓI SẢN PHẨM
-// ============================================================
-const PACKAGES = [
-  { id:'full', emoji:'👑', title:'Full Trọn Bộ — Combo 6 TRONG 1', cover:'ảnh cover sp/full combo.png',
-    priceSale:'199,000₫', priceOld:'450,000₫', discount:'-56%', badge:'hot', badgeText:'🔥 BÁN CHẠY',
-    students:'3.1K+', featured:false, password:'DIEM99VIP',
-    downloadUrl:'https://www.notion.so/T-i-li-u-ti-ng-Trung-full-tr-n-b-34ffa37e953c80a7ae1efed159e95f30', downloadLabel:'Mở toàn bộ tài liệu',
-    desc:'Sở hữu trọn bộ 6 gói tài liệu tiếng Trung — từ ngữ pháp, từ vựng, giao tiếp đến luyện viết chữ Hán. Bao gồm tất cả nội dung bên dưới + quà tặng độc quyền. Tiết kiệm 56% so với mua lẻ!',
-    features:['📖 34 cấu trúc ngữ pháp HSK1–HSK3 + bài luyện dịch 2 chiều','📚 Full từ vựng HSK1–HSK6 có Pinyin + ví dụ câu thực tế','💬 1200 câu giao tiếp thông dụng + Video hướng dẫn phát âm','⌨️ File luyện gõ Hán tự HSK1–HSK6 có tính năng check tự động','🀄 60 bộ thủ thường gặp — gốc rễ của chữ Hán','🎁 TẶNG: Video phát âm chuẩn bản xứ','🎁 TẶNG: Vào nhóm Facebook hỗ trợ học tập'] },
+  <script>
+    // ============================================================
+    // CẤU HÌNH GÓI SẢN PHẨM
+    // ============================================================
+    const PACKAGES = [
+      {
+        id: 'full', emoji: '👑', title: 'Full Trọn Bộ — Combo 6 TRONG 1', cover: 'ảnh cover sp/full combo.png',
+        priceSale: '199,000₫', priceOld: '450,000₫', discount: '-56%', badge: 'hot', badgeText: '🔥 BÁN CHẠY',
+        students: '3.1K+', featured: false, password: 'DIEM99VIP',
+        downloadUrl: 'https://www.notion.so/T-i-li-u-ti-ng-Trung-full-tr-n-b-34ffa37e953c80a7ae1efed159e95f30', downloadLabel: 'Mở toàn bộ tài liệu',
+        desc: 'Sở hữu trọn bộ 6 gói tài liệu tiếng Trung — từ ngữ pháp, từ vựng, giao tiếp đến luyện viết chữ Hán. Bao gồm tất cả nội dung bên dưới + quà tặng độc quyền. Tiết kiệm 56% so với mua lẻ!',
+        features: ['📖 34 cấu trúc ngữ pháp HSK1–HSK3 + bài luyện dịch 2 chiều', '📚 Full từ vựng HSK1–HSK6 có Pinyin + ví dụ câu thực tế', '💬 1200 câu giao tiếp thông dụng + Video hướng dẫn phát âm', '⌨️ File luyện gõ Hán tự HSK1–HSK6 có tính năng check tự động', '🀄 60 bộ thủ thường gặp — gốc rễ của chữ Hán', '🎁 TẶNG: Video phát âm chuẩn bản xứ', '🎁 TẶNG: Vào nhóm Facebook hỗ trợ học tập']
+      },
 
-  { id:'cautruc', emoji:'📖', title:'Cấu trúc và Luyện dịch tiếng Trung', cover:'ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png',
-    priceSale:'69,000₫', priceOld:'150,000₫', discount:'-54%', badge:'pop', badgeText:'⭐ Phổ biến',
-    students:'1.8K+', password:'CT83MAX',
-    downloadUrl:'https://drive.google.com/file/d/1UnNzss9t7hoXFktDzSbQT-iFfwG1OBAw/view?usp=sharing', downloadLabel:'Mở tài liệu Cấu trúc',
-    desc:'Tổng hợp 34 cấu trúc ngữ pháp thường gặp nhất từ HSK1 đến HSK3. Mỗi phần đều có công thức, giải thích cách dùng, ví dụ thực tế và lưu ý khi sử dụng. Đặc biệt có bài luyện dịch 2 chiều Trung ↔ Việt kèm đáp án để tự kiểm tra.',
-    features:['34 cấu trúc ngữ pháp HSK1–HSK3 thường gặp nhất','Mỗi cấu trúc: công thức + giải thích + ví dụ + lưu ý','Luyện dịch Trung → Việt và Việt → Trung sau mỗi phần','Đáp án đi kèm cuối file để dễ dàng đối chiếu','Phù hợp cho người hay nói ngược, yếu ngữ pháp'] },
+      {
+        id: 'cautruc', emoji: '📖', title: 'Cấu trúc và Luyện dịch tiếng Trung', cover: 'ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png',
+        priceSale: '69,000₫', priceOld: '150,000₫', discount: '-54%', badge: 'pop', badgeText: '⭐ Phổ biến',
+        students: '1.8K+', password: 'CT83MAX',
+        downloadUrl: 'https://drive.google.com/file/d/1UnNzss9t7hoXFktDzSbQT-iFfwG1OBAw/view?usp=sharing', downloadLabel: 'Mở tài liệu Cấu trúc',
+        desc: 'Tổng hợp 34 cấu trúc ngữ pháp thường gặp nhất từ HSK1 đến HSK3. Mỗi phần đều có công thức, giải thích cách dùng, ví dụ thực tế và lưu ý khi sử dụng. Đặc biệt có bài luyện dịch 2 chiều Trung ↔ Việt kèm đáp án để tự kiểm tra.',
+        features: ['34 cấu trúc ngữ pháp HSK1–HSK3 thường gặp nhất', 'Mỗi cấu trúc: công thức + giải thích + ví dụ + lưu ý', 'Luyện dịch Trung → Việt và Việt → Trung sau mỗi phần', 'Đáp án đi kèm cuối file để dễ dàng đối chiếu', 'Phù hợp cho người hay nói ngược, yếu ngữ pháp']
+      },
 
-  { id:'giaotiep', emoji:'💬', title:'1200 Câu Giao Tiếp + Video', cover:'ảnh cover sp/1200 câu.png',
-    priceSale:'99,000₫', priceOld:'200,000₫', discount:'-50%', students:'2.3K+', password:'GT27PRO',
-    downloadUrl:'https://www.notion.so/1200-c-u-giao-ti-p-ti-ng-Trung-th-ng-d-ng-th-ng-ng-y-362fa37e953c807ab815f7926110df37?source=copy_link', downloadLabel:'Mở tài liệu 1200 câu',
-    desc:'1200 câu giao tiếp tiếng Trung thông dụng với đa dạng chủ đề: chào hỏi, giới thiệu, công việc, phỏng vấn xin việc, tình cảm... Bỏ qua ngữ pháp rắc rối — học theo câu ngắn, đơn giản, tính thực chiến cao.',
-    features:['1200 câu giao tiếp chia theo 100+ chủ đề thực tế','Có âm bồi (phiên âm) đi kèm từng câu','Kèm video hướng dẫn đọc — nghe nhại theo và nói ngay','Câu ngắn, đơn giản, không cần học ngữ pháp phức tạp'] },
+      {
+        id: 'giaotiep', emoji: '💬', title: '1200 Câu Giao Tiếp + Video', cover: 'ảnh cover sp/1200 câu.png',
+        priceSale: '99,000₫', priceOld: '200,000₫', discount: '-50%', students: '2.3K+', password: 'GT27PRO',
+        downloadUrl: 'https://www.notion.so/1200-c-u-giao-ti-p-ti-ng-Trung-th-ng-d-ng-th-ng-ng-y-362fa37e953c807ab815f7926110df37?source=copy_link', downloadLabel: 'Mở tài liệu 1200 câu',
+        desc: '1200 câu giao tiếp tiếng Trung thông dụng với đa dạng chủ đề: chào hỏi, giới thiệu, công việc, phỏng vấn xin việc, tình cảm... Bỏ qua ngữ pháp rắc rối — học theo câu ngắn, đơn giản, tính thực chiến cao.',
+        features: ['1200 câu giao tiếp chia theo 100+ chủ đề thực tế', 'Có âm bồi (phiên âm) đi kèm từng câu', 'Kèm video hướng dẫn đọc — nghe nhại theo và nói ngay', 'Câu ngắn, đơn giản, không cần học ngữ pháp phức tạp']
+      },
 
-  { id:'tuvung', emoji:'📚', title:'Từ Vựng HSK1 – HSK6', cover:'ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png',
-    priceSale:'39,000₫', priceOld:'100,000₫', discount:'-61%', students:'1.5K+', password:'TV55TOP',
-    downloadUrl:'https://drive.google.com/file/d/1S13u0EaEyceN0hbQlPFoB2YM2Rc9djs1/view?usp=sharing', downloadLabel:'Mở tài liệu Từ vựng',
-    desc:'Full từ vựng từ HSK1 đến HSK6, chia rõ ràng theo từng cấp độ. Không chỉ có từ đơn mà còn kèm ví dụ câu thực tế để hiểu cách dùng. Giúp tra cứu dễ dàng, ứng dụng đặt câu hiệu quả.',
-    features:['Full từ vựng HSK1–HSK6 chia theo từng cấp độ rõ ràng','Mỗi từ có Pinyin + ví dụ câu thực tế (không chỉ từ đơn)','Tra cứu cực nhanh trên điện thoại hoặc máy tính','Hỗ trợ chinh phục tấm bằng HSK các cấp'] },
+      {
+        id: 'tuvung', emoji: '📚', title: 'Từ Vựng HSK1 – HSK6', cover: 'ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png',
+        priceSale: '39,000₫', priceOld: '100,000₫', discount: '-61%', students: '1.5K+', password: 'TV55TOP',
+        downloadUrl: 'https://drive.google.com/file/d/1S13u0EaEyceN0hbQlPFoB2YM2Rc9djs1/view?usp=sharing', downloadLabel: 'Mở tài liệu Từ vựng',
+        desc: 'Full từ vựng từ HSK1 đến HSK6, chia rõ ràng theo từng cấp độ. Không chỉ có từ đơn mà còn kèm ví dụ câu thực tế để hiểu cách dùng. Giúp tra cứu dễ dàng, ứng dụng đặt câu hiệu quả.',
+        features: ['Full từ vựng HSK1–HSK6 chia theo từng cấp độ rõ ràng', 'Mỗi từ có Pinyin + ví dụ câu thực tế (không chỉ từ đơn)', 'Tra cứu cực nhanh trên điện thoại hoặc máy tính', 'Hỗ trợ chinh phục tấm bằng HSK các cấp']
+      },
 
-  { id:'luyen', emoji:'⌨️', title:'Luyện Gõ Hán Tự', cover:'ảnh cover sp/Luyện gõ Hán tự.png',
-    priceSale:'39,000₫ - 79,000₫', priceOld:'100,000₫', discount:'-61%', students:'980+', 
-    passwords: {
-      'LG41WIN': { url: 'https://docs.google.com/spreadsheets/d/1qi0HoR-PuL3D8nc313fFNqpnbgSL2KI2/copy', label: 'Mở gói HSK1-3' },
-      'LG99PRO': { url: 'https://docs.google.com/spreadsheets/d/1sXIV30j850uPxei-YPicedOQgnP1QPLV/copy', label: 'Mở gói HSK4-6' },
-      'LG88MAX': { url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy', label: 'Mở gói HSK1-6' }
-    },
-    password:'LG41WIN',
-    downloadUrl:'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy', downloadLabel:'Mở tài liệu Luyện gõ',
-    desc:'Dành cho bạn nhìn chữ Hán thì hiểu nhưng không nhớ phiên âm để gõ. File chia rõ từ vựng cấp độ, có tính năng check tự động: gõ đúng hiện xanh, gõ sai hiện đỏ!',
-    features:['Từ vựng phân chia theo cấp HSK','Mỗi từ có sẵn phiên âm + nghĩa tiếng Việt','Tính năng check tự động: đúng = xanh, sai = đỏ','Vừa gõ vừa ôn tập — nhớ cả mặt chữ lẫn phiên âm'] },
+      {
+        id: 'luyen', emoji: '⌨️', title: 'Luyện Gõ Hán Tự', cover: 'ảnh cover sp/Luyện gõ Hán tự.png',
+        priceSale: '39,000₫ - 79,000₫', priceOld: '100,000₫', discount: '-61%', students: '980+',
+        passwords: {
+          'LG41WIN': { url: 'https://docs.google.com/spreadsheets/d/1qi0HoR-PuL3D8nc313fFNqpnbgSL2KI2/copy', label: 'Mở gói HSK1-3' },
+          'LG99PRO': { url: 'https://docs.google.com/spreadsheets/d/1sXIV30j850uPxei-YPicedOQgnP1QPLV/copy', label: 'Mở gói HSK4-6' },
+          'LG88MAX': { url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy', label: 'Mở gói HSK1-6' }
+        },
+        password: 'LG41WIN',
+        downloadUrl: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy', downloadLabel: 'Mở tài liệu Luyện gõ',
+        desc: 'Dành cho bạn nhìn chữ Hán thì hiểu nhưng không nhớ phiên âm để gõ. File chia rõ từ vựng cấp độ, có tính năng check tự động: gõ đúng hiện xanh, gõ sai hiện đỏ!',
+        features: ['Từ vựng phân chia theo cấp HSK', 'Mỗi từ có sẵn phiên âm + nghĩa tiếng Việt', 'Tính năng check tự động: đúng = xanh, sai = đỏ', 'Vừa gõ vừa ôn tập — nhớ cả mặt chữ lẫn phiên âm']
+      },
 
-  { id:'bothu', emoji:'🀄', title:'60 Bộ Thủ Thường Gặp', cover:'ảnh cover sp/60 bộ thủ chữ hán.png',
-    priceSale:'39,000₫', priceOld:'100,000₫', discount:'-61%', students:'1.2K+', password:'BT76HOT',
-    downloadUrl:'https://drive.google.com/file/d/1cTEl3a0AFVTGKkmcwBOU-1YJiZhHMQV1/view', downloadLabel:'Mở tài liệu 60 bộ thủ',
-    desc:'Bộ thủ được ví như bảng chữ cái tiếng Trung — là gốc rễ của chữ Hán. File giải nghĩa 60 bộ thủ thường gặp nhất, giúp nhớ mặt chữ nhanh hơn và lâu hơn.',
-    features:['60 bộ thủ thường gặp nhất — gốc rễ của chữ Hán','Giải thích ý nghĩa từng bộ thủ rõ ràng, dễ hiểu','Nhớ mặt chữ có logic — nhanh hơn và lâu hơn','Nền tảng vững chắc cho HSK3 trở lên'] }
-];
+      {
+        id: 'bothu', emoji: '🀄', title: '60 Bộ Thủ Thường Gặp', cover: 'ảnh cover sp/60 bộ thủ chữ hán.png',
+        priceSale: '39,000₫', priceOld: '100,000₫', discount: '-61%', students: '1.2K+', password: 'BT76HOT',
+        downloadUrl: 'https://drive.google.com/file/d/1cTEl3a0AFVTGKkmcwBOU-1YJiZhHMQV1/view', downloadLabel: 'Mở tài liệu 60 bộ thủ',
+        desc: 'Bộ thủ được ví như bảng chữ cái tiếng Trung — là gốc rễ của chữ Hán. File giải nghĩa 60 bộ thủ thường gặp nhất, giúp nhớ mặt chữ nhanh hơn và lâu hơn.',
+        features: ['60 bộ thủ thường gặp nhất — gốc rễ của chữ Hán', 'Giải thích ý nghĩa từng bộ thủ rõ ràng, dễ hiểu', 'Nhớ mặt chữ có logic — nhanh hơn và lâu hơn', 'Nền tảng vững chắc cho HSK3 trở lên']
+      }
+    ];
 
-// Render cards
-const grid = document.getElementById('hubGrid');
-function renderGrid() {
-  grid.innerHTML = '';
-  let upgradeDiscount = 0;
-  const pkgPrices = {
-    'cautruc': 69000,
-    'tuvung': 39000,
-    'giaotiep': 99000,
-    'bothu': 39000
-  };
-  Object.keys(pkgPrices).forEach(key => {
-    if (localStorage.getItem('hub_' + key) !== null) {
-      upgradeDiscount += pkgPrices[key];
-    }
-  });
-
-  const luyenPass = localStorage.getItem('hub_luyen');
-  if (luyenPass) {
-    if (luyenPass === 'LG41WIN') { upgradeDiscount += 39000; }
-    else if (luyenPass === 'LG99PRO') { upgradeDiscount += 49000; }
-    else if (luyenPass === 'LG88MAX') { upgradeDiscount += 79000; }
-    else { upgradeDiscount += 39000; }
-  }
-
-  PACKAGES.forEach((p, i) => {
-    const isUnlocked = localStorage.getItem('hub_' + p.id) !== null;
-    let priceSaleDisplay = p.priceSale;
-    let badgeHtml = p.badge ? '<div class="h-card-badge h-badge-' + p.badge + '">' + p.badgeText + '</div>' : '';
-
-    if (p.id === 'full' && upgradeDiscount > 0 && !isUnlocked) {
-      const finalPrice = Math.max(0, 199000 - upgradeDiscount);
-      priceSaleDisplay = (finalPrice === 0 ? '0' : finalPrice.toLocaleString('vi-VN')) + '₫';
-      badgeHtml = '<div class="h-card-badge h-badge-hot">🎁 CHỈ BÙ ' + priceSaleDisplay + '</div>';
-    }
-
-    const lockHtml = isUnlocked 
-      ? '<div class="h-card-unlocked"><i class="fas fa-check-circle"></i> Đã mở</div>' 
-      : '<div class="h-card-lock-overlay"><div class="h-lock-icon"><i class="fas fa-lock"></i></div></div>';
-    
-    grid.innerHTML += '<div class="h-card '+(p.featured?'h-card-featured':'')+' fade-up visible" onclick="openDetail(\''+p.id+'\')">' +
-      badgeHtml +
-      '<div class="h-card-img"><img src="' + p.cover + '" alt="' + p.title + '">' + lockHtml + '</div>' +
-      '<div class="h-card-body">' +
-      '<h3>' + p.title + '</h3>' +
-      '<div class="h-card-price"><span class="h-price-sale">' + priceSaleDisplay + '</span><span class="h-price-old">' + p.priceOld + '</span></div>' +
-      '<div class="h-card-meta"><i class="fas fa-star"></i> 4.9 | ' + (isUnlocked ? 'Đã mở khóa' : 'Đã bán ' + p.students) + '</div>' +
-      '</div></div>';
-  });
-}
-
-renderGrid();
-
-// Modal logic
-function openDetail(pkgId) {
-  const pkg = PACKAGES.find(p => p.id === pkgId);
-  const storedVal = localStorage.getItem('hub_' + pkgId);
-  const isUnlocked = storedVal !== null;
-  
-  if (isUnlocked) {
-    let dlUrl = pkg.downloadUrl;
-    if (pkg.passwords && pkg.passwords[storedVal]) {
-      dlUrl = pkg.passwords[storedVal].url;
-    }
-    window.open(dlUrl, '_blank');
-    return;
-  }
-  
-  const featuresHtml = pkg.features.map(f => '<li><i class="fas fa-check-circle"></i>'+f+'</li>').join('');
-
-  const slugMap = { 'full':'tron-bo', 'cautruc':'cau-truc', 'giaotiep':'1200-cau', 'tuvung':'tu-vung', 'luyen':'luyen-go', 'bothu':'60-bo-thu' };
-
-  let accessHtml = '<div class="pw-gate">' +
-      '<div class="pw-label"><i class="fas fa-key"></i> Nhập mật khẩu để mở khóa</div>' +
-      '<div class="pw-input-row">' +
-      '<input type="password" class="pw-input" id="mpw-'+pkgId+'" placeholder="Mật khẩu..." onclick="event.stopPropagation()" onkeydown="if(event.key===\'Enter\'){event.stopPropagation();unlockModal(\''+pkgId+'\')}">' +
-      '<button class="pw-submit" onclick="event.stopPropagation();unlockModal(\''+pkgId+'\')"><i class="fas fa-unlock"></i> Mở khóa</button>' +
-      '</div>' +
-      '<div class="pw-error" id="merr-'+pkgId+'"><i class="fas fa-times-circle"></i> Sai mật khẩu! Vui lòng thử lại.</div>' +
-      '<a href="/sp/'+slugMap[pkgId]+'" class="buy-link" onclick="event.stopPropagation()"><i class="fas fa-cart-plus"></i> Chưa có mật khẩu? Mua ngay →</a>' +
-      '</div>';
-
-  document.getElementById('detailSheet').innerHTML = '<div class="detail-close"><span>'+pkg.emoji+' Mở khóa tài liệu</span><button onclick="closeDetail()"><i class="fas fa-times"></i></button></div>' +
-    '<img src="'+pkg.cover+'" class="detail-cover" alt="'+pkg.title+'">' +
-    '<div class="detail-body">' +
-    '<h2 class="detail-title">'+pkg.title+'</h2>' +
-    '<div class="detail-price"><span class="sale">'+pkg.priceSale+'</span><span class="old">'+pkg.priceOld+'</span><span class="disc">'+pkg.discount+'</span></div>' +
-    '<p style="font-size:13px;color:#555;line-height:1.6;margin:12px 0 16px;padding:12px;background:#f9f9f9;border-radius:10px;border:1px solid #eee;">'+pkg.desc+'</p>' +
-    '<div class="detail-social">Trạng thái: <strong>'+(isUnlocked?'Đã mở khóa':'Đã khóa <i class="fas fa-lock"></i>')+'</strong></div>' +
-    '<div class="detail-divider"></div>' +
-    accessHtml +
-    '<div class="detail-divider"></div>' +
-    '<div class="detail-features"><h4><i class="fas fa-list-check"></i> Bao gồm</h4><ul>'+featuresHtml+'</ul></div>' +
-    '</div>';
-  
-  document.getElementById('detailOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-  
-  if (!isUnlocked) {
-    setTimeout(() => { document.getElementById('mpw-'+pkgId)?.focus(); }, 100);
-  }
-}
-
-function closeDetail() {
-  document.getElementById('detailOverlay').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-function unlockModal(pkgId) {
-  const pkg = PACKAGES.find(p => p.id === pkgId);
-  const input = document.getElementById('mpw-' + pkgId);
-  const err = document.getElementById('merr-' + pkgId);
-  const val = input.value.trim().toUpperCase();
-
-  let matched = false;
-  if (pkg.passwords && pkg.passwords[val]) {
-    matched = true;
-  } else if (val === (pkg.password || '').toUpperCase()) {
-    matched = true;
-  }
-
-  if (matched) {
-    localStorage.setItem('hub_' + pkgId, val);
-
-    // Pixel: Bắn Purchase khi khách mở khóa thành công
-    if (typeof fbq !== 'undefined') {
-      // Parse giá từ priceSale (VD: "199,000₫" → 199000)
-      const priceNum = parseInt((pkg.priceSale || '0').replace(/[^\d]/g, '')) || 0;
-      fbq('track', 'Purchase', {
-        content_name: pkg.title,
-        content_category: 'customer_hub',
-        content_ids: [pkgId],
-        content_type: 'product',
-        value: priceNum,
-        currency: 'VND'
+    // Render cards
+    const grid = document.getElementById('hubGrid');
+    function renderGrid() {
+      grid.innerHTML = '';
+      let upgradeDiscount = 0;
+      const pkgPrices = {
+        'cautruc': 69000,
+        'tuvung': 39000,
+        'giaotiep': 99000,
+        'bothu': 39000
+      };
+      Object.keys(pkgPrices).forEach(key => {
+        if (localStorage.getItem('hub_' + key) !== null) {
+          upgradeDiscount += pkgPrices[key];
+        }
       });
-    }
-    // TikTok Pixel: CompletePayment khi khách mở khóa thành công
-    if (typeof ttq !== 'undefined') {
-      const priceNum = parseInt((pkg.priceSale || '0').replace(/[^\d]/g, '')) || 0;
-      ttq.track('CompletePayment', {
-        content_name: pkg.title,
-        content_id: pkgId,
-        content_type: 'product',
-        value: priceNum,
-        currency: 'VND'
+
+      const luyenPass = localStorage.getItem('hub_luyen');
+      if (luyenPass) {
+        if (luyenPass === 'LG41WIN') { upgradeDiscount += 39000; }
+        else if (luyenPass === 'LG99PRO') { upgradeDiscount += 49000; }
+        else if (luyenPass === 'LG88MAX') { upgradeDiscount += 79000; }
+        else { upgradeDiscount += 39000; }
+      }
+
+      PACKAGES.forEach((p, i) => {
+        const isUnlocked = localStorage.getItem('hub_' + p.id) !== null;
+        let priceSaleDisplay = p.priceSale;
+        let badgeHtml = p.badge ? '<div class="h-card-badge h-badge-' + p.badge + '">' + p.badgeText + '</div>' : '';
+
+        if (p.id === 'full' && upgradeDiscount > 0 && !isUnlocked) {
+          const finalPrice = Math.max(0, 199000 - upgradeDiscount);
+          priceSaleDisplay = (finalPrice === 0 ? '0' : finalPrice.toLocaleString('vi-VN')) + '₫';
+          badgeHtml = '<div class="h-card-badge h-badge-hot">🎁 CHỈ BÙ ' + priceSaleDisplay + '</div>';
+        }
+
+        const lockHtml = isUnlocked
+          ? '<div class="h-card-unlocked"><i class="fas fa-check-circle"></i> Đã mở</div>'
+          : '<div class="h-card-lock-overlay"><div class="h-lock-icon"><i class="fas fa-lock"></i></div></div>';
+
+        grid.innerHTML += '<div class="h-card ' + (p.featured ? 'h-card-featured' : '') + ' fade-up visible" onclick="openDetail(\'' + p.id + '\')">' +
+          badgeHtml +
+          '<div class="h-card-img"><img src="' + p.cover + '" alt="' + p.title + '">' + lockHtml + '</div>' +
+          '<div class="h-card-body">' +
+          '<h3>' + p.title + '</h3>' +
+          '<div class="h-card-price"><span class="h-price-sale">' + priceSaleDisplay + '</span><span class="h-price-old">' + p.priceOld + '</span></div>' +
+          '<div class="h-card-meta"><i class="fas fa-star"></i> 4.9 | ' + (isUnlocked ? 'Đã mở khóa' : 'Đã bán ' + p.students) + '</div>' +
+          '</div></div>';
       });
     }
 
-    closeDetail();
     renderGrid();
-    setTimeout(() => openDetail(pkgId), 100);
-  } else {
-    err.classList.remove('show'); void err.offsetWidth; err.classList.add('show');
-    input.value = ''; input.focus();
-  }
-}
-</script>
+
+    // Modal logic
+    function openDetail(pkgId) {
+      const pkg = PACKAGES.find(p => p.id === pkgId);
+      const storedVal = localStorage.getItem('hub_' + pkgId);
+      const isUnlocked = storedVal !== null;
+
+      if (isUnlocked) {
+        let dlUrl = pkg.downloadUrl;
+        if (pkg.passwords && pkg.passwords[storedVal]) {
+          dlUrl = pkg.passwords[storedVal].url;
+        }
+        window.open(dlUrl, '_blank');
+        return;
+      }
+
+      const featuresHtml = pkg.features.map(f => '<li><i class="fas fa-check-circle"></i>' + f + '</li>').join('');
+
+      const slugMap = { 'full': 'tron-bo', 'cautruc': 'cau-truc', 'giaotiep': '1200-cau', 'tuvung': 'tu-vung', 'luyen': 'luyen-go', 'bothu': '60-bo-thu' };
+
+      let accessHtml = '<div class="pw-gate">' +
+        '<div class="pw-label"><i class="fas fa-key"></i> Nhập mật khẩu để mở khóa</div>' +
+        '<div class="pw-input-row">' +
+        '<input type="password" class="pw-input" id="mpw-' + pkgId + '" placeholder="Mật khẩu..." onclick="event.stopPropagation()" onkeydown="if(event.key===\'Enter\'){event.stopPropagation();unlockModal(\'' + pkgId + '\')}">' +
+        '<button class="pw-submit" onclick="event.stopPropagation();unlockModal(\'' + pkgId + '\')"><i class="fas fa-unlock"></i> Mở khóa</button>' +
+        '</div>' +
+        '<div class="pw-error" id="merr-' + pkgId + '"><i class="fas fa-times-circle"></i> Sai mật khẩu! Vui lòng thử lại.</div>' +
+        '<a href="/sp/' + slugMap[pkgId] + '" class="buy-link" onclick="event.stopPropagation()"><i class="fas fa-cart-plus"></i> Chưa có mật khẩu? Mua ngay →</a>' +
+        '</div>';
+
+      document.getElementById('detailSheet').innerHTML = '<div class="detail-close"><span>' + pkg.emoji + ' Mở khóa tài liệu</span><button onclick="closeDetail()"><i class="fas fa-times"></i></button></div>' +
+        '<img src="' + pkg.cover + '" class="detail-cover" alt="' + pkg.title + '">' +
+        '<div class="detail-body">' +
+        '<h2 class="detail-title">' + pkg.title + '</h2>' +
+        '<div class="detail-price"><span class="sale">' + pkg.priceSale + '</span><span class="old">' + pkg.priceOld + '</span><span class="disc">' + pkg.discount + '</span></div>' +
+        '<p style="font-size:13px;color:#555;line-height:1.6;margin:12px 0 16px;padding:12px;background:#f9f9f9;border-radius:10px;border:1px solid #eee;">' + pkg.desc + '</p>' +
+        '<div class="detail-social">Trạng thái: <strong>' + (isUnlocked ? 'Đã mở khóa' : 'Đã khóa <i class="fas fa-lock"></i>') + '</strong></div>' +
+        '<div class="detail-divider"></div>' +
+        accessHtml +
+        '<div class="detail-divider"></div>' +
+        '<div class="detail-features"><h4><i class="fas fa-list-check"></i> Bao gồm</h4><ul>' + featuresHtml + '</ul></div>' +
+        '</div>';
+
+      document.getElementById('detailOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      if (!isUnlocked) {
+        setTimeout(() => { document.getElementById('mpw-' + pkgId)?.focus(); }, 100);
+      }
+    }
+
+    function closeDetail() {
+      document.getElementById('detailOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function unlockModal(pkgId) {
+      const pkg = PACKAGES.find(p => p.id === pkgId);
+      const input = document.getElementById('mpw-' + pkgId);
+      const err = document.getElementById('merr-' + pkgId);
+      const val = input.value.trim().toUpperCase();
+
+      let matched = false;
+      if (pkg.passwords && pkg.passwords[val]) {
+        matched = true;
+      } else if (val === (pkg.password || '').toUpperCase()) {
+        matched = true;
+      }
+
+      if (matched) {
+        localStorage.setItem('hub_' + pkgId, val);
+
+        // Pixel: Bắn Purchase khi khách mở khóa thành công
+        if (typeof fbq !== 'undefined') {
+          // Parse giá từ priceSale (VD: "199,000₫" → 199000)
+          const priceNum = parseInt((pkg.priceSale || '0').replace(/[^\d]/g, '')) || 0;
+          fbq('track', 'Purchase', {
+            content_name: pkg.title,
+            content_category: 'customer_hub',
+            content_ids: [pkgId],
+            content_type: 'product',
+            value: priceNum,
+            currency: 'VND'
+          });
+        }
+        // TikTok Pixel: CompletePayment khi khách mở khóa thành công
+        if (typeof ttq !== 'undefined') {
+          const priceNum = parseInt((pkg.priceSale || '0').replace(/[^\d]/g, '')) || 0;
+          ttq.track('CompletePayment', {
+            content_name: pkg.title,
+            content_id: pkgId,
+            content_type: 'product',
+            value: priceNum,
+            currency: 'VND'
+          });
+        }
+
+        closeDetail();
+        renderGrid();
+        setTimeout(() => openDetail(pkgId), 100);
+      } else {
+        err.classList.remove('show'); void err.offsetWidth; err.classList.add('show');
+        input.value = ''; input.focus();
+      }
+    }
+  </script>
   <!-- FOOTER -->
-  <footer class="h-footer" style="background:#fff; padding: 20px; text-align: center; border-top: 1px solid #eee; margin-top: 40px;">
-    <div class="h-footer-brand" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
+  <footer class="h-footer"
+    style="background:#fff; padding: 20px; text-align: center; border-top: 1px solid #eee; margin-top: 40px;">
+    <div class="h-footer-brand"
+      style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
       <img src="images/avatar.webp" alt="Logo" style="width: 30px; height: 30px; border-radius: 50%;">
       <span style="font-weight: 700; font-size: 15px;">Tiếng Trung Hoàng Diễm</span>
     </div>
@@ -355,11 +729,13 @@ function unlockModal(pkgId) {
       <strong>Email:</strong> ngoctrainh@gmail.com<br>
       <strong>Mã số thuế:</strong> 040093037489
     </div>
-    
-    <div class="h-footer-policies" style="margin: 20px 0; padding-top: 20px; border-top: 1px solid #eee; display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+
+    <div class="h-footer-policies"
+      style="margin: 20px 0; padding-top: 20px; border-top: 1px solid #eee; display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
       <a href="/chinh-sach.html#huong-dan" style="color: #ccc; text-decoration: none;">Hướng dẫn mua hàng</a>
       <a href="/chinh-sach.html#thanh-toan" style="color: #ccc; text-decoration: none;">Chính sách thanh toán</a>
-      <a href="/chinh-sach.html#giao-nhan" style="color: #ccc; text-decoration: none;">Chính sách giao nhận, vận chuyển</a>
+      <a href="/chinh-sach.html#giao-nhan" style="color: #ccc; text-decoration: none;">Chính sách giao nhận, vận
+        chuyển</a>
       <a href="/chinh-sach.html#doi-tra" style="color: #ccc; text-decoration: none;">Chính sách đổi trả & hoàn tiền</a>
       <a href="/chinh-sach.html#bao-mat" style="color: #ccc; text-decoration: none;">Chính sách bảo mật thông tin</a>
       <a href="/chinh-sach.html#dieu-kien" style="color: #ccc; text-decoration: none;">Điều kiện giao dịch chung</a>
@@ -368,4 +744,5 @@ function unlockModal(pkgId) {
     <p style="font-size: 13px; color: #999;">© 2026 Tiếng Trung Hoàng Diễm — Tất cả quyền được bảo lưu</p>
   </footer>
 </body>
+
 </html>
