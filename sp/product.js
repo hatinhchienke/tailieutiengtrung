@@ -1,3 +1,19 @@
+// ===== UTM TRACKING =====\r
+(function() {\r
+  var params = new URLSearchParams(window.location.search);\r
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function(key) {\r
+    var val = params.get(key);\r
+    if (val) sessionStorage.setItem(key, val);\r
+  });\r
+})();\r
+function getUtmData() {\r
+  return {\r
+    utm_source: sessionStorage.getItem('utm_source') || '',\r
+    utm_medium: sessionStorage.getItem('utm_medium') || '',\r
+    utm_campaign: sessionStorage.getItem('utm_campaign') || ''\r
+  };\r
+}\r
+\r
 // ============ PRODUCT DATA ============
 const PRODUCTS = {
   'tron-bo': {
@@ -535,7 +551,8 @@ async function submitOrder(e) {
   }
 
   const now = new Date(), timestamp = now.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
-  const sheetData = { submittedAt: timestamp, name, phone, package: finalPackageName, source: 'sp-' + slug, type: isBook ? 'book' : 'file' };
+  const utm = getUtmData();
+  const sheetData = { submittedAt: timestamp, name, phone, package: finalPackageName, source: 'sp-' + slug, type: isBook ? 'book' : 'file', utm_source: utm.utm_source || 'organic', utm_medium: utm.utm_medium, utm_campaign: utm.utm_campaign };
   if (isBook) sheetData.address = document.getElementById('address').value.trim();
   fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(sheetData) });
   if (typeof fbq !== 'undefined') { fbq('track', 'Lead', { content_name: finalPackageName, content_ids: [slug], content_type: 'product', value: pricing.amount, currency: 'VND' }); }

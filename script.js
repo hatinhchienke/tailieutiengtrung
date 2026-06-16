@@ -1,3 +1,29 @@
+// ===== UTM TRACKING =====
+// Đọc UTM parameters từ URL và lưu vào sessionStorage
+// Khi chạy ads, thêm ?utm_source=facebook hoặc ?utm_source=tiktok vào link
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  utmKeys.forEach(function(key) {
+    const val = params.get(key);
+    if (val) sessionStorage.setItem(key, val);
+  });
+})();
+
+function getUtmSource() {
+  return sessionStorage.getItem('utm_source') || 'organic';
+}
+
+function getUtmData() {
+  return {
+    utm_source: sessionStorage.getItem('utm_source') || '',
+    utm_medium: sessionStorage.getItem('utm_medium') || '',
+    utm_campaign: sessionStorage.getItem('utm_campaign') || '',
+    utm_content: sessionStorage.getItem('utm_content') || '',
+    utm_term: sessionStorage.getItem('utm_term') || ''
+  };
+}
+
 // ===== SLIDER =====
 let currentIndex = 0;
 const slides = document.querySelectorAll('.slide');
@@ -474,13 +500,17 @@ async function submitOrder(e) {
   const timestamp = now.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
 
   // 1. Google Sheet — fire and forget
+  const utm = getUtmData();
   const sheetData = {
     submittedAt: timestamp,
     name: name,
     phone: phone,
     package: selectedPackage,
     source: 'landing-tieng-trung-v2',
-    type: currentType
+    type: currentType,
+    utm_source: utm.utm_source || 'organic',
+    utm_medium: utm.utm_medium,
+    utm_campaign: utm.utm_campaign
   };
   if (currentType === 'book') {
     sheetData.address = document.getElementById('address').value.trim();
