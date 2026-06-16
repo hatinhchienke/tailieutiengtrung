@@ -1,19 +1,19 @@
-// ===== UTM TRACKING =====\r
-(function() {\r
-  var params = new URLSearchParams(window.location.search);\r
-  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function(key) {\r
-    var val = params.get(key);\r
-    if (val) sessionStorage.setItem(key, val);\r
-  });\r
-})();\r
-function getUtmData() {\r
-  return {\r
-    utm_source: sessionStorage.getItem('utm_source') || '',\r
-    utm_medium: sessionStorage.getItem('utm_medium') || '',\r
-    utm_campaign: sessionStorage.getItem('utm_campaign') || ''\r
-  };\r
-}\r
-\r
+// ===== UTM TRACKING =====
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function(key) {
+    var val = params.get(key);
+    if (val) sessionStorage.setItem(key, val);
+  });
+})();
+function getUtmData() {
+  return {
+    utm_source: sessionStorage.getItem('utm_source') || '',
+    utm_medium: sessionStorage.getItem('utm_medium') || '',
+    utm_campaign: sessionStorage.getItem('utm_campaign') || ''
+  };
+}
+
 // ============ PRODUCT DATA ============
 const PRODUCTS = {
   'tron-bo': {
