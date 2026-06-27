@@ -1,7 +1,7 @@
 // ===== UTM TRACKING =====
-(function() {
+(function () {
   var params = new URLSearchParams(window.location.search);
-  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function(key) {
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
     var val = params.get(key);
     if (val) sessionStorage.setItem(key, val);
   });
@@ -26,7 +26,7 @@ const PRODUCTS = {
     features: [
       'Cấu trúc câu + Luyện dịch tiếng Trung (30+ cấu trúc)',
       'Từ vựng HSK1 – HSK6 đầy đủ (5000+ từ)',
-      'Luyện gõ Hán tự HSK1 – HSK3 (check tự động)',
+      'Luyện gõ Hán tự HSK1 – HSK6 (check tự động)',
       '1200 câu giao tiếp + Video hướng dẫn',
       '60 bộ thủ thường gặp trong chữ Hán',
       '🎁 TẶNG: Video phát âm chuẩn bản xứ',
