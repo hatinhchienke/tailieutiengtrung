@@ -627,7 +627,7 @@ function toggleZaloBtn() {
 
   if (cb.checked) {
     const msg = `Xin chào, mình là ${customerName} (SĐT: ${customerPhone}). Mình vừa chuyển khoản đơn hàng: ${selectedPackage}. Mình gửi ảnh xác nhận thanh toán ạ.`;
-    btn.href = 'https://zalo.me/0528786710';
+    btn.href = 'https://zalo.me/0365882261';
     btn.target = '_blank';
     btn.onclick = null;
     btn.classList.remove('qr-zalo-btn-disabled');
