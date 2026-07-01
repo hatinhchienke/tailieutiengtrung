@@ -43,7 +43,7 @@ const PRODUCTS = {
   },
   'cau-truc': {
     title: 'CẤU TRÚC VÀ LUYỆN DỊCH TIẾNG TRUNG',
-    desc: 'Tổng hợp 34 cấu trúc ngữ pháp HSK1-HSK3 + bài luyện dịch 2 chiều Trung ↔ Việt kèm đáp án.',
+    desc: 'Tổng hợp 34 cấu trúc ngữ pháp HSK1-HSK3 + bài luyện dịch 2 chiều Trung ↔ Việt kèm đáp án. Tài liệu dày 290 trang.',
     priceSale: '69,000₫', priceOld: '150,000₫', discount: 'Tiết kiệm 54%',
     sold: 'Đã bán 1.8K+', headerTitle: 'Cấu trúc + Luyện dịch',
     videoId: 'fBMha7GPcmY',
@@ -668,3 +668,91 @@ lightbox.addEventListener('click', e => { if (e.target === lightbox || e.target.
 
 // Click on slide images to open lightbox
 document.querySelectorAll('.slide img').forEach(img => { img.style.cursor = 'pointer'; img.addEventListener('click', () => openLightbox(img)); });
+
+// ============ SOCIAL PROOF TOAST ============
+const PROOF_DATA = [
+  { name: 'Nguyễn Minh', pkg: 'Full trọn bộ', letter: 'N' },
+  { name: 'Trần Hương', pkg: 'Full trọn bộ', letter: 'T' },
+  { name: 'Lê Dũng', pkg: 'Cấu trúc + Luyện dịch', letter: 'L' },
+  { name: 'Phạm Thảo', pkg: 'Full trọn bộ', letter: 'P' },
+  { name: 'Hoàng Anh', pkg: '1200 câu giao tiếp', letter: 'H' },
+  { name: 'Vũ Hải', pkg: 'Full trọn bộ', letter: 'V' },
+  { name: 'Đỗ Linh', pkg: 'Từ vựng HSK1-HSK6', letter: 'Đ' },
+  { name: 'Bùi Trang', pkg: 'Full trọn bộ', letter: 'B' },
+  { name: 'Nguyễn Thắng', pkg: 'Luyện gõ Hán tự', letter: 'N' },
+  { name: 'Trần Yến', pkg: '1200 câu giao tiếp', letter: 'T' },
+  { name: 'Lý Quân', pkg: 'Full trọn bộ', letter: 'L' },
+  { name: 'Phan Mai', pkg: '60 bộ thủ chữ Hán', letter: 'P' },
+  { name: 'Đặng Huy', pkg: 'Cấu trúc + Luyện dịch', letter: 'Đ' },
+  { name: 'Võ Ngọc', pkg: 'Full trọn bộ', letter: 'V' },
+  { name: 'Đinh Nam', pkg: 'Từ vựng HSK1-HSK6', letter: 'Đ' },
+];
+
+const PHONE_PREFIXES = ['096', '097', '098', '086', '032', '033', '034', '035', '036', '037', '038', '039', '070', '079', '077', '076', '078', '089', '090', '093', '088'];
+
+let toastTimeout;
+let proofIndex = 0;
+let toastPaused = false;
+
+function shuffleProofData(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+shuffleProofData(PROOF_DATA);
+
+function showToast() {
+  if (toastPaused) return;
+  const toast = document.getElementById('socialProofToast');
+  if (!toast) return;
+
+  const data = PROOF_DATA[proofIndex % PROOF_DATA.length];
+  const prefix = PHONE_PREFIXES[Math.floor(Math.random() * PHONE_PREFIXES.length)];
+  const last2 = String(Math.floor(Math.random() * 100)).padStart(2, '0');
+  const maskedPhone = prefix + '*****' + last2;
+  const minutes = Math.floor(Math.random() * 15) + 1;
+
+  document.getElementById('toastAvatar').textContent = data.letter;
+  document.getElementById('toastName').textContent = data.name + ' — ' + maskedPhone;
+  document.getElementById('toastPkg').innerHTML = 'vừa mua <strong>' + data.pkg + '</strong>';
+  document.getElementById('toastTime').textContent = minutes + ' phút trước';
+
+  toast.classList.add('show');
+  proofIndex++;
+
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 5000);
+}
+
+function closeToast() {
+  const toast = document.getElementById('socialProofToast');
+  if (toast) toast.classList.remove('show');
+  clearTimeout(toastTimeout);
+}
+
+// Start showing toasts after 8s, then every 15-25s
+setTimeout(() => {
+  showToast();
+  setInterval(() => {
+    const delay = Math.floor(Math.random() * 10000) + 15000;
+    setTimeout(showToast, delay % 10000);
+  }, 20000);
+}, 8000);
+
+// Pause toasts when modal is open
+const _origOpenModal = openModal;
+openModal = function() {
+  toastPaused = true;
+  closeToast();
+  _origOpenModal();
+};
+const _origCloseModal = closeModal;
+closeModal = function() {
+  toastPaused = false;
+  _origCloseModal();
+};
