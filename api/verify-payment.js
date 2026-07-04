@@ -9,7 +9,7 @@ const payos = new PayOS(
 // Download links and passwords — SERVER-SIDE ONLY
 const PACKAGE_DATA = {
   'Cấu trúc + Luyện dịch - 69K': {
-    url: 'https://drive.google.com/file/d/11wD0gFm1z2hkIUsRoLTu7lNG4FDUNNOb/view?usp=sharing',
+    url: 'https://drive.google.com/file/d/1eNiTZ1j36TuMQDrBTryuxAIRGotMgR83/view?usp=sharing',
     password: 'CT83MAX',
     id: 'cautruc'
   },
@@ -34,7 +34,7 @@ const PACKAGE_DATA = {
     id: 'luyen'
   },
   '1200 câu giao tiếp + Video - 99K': {
-    url: 'https://drive.google.com/file/d/1qd3WcPoTv7J-nXayE_sYEkO0AV0ePE0Q/view',
+    url: 'https://drive.google.com/file/d/1EdAlULWU7EoHa6wH_ouihJ4BNZhPsCCx/view?usp=sharing',
     password: 'GT27PRO',
     id: 'giaotiep'
   },
