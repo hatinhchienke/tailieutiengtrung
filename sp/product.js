@@ -554,7 +554,11 @@ async function submitOrder(e) {
   const utm = getUtmData();
   const sheetData = { submittedAt: timestamp, name, phone, package: finalPackageName, source: 'sp-' + slug, type: isBook ? 'book' : 'file', utm_source: utm.utm_source || 'organic', utm_medium: utm.utm_medium, utm_campaign: utm.utm_campaign };
   if (isBook) sheetData.address = document.getElementById('address').value.trim();
-  fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(sheetData) });
+  // Gửi data lên Google Sheet (await đảm bảo gửi xong trước khi redirect)
+  try {
+    await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(sheetData) });
+  } catch (e) { console.warn('Sheet sync err:', e); }
+
   if (typeof fbq !== 'undefined') { fbq('track', 'Lead', { content_name: finalPackageName, content_ids: [slug], content_type: 'product', value: pricing.amount, currency: 'VND' }); }
   if (typeof ttq !== 'undefined') { ttq.track('SubmitForm', { content_name: finalPackageName, content_id: slug, content_type: 'product', value: pricing.amount, currency: 'VND' }); }
 

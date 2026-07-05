@@ -7,6 +7,7 @@
 // ====== BẮT ĐẦU CODE APPS SCRIPT ======
 
 function doPost(e) {
+  try {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var data = JSON.parse(e.postData.contents);
   
@@ -54,6 +55,13 @@ function doPost(e) {
   
   return ContentService.createTextOutput(JSON.stringify({status: 'success'}))
     .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    // Log lỗi vào Sheet để debug
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    sheet.appendRow([new Date().toLocaleString('vi-VN'), 'ERROR', err.message, e.postData ? e.postData.contents : 'no postData', e.postData ? e.postData.type : 'no type']);
+    return ContentService.createTextOutput(JSON.stringify({status: 'error', message: err.message}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
 }
 
 // ====== KẾT THÚC CODE APPS SCRIPT ======
