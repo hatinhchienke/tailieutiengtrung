@@ -423,7 +423,7 @@ updateCountdown(); setInterval(updateCountdown, 1000);
 })();
 
 // ============ MODAL & PAYMENT ============
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuK1o1PdjrfvhJwutbSzn7y3-TVP4qWl8tDvgKALnJyCyaNlTHWCh8SJM2kGgWVeY/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0KyzGFgZkn42TDUwALd4m3qBCbt5IjuGfc9h8n10_Lojugkm7ON-lrFxyaiIGSQkq/exec';
 let selectedPackage = '';
 let customerName = '';
 let customerPhone = '';

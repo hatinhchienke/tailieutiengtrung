@@ -257,7 +257,7 @@ function toggleZaloBtn() {
 }
 
 // ===== FORM SUBMIT =====
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyuK1o1PdjrfvhJwutbSzn7y3-TVP4qWl8tDvgKALnJyCyaNlTHWCh8SJM2kGgWVeY/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0KyzGFgZkn42TDUwALd4m3qBCbt5IjuGfc9h8n10_Lojugkm7ON-lrFxyaiIGSQkq/exec';
 
 // Package → QR data mapping (dual pricing: file vs book)
 // Tài liệu in sẵn = file số + 120K. Luyện gõ Hán tự chỉ có file số (không có tài liệu in sẵn).
