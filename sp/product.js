@@ -34,7 +34,8 @@ const PRODUCTS = {
     ],
     pkgKey: 'full',
     file: { amount: 199000, label: '199K', content: 'tai lieu tieng trung 6' },
-    book: { amount: 499000, label: '499K', content: 'sach giay tieng trung 6' },
+    book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    // book: { amount: 499000, label: '499K', content: 'sach giay tieng trung 6' },
     reviews: [
       { name: 'Ng Minh', letter: 'N', text: 'Mua trọn bộ vì thấy giá quá hời. Có đủ từ vựng, ngữ pháp, giao tiếp — học theo lộ trình rõ ràng. 2 tháng mình đã thi đỗ HSK2!', date: '5 - 6' },
       { name: 'Tr Hương', letter: 'T', text: 'Làm ở công ty Trung Quốc, mình tự học theo combo và tiếng Trung đã cải thiện rõ rệt. Giao tiếp được cơ bản trong công việc rồi.', date: '5 - 3' },
@@ -57,7 +58,8 @@ const PRODUCTS = {
     ],
     pkgKey: 'cautruc',
     file: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1' },
-    book: { amount: 189000, label: '189K', content: 'sach giay tieng trung 1' },
+    book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    // book: { amount: 189000, label: '189K', content: 'sach giay tieng trung 1' },
     reviews: [
       { name: 'T Minh', letter: 'T', text: 'Mình yếu phần ngữ pháp, học mãi không nhớ gì. Mua bộ này về tự học theo cấu trúc, 2 tuần đã đặt câu được. Trình bày rõ ràng, dễ hiểu cực kỳ!', date: '5 - 8' },
       { name: 'H Anh', letter: 'H', text: 'Đang học năm 2 chuyên ngành tiếng Trung mà vẫn thấy hữu ích. Phần luyện dịch 2 chiều quá hay, giúp mình phản xạ nhanh hơn nhiều.', date: '5 - 5' },
@@ -80,7 +82,8 @@ const PRODUCTS = {
     ],
     pkgKey: 'giaotiep',
     file: { amount: 99000, label: '99K', content: 'tai lieu tieng trung 4' },
-    book: { amount: 219000, label: '219K', content: 'sach giay tieng trung 4' },
+    book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    // book: { amount: 219000, label: '219K', content: 'sach giay tieng trung 4' },
     reviews: [
       { name: 'Vũ Hải', letter: 'V', text: 'Đi công tác Trung Quốc, mình chỉ học theo 1200 câu này thôi mà giao tiếp ổn lắm. Câu ngắn gọn, dễ nhớ, thực tế!', date: '5 - 7' },
       { name: 'Đỗ Linh', letter: 'Đ', text: 'Có video phát âm kèm theo nên mình bắt chước được luôn. Trước toàn đọc sai thanh điệu, giờ chuẩn hơn nhiều rồi.', date: '5 - 2' },
@@ -103,7 +106,8 @@ const PRODUCTS = {
     ],
     pkgKey: 'tuvung',
     file: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 2' },
-    book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 2' },
+    book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    // book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 2' },
     reviews: [
       { name: 'Đinh Nam', letter: 'Đ', text: 'Tra từ vựng trên điện thoại cực nhanh, không cần mở app. Có ví dụ câu nên hiểu ngay cách dùng, không phải đoán.', date: '5 - 4' },
       { name: 'Ng Thắng', letter: 'N', text: 'Mình đang ôn thi HSK3, file từ vựng này chia theo cấp nên biết mình cần học gì. Pinyin đầy đủ, rất tiện!', date: '5 - 1' },
@@ -155,7 +159,8 @@ const PRODUCTS = {
     ],
     pkgKey: 'bothu',
     file: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 5' },
-    book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 5' },
+    book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    // book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 5' },
     reviews: [
       { name: 'Ph Mai', letter: 'P', text: 'Học bộ thủ xong mới hiểu tại sao chữ Hán viết như vậy. Nhìn chữ mới đoán được nghĩa luôn, quá hay!', date: '5 - 6' },
       { name: 'Võ Ngọc', letter: 'V', text: 'Trước mình sợ chữ Hán lắm vì nhìn như vẽ. Học 60 bộ thủ xong thấy logic hẳn, nhớ chữ nhanh hơn gấp mấy lần.', date: '4 - 29' },
@@ -223,39 +228,24 @@ P.features.forEach(f => {
   fl.appendChild(li);
 });
 
-// Delivery Compare
+// Delivery Compare — CHỈ BÁN FILE (tạm dừng bán in sẵn)
 const dc = document.getElementById('deliveryCompare');
 const filePrice = P.file.amount.toLocaleString('vi-VN');
-const bookPrice = P.book ? P.book.amount.toLocaleString('vi-VN') : null;
-let dcHTML = '<h4>📋 2 HÌNH THỨC NHẬN TÀI LIỆU — BẠN CHỌN!</h4>' +
-  '<div class="dc-hint"><i class="fas fa-bolt"></i> <strong>90% khách hàng</strong> chọn File số vì nhận ngay, giá rẻ hơn & có thể tự in ra sách!</div>' +
+let dcHTML = '<h4>📋 HÌNH THỨC NHẬN TÀI LIỆU</h4>' +
+  '<div class="dc-hint"><i class="fas fa-bolt"></i> Nhận <strong>link tải tự động</strong> ngay sau thanh toán — có thể tự in ra sách nếu muốn!</div>' +
   '<div class="dc-options">' +
-  '<div class="dc-card dc-file"><div class="dc-rec">⭐ ĐỀ XUẤT</div>' +
+  '<div class="dc-card dc-file"><div class="dc-rec">⭐ FILE SỐ</div>' +
   '<div class="dc-icon"><i class="fas fa-file-pdf"></i></div>' +
   '<h5>📄 File số (PDF/Excel)</h5>' +
   '<ul>' +
   '<li>✅ Nhận link tải <strong>ngay sau thanh toán</strong> — không chờ đợi</li>' +
-  '<li>✅ Giá chỉ từ <strong>' + filePrice + '₫</strong> — rẻ hơn tài liệu in sẵn</li>' +
+  '<li>✅ Giá chỉ từ <strong>' + filePrice + '₫</strong></li>' +
   '<li>✅ Học trên điện thoại mọi lúc mọi nơi</li>' +
   '<li>✅ <strong>Tự in ra thành sách</strong> nếu muốn — giống hệt sách trong video</li>' +
   '<li>✅ Lưu trữ vĩnh viễn, không sợ mất</li>' +
   '<li>✅ Tra cứu nhanh bằng tìm kiếm trên điện thoại</li>' +
-  '</ul></div>';
-
-if (P.book) {
-  dcHTML += '<div class="dc-card dc-book">' +
-    '<div class="dc-icon"><i class="fas fa-book"></i></div>' +
-    '<h5>📕 Tài liệu in sẵn (giao tận nhà)</h5>' +
-    '<ul>' +
-    '<li>✅ Sách <strong>in đen trắng</strong>, giao tận nhà trong 2-4 ngày</li>' +
-    '<li>✅ Cầm nắm thật, đánh dấu, ghi chú</li>' +
-    '<li>✅ Thanh toán khi nhận hàng (COD)</li>' +
-    '</ul>' +
-    '<div class="dc-note">💡 Giá tài liệu in sẵn = giá file số + phí in & ship</div>' +
-    '</div>';
-}
-
-dcHTML += '</div>';
+  '</ul></div>' +
+  '</div>';
 dc.innerHTML = dcHTML;
 
 // Reviews
@@ -450,7 +440,16 @@ function openModal() {
     variantRow.style.gap = '8px';
     currentType = P.packages[0].id;
   } else {
+    // TẠM DỪNG BÁN IN SẴN: ẩn nút chọn book, chỉ hiện file
     currentType = 'file';
+    const bookBtn = document.getElementById('bookTypeBtn');
+    if (bookBtn) bookBtn.style.display = 'none';
+    // Ẩn luôn phần chọn hình thức vì chỉ còn 1 lựa chọn
+    const variantSection = variantRow?.closest('.variant-section');
+    if (variantSection) {
+      document.querySelector('.variant-label').innerHTML = '<i class="fas fa-file-pdf"></i> Hình thức: <strong>File số</strong> — nhận link tải ngay';
+      variantRow.style.display = 'none';
+    }
   }
 
   updateVariantSummary();
