@@ -228,7 +228,7 @@ P.features.forEach(f => {
   fl.appendChild(li);
 });
 
-// Delivery Compare — CHỈ BÁN FILE (tạm dừng bán in sẵn)
+// Delivery Compare
 const dc = document.getElementById('deliveryCompare');
 const filePrice = P.file.amount.toLocaleString('vi-VN');
 let dcHTML = '<h4>📋 HÌNH THỨC NHẬN TÀI LIỆU</h4>' +
@@ -244,8 +244,20 @@ let dcHTML = '<h4>📋 HÌNH THỨC NHẬN TÀI LIỆU</h4>' +
   '<li>✅ <strong>Tự in ra thành sách</strong> nếu muốn — giống hệt sách trong video</li>' +
   '<li>✅ Lưu trữ vĩnh viễn, không sợ mất</li>' +
   '<li>✅ Tra cứu nhanh bằng tìm kiếm trên điện thoại</li>' +
-  '</ul></div>' +
-  '</div>';
+  '</ul></div>';
+// Card bản in sẵn — hiện nhưng đánh dấu hết hàng
+if (!P.packages) {
+  dcHTML += '<div class="dc-card dc-book dc-sold-out">' +
+    '<div class="dc-soldout-badge">HẾT HÀNG</div>' +
+    '<div class="dc-icon"><i class="fas fa-book"></i></div>' +
+    '<h5>📖 Tài liệu in sẵn (in đen trắng)</h5>' +
+    '<ul>' +
+    '<li>⛔ Tạm hết hàng</li>' +
+    '<li>📦 Giao tận nhà trong 2-4 ngày</li>' +
+    '<li>📖 Sách in đen trắng, đóng gáy xoắn</li>' +
+    '</ul></div>';
+}
+dcHTML += '</div>';
 dc.innerHTML = dcHTML;
 
 // Reviews
@@ -319,10 +331,14 @@ if (ytLazy) {
   if (poster) poster.addEventListener('click', loadYT);
 }
 
-// Hide book option if not available
+// Book button: hiện nhưng disabled + badge "Hết hàng" nếu không bán
 if (!P.book) {
   const bookBtn = document.getElementById('bookTypeBtn');
-  if (bookBtn) bookBtn.style.display = 'none';
+  if (bookBtn) {
+    bookBtn.classList.add('disabled');
+    bookBtn.removeAttribute('onclick');
+    bookBtn.querySelector('.variant-btn-sub').textContent = 'Tạm hết hàng';
+  }
 }
 
 // ============ UPSELL BANNER ============
@@ -440,15 +456,13 @@ function openModal() {
     variantRow.style.gap = '8px';
     currentType = P.packages[0].id;
   } else {
-    // TẠM DỪNG BÁN IN SẴN: ẩn nút chọn book, chỉ hiện file
+    // Hiện cả 2 nút nhưng book bị disabled (hết hàng)
     currentType = 'file';
     const bookBtn = document.getElementById('bookTypeBtn');
-    if (bookBtn) bookBtn.style.display = 'none';
-    // Ẩn luôn phần chọn hình thức vì chỉ còn 1 lựa chọn
-    const variantSection = variantRow?.closest('.variant-section');
-    if (variantSection) {
-      document.querySelector('.variant-label').innerHTML = '<i class="fas fa-file-pdf"></i> Hình thức: <strong>File số</strong> — nhận link tải ngay';
-      variantRow.style.display = 'none';
+    if (bookBtn) {
+      bookBtn.classList.add('disabled');
+      bookBtn.removeAttribute('onclick');
+      bookBtn.querySelector('.variant-btn-sub').textContent = 'Tạm hết hàng';
     }
   }
 
