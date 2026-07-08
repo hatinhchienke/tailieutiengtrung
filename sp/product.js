@@ -35,6 +35,7 @@ const PRODUCTS = {
     pkgKey: 'full',
     file: { amount: 199000, label: '199K', content: 'tai lieu tieng trung 6' },
     book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    bookPrice: '499,000₫', // Giá hiển thị cho khách biết
     // book: { amount: 499000, label: '499K', content: 'sach giay tieng trung 6' },
     reviews: [
       { name: 'Ng Minh', letter: 'N', text: 'Mua trọn bộ vì thấy giá quá hời. Có đủ từ vựng, ngữ pháp, giao tiếp — học theo lộ trình rõ ràng. 2 tháng mình đã thi đỗ HSK2!', date: '5 - 6' },
@@ -59,6 +60,7 @@ const PRODUCTS = {
     pkgKey: 'cautruc',
     file: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1' },
     book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    bookPrice: '189,000₫',
     // book: { amount: 189000, label: '189K', content: 'sach giay tieng trung 1' },
     reviews: [
       { name: 'T Minh', letter: 'T', text: 'Mình yếu phần ngữ pháp, học mãi không nhớ gì. Mua bộ này về tự học theo cấu trúc, 2 tuần đã đặt câu được. Trình bày rõ ràng, dễ hiểu cực kỳ!', date: '5 - 8' },
@@ -83,6 +85,7 @@ const PRODUCTS = {
     pkgKey: 'giaotiep',
     file: { amount: 99000, label: '99K', content: 'tai lieu tieng trung 4' },
     book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    bookPrice: '219,000₫',
     // book: { amount: 219000, label: '219K', content: 'sach giay tieng trung 4' },
     reviews: [
       { name: 'Vũ Hải', letter: 'V', text: 'Đi công tác Trung Quốc, mình chỉ học theo 1200 câu này thôi mà giao tiếp ổn lắm. Câu ngắn gọn, dễ nhớ, thực tế!', date: '5 - 7' },
@@ -107,6 +110,7 @@ const PRODUCTS = {
     pkgKey: 'tuvung',
     file: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 2' },
     book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    bookPrice: '159,000₫',
     // book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 2' },
     reviews: [
       { name: 'Đinh Nam', letter: 'Đ', text: 'Tra từ vựng trên điện thoại cực nhanh, không cần mở app. Có ví dụ câu nên hiểu ngay cách dùng, không phải đoán.', date: '5 - 4' },
@@ -160,6 +164,7 @@ const PRODUCTS = {
     pkgKey: 'bothu',
     file: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 5' },
     book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    bookPrice: '159,000₫',
     // book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 5' },
     reviews: [
       { name: 'Ph Mai', letter: 'P', text: 'Học bộ thủ xong mới hiểu tại sao chữ Hán viết như vậy. Nhìn chữ mới đoán được nghĩa luôn, quá hay!', date: '5 - 6' },
@@ -246,12 +251,13 @@ let dcHTML = '<h4>📋 HÌNH THỨC NHẬN TÀI LIỆU</h4>' +
   '<li>✅ Tra cứu nhanh bằng tìm kiếm trên điện thoại</li>' +
   '</ul></div>';
 // Card bản in sẵn — hiện nhưng đánh dấu hết hàng
-if (!P.packages) {
+if (!P.packages && P.bookPrice) {
   dcHTML += '<div class="dc-card dc-book dc-sold-out">' +
     '<div class="dc-soldout-badge">HẾT HÀNG</div>' +
     '<div class="dc-icon"><i class="fas fa-book"></i></div>' +
     '<h5>📖 Tài liệu in sẵn (in đen trắng)</h5>' +
     '<ul>' +
+    '<li>💰 Giá: <strong>' + P.bookPrice + '</strong></li>' +
     '<li>⛔ Tạm hết hàng</li>' +
     '<li>📦 Giao tận nhà trong 2-4 ngày</li>' +
     '<li>📖 Sách in đen trắng, đóng gáy xoắn</li>' +
@@ -337,7 +343,7 @@ if (!P.book) {
   if (bookBtn) {
     bookBtn.classList.add('disabled');
     bookBtn.removeAttribute('onclick');
-    bookBtn.querySelector('.variant-btn-sub').textContent = 'Tạm hết hàng';
+    bookBtn.querySelector('.variant-btn-sub').textContent = P.bookPrice ? (P.bookPrice + ' — Hết hàng') : 'Tạm hết hàng';
   }
 }
 
@@ -462,7 +468,7 @@ function openModal() {
     if (bookBtn) {
       bookBtn.classList.add('disabled');
       bookBtn.removeAttribute('onclick');
-      bookBtn.querySelector('.variant-btn-sub').textContent = 'Tạm hết hàng';
+      bookBtn.querySelector('.variant-btn-sub').textContent = P.bookPrice ? (P.bookPrice + ' — Hết hàng') : 'Tạm hết hàng';
     }
   }
 
