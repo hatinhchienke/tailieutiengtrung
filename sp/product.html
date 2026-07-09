@@ -196,7 +196,6 @@
           </form>
         </div>
       </div>
-      <!-- Step 3: QR Thanh toán -->
       <div class="modal-step hidden" id="step3">
         <div class="modal-header">
           <button class="modal-back" onclick="showStep('step2')"><i class="fas fa-arrow-left"></i></button>
@@ -204,6 +203,13 @@
           <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body" style="text-align:center;">
+
+          <!-- TRUST 1: Trust Header -->
+          <div class="qr-trust-header">
+            <i class="fas fa-shield-halved"></i>
+            <span>Thanh toán bảo mật — Hoàn tiền 100% nếu không hài lòng</span>
+          </div>
+
           <!-- Bước 1: QR -->
           <div class="qr-step-label"><span class="step-num">1</span> Chuyển khoản theo thông tin bên dưới</div>
           <div class="qr-pkg-info" id="qrPkgInfo"></div>
@@ -220,6 +226,57 @@
             <div class="bank-row"><span>Chủ tài khoản</span><strong>PHAM NGOC TRAI</strong></div>
             <div class="bank-row"><span>Nội dung CK</span><strong id="qrContent"></strong> <i class="fas fa-copy" id="copyContentBtn" onclick="copyTransferContent()" style="cursor:pointer;color:#ee4d2d;font-size:12px;"></i></div>
           </div>
+
+          <!-- TRUST 2: Stats Bar -->
+          <div class="qr-stats-bar">
+            <div class="qr-stat-item"><i class="fas fa-users" style="color:#1976d2;"></i> <span class="stat-highlight">3,100+</span> học viên</div>
+            <div class="qr-stat-item"><i class="fas fa-star" style="color:#fbc02d;"></i> <span class="stat-highlight">4.9</span>/5 đánh giá</div>
+            <div class="qr-stat-item"><i class="fas fa-rotate-left" style="color:#43a047;"></i> Hoàn tiền <span class="stat-highlight">0%</span></div>
+          </div>
+
+          <!-- TRUST 3: Refund Guarantee -->
+          <div class="qr-refund-box">
+            <div class="qr-refund-title">
+              <i class="fas fa-shield-halved"></i>
+              CAM KẾT HOÀN TIỀN 100%
+            </div>
+            <div class="qr-refund-desc">
+              Nếu tài liệu không đúng như mô tả hoặc bạn không hài lòng — hoàn tiền <strong>100% trong 24h</strong>, không hỏi lý do. Bạn hoàn toàn không có rủi ro!
+            </div>
+            <div class="qr-refund-tags">
+              <span><i class="fas fa-check-circle"></i> Không rủi ro</span>
+              <span><i class="fas fa-check-circle"></i> Hoàn tiền nhanh</span>
+              <span><i class="fas fa-check-circle"></i> Không hỏi lý do</span>
+            </div>
+          </div>
+
+          <!-- TRUST 4: Proof Gallery -->
+          <div class="qr-proof-gallery">
+            <div class="qr-proof-gallery-header">
+              <h4>📸 Khách hàng đã thanh toán <span class="proof-count">42+</span></h4>
+              <span class="proof-verified"><i class="fas fa-check-circle"></i> Xác thực</span>
+            </div>
+            <div class="qr-proof-scroll-v2">
+              <img src="/ảnh ck/1211099821052326270.jpg" alt="Giao dịch thành công" loading="lazy" onclick="openLightbox(this)">
+              <img src="/ảnh ck/1979428820442745093.jpg" alt="Giao dịch thành công" loading="lazy" onclick="openLightbox(this)">
+              <img src="/ảnh ck/2890039922049302457.jpg" alt="Giao dịch thành công" loading="lazy" onclick="openLightbox(this)">
+              <img src="/ảnh ck/2221813299436632563.jpg" alt="Giao dịch thành công" loading="lazy" onclick="openLightbox(this)">
+              <img src="/ảnh ck/2016948068299165103.jpg" alt="Giao dịch thành công" loading="lazy" onclick="openLightbox(this)">
+              <img src="/ảnh ck/1523397457153161756.jpg" alt="Giao dịch thành công" loading="lazy" onclick="openLightbox(this)">
+              <img src="/ảnh ck/2766164142221923874.jpg" alt="Giao dịch thành công" loading="lazy" onclick="openLightbox(this)">
+              <img src="/ảnh ck/3263555510524357448.jpg" alt="Giao dịch thành công" loading="lazy" onclick="openLightbox(this)">
+              <img src="/ảnh ck/100988868485631801.jpg" alt="Giao dịch thành công" loading="lazy" onclick="openLightbox(this)">
+              <img src="/ảnh ck/1078450868381749484.jpg" alt="Giao dịch thành công" loading="lazy" onclick="openLightbox(this)">
+            </div>
+          </div>
+
+          <!-- TRUST 5: Urgency -->
+          <div class="qr-urgency-notice">
+            <i class="fas fa-clock"></i>
+            <span>⚡ Giá khuyến mại chỉ áp dụng <strong>hôm nay</strong> — Thanh toán ngay để giữ giá!</span>
+          </div>
+
+          <div class="qr-trust-divider"></div>
 
           <!-- Bước 2: Xác nhận đã thanh toán -->
           <div class="qr-step-label"><span class="step-num">2</span> Sau khi chuyển khoản xong</div>
@@ -246,6 +303,35 @@
             <i class="fas fa-lock"></i> Vui lòng xác nhận đã thanh toán ở trên
           </a>
           <p class="zalo-unlock-hint" id="zaloUnlockHint">👆 Tick xác nhận đã chuyển khoản để mở nút gửi Zalo</p>
+
+          <!-- TRUST 6: Mini Reviews -->
+          <div class="qr-mini-reviews">
+            <div class="qr-mini-reviews-title"><i class="fas fa-comment-dots" style="color:#ee4d2d;"></i> Khách hàng nói gì?</div>
+            <div class="qr-mini-review">
+              <div class="qr-mini-review-avatar">H</div>
+              <div class="qr-mini-review-content">
+                <div class="qr-mini-review-name">Nguyễn Hương <span class="verified-tag"><i class="fas fa-check-circle"></i> Đã mua</span></div>
+                <div class="qr-mini-review-text">Mình chuyển khoản xong 3 phút sau nhận link tải luôn! Tài liệu rất đầy đủ và chi tiết 👍</div>
+                <div class="qr-mini-review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              </div>
+            </div>
+            <div class="qr-mini-review">
+              <div class="qr-mini-review-avatar">T</div>
+              <div class="qr-mini-review-content">
+                <div class="qr-mini-review-name">Trần Dũng <span class="verified-tag"><i class="fas fa-check-circle"></i> Đã mua</span></div>
+                <div class="qr-mini-review-text">Ban đầu hơi ngại, nhưng thấy nhiều người mua rồi nên chuyển khoản thử. Nhận tài liệu cực nhanh, shop uy tín!</div>
+                <div class="qr-mini-review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              </div>
+            </div>
+            <div class="qr-mini-review">
+              <div class="qr-mini-review-avatar">L</div>
+              <div class="qr-mini-review-content">
+                <div class="qr-mini-review-name">Lê Mai <span class="verified-tag"><i class="fas fa-check-circle"></i> Đã mua</span></div>
+                <div class="qr-mini-review-text">Mua full trọn bộ, giá quá rẻ so với chất lượng! Học được rất nhiều, cảm ơn shop 🎉</div>
+                <div class="qr-mini-review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              </div>
+            </div>
+          </div>
 
           <div class="qr-guarantee-note">
             <i class="fas fa-shield-alt"></i>
