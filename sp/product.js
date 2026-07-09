@@ -679,8 +679,17 @@ function toggleZaloBtn() {
 const lightbox = document.getElementById('lightbox'), lightboxImg = document.getElementById('lightboxImg'), lightboxCounter = document.getElementById('lightboxCounter');
 let lbImages = [], lbIndex = 0;
 function openLightbox(imgEl) {
-  lbImages = P.slides; lbIndex = lbImages.indexOf(imgEl.src.replace(window.location.origin, ''));
-  if (lbIndex === -1) lbIndex = 0; showLbImg(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden';
+  // Check if image is from proof gallery (CK screenshots)
+  const proofParent = imgEl.closest('.qr-proof-scroll-v2');
+  if (proofParent) {
+    lbImages = Array.from(proofParent.querySelectorAll('img')).map(img => img.src);
+    lbIndex = lbImages.indexOf(imgEl.src);
+  } else {
+    lbImages = P.slides;
+    lbIndex = lbImages.indexOf(imgEl.src.replace(window.location.origin, ''));
+  }
+  if (lbIndex === -1) lbIndex = 0;
+  showLbImg(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden';
 }
 function showLbImg() { lightboxImg.src = lbImages[lbIndex]; lightboxCounter.textContent = (lbIndex + 1) + ' / ' + lbImages.length; }
 function closeLb() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
