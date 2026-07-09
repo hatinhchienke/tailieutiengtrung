@@ -617,10 +617,36 @@
 
       if (isUnlocked) {
         let dlUrl = pkg.downloadUrl;
+        let dlLabel = pkg.downloadLabel || 'Mở tài liệu';
         if (pkg.passwords && pkg.passwords[storedVal]) {
           dlUrl = pkg.passwords[storedVal].url;
+          dlLabel = pkg.passwords[storedVal].label || dlLabel;
         }
-        window.open(dlUrl, '_blank');
+
+        // Hiển thị modal với nút bấm trực tiếp (thay vì window.open bị chặn trên mobile)
+        const featuresHtml = pkg.features.map(f => '<li><i class="fas fa-check-circle"></i>' + f + '</li>').join('');
+        document.getElementById('detailSheet').innerHTML = '<div class="detail-close"><span>' + pkg.emoji + ' Tài liệu đã mở khóa</span><button onclick="closeDetail()"><i class="fas fa-times"></i></button></div>' +
+          '<img src="' + pkg.cover + '" class="detail-cover" alt="' + pkg.title + '">' +
+          '<div class="detail-body">' +
+          '<h2 class="detail-title">' + pkg.title + '</h2>' +
+          '<div class="detail-price"><span class="sale">' + pkg.priceSale + '</span><span class="old">' + pkg.priceOld + '</span><span class="disc">' + pkg.discount + '</span></div>' +
+          '<div class="unlock-area show">' +
+          '<div class="unlock-badge"><i class="fas fa-check-circle"></i> Đã mở khóa thành công</div>' +
+          '<a href="' + dlUrl + '" target="_blank" rel="noopener" class="download-btn" id="dlBtnDirect">' +
+          '<i class="fas fa-external-link-alt"></i> ' + dlLabel +
+          '</a>' +
+          '<p style="font-size:11px;color:#888;margin-top:10px;">Nếu không mở được, hãy nhấn giữ nút ở trên → chọn "Mở trong trình duyệt" hoặc sao chép link bên dưới</p>' +
+          '<div style="margin-top:8px;display:flex;gap:6px;align-items:center;">' +
+          '<input type="text" value="' + dlUrl + '" readonly style="flex:1;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:11px;color:#555;background:#f9f9f9;" onclick="this.select()">' +
+          '<button onclick="navigator.clipboard.writeText(\'' + dlUrl + '\');this.innerHTML=\'<i class=&quot;fas fa-check&quot;></i>\';setTimeout(()=>{this.innerHTML=\'<i class=&quot;fas fa-copy&quot;></i>\'},1500)" style="padding:8px 12px;border:1px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;color:#555;"><i class="fas fa-copy"></i></button>' +
+          '</div>' +
+          '</div>' +
+          '<div class="detail-divider"></div>' +
+          '<div class="detail-features"><h4><i class="fas fa-list-check"></i> Bao gồm</h4><ul>' + featuresHtml + '</ul></div>' +
+          '</div>';
+
+        document.getElementById('detailOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
         return;
       }
 

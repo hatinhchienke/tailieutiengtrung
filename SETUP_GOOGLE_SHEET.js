@@ -1,66 +1,130 @@
-// ===== HƯỚNG DẪN SETUP GOOGLE APPS SCRIPT (CẬP NHẬT - THÊM UTM TRACKING) =====
+// ===== HƯỚNG DẪN SETUP GOOGLE APPS SCRIPT (GỬI THÔNG BÁO QUA TELEGRAM) =====
 // 
+// ===== SETUP TELEGRAM BOT (LÀM 1 LẦN DUY NHẤT) =====
+//
+// 1. Mở Telegram, tìm @BotFather
+// 2. Gửi lệnh: /newbot
+// 3. Đặt tên bot (ví dụ: "Thông Báo Đơn Hàng")
+// 4. Đặt username bot (ví dụ: donhang_tb_bot) — phải kết thúc bằng "bot"
+// 5. BotFather sẽ gửi cho bạn BOT TOKEN (dạng: 123456789:ABCdefGhIJKlmNoPQRsTUVwxyz)
+//    → Copy token này, dán vào biến TELEGRAM_BOT_TOKEN bên dưới
+//
+// 6. Lấy CHAT_ID của bạn:
+//    a. Mở Telegram, tìm @userinfobot hoặc @getmyid_bot
+//    b. Gửi /start → bot sẽ trả về Chat ID của bạn (dạng số: 123456789)
+//    → Copy Chat ID này, dán vào biến TELEGRAM_CHAT_ID bên dưới
+//
+// 7. GỬI TIN NHẮN ĐẦU TIÊN cho bot của bạn (bấm Start trong bot)
+//    → Bước này BẮT BUỘC để bot có quyền gửi tin nhắn cho bạn!
+//
+// ===== SETUP APPS SCRIPT =====
+//
 // Bước 1: Mở Google Sheet: https://docs.google.com/spreadsheets/d/1D4aOiSAufIZVgSd1_Nv9sJQSErUaGJeKOf6hXoEexig/edit?gid=0#gid=0
 // Bước 2: Vào menu Extensions > Apps Script
 // Bước 3: Xóa hết code cũ, paste đoạn code dưới đây:
 //
 // ====== BẮT ĐẦU CODE APPS SCRIPT ======
 
+// ⚠️ THAY 2 GIÁ TRỊ NÀY BẰNG THÔNG TIN BOT CỦA BẠN:
+var TELEGRAM_BOT_TOKEN = '8933854486:AAFsgHJWO0wzTLQ7VeQCfeREEyeJbKoFAQs';
+var TELEGRAM_CHAT_ID = '6284891284';
+
+// Hàm gửi tin nhắn Telegram
+function sendTelegram(text) {
+  var url = 'https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage';
+  var payload = {
+    'chat_id': TELEGRAM_CHAT_ID,
+    'text': text
+  };
+  var options = {
+    'method': 'post',
+    'contentType': 'application/json',
+    'payload': JSON.stringify(payload),
+    'muteHttpExceptions': true
+  };
+  var response = UrlFetchApp.fetch(url, options);
+  return JSON.parse(response.getContentText());
+}
+
+// ⭐ HÀM TEST - Chạy hàm này để kiểm tra bot có hoạt động không
+// Vào Apps Script > chọn hàm testTelegram > bấm Run
+function testTelegram() {
+  var result = sendTelegram('Test tu Apps Script - Bot hoat dong tot!');
+  Logger.log(result);
+}
+
 function doPost(e) {
-  try {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var data = JSON.parse(e.postData.contents);
+  var telegramStatus = '';
   
-  // 1. Lưu vào Sheet (thêm 3 cột UTM ở cuối)
-  sheet.appendRow([
-    data.submittedAt,
-    data.name,
-    data.phone,
-    data.package,
-    data.type || 'file',
-    data.address || '',
-    data.source,
-    data.utm_source || 'organic',     // facebook, tiktok, hoặc organic
-    data.utm_medium || '',            // cpc, cpm, social...
-    data.utm_campaign || ''           // tên chiến dịch ads
-  ]);
-  
-  // 2. Gửi email thông báo (HTML)
-  var isBook = data.type === 'book';
-  var utmLabel = data.utm_source || 'organic';
-  var subject = (isBook ? '📚' : '📄') + ' Đơn hàng mới - ' + data.name + ' [' + utmLabel + ']';
-  var zaloLink = 'https://zalo.me/' + data.phone;
-  
-  var htmlBody = '<div style="font-family:Arial,sans-serif;max-width:500px">'
-    + '<h3>📦 ĐƠN HÀNG MỚI TỪ LANDING PAGE</h3>'
-    + '<hr>'
-    + '<p>📋 Loại: <strong>' + (isBook ? '📚 Sách giấy' : '📄 File số') + '</strong></p>'
-    + '<p>👤 Họ tên: <strong>' + data.name + '</strong></p>'
-    + '<p>📞 SĐT/Zalo: <strong>' + data.phone + '</strong></p>'
-    + '<p>📦 Gói: <strong>' + data.package + '</strong></p>'
-    + (data.address ? '<p>🏠 Địa chỉ: <strong>' + data.address + '</strong></p>' : '')
-    + '<p>🕐 Thời gian: ' + data.submittedAt + '</p>'
-    + '<p>🌐 Nguồn: ' + data.source + '</p>'
-    + '<p>📢 Nguồn QC: <strong style="color:#e65100;">' + utmLabel + '</strong>'
-    + (data.utm_campaign ? ' — Chiến dịch: ' + data.utm_campaign : '') + '</p>'
-    + '<hr>'
-    + '<p>Liên hệ khách ngay qua Zalo: <a href="' + zaloLink + '">' + zaloLink + '</a></p>'
-    + '</div>';
-  
-  MailApp.sendEmail({
-    to: 'ngoctrainh@gmail.com',
-    subject: subject,
-    htmlBody: htmlBody
-  });
-  
-  return ContentService.createTextOutput(JSON.stringify({status: 'success'}))
-    .setMimeType(ContentService.MimeType.JSON);
+  try {
+    var data = JSON.parse(e.postData.contents);
+    
+    // ====== BƯỚC 1: GHI DATA VÀO SHEET TRƯỚC (luôn thành công) ======
+    sheet.appendRow([
+      data.submittedAt,
+      data.name,
+      data.phone,
+      data.package,
+      data.type || 'file',
+      data.address || '',
+      data.source,
+      data.utm_source || 'organic',
+      data.utm_medium || '',
+      data.utm_campaign || ''
+    ]);
+    
+    // ====== BƯỚC 2: GỬI THÔNG BÁO QUA TELEGRAM ======
+    try {
+      var isBook = data.type === 'book';
+      var utmLabel = data.utm_source || 'organic';
+      
+      var lines = [];
+      lines.push((isBook ? '📚' : '📄') + ' DON HANG MOI');
+      lines.push('━━━━━━━━━━━━━━━');
+      lines.push('📋 Loai: ' + (isBook ? 'Sach giay' : 'File so'));
+      lines.push('👤 Ho ten: ' + data.name);
+      lines.push('📞 SDT/Zalo: ' + data.phone);
+      lines.push('📦 Goi: ' + data.package);
+      if (data.address) lines.push('🏠 Dia chi: ' + data.address);
+      lines.push('🕐 Thoi gian: ' + data.submittedAt);
+      lines.push('🌐 Nguon: ' + data.source);
+      lines.push('📢 Nguon QC: ' + utmLabel);
+      if (data.utm_campaign) lines.push('📣 Chien dich: ' + data.utm_campaign);
+      lines.push('━━━━━━━━━━━━━━━');
+      lines.push('👉 Zalo: https://zalo.me/' + data.phone);
+      
+      var message = lines.join('\n');
+      var result = sendTelegram(message);
+      
+      if (result.ok) {
+        telegramStatus = 'sent';
+      } else {
+        telegramStatus = 'telegram_error: ' + result.description;
+      }
+    } catch (tgErr) {
+      // Telegram lỗi nhưng data ĐÃ ĐƯỢC LƯU ở bước 1
+      telegramStatus = 'telegram_error: ' + tgErr.message;
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'success',
+      telegram: telegramStatus
+    })).setMimeType(ContentService.MimeType.JSON);
+    
   } catch (err) {
-    // Log lỗi vào Sheet để debug
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    sheet.appendRow([new Date().toLocaleString('vi-VN'), 'ERROR', err.message, e.postData ? e.postData.contents : 'no postData', e.postData ? e.postData.type : 'no type']);
-    return ContentService.createTextOutput(JSON.stringify({status: 'error', message: err.message}))
-      .setMimeType(ContentService.MimeType.JSON);
+    // Lỗi parse JSON hoặc lỗi ghi sheet
+    sheet.appendRow([
+      new Date().toLocaleString('vi-VN'),
+      'ERROR',
+      err.message,
+      e.postData ? e.postData.contents : 'no postData',
+      e.postData ? e.postData.type : 'no type'
+    ]);
+    return ContentService.createTextOutput(JSON.stringify({
+      status: 'error',
+      message: err.message
+    })).setMimeType(ContentService.MimeType.JSON);
   }
 }
 
