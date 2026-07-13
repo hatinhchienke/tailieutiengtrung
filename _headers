@@ -1,14 +1,49 @@
 /*
   X-Content-Type-Options: nosniff
 
+# === HTML pages: luôn revalidate, không cache cũ ===
 /*.html
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-cache, must-revalidate
+  CDN-Cache-Control: no-cache
+
+/
+  Cache-Control: no-cache, must-revalidate
+  CDN-Cache-Control: no-cache
 
 /tailieu
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-cache, must-revalidate
+  CDN-Cache-Control: no-cache
+
+/chinh-sach
+  Cache-Control: no-cache, must-revalidate
+  CDN-Cache-Control: no-cache
+
+/thanks
+  Cache-Control: no-cache, must-revalidate
+  CDN-Cache-Control: no-cache
 
 /sp/*
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-cache, must-revalidate
+  CDN-Cache-Control: no-cache
 
+# === CSS/JS: cache ngắn, revalidate mỗi lần ===
+/*.css
+  Cache-Control: no-cache, must-revalidate
+  CDN-Cache-Control: no-cache
+
+/*.js
+  Cache-Control: no-cache, must-revalidate
+  CDN-Cache-Control: no-cache
+
+# === Ảnh: cache dài hạn (ảnh ít thay đổi) ===
 /images/*
   Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=2592000
+
+/*.png
+  Cache-Control: public, max-age=2592000
+
+/*.jpg
+  Cache-Control: public, max-age=2592000
