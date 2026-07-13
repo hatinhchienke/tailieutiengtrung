@@ -149,7 +149,7 @@
 
     async function verifyAndDeliver() {
       try {
-        const res = await fetch(`/api/verify-payment?orderCode=${encodeURIComponent(orderCode)}&pkg=${encodeURIComponent(pkg)}`);
+        const res = await fetch(`https://tailieutiengtrung1.vercel.app/api/verify-payment?orderCode=${encodeURIComponent(orderCode)}&pkg=${encodeURIComponent(pkg)}`);
         const data = await res.json();
         if (data.status === 'PAID' && data.downloadUrl) {
           showSuccess(data.downloadUrl, data.packageName || pkg, data.password, data.pkgId);
