@@ -44,7 +44,7 @@ const PACKAGE_DATA = {
     id: 'bothu'
   },
   'Full trọn bộ - 199K': {
-    url: 'https://www.notion.so/T-i-li-u-ti-ng-Trung-full-tr-n-b-34ffa37e953c80a7ae1efed159e95f30',
+    url: 'https://docs.google.com/document/d/1HhkbkAGhl_C5NRRu-Xj0ZSQJmeVhMFcGAEH76iROa60/edit?usp=sharing',
     password: 'DIEM99VIP',
     id: 'full'
   }

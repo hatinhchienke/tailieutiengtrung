@@ -591,7 +591,7 @@ async function submitOrder(e) {
   }
   try {
 
-    // Tạm thời tắt PayOS để phục vụ duyệt BCT (sử dụng mã QR tĩnh với tên PHAM NGOC TRAI)
+    // Tạm thời tắt PayOS để phục vụ duyệt BCT (sử dụng mã QR tĩnh với tên HOANG DIEM HUE)
     throw new Error('Temporarily disabled PayOS for MOIT review');
 
     /*
@@ -618,10 +618,10 @@ async function submitOrder(e) {
 
 // ============ QR PAYMENT FUNCTIONS ============
 function generateQR(pkg, amount, content) {
-  const bankId = 'TCB';
-  const accountNo = '19032738533021';
+  const bankId = 'MB';
+  const accountNo = '0868206574';
   const template = 'compact2';
-  const qrUrl = `https://img.vietqr.io/image/${bankId}-${accountNo}-${template}.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent('PHAM NGOC TRAI')}`;
+  const qrUrl = `https://img.vietqr.io/image/${bankId}-${accountNo}-${template}.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent('HOANG DIEM HUE')}`;
 
   document.getElementById('qrImage').src = qrUrl;
   document.getElementById('qrAmount').textContent = amount.toLocaleString('vi-VN') + '₫';
