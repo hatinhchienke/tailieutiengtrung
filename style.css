@@ -3638,24 +3638,30 @@ img {
 /* ===== VIDEO SECTION — TAILIEU HUB ===== */
 .video-section {
   margin: 16px 0 0;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
 }
 .video-section-header {
-  font-size: 14px;
-  font-weight: 700;
-  color: #333;
-  padding: 12px 0 8px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 8px;
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  border-radius: 12px 12px 0 0;
+  letter-spacing: 0.5px;
 }
 .video-section-header i {
-  color: #ee4d2d;
-  font-size: 16px;
+  color: #fff;
+  font-size: 18px;
 }
 
 /* Video Unlocked */
+.video-unlocked .video-section-header {
+  background: linear-gradient(135deg, #00b894, #00a381);
+}
 .video-unlocked .download-btn.video-btn {
   background: linear-gradient(135deg, #ff0000, #cc0000);
   color: #fff;
@@ -3677,18 +3683,33 @@ img {
   box-shadow: 0 4px 12px rgba(255,0,0,0.3);
 }
 
-/* Video Locked */
+/* Video Locked — Eye-catching upsell */
 .video-lock-box {
-  background: linear-gradient(135deg, #f8f9fa, #eef1f5);
-  border: 2px dashed #ccc;
-  border-radius: 12px;
+  background: linear-gradient(135deg, #fff8f0, #fff0e6, #ffe8d6);
+  border: 2px solid #ee4d2d;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
   padding: 20px 16px;
   text-align: center;
-  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.video-lock-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 200%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ee4d2d, #ff6633, transparent);
+  animation: videoShimmer 2s linear infinite;
+}
+@keyframes videoShimmer {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(50%); }
 }
 .video-lock-icon {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ee4d2d, #ff6633);
   color: #fff;
@@ -3696,22 +3717,33 @@ img {
   align-items: center;
   justify-content: center;
   margin: 0 auto 12px;
-  font-size: 20px;
+  font-size: 22px;
+  box-shadow: 0 4px 15px rgba(238, 77, 45, 0.35);
+  animation: lockPulse 2s ease-in-out infinite;
+}
+@keyframes lockPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(238, 77, 45, 0.35); }
+  50% { transform: scale(1.08); box-shadow: 0 6px 20px rgba(238, 77, 45, 0.5); }
 }
 .video-lock-text {
-  font-size: 14px;
-  font-weight: 600;
-  color: #555;
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
   margin-bottom: 6px;
 }
 .video-lock-price {
-  font-size: 15px;
+  font-size: 16px;
   color: #ee4d2d;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+  font-weight: 600;
 }
 .video-lock-price strong {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 900;
+  background: linear-gradient(135deg, #ee4d2d, #ff2200);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .video-pw-row {
   display: flex;
@@ -3720,9 +3752,35 @@ img {
 }
 .video-pw-row .pw-input {
   flex: 1;
+  border: 2px solid #ee4d2d !important;
+  border-radius: 10px !important;
+}
+.video-pw-row .pw-input:focus {
+  box-shadow: 0 0 0 3px rgba(238, 77, 45, 0.15);
 }
 .video-pw-row .pw-submit {
   white-space: nowrap;
+  background: linear-gradient(135deg, #ee4d2d, #ff6633) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 10px !important;
+  padding: 10px 16px !important;
+}
+.video-section .buy-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #ee4d2d !important;
+  font-weight: 700 !important;
+  font-size: 13px;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1.5px dashed #ee4d2d;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.video-section .buy-link:hover {
+  background: #fff5f0;
 }
 
 /* ===== TIER SELECTOR — PRODUCT MODAL ===== */
