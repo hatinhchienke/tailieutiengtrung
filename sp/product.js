@@ -18,13 +18,14 @@ function getUtmData() {
 const PRODUCTS = {
   'tron-bo': {
     title: 'BỘ TÀI LIỆU TỰ HỌC TIẾNG TRUNG — COMBO 6 TRONG 1',
-    desc: 'Combo trọn bộ: Cấu trúc + Luyện dịch, Từ vựng HSK1-6, 1200 câu giao tiếp + Video, Luyện gõ Hán tự, 60 bộ thủ, Video phát âm.',
-    priceSale: '199,000₫', priceOld: '450,000₫', discount: 'Tiết kiệm 56%',
+    desc: 'Combo trọn bộ 6 gói tài liệu + Video bài giảng Cấu trúc chi tiết. Bao gồm: Cấu trúc + Luyện dịch, Từ vựng HSK1-6, 1200 câu giao tiếp + Video, Luyện gõ Hán tự, 60 bộ thủ, Video phát âm.',
+    priceSale: '329,000₫', priceOld: '599,000₫', discount: 'Tiết kiệm 45%',
     sold: 'Đã bán 3.1K+', headerTitle: 'Combo 6 trong 1',
     videoId: 'g8p1BpPhAUY',
     slides: ['/images/combo-overview.webp', '/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png', '/ảnh cover sp/1200 câu.png', '/ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png', '/ảnh cover sp/Luyện gõ Hán tự.png', '/ảnh cover sp/60 bộ thủ chữ hán.png'],
     features: [
       'Cấu trúc câu + Luyện dịch tiếng Trung (30+ cấu trúc)',
+      '🎬 Video bài giảng Cấu trúc hướng dẫn chi tiết',
       'Từ vựng HSK1 – HSK6 đầy đủ (5000+ từ)',
       'Luyện gõ Hán tự HSK1 – HSK6 (check tự động)',
       '1200 câu giao tiếp + Video hướng dẫn',
@@ -33,10 +34,9 @@ const PRODUCTS = {
       '🎁 TẶNG: Vào nhóm Facebook hỗ trợ học tập'
     ],
     pkgKey: 'full',
-    file: { amount: 199000, label: '199K', content: 'tai lieu tieng trung 6' },
-    book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
-    bookPrice: '499,000₫', // Giá hiển thị cho khách biết
-    // book: { amount: 499000, label: '499K', content: 'sach giay tieng trung 6' },
+    file: { amount: 329000, label: '329K', content: 'tai lieu combo video' },
+    book: null,
+    bookPrice: '499,000₫',
     reviews: [
       { name: 'Ng Minh', letter: 'N', text: 'Mua trọn bộ vì thấy giá quá hời. Có đủ từ vựng, ngữ pháp, giao tiếp — học theo lộ trình rõ ràng. 2 tháng mình đã thi đỗ HSK2!', date: '5 - 6' },
       { name: 'Tr Hương', letter: 'T', text: 'Làm ở công ty Trung Quốc, mình tự học theo combo và tiếng Trung đã cải thiện rõ rệt. Giao tiếp được cơ bản trong công việc rồi.', date: '5 - 3' },
@@ -46,7 +46,7 @@ const PRODUCTS = {
   'cau-truc': {
     title: 'CẤU TRÚC VÀ LUYỆN DỊCH TIẾNG TRUNG',
     desc: 'Tổng hợp 34 cấu trúc ngữ pháp HSK1-HSK3 + bài luyện dịch 2 chiều Trung ↔ Việt kèm đáp án.',
-    priceSale: '69,000₫', priceOld: '150,000₫', discount: 'Tiết kiệm 54%',
+    priceSale: 'Từ 69,000₫', priceOld: '399,000₫', discount: 'Tiết kiệm 54%',
     sold: 'Đã bán 1.8K+', headerTitle: 'Cấu trúc + Luyện dịch',
     videoId: 'fBMha7GPcmY',
     slides: ['/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png', '/ảnh slider/6.webp', '/ảnh slider/7.webp', '/ảnh slider/8.webp'],
@@ -58,10 +58,15 @@ const PRODUCTS = {
       'Xem trên điện thoại hoặc in ra sách'
     ],
     pkgKey: 'cautruc',
+    tiers: [
+      { id: 'pdf', name: 'Gói PDF', amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', features: ['File PDF cấu trúc + luyện dịch', 'Xem trên điện thoại hoặc in ra'] },
+      { id: 'bundle', name: 'Gói PDF + Video', amount: 199000, label: '199K', content: 'tai lieu cau truc video', features: ['File PDF cấu trúc + luyện dịch', 'Video bài giảng hướng dẫn chi tiết', 'Cập nhật miễn phí khi có video mới'] }
+    ],
     file: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1' },
-    book: null, // TẠM DỪNG BÁN IN SẴN — chỉ bán file
+    pdf: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', isFile: true },
+    bundle: { amount: 199000, label: '199K', content: 'tai lieu cau truc video', isFile: true },
+    book: null,
     bookPrice: '189,000₫',
-    // book: { amount: 189000, label: '189K', content: 'sach giay tieng trung 1' },
     reviews: [
       { name: 'T Minh', letter: 'T', text: 'Mình yếu phần ngữ pháp, học mãi không nhớ gì. Mua bộ này về tự học theo cấu trúc, 2 tuần đã đặt câu được. Trình bày rõ ràng, dễ hiểu cực kỳ!', date: '5 - 8' },
       { name: 'H Anh', letter: 'H', text: 'Đang học năm 2 chuyên ngành tiếng Trung mà vẫn thấy hữu ích. Phần luyện dịch 2 chiều quá hay, giúp mình phản xạ nhanh hơn nhiều.', date: '5 - 5' },
@@ -233,6 +238,198 @@ P.features.forEach(f => {
   fl.appendChild(li);
 });
 
+// ============ PAIN POINT SALES COPY ============
+const PAIN_POINTS = {
+  'cau-truc': {
+    hook: '😓 Biết nhiều từ vựng nhưng vẫn không biết ghép và dịch câu tiếng Trung?',
+    problem: [
+      'Đây là tình trạng <strong>rất nhiều người mới học</strong> gặp phải. Không phải cứ học thật nhiều từ là có thể sử dụng tiếng Trung — bạn cần nắm được <strong>cấu trúc câu</strong> và cách vận dụng.',
+      '❌ Học nhiều từ vựng nhưng không biết ghép thành câu hoàn chỉnh',
+      '❌ Muốn nói nhưng cứ bị <strong>nói ngược</strong>, người bản xứ không hiểu',
+      '❌ Đọc câu tiếng Trung thì hiểu, nhưng tự dịch ngược lại thì... bí',
+      '❌ Học ngữ pháp lý thuyết nhiều nhưng <strong>không biết áp dụng</strong> vào thực tế'
+    ],
+    transition: '👉 Vấn đề không phải bạn kém — mà là bạn <strong>chưa có hệ thống luyện tập đúng cách</strong>.',
+    solution: {
+      title: '✅ Bộ tài liệu này giải quyết điều đó như thế nào?',
+      points: [
+        '<strong>34 cấu trúc ngữ pháp</strong> từ HSK1 đến HSK3 — đủ để giao tiếp và đặt câu tự tin',
+        'Mỗi cấu trúc đều có <strong>công thức + giải thích + ví dụ thực tế + lưu ý</strong> dễ hiểu',
+        'Phần <strong>luyện dịch 2 chiều</strong> (Trung → Việt và Việt → Trung) ép bạn phải tư duy — không học vẹt',
+        'Có <strong>đáp án đi kèm</strong> cuối file để tự kiểm tra ngay, không cần thầy cô'
+      ]
+    },
+    testimonial: {
+      text: '"Mình yếu ngữ pháp lắm, học mãi không nhớ gì. Mua bộ này về tự học theo cấu trúc, 2 tuần đã đặt câu được!"',
+      name: 'T. Minh — Học viên đã mua'
+    },
+    stats: { students: '1,800+', rating: '4.9/5', refund: '0%' },
+    cta: 'Đừng để mình mãi ở mức "biết từ nhưng không ghép được câu". Bắt đầu luyện cấu trúc ngay hôm nay!'
+  },
+  '1200-cau': {
+    hook: '😰 Học tiếng Trung lâu rồi nhưng mở miệng nói vẫn không ra câu?',
+    problem: [
+      'Rất nhiều người học <strong>ngữ pháp, từ vựng rất chăm</strong> — nhưng khi cần giao tiếp thật thì lại... đứng hình.',
+      '❌ Muốn nói nhưng phải dịch từng từ trong đầu, nói không kịp',
+      '❌ Không biết nói gì trong các tình huống thực tế: xin việc, hỏi đường, mua hàng...',
+      '❌ Ngại mở miệng vì sợ sai, sợ phát âm không chuẩn'
+    ],
+    transition: '👉 Bạn không cần học thêm ngữ pháp phức tạp — bạn cần <strong>một kho câu mẫu thực tế</strong> để bắt chước và nói ngay.',
+    solution: {
+      title: '✅ 1200 câu giao tiếp giúp bạn như thế nào?',
+      points: [
+        '<strong>1200 câu giao tiếp</strong> chia theo 100+ chủ đề thực tế, cần gì tra đó',
+        'Câu ngắn gọn, <strong>có âm bồi</strong> đi kèm — đọc được ngay không cần biết Pinyin',
+        'Kèm <strong>video hướng dẫn phát âm</strong> — nghe và nhại theo, chuẩn từ thanh điệu',
+        'Không cần học ngữ pháp — chỉ cần <strong>học thuộc câu mẫu và nói</strong>'
+      ]
+    },
+    testimonial: {
+      text: '"Đi công tác Trung Quốc, mình chỉ học theo 1200 câu này thôi mà giao tiếp ổn lắm. Câu ngắn gọn, dễ nhớ!"',
+      name: 'V. Hải — Học viên đã mua'
+    },
+    stats: { students: '2,300+', rating: '4.9/5', refund: '0%' },
+    cta: 'Đừng chờ "giỏi rồi mới nói" — hãy nói ngay từ hôm nay với 1200 câu mẫu sẵn!'
+  },
+  'tu-vung': {
+    hook: '📖 Học từ vựng rời rạc, hôm sau quên sạch?',
+    problem: [
+      'Tra Google, ghi chép lung tung — hôm sau mở ra <strong>không nhớ gì</strong>. Bạn không phải người duy nhất!',
+      '❌ Học từ vựng nhưng không biết cách dùng trong câu thực tế',
+      '❌ Không biết mình đang ở cấp nào, nên học từ gì trước',
+      '❌ Muốn ôn thi HSK nhưng không có tài liệu chia theo cấp độ rõ ràng'
+    ],
+    transition: '👉 Bạn cần một <strong>nguồn từ vựng có hệ thống</strong>, chia theo cấp độ, kèm ví dụ thực tế.',
+    solution: {
+      title: '✅ File từ vựng HSK1-6 giúp bạn như thế nào?',
+      points: [
+        'Full từ vựng <strong>HSK1 đến HSK6</strong>, chia rõ từng cấp — biết mình đang ở đâu',
+        'Mỗi từ có <strong>Pinyin + ví dụ câu thực tế</strong> — hiểu cách dùng, không chỉ biết nghĩa',
+        'Tra cứu <strong>cực nhanh trên điện thoại</strong> — rảnh lúc nào mở ra học lúc đó',
+        'Hỗ trợ ôn thi HSK — <strong>đúng danh mục từ vựng chuẩn</strong>'
+      ]
+    },
+    testimonial: {
+      text: '"Giá 39K mà được từ HSK1 đến HSK6 luôn thì quá rẻ. Mình lưu trên điện thoại, rảnh lúc nào mở ra học!"',
+      name: 'L. Quân — Học viên đã mua'
+    },
+    stats: { students: '1,500+', rating: '4.9/5', refund: '0%' },
+    cta: 'Sở hữu trọn bộ từ vựng HSK1-6 với giá chỉ bằng một ly trà sữa!'
+  },
+  'luyen-go': {
+    hook: '⌨️ Nhìn chữ Hán thì hiểu, nhưng bảo gõ lại thì... trống rỗng?',
+    problem: [
+      'Đây là lỗ hổng <strong>cực kỳ phổ biến</strong> — bạn nhận diện được chữ nhưng không nhớ Pinyin để gõ.',
+      '❌ Nhìn chữ thì biết nghĩa, nhưng bảo gõ lại thì không nhớ phiên âm',
+      '❌ Chat tiếng Trung phải copy-paste, không tự gõ được',
+      '❌ Quên mặt chữ liên tục vì chỉ học bằng mắt, không luyện tay'
+    ],
+    transition: '👉 Bí quyết nhớ lâu là <strong>vừa nhìn, vừa gõ, vừa ôn</strong> — cùng lúc.',
+    solution: {
+      title: '✅ File luyện gõ Hán tự giúp bạn như thế nào?',
+      points: [
+        'Gõ Pinyin trực tiếp — <strong>đúng hiện xanh, sai hiện đỏ</strong> ngay lập tức',
+        'Chia theo <strong>cấp HSK</strong> — học đúng trình độ, không bị quá tải',
+        'Vừa gõ vừa ôn — <strong>nhớ cả mặt chữ lẫn phiên âm</strong>, gấp 3 lần đọc thông thường',
+        'Luyện trên <strong>máy tính hoặc điện thoại</strong> đều được'
+      ]
+    },
+    testimonial: {
+      text: '"Tính năng check tự động hay lắm — gõ đúng hiện xanh, sai hiện đỏ. Như chơi game vậy, không nhàm chán!"',
+      name: 'T. Đức — Học viên đã mua'
+    },
+    stats: { students: '980+', rating: '4.9/5', refund: '0%' },
+    cta: 'Đừng chỉ học bằng mắt — hãy luyện gõ để nhớ chữ Hán thật sự!'
+  },
+  '60-bo-thu': {
+    hook: '🀄 Chữ Hán nhìn như "vẽ bừa", học mãi không nhớ nổi?',
+    problem: [
+      'Nhiều người <strong>sợ chữ Hán</strong> vì thấy quá phức tạp. Nhưng thực ra, chữ Hán có logic — nếu bạn biết <strong>bộ thủ</strong>.',
+      '❌ Nhìn chữ Hán như tranh vẽ, không biết bắt đầu từ đâu',
+      '❌ Học thuộc lòng mặt chữ nhưng hôm sau quên sạch',
+      '❌ Không phân biệt được các chữ Hán giống nhau'
+    ],
+    transition: '👉 Bộ thủ chính là <strong>"bảng chữ cái" của chữ Hán</strong> — hiểu bộ thủ, bạn sẽ nhớ chữ nhanh gấp mấy lần.',
+    solution: {
+      title: '✅ 60 bộ thủ giúp bạn như thế nào?',
+      points: [
+        '<strong>60 bộ thủ thường gặp nhất</strong> — gốc rễ cấu thành đa số chữ Hán',
+        'Giải thích <strong>ý nghĩa từng bộ thủ</strong> rõ ràng, dễ hiểu',
+        'Nhìn chữ mới <strong>đoán được nghĩa</strong> nhờ hiểu bộ thủ bên trong',
+        'Nền tảng <strong>vững chắc cho HSK3 trở lên</strong>'
+      ]
+    },
+    testimonial: {
+      text: '"Học bộ thủ xong mới hiểu tại sao chữ Hán viết như vậy. Nhìn chữ mới đoán được nghĩa luôn!"',
+      name: 'P. Mai — Học viên đã mua'
+    },
+    stats: { students: '1,200+', rating: '4.9/5', refund: '0%' },
+    cta: 'Hiểu bộ thủ = hiểu gốc rễ chữ Hán. Bắt đầu ngay hôm nay!'
+  },
+  'tron-bo': {
+    hook: '🤔 Muốn tự học tiếng Trung nhưng không biết bắt đầu từ đâu?',
+    problem: [
+      'Internet thì tràn ngập tài liệu, nhưng <strong>mỗi nơi dạy một kiểu</strong> — bạn học mãi vẫn không có hệ thống.',
+      '❌ Tự tìm tài liệu online nhưng rời rạc, không có lộ trình',
+      '❌ Học được từ vựng nhưng không biết ngữ pháp, ghép câu sai',
+      '❌ Muốn giao tiếp nhưng không biết bắt đầu từ đâu',
+      '❌ Mua lẻ từng phần thì tốn kém, chưa chắc đủ bộ'
+    ],
+    transition: '👉 Bạn cần <strong>một hệ thống tài liệu trọn bộ</strong> — từ nền tảng đến giao tiếp, có lộ trình rõ ràng.',
+    solution: {
+      title: '✅ Combo Full 6 trong 1 giải quyết tất cả!',
+      points: [
+        '<strong>Cấu trúc + Luyện dịch</strong> — nắm vững ngữ pháp, đặt câu đúng',
+        '<strong>Từ vựng HSK1-6</strong> — kho từ vựng đầy đủ theo cấp độ',
+        '<strong>1200 câu giao tiếp + Video</strong> — nói tự tin ngay lập tức',
+        '<strong>Luyện gõ Hán tự + 60 bộ thủ</strong> — nhớ chữ nhanh, gõ chuẩn',
+        '🎁 <strong>TẶNG KÈM</strong> video phát âm + nhóm hỗ trợ học tập'
+      ]
+    },
+    testimonial: {
+      text: '"Mua trọn bộ vì thấy giá quá hời. 2 tháng mình đã thi đỗ HSK2!"',
+      name: 'N. Minh — Học viên đã mua'
+    },
+    stats: { students: '3,100+', rating: '4.9/5', refund: '0%' },
+    cta: 'Tiết kiệm 56% so với mua lẻ — sở hữu trọn bộ hệ thống ngay hôm nay!'
+  }
+};
+
+// Render pain point section
+const painData = PAIN_POINTS[slug];
+if (painData) {
+  const ppSection = document.getElementById('painPointSection');
+  ppSection.style.display = 'block';
+
+  let problemHtml = painData.problem.map((p, i) => {
+    if (i === 0) return '<p class="pp-intro">' + p + '</p>';
+    return '<div class="pp-pain-item">' + p + '</div>';
+  }).join('');
+
+  let solutionHtml = painData.solution.points.map(p =>
+    '<li><i class="fas fa-check-circle"></i>' + p + '</li>'
+  ).join('');
+
+  ppSection.innerHTML =
+    '<div class="pp-hook">' + painData.hook + '</div>' +
+    '<div class="pp-problem-block">' + problemHtml + '</div>' +
+    '<div class="pp-transition">' + painData.transition + '</div>' +
+    '<div class="pp-solution-block">' +
+      '<h4>' + painData.solution.title + '</h4>' +
+      '<ul>' + solutionHtml + '</ul>' +
+    '</div>' +
+    '<div class="pp-testimonial">' +
+      '<div class="pp-quote">' + painData.testimonial.text + '</div>' +
+      '<div class="pp-author">— ' + painData.testimonial.name + '</div>' +
+    '</div>' +
+    '<div class="pp-stats">' +
+      '<div class="pp-stat"><i class="fas fa-users"></i><span>' + painData.stats.students + '</span><small>học viên</small></div>' +
+      '<div class="pp-stat"><i class="fas fa-star"></i><span>' + painData.stats.rating + '</span><small>đánh giá</small></div>' +
+      '<div class="pp-stat"><i class="fas fa-rotate-left"></i><span>' + painData.stats.refund + '</span><small>hoàn trả</small></div>' +
+    '</div>' +
+    '<div class="pp-cta-text">🔥 ' + painData.cta + '</div>';
+}
+
 // Delivery Compare
 const dc = document.getElementById('deliveryCompare');
 const filePrice = P.file.amount.toLocaleString('vi-VN');
@@ -360,7 +557,7 @@ const COVER_IMAGES = {
 if (slug !== 'tron-bo') {
   const combo = PRODUCTS['tron-bo'];
   const currentPrice = P.file.amount;
-  const saveAmount = 126000; // Hardcoded based on maximum package values (325k total - 199k combo)
+  const saveAmount = 195000; // Tổng lẻ ~524k (bao gồm video 199k) - combo 329k = tiết kiệm 195k
   const banner = document.getElementById('upsellBanner');
   banner.style.display = 'block';
   banner.innerHTML = '<div class="upsell-inner">' +
@@ -447,7 +644,25 @@ function openModal() {
   showStep('step1');
 
   const variantRow = document.getElementById('variantType');
-  if (P.packages) {
+  if (P.tiers) {
+    // Sản phẩm có tier (VD: cau-truc với gói PDF vs PDF+Video)
+    document.querySelector('.variant-label').innerHTML = '<i class="fas fa-box"></i> Chọn gói sản phẩm';
+    let html = '';
+    P.tiers.forEach((tier, idx) => {
+      const isRecommended = idx === P.tiers.length - 1;
+      html += '<button class="variant-btn tier-btn ' + (isRecommended ? 'active tier-recommended' : '') + '" data-type="' + tier.id + '" onclick="selectType(\'' + tier.id + '\')" style="flex-direction:column;gap:6px;padding:14px 10px;height:auto;position:relative;">' +
+        (isRecommended ? '<span class="tier-hot-badge">🔥 Được chọn nhiều</span>' : '') +
+        '<span class="variant-btn-text" style="font-size:13px;font-weight:700;white-space:normal;line-height:1.3;text-align:center;">' + tier.name + '</span>' +
+        '<span class="variant-btn-sub" style="font-size:15px;font-weight:900;color:' + (isRecommended ? '#ee4d2d' : '#333') + ';">' + tier.amount.toLocaleString('vi-VN') + '₫</span>' +
+        '<ul class="tier-features">' + tier.features.map(f => '<li>✓ ' + f + '</li>').join('') + '</ul>' +
+        '</button>';
+    });
+    variantRow.innerHTML = html;
+    variantRow.style.display = 'grid';
+    variantRow.style.gridTemplateColumns = '1fr 1fr';
+    variantRow.style.gap = '10px';
+    currentType = P.tiers[P.tiers.length - 1].id; // Mặc định chọn gói cao nhất
+  } else if (P.packages) {
     document.querySelector('.variant-label').innerHTML = '<i class="fas fa-box"></i> Chọn gói sản phẩm';
     let html = '';
     P.packages.forEach((pkg, idx) => {
@@ -462,7 +677,6 @@ function openModal() {
     variantRow.style.gap = '8px';
     currentType = P.packages[0].id;
   } else {
-    // Hiện cả 2 nút nhưng book bị disabled (hết hàng)
     currentType = 'file';
     const bookBtn = document.getElementById('bookTypeBtn');
     if (bookBtn) {
@@ -497,7 +711,9 @@ function updateVariantSummary() {
   if (!pricing) { currentType = 'file'; selectType('file'); return; }
 
   let typeLabel = '';
-  if (P.packages) {
+  if (P.tiers) {
+    typeLabel = P.tiers.find(t => t.id === currentType)?.name || '';
+  } else if (P.packages) {
     typeLabel = P.packages.find(p => p.id === currentType)?.name || '';
   } else {
     typeLabel = currentType === 'file' ? 'File số' : 'Tài liệu in sẵn';
@@ -512,7 +728,9 @@ function confirmVariant() {
   const pricing = P[currentType];
 
   let typeLabel = '';
-  if (P.packages) {
+  if (P.tiers) {
+    typeLabel = ' (' + (P.tiers.find(t => t.id === currentType)?.name || '') + ')';
+  } else if (P.packages) {
     typeLabel = ' (' + (P.packages.find(p => p.id === currentType)?.name || '') + ')';
   } else {
     typeLabel = currentType === 'file' ? '' : ' (Tài liệu in sẵn)';

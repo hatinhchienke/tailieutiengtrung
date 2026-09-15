@@ -13,6 +13,11 @@ const PACKAGE_DATA = {
     password: 'CT83MAX',
     id: 'cautruc'
   },
+  'Cấu trúc + Luyện dịch (Gói PDF + Video) - 199K': {
+    url: 'https://drive.google.com/file/d/1eNiTZ1j36TuMQDrBTryuxAIRGotMgR83/view?usp=sharing',
+    password: 'CT199VIP',
+    id: 'cautruc'
+  },
   'Từ vựng HSK1-HSK6 - 39K': {
     url: 'https://drive.google.com/file/d/1S13u0EaEyceN0hbQlPFoB2YM2Rc9djs1/view?usp=sharing',
     password: 'TV55TOP',
@@ -43,9 +48,16 @@ const PACKAGE_DATA = {
     password: 'BT76HOT',
     id: 'bothu'
   },
+  // Khách cũ (đã mua 199k) — giữ nguyên docs cũ
   'Full trọn bộ - 199K': {
     url: 'https://docs.google.com/document/d/1HhkbkAGhl_C5NRRu-Xj0ZSQJmeVhMFcGAEH76iROa60/edit?usp=sharing',
     password: 'DIEM99VIP',
+    id: 'full'
+  },
+  // Khách mới (329k) — docs mới có link video
+  'Combo 6 trong 1 - 329K': {
+    url: 'https://docs.google.com/document/d/1chUDezIQnMdP2-OAZuvLy2n-9lrFepIF-FNuCirVFLk/edit?usp=sharing',
+    password: 'DIEM329MAX',
     id: 'full'
   }
 };

@@ -3446,3 +3446,323 @@ img {
   background: linear-gradient(to right, transparent, #ddd, transparent);
   margin: 16px 0;
 }
+
+/* ============ PAIN POINT SALES SECTION ============ */
+.pain-point-section {
+  background: #fff;
+  margin-top: 8px;
+  padding: 24px 16px;
+}
+
+.pp-hook {
+  font-size: 18px;
+  font-weight: 800;
+  color: #c62828;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, #fff5f5, #ffebee);
+  border-radius: 12px;
+  border-left: 4px solid #ee4d2d;
+}
+
+.pp-problem-block {
+  margin-bottom: 16px;
+}
+
+.pp-intro {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.pp-pain-item {
+  font-size: 13.5px;
+  color: #555;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  background: #fafafa;
+  border-radius: 8px;
+  border-left: 3px solid #ef5350;
+  line-height: 1.6;
+}
+
+.pp-pain-item strong {
+  color: #c62828;
+}
+
+.pp-transition {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.7;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #fff8e1, #fff3e0);
+  border-radius: 12px;
+  border-left: 4px solid #ffa726;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.pp-solution-block {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  border-radius: 14px;
+  padding: 18px 16px;
+  margin-bottom: 16px;
+  border: 1px solid #c8e6c9;
+}
+
+.pp-solution-block h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 12px;
+}
+
+.pp-solution-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pp-solution-block li {
+  font-size: 13.5px;
+  color: #333;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(46, 125, 50, 0.1);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.6;
+}
+
+.pp-solution-block li:last-child {
+  border-bottom: none;
+}
+
+.pp-solution-block li i {
+  color: #43a047;
+  font-size: 13px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.pp-testimonial {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #eee;
+  position: relative;
+}
+
+.pp-testimonial::before {
+  content: '"';
+  position: absolute;
+  top: 6px;
+  left: 12px;
+  font-size: 48px;
+  color: #ee4d2d;
+  opacity: 0.15;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+.pp-quote {
+  font-size: 13.5px;
+  color: #444;
+  line-height: 1.7;
+  font-style: italic;
+  padding-left: 4px;
+}
+
+.pp-author {
+  font-size: 12px;
+  color: #888;
+  margin-top: 8px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.pp-stats {
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(135deg, #1a237e, #283593);
+  border-radius: 12px;
+  padding: 16px 8px;
+  margin-bottom: 16px;
+}
+
+.pp-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: #fff;
+}
+
+.pp-stat i {
+  font-size: 16px;
+  margin-bottom: 4px;
+  opacity: 0.8;
+}
+
+.pp-stat span {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.pp-stat small {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.pp-cta-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: #c62828;
+  text-align: center;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #fff5f5, #ffebee);
+  border-radius: 12px;
+  border: 1.5px dashed #ef5350;
+  line-height: 1.6;
+  animation: ppPulse 2s ease-in-out infinite;
+}
+
+@keyframes ppPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+}
+
+/* ===== VIDEO SECTION — TAILIEU HUB ===== */
+.video-section {
+  margin: 16px 0 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.video-section-header {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  padding: 12px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.video-section-header i {
+  color: #ee4d2d;
+  font-size: 16px;
+}
+
+/* Video Unlocked */
+.video-unlocked .download-btn.video-btn {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+.video-unlocked .download-btn.video-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255,0,0,0.3);
+}
+
+/* Video Locked */
+.video-lock-box {
+  background: linear-gradient(135deg, #f8f9fa, #eef1f5);
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  margin-top: 8px;
+}
+.video-lock-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ee4d2d, #ff6633);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 20px;
+}
+.video-lock-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 6px;
+}
+.video-lock-price {
+  font-size: 15px;
+  color: #ee4d2d;
+  margin-bottom: 14px;
+}
+.video-lock-price strong {
+  font-size: 18px;
+  font-weight: 900;
+}
+.video-pw-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.video-pw-row .pw-input {
+  flex: 1;
+}
+.video-pw-row .pw-submit {
+  white-space: nowrap;
+}
+
+/* ===== TIER SELECTOR — PRODUCT MODAL ===== */
+.tier-btn {
+  border: 2px solid #e0e0e0 !important;
+  border-radius: 12px !important;
+  transition: all 0.25s ease;
+  background: #fff !important;
+}
+.tier-btn.active {
+  border-color: #ee4d2d !important;
+  background: linear-gradient(135deg, #fff5f0, #fff) !important;
+  box-shadow: 0 3px 12px rgba(238, 77, 45, 0.15);
+}
+.tier-recommended {
+  position: relative;
+}
+.tier-hot-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ee4d2d, #ff6633);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  z-index: 1;
+}
+.tier-features {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  text-align: left;
+}
+.tier-features li {
+  font-size: 11px;
+  color: #666;
+  padding: 2px 0;
+  line-height: 1.4;
+}
