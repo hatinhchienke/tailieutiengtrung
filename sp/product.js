@@ -253,10 +253,10 @@ const PAIN_POINTS = {
     solution: {
       title: '✅ Bộ tài liệu này giải quyết điều đó như thế nào?',
       points: [
-        '<strong>34 cấu trúc ngữ pháp</strong> từ HSK1 đến HSK3 — đủ để giao tiếp và đặt câu tự tin',
-        'Mỗi cấu trúc đều có <strong>công thức + giải thích + ví dụ thực tế + lưu ý</strong> dễ hiểu',
-        'Phần <strong>luyện dịch 2 chiều</strong> (Trung → Việt và Việt → Trung) ép bạn phải tư duy — không học vẹt',
-        'Có <strong>đáp án đi kèm</strong> cuối file để tự kiểm tra ngay, không cần thầy cô'
+        '<strong>34 cấu trúc ngữ pháp trọng điểm</strong> từ HSK1 đến HSK3 — đủ để giao tiếp và tự tin đặt câu chuẩn',
+        'Mỗi cấu trúc gồm đầy đủ <strong>công thức, giải thích, ví dụ thực tế và lưu ý</strong> chi tiết, dễ hiểu',
+        'Phần <strong>luyện dịch 2 chiều</strong> (Trung → Việt và Việt → Trung) giúp rèn tư duy phản xạ — không học vẹt',
+        'Có <strong>đáp án chi tiết đi kèm</strong> ở cuối để bạn tự kiểm tra và sửa lỗi ngay, không cần thầy cô'
       ]
     },
     testimonial: {
@@ -407,7 +407,7 @@ if (painData) {
   }).join('');
 
   let solutionHtml = painData.solution.points.map(p =>
-    '<li><i class="fas fa-check-circle"></i>' + p + '</li>'
+    '<li><i class="fas fa-check-circle"></i><span>' + p + '</span></li>'
   ).join('');
 
   ppSection.innerHTML =

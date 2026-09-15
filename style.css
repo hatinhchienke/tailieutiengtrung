@@ -3528,11 +3528,11 @@ img {
 .pp-solution-block li {
   font-size: 13.5px;
   color: #333;
-  padding: 7px 0;
-  border-bottom: 1px solid rgba(46, 125, 50, 0.1);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(46, 125, 50, 0.12);
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
   line-height: 1.6;
 }
 
@@ -3541,10 +3541,18 @@ img {
 }
 
 .pp-solution-block li i {
-  color: #43a047;
-  font-size: 13px;
+  color: #2e7d32;
+  font-size: 15px;
   margin-top: 3px;
   flex-shrink: 0;
+}
+
+.pp-solution-block li span {
+  flex: 1;
+}
+
+.pp-solution-block li strong {
+  color: #1b5e20;
 }
 
 .pp-testimonial {
