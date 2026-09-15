@@ -3784,11 +3784,16 @@ img {
 }
 
 /* ===== TIER SELECTOR — PRODUCT MODAL ===== */
+#variantType:has(.tier-btn) {
+  overflow: visible !important;
+  margin-top: 14px;
+}
 .tier-btn {
   border: 2px solid #e0e0e0 !important;
   border-radius: 12px !important;
   transition: all 0.25s ease;
   background: #fff !important;
+  overflow: visible !important;
 }
 .tier-btn.active {
   border-color: #ee4d2d !important;
@@ -3797,10 +3802,11 @@ img {
 }
 .tier-recommended {
   position: relative;
+  overflow: visible !important;
 }
 .tier-hot-badge {
   position: absolute;
-  top: -10px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(135deg, #ee4d2d, #ff6633);
@@ -3810,7 +3816,7 @@ img {
   padding: 3px 10px;
   border-radius: 20px;
   white-space: nowrap;
-  z-index: 1;
+  z-index: 10;
 }
 .tier-features {
   list-style: none;
