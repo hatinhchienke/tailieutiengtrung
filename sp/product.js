@@ -415,17 +415,17 @@ if (painData) {
     '<div class="pp-problem-block">' + problemHtml + '</div>' +
     '<div class="pp-transition">' + painData.transition + '</div>' +
     '<div class="pp-solution-block">' +
-      '<h4>' + painData.solution.title + '</h4>' +
-      '<ul>' + solutionHtml + '</ul>' +
+    '<h4>' + painData.solution.title + '</h4>' +
+    '<ul>' + solutionHtml + '</ul>' +
     '</div>' +
     '<div class="pp-testimonial">' +
-      '<div class="pp-quote">' + painData.testimonial.text + '</div>' +
-      '<div class="pp-author">— ' + painData.testimonial.name + '</div>' +
+    '<div class="pp-quote">' + painData.testimonial.text + '</div>' +
+    '<div class="pp-author">— ' + painData.testimonial.name + '</div>' +
     '</div>' +
     '<div class="pp-stats">' +
-      '<div class="pp-stat"><i class="fas fa-users"></i><span>' + painData.stats.students + '</span><small>học viên</small></div>' +
-      '<div class="pp-stat"><i class="fas fa-star"></i><span>' + painData.stats.rating + '</span><small>đánh giá</small></div>' +
-      '<div class="pp-stat"><i class="fas fa-rotate-left"></i><span>' + painData.stats.refund + '</span><small>hoàn trả</small></div>' +
+    '<div class="pp-stat"><i class="fas fa-users"></i><span>' + painData.stats.students + '</span><small>học viên</small></div>' +
+    '<div class="pp-stat"><i class="fas fa-star"></i><span>' + painData.stats.rating + '</span><small>đánh giá</small></div>' +
+    '<div class="pp-stat"><i class="fas fa-rotate-left"></i><span>' + painData.stats.refund + '</span><small>hoàn trả</small></div>' +
     '</div>' +
     '<div class="pp-cta-text">🔥 ' + painData.cta + '</div>';
 }
@@ -459,24 +459,24 @@ if (P.tiers && P.tiers.length > 1) {
   vipSection.style.display = 'block';
   vipSection.innerHTML =
     '<div class="vip-promo-inner">' +
-      '<div class="vip-promo-badge">👑 GÓI VIP</div>' +
-      '<h4 class="vip-promo-title"><i class="fas fa-play-circle"></i> Nâng cấp lên Gói VIP — Có Video Bài Giảng</h4>' +
-      '<p class="vip-promo-desc">Không chỉ đọc tài liệu — bạn sẽ được <strong>xem cô Hoàng Diễm giảng từng bài qua video</strong>. Hiểu sâu hơn, nhớ lâu hơn, học nhanh hơn gấp nhiều lần!</p>' +
-      '<div class="vip-promo-benefits">' +
-        '<div class="vip-benefit"><i class="fas fa-video"></i><div><strong>Video bài giảng chi tiết</strong><span>Cô giảng từng cấu trúc, giải thích rõ ràng</span></div></div>' +
-        '<div class="vip-benefit"><i class="fas fa-brain"></i><div><strong>Hiểu sâu, nhớ lâu</strong><span>Nghe + nhìn + đọc = ghi nhớ gấp 3 lần</span></div></div>' +
-        '<div class="vip-benefit"><i class="fas fa-sync-alt"></i><div><strong>Cập nhật miễn phí</strong><span>Video mới được bổ sung liên tục</span></div></div>' +
-        '<div class="vip-benefit"><i class="fas fa-file-pdf"></i><div><strong>Bao gồm Gói Thường</strong><span>Đã có đầy đủ file PDF + luyện dịch</span></div></div>' +
-      '</div>' +
-      '<div class="vip-promo-price">' +
-        '<div class="vip-price-compare">' +
-          '<span class="vip-price-basic"><i class="fas fa-tag"></i> Gói Thường: ' + basicTier.amount.toLocaleString('vi-VN') + '₫</span>' +
-          '<span class="vip-price-arrow"><i class="fas fa-arrow-right"></i></span>' +
-          '<span class="vip-price-vip"><i class="fas fa-crown"></i> Gói VIP: <strong>' + vipTier.amount.toLocaleString('vi-VN') + '₫</strong></span>' +
-        '</div>' +
-        '<p class="vip-price-diff">Chỉ thêm <strong>' + priceDiff.toLocaleString('vi-VN') + '₫</strong> để có video bài giảng!</p>' +
-      '</div>' +
-      '<button class="vip-promo-cta" onclick="openModal()"><i class="fas fa-crown"></i> MUA GÓI VIP NGAY</button>' +
+    '<div class="vip-promo-badge">👑 GÓI VIP</div>' +
+    '<h4 class="vip-promo-title"><i class="fas fa-play-circle"></i> Nâng cấp lên Gói VIP — Có Video Bài Giảng</h4>' +
+    '<p class="vip-promo-desc">Không chỉ đọc tài liệu — bạn sẽ được <strong>xem 40 video tương ứng với 40 bài trong tài liệu</strong>. Hiểu sâu hơn, nhớ lâu hơn, học nhanh hơn gấp nhiều lần!</p>' +
+    '<div class="vip-promo-benefits">' +
+    '<div class="vip-benefit"><i class="fas fa-video"></i><div><strong>Video bài giảng chi tiết</strong><span>Bài giảng từng cấu trúc, giải thích rõ ràng</span></div></div>' +
+    '<div class="vip-benefit"><i class="fas fa-brain"></i><div><strong>Hiểu sâu, nhớ lâu</strong><span>Nghe + nhìn + đọc = ghi nhớ gấp 3 lần</span></div></div>' +
+    '<div class="vip-benefit"><i class="fas fa-sync-alt"></i><div><strong>Cập nhật miễn phí</strong><span>Cập nhật miễn phí khi có video mới</span></div></div>' +
+    '<div class="vip-benefit"><i class="fas fa-file-pdf"></i><div><strong>Bao gồm Gói Thường</strong><span>Đã có đầy đủ file PDF + luyện dịch</span></div></div>' +
+    '</div>' +
+    '<div class="vip-promo-price">' +
+    '<div class="vip-price-compare">' +
+    '<span class="vip-price-basic"><i class="fas fa-tag"></i> Gói Thường: ' + basicTier.amount.toLocaleString('vi-VN') + '₫</span>' +
+    '<span class="vip-price-arrow"><i class="fas fa-arrow-right"></i></span>' +
+    '<span class="vip-price-vip"><i class="fas fa-crown"></i> Gói VIP: <strong>' + vipTier.amount.toLocaleString('vi-VN') + '₫</strong></span>' +
+    '</div>' +
+    '<p class="vip-price-diff">Chỉ thêm <strong>' + priceDiff.toLocaleString('vi-VN') + '₫</strong> để có video bài giảng!</p>' +
+    '</div>' +
+    '<button class="vip-promo-cta" onclick="openModal()"><i class="fas fa-crown"></i> MUA GÓI VIP NGAY</button>' +
     '</div>';
 }
 
@@ -1014,13 +1014,13 @@ setTimeout(() => {
 
 // Pause toasts when modal is open
 const _origOpenModal = openModal;
-openModal = function() {
+openModal = function () {
   toastPaused = true;
   closeToast();
   _origOpenModal();
 };
 const _origCloseModal = closeModal;
-closeModal = function() {
+closeModal = function () {
   toastPaused = false;
   _origCloseModal();
 };
