@@ -3826,6 +3826,16 @@ img {
   white-space: nowrap;
   z-index: 10;
 }
+/* Glow effect on recommended tier when NOT selected */
+.tier-recommended:not(.active) {
+  border: 2px dashed #ee4d2d;
+  background: #fff8f6;
+  animation: tier-glow 2s ease-in-out infinite;
+}
+@keyframes tier-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(238,77,45,0.15); }
+  50% { box-shadow: 0 0 12px 3px rgba(238,77,45,0.2); }
+}
 .tier-features {
   list-style: none;
   padding: 0;
@@ -3837,4 +3847,163 @@ img {
   color: #666;
   padding: 2px 0;
   line-height: 1.4;
+}
+
+/* ============ VIP PROMO SECTION ============ */
+.vip-promo-section {
+  margin: 0 12px 16px;
+}
+.vip-promo-inner {
+  background: linear-gradient(135deg, #fffbf0 0%, #fff5e6 100%);
+  border: 2px solid #f5a623;
+  border-radius: 16px;
+  padding: 24px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.vip-promo-inner::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.vip-promo-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #f5a623, #e8920d);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+.vip-promo-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #333;
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+.vip-promo-title i {
+  color: #ee4d2d;
+  margin-right: 6px;
+}
+.vip-promo-desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+.vip-promo-benefits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.vip-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #f0e6d4;
+}
+.vip-benefit > i {
+  font-size: 18px;
+  color: #f5a623;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.vip-benefit div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.vip-benefit strong {
+  font-size: 12px;
+  color: #333;
+  line-height: 1.3;
+}
+.vip-benefit span {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.3;
+}
+.vip-promo-price {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 1px solid #f0e6d4;
+  text-align: center;
+}
+.vip-price-compare {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.vip-price-basic {
+  font-size: 13px;
+  color: #999;
+}
+.vip-price-basic i { margin-right: 4px; }
+.vip-price-arrow {
+  color: #ccc;
+  font-size: 12px;
+}
+.vip-price-vip {
+  font-size: 14px;
+  color: #e8920d;
+  font-weight: 600;
+}
+.vip-price-vip i {
+  color: #f5a623;
+  margin-right: 4px;
+}
+.vip-price-vip strong {
+  font-size: 18px;
+  font-weight: 900;
+  color: #ee4d2d;
+}
+.vip-price-diff {
+  font-size: 13px;
+  color: #e8920d;
+  margin: 0;
+  font-weight: 600;
+}
+.vip-promo-cta {
+  display: block;
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #f5a623, #ee4d2d);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(238,77,45,0.3);
+  animation: vip-cta-pulse 2.5s ease-in-out infinite;
+}
+.vip-promo-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(238,77,45,0.4);
+}
+.vip-promo-cta i {
+  margin-right: 8px;
+}
+@keyframes vip-cta-pulse {
+  0%, 100% { box-shadow: 0 4px 15px rgba(238,77,45,0.3); }
+  50% { box-shadow: 0 4px 25px rgba(238,77,45,0.5); }
 }

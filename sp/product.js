@@ -59,8 +59,8 @@ const PRODUCTS = {
     ],
     pkgKey: 'cautruc',
     tiers: [
-      { id: 'pdf', name: 'Gói PDF', amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', features: ['File PDF cấu trúc + luyện dịch', 'Xem trên điện thoại hoặc in ra'] },
-      { id: 'bundle', name: 'Gói PDF + Video', amount: 199000, label: '199K', content: 'tai lieu cau truc video', features: ['File PDF cấu trúc + luyện dịch', 'Video bài giảng hướng dẫn chi tiết', 'Cập nhật miễn phí khi có video mới'] }
+      { id: 'pdf', name: 'Gói Thường', amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', features: ['File PDF cấu trúc + luyện dịch', 'Xem trên điện thoại hoặc in ra'] },
+      { id: 'bundle', name: 'Gói VIP', amount: 199000, label: '199K', content: 'tai lieu cau truc video', features: ['File PDF cấu trúc + luyện dịch', 'Video bài giảng hướng dẫn chi tiết', 'Cập nhật miễn phí khi có video mới'] }
     ],
     file: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1' },
     pdf: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', isFile: true },
@@ -447,21 +447,38 @@ let dcHTML = '<h4>📋 HÌNH THỨC NHẬN TÀI LIỆU</h4>' +
   '<li>✅ Lưu trữ vĩnh viễn, không sợ mất</li>' +
   '<li>✅ Tra cứu nhanh bằng tìm kiếm trên điện thoại</li>' +
   '</ul></div>';
-// Card bản in sẵn — hiện nhưng đánh dấu hết hàng
-if (!P.packages && P.bookPrice) {
-  dcHTML += '<div class="dc-card dc-book dc-sold-out">' +
-    '<div class="dc-soldout-badge">HẾT HÀNG</div>' +
-    '<div class="dc-icon"><i class="fas fa-book"></i></div>' +
-    '<h5>📖 Tài liệu in sẵn (in đen trắng)</h5>' +
-    '<ul>' +
-    '<li>💰 Giá: <strong>' + P.bookPrice + '</strong></li>' +
-    '<li>⛔ Tạm hết hàng</li>' +
-    '<li>📦 Giao tận nhà trong 2-4 ngày</li>' +
-    '<li>📖 Sách in đen trắng, đóng gáy xoắn</li>' +
-    '</ul></div>';
-}
 dcHTML += '</div>';
 dc.innerHTML = dcHTML;
+
+// ============ VIP VIDEO PROMO (for products with tiers) ============
+if (P.tiers && P.tiers.length > 1) {
+  const vipTier = P.tiers[P.tiers.length - 1];
+  const basicTier = P.tiers[0];
+  const priceDiff = vipTier.amount - basicTier.amount;
+  const vipSection = document.getElementById('vipPromoSection');
+  vipSection.style.display = 'block';
+  vipSection.innerHTML =
+    '<div class="vip-promo-inner">' +
+      '<div class="vip-promo-badge">👑 GÓI VIP</div>' +
+      '<h4 class="vip-promo-title"><i class="fas fa-play-circle"></i> Nâng cấp lên Gói VIP — Có Video Bài Giảng</h4>' +
+      '<p class="vip-promo-desc">Không chỉ đọc tài liệu — bạn sẽ được <strong>xem cô Hoàng Diễm giảng từng bài qua video</strong>. Hiểu sâu hơn, nhớ lâu hơn, học nhanh hơn gấp nhiều lần!</p>' +
+      '<div class="vip-promo-benefits">' +
+        '<div class="vip-benefit"><i class="fas fa-video"></i><div><strong>Video bài giảng chi tiết</strong><span>Cô giảng từng cấu trúc, giải thích rõ ràng</span></div></div>' +
+        '<div class="vip-benefit"><i class="fas fa-brain"></i><div><strong>Hiểu sâu, nhớ lâu</strong><span>Nghe + nhìn + đọc = ghi nhớ gấp 3 lần</span></div></div>' +
+        '<div class="vip-benefit"><i class="fas fa-sync-alt"></i><div><strong>Cập nhật miễn phí</strong><span>Video mới được bổ sung liên tục</span></div></div>' +
+        '<div class="vip-benefit"><i class="fas fa-file-pdf"></i><div><strong>Bao gồm Gói Thường</strong><span>Đã có đầy đủ file PDF + luyện dịch</span></div></div>' +
+      '</div>' +
+      '<div class="vip-promo-price">' +
+        '<div class="vip-price-compare">' +
+          '<span class="vip-price-basic"><i class="fas fa-tag"></i> Gói Thường: ' + basicTier.amount.toLocaleString('vi-VN') + '₫</span>' +
+          '<span class="vip-price-arrow"><i class="fas fa-arrow-right"></i></span>' +
+          '<span class="vip-price-vip"><i class="fas fa-crown"></i> Gói VIP: <strong>' + vipTier.amount.toLocaleString('vi-VN') + '₫</strong></span>' +
+        '</div>' +
+        '<p class="vip-price-diff">Chỉ thêm <strong>' + priceDiff.toLocaleString('vi-VN') + '₫</strong> để có video bài giảng!</p>' +
+      '</div>' +
+      '<button class="vip-promo-cta" onclick="openModal()"><i class="fas fa-crown"></i> MUA GÓI VIP NGAY</button>' +
+    '</div>';
+}
 
 // Reviews
 const reviewsEl = document.getElementById('reviewsSection');
@@ -649,8 +666,9 @@ function openModal() {
     document.querySelector('.variant-label').innerHTML = '<i class="fas fa-box"></i> Chọn gói sản phẩm';
     let html = '';
     P.tiers.forEach((tier, idx) => {
+      const isFirst = idx === 0;
       const isRecommended = idx === P.tiers.length - 1;
-      html += '<button class="variant-btn tier-btn ' + (isRecommended ? 'active tier-recommended' : '') + '" data-type="' + tier.id + '" onclick="selectType(\'' + tier.id + '\')" style="flex-direction:column;gap:6px;padding:14px 10px;height:auto;position:relative;">' +
+      html += '<button class="variant-btn tier-btn ' + (isFirst ? 'active' : '') + (isRecommended ? ' tier-recommended' : '') + '" data-type="' + tier.id + '" onclick="selectType(\'' + tier.id + '\')" style="flex-direction:column;gap:6px;padding:14px 10px;height:auto;position:relative;">' +
         (isRecommended ? '<span class="tier-hot-badge">🔥 Được chọn nhiều</span>' : '') +
         '<span class="variant-btn-text" style="font-size:13px;font-weight:700;white-space:normal;line-height:1.3;text-align:center;">' + tier.name + '</span>' +
         '<span class="variant-btn-sub" style="font-size:15px;font-weight:900;color:' + (isRecommended ? '#ee4d2d' : '#333') + ';">' + tier.amount.toLocaleString('vi-VN') + '₫</span>' +
@@ -661,7 +679,7 @@ function openModal() {
     variantRow.style.display = 'grid';
     variantRow.style.gridTemplateColumns = '1fr 1fr';
     variantRow.style.gap = '10px';
-    currentType = P.tiers[P.tiers.length - 1].id; // Mặc định chọn gói cao nhất
+    currentType = P.tiers[0].id; // Mặc định chọn gói rẻ nhất
   } else if (P.packages) {
     document.querySelector('.variant-label').innerHTML = '<i class="fas fa-box"></i> Chọn gói sản phẩm';
     let html = '';
