@@ -59,8 +59,8 @@ const PRODUCTS = {
     ],
     pkgKey: 'cautruc',
     tiers: [
-      { id: 'pdf', name: 'Gói Thường', amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', features: ['File PDF cấu trúc + luyện dịch', 'Xem trên điện thoại hoặc in ra'] },
-      { id: 'bundle', name: 'Gói VIP', amount: 199000, label: '199K', content: 'tai lieu cau truc video', features: ['File PDF cấu trúc + luyện dịch', 'Video bài giảng hướng dẫn chi tiết', 'Cập nhật miễn phí khi có video mới'] }
+      { id: 'pdf', name: 'Gói Thường', amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', features: ['Trọn bộ file PDF cấu trúc', { text: 'Không có video bài giảng hướng dẫn', disabled: true }, 'Tự đọc và tự dịch'] },
+      { id: 'bundle', name: 'Gói VIP', amount: 199000, oldAmount: 399000, label: '199K', content: 'tai lieu cau truc video', features: ['Trọn bộ file PDF cấu trúc + luyện dịch', '40 Video bài giảng cô Hoàng Diễm giảng chi tiết', 'Hướng dẫn dịch từng câu từng chữ', 'Xem vĩnh viễn trên điện thoại / máy tính'] }
     ],
     file: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1' },
     pdf: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', isFile: true },
@@ -668,11 +668,34 @@ function openModal() {
     P.tiers.forEach((tier, idx) => {
       const isFirst = idx === 0;
       const isRecommended = idx === P.tiers.length - 1;
-      html += '<button class="variant-btn tier-btn ' + (isFirst ? 'active' : '') + (isRecommended ? ' tier-recommended' : '') + '" data-type="' + tier.id + '" onclick="selectType(\'' + tier.id + '\')" style="flex-direction:column;gap:6px;padding:14px 10px;height:auto;position:relative;">' +
-        (isRecommended ? '<span class="tier-hot-badge">🔥 Được chọn nhiều</span>' : '') +
+      const isBasic = !isRecommended;
+
+      // Build features HTML with disabled item support
+      const featuresHtml = tier.features.map(f => {
+        if (typeof f === 'object' && f.disabled) {
+          return '<li class="tier-feature-disabled"><span style="color:#9ca3af;text-decoration:line-through;">✕ ' + f.text + '</span></li>';
+        }
+        return '<li>✓ ' + f + '</li>';
+      }).join('');
+
+      // Anchor pricing for VIP tier
+      let priceHtml = '';
+      if (tier.oldAmount) {
+        priceHtml = '<span class="tier-price-old">' + tier.oldAmount.toLocaleString('vi-VN') + '₫</span> ' +
+          '<span class="tier-price-current">' + tier.amount.toLocaleString('vi-VN') + '₫</span>' +
+          '<span class="tier-price-discount">-' + Math.round((1 - tier.amount / tier.oldAmount) * 100) + '%</span>';
+      } else {
+        priceHtml = '<span style="font-size:15px;font-weight:900;color:' + (isRecommended ? '#ee4d2d' : '#333') + ';">' + tier.amount.toLocaleString('vi-VN') + '₫</span>';
+      }
+
+      // Visual contrast classes
+      const extraClass = isBasic ? ' tier-basic' : ' tier-recommended';
+
+      html += '<button class="variant-btn tier-btn ' + (isFirst ? 'active' : '') + extraClass + '" data-type="' + tier.id + '" onclick="selectType(\'' + tier.id + '\')" style="flex-direction:column;gap:6px;padding:14px 10px;height:auto;position:relative;">' +
+        (isRecommended ? '<span class="tier-hot-badge">👑 Lựa chọn tốt nhất</span>' : '') +
         '<span class="variant-btn-text" style="font-size:13px;font-weight:700;white-space:normal;line-height:1.3;text-align:center;">' + tier.name + '</span>' +
-        '<span class="variant-btn-sub" style="font-size:15px;font-weight:900;color:' + (isRecommended ? '#ee4d2d' : '#333') + ';">' + tier.amount.toLocaleString('vi-VN') + '₫</span>' +
-        '<ul class="tier-features">' + tier.features.map(f => '<li>✓ ' + f + '</li>').join('') + '</ul>' +
+        '<div class="tier-price-row">' + priceHtml + '</div>' +
+        '<ul class="tier-features">' + featuresHtml + '</ul>' +
         '</button>';
     });
     variantRow.innerHTML = html;
