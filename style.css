@@ -3808,60 +3808,63 @@ img {
   background: linear-gradient(135deg, #fff5f0, #fff) !important;
   box-shadow: 0 3px 12px rgba(238, 77, 45, 0.15);
 }
-/* === Gói Thường: subdued/dimmed styling === */
+/* === Gói Thường: clear styling, highlighted when active === */
 .tier-basic {
   border: 1.5px solid #e5e7eb !important;
-  background: #f9fafb !important;
+  background: #fff !important;
 }
 .tier-basic .variant-btn-text {
-  color: #6b7280 !important;
+  color: #333 !important;
 }
 .tier-basic.active {
-  border-color: #9ca3af !important;
-  background: #f3f4f6 !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  border-color: #ee4d2d !important;
+  border-width: 2.5px !important;
+  background: linear-gradient(135deg, #fff5f0, #fff) !important;
+  box-shadow: 0 3px 14px rgba(238, 77, 45, 0.18);
 }
-.tier-basic .tier-features li {
-  color: #9ca3af;
+.tier-basic.active .variant-btn-text {
+  color: #ee4d2d !important;
+  font-weight: 800 !important;
 }
 .tier-basic .tier-features li:not(.tier-feature-disabled) {
-  color: #6b7280;
+  color: #555;
 }
-/* === Gói VIP: bold/highlighted styling === */
+/* === Gói VIP: subtle highlight, not overpowering === */
 .tier-recommended {
   position: relative;
   overflow: visible !important;
-  border: 2px solid #ea580c !important;
-  background: linear-gradient(135deg, #fffbeb 0%, #fff7ed 50%, #fff 100%) !important;
-  box-shadow: 0 4px 16px rgba(234, 88, 12, 0.18), 0 1px 4px rgba(234, 88, 12, 0.1);
+  border: 1.5px solid #f0c8a0 !important;
+  background: linear-gradient(135deg, #fffdf8 0%, #fff9f0 50%, #fff 100%) !important;
+  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.08);
+}
+.tier-recommended:not(.active) .variant-btn-text {
+  color: #b45309 !important;
 }
 .tier-recommended.active {
-  border-color: #ea580c !important;
+  border-color: #ee4d2d !important;
+  border-width: 2.5px !important;
   background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 50%, #fff 100%) !important;
-  box-shadow: 0 6px 24px rgba(234, 88, 12, 0.25), 0 2px 6px rgba(234, 88, 12, 0.12);
+  box-shadow: 0 4px 18px rgba(234, 88, 12, 0.22), 0 2px 6px rgba(234, 88, 12, 0.1);
+}
+.tier-recommended.active .variant-btn-text {
+  color: #ee4d2d !important;
+  font-weight: 800 !important;
 }
 .tier-hot-badge {
   position: absolute;
-  top: -12px;
+  top: -11px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #ea580c, #f59e0b);
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
   color: #fff;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  padding: 3px 10px;
+  padding: 2px 9px;
   border-radius: 20px;
   white-space: nowrap;
   z-index: 10;
-  box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
-}
-/* Glow effect on recommended tier when NOT selected */
-.tier-recommended:not(.active) {
-  animation: tier-glow 2s ease-in-out infinite;
-}
-@keyframes tier-glow {
-  0%, 100% { box-shadow: 0 4px 16px rgba(234,88,12,0.18), 0 0 0 0 rgba(234,88,12,0.1); }
-  50% { box-shadow: 0 4px 16px rgba(234,88,12,0.18), 0 0 14px 4px rgba(234,88,12,0.2); }
+  box-shadow: 0 1px 4px rgba(234, 88, 12, 0.2);
+  opacity: 0.85;
 }
 /* === Anchor pricing === */
 .tier-price-row {

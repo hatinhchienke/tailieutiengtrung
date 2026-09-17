@@ -60,7 +60,7 @@ const PRODUCTS = {
     pkgKey: 'cautruc',
     tiers: [
       { id: 'pdf', name: 'Gói Thường', amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', features: ['Trọn bộ file PDF cấu trúc', { text: 'Không có video bài giảng hướng dẫn', disabled: true }, 'Tự đọc và tự dịch'] },
-      { id: 'bundle', name: 'Gói VIP', amount: 199000, oldAmount: 399000, label: '199K', content: 'tai lieu cau truc video', features: ['Trọn bộ file PDF cấu trúc + luyện dịch', '40 Video bài giảng cô Hoàng Diễm giảng chi tiết', 'Hướng dẫn dịch từng câu từng chữ', 'Xem vĩnh viễn trên điện thoại / máy tính'] }
+      { id: 'bundle', name: 'Gói VIP', amount: 199000, oldAmount: 399000, label: '199K', content: 'tai lieu cau truc video', features: ['Trọn bộ file PDF cấu trúc + luyện dịch', '40 Video bài giảng chi tiết từ lý thuyết đến bài tập', 'Hướng dẫn dịch từng câu từng chữ', 'Xem vĩnh viễn trên điện thoại / máy tính'] }
     ],
     file: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1' },
     pdf: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', isFile: true },
