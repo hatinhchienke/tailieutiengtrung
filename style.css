@@ -3913,6 +3913,39 @@ img {
   text-decoration: line-through !important;
   font-size: 11px;
 }
+/* === Sold Out Tier === */
+.tier-soldout {
+  border: 1.5px dashed #d1d5db !important;
+  background: #f9fafb !important;
+  opacity: 0.65;
+  cursor: not-allowed !important;
+  pointer-events: none;
+  position: relative;
+}
+.tier-soldout .variant-btn-text {
+  color: #9ca3af !important;
+}
+.tier-soldout .tier-features li {
+  color: #9ca3af !important;
+}
+.tier-soldout .tier-price-row span {
+  color: #9ca3af !important;
+}
+.tier-soldout-badge {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #9ca3af, #6b7280);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
 
 /* ============ VIP PROMO SECTION ============ */
 .vip-promo-section {

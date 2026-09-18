@@ -60,7 +60,8 @@ const PRODUCTS = {
     pkgKey: 'cautruc',
     tiers: [
       { id: 'pdf', name: 'Gói Thường', amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', features: ['Trọn bộ file PDF cấu trúc', { text: 'Không có video bài giảng hướng dẫn', disabled: true }, 'Tự đọc và tự dịch'] },
-      { id: 'bundle', name: 'Gói VIP', amount: 199000, oldAmount: 399000, label: '199K', content: 'tai lieu cau truc video', features: ['Trọn bộ file PDF cấu trúc + luyện dịch', '40 Video bài giảng chi tiết từ lý thuyết đến bài tập', 'Hướng dẫn dịch từng câu từng chữ', 'Xem vĩnh viễn trên điện thoại / máy tính'] }
+      { id: 'bundle', name: 'Gói VIP', amount: 199000, oldAmount: 399000, label: '199K', content: 'tai lieu cau truc video', features: ['Trọn bộ file PDF cấu trúc + luyện dịch', '40 Video bài giảng chi tiết từ lý thuyết đến bài tập', 'Hướng dẫn dịch từng câu từng chữ', 'Xem vĩnh viễn trên điện thoại / máy tính'] },
+      { id: 'print', name: 'Bản in + Video', amount: 399000, label: '399K', content: '', soldOut: true, features: ['Sách in sẵn gửi tận nhà', '40 Video bài giảng chi tiết', 'Trọn bộ file PDF cấu trúc + luyện dịch', 'Hướng dẫn dịch từng câu từng chữ'] }
     ],
     file: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1' },
     pdf: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', isFile: true },
@@ -452,8 +453,9 @@ dc.innerHTML = dcHTML;
 
 // ============ VIP VIDEO PROMO (for products with tiers) ============
 if (P.tiers && P.tiers.length > 1) {
-  const vipTier = P.tiers[P.tiers.length - 1];
-  const basicTier = P.tiers[0];
+  const availableTiers = P.tiers.filter(t => !t.soldOut);
+  const vipTier = availableTiers[availableTiers.length - 1];
+  const basicTier = availableTiers[0];
   const priceDiff = vipTier.amount - basicTier.amount;
   const vipSection = document.getElementById('vipPromoSection');
   vipSection.style.display = 'block';
@@ -665,10 +667,12 @@ function openModal() {
     // Sản phẩm có tier (VD: cau-truc với gói PDF vs PDF+Video)
     document.querySelector('.variant-label').innerHTML = '<i class="fas fa-box"></i> Chọn gói sản phẩm';
     let html = '';
+    const activeTiers = P.tiers.filter(t => !t.soldOut);
     P.tiers.forEach((tier, idx) => {
       const isFirst = idx === 0;
-      const isRecommended = idx === P.tiers.length - 1;
-      const isBasic = !isRecommended;
+      const isSoldOut = !!tier.soldOut;
+      const isRecommended = !isSoldOut && tier === activeTiers[activeTiers.length - 1];
+      const isBasic = !isRecommended && !isSoldOut;
 
       // Build features HTML with disabled item support
       const featuresHtml = tier.features.map(f => {
@@ -689,9 +693,10 @@ function openModal() {
       }
 
       // Visual contrast classes
-      const extraClass = isBasic ? ' tier-basic' : ' tier-recommended';
+      let extraClass = isSoldOut ? ' tier-soldout' : (isBasic ? ' tier-basic' : ' tier-recommended');
 
-      html += '<button class="variant-btn tier-btn ' + (isFirst ? 'active' : '') + extraClass + '" data-type="' + tier.id + '" onclick="selectType(\'' + tier.id + '\')" style="flex-direction:column;gap:6px;padding:14px 10px;height:auto;position:relative;">' +
+      html += '<button class="variant-btn tier-btn ' + (isFirst ? 'active' : '') + extraClass + '" data-type="' + tier.id + '"' + (isSoldOut ? '' : ' onclick="selectType(\'' + tier.id + '\')"') + ' style="flex-direction:column;gap:6px;padding:14px 10px;height:auto;position:relative;"' + (isSoldOut ? ' disabled' : '') + '>' +
+        (isSoldOut ? '<span class="tier-soldout-badge">Hết hàng</span>' : '') +
         (isRecommended ? '<span class="tier-hot-badge">👑 Lựa chọn tốt nhất</span>' : '') +
         '<span class="variant-btn-text" style="font-size:13px;font-weight:700;white-space:normal;line-height:1.3;text-align:center;">' + tier.name + '</span>' +
         '<div class="tier-price-row">' + priceHtml + '</div>' +
@@ -700,7 +705,8 @@ function openModal() {
     });
     variantRow.innerHTML = html;
     variantRow.style.display = 'grid';
-    variantRow.style.gridTemplateColumns = '1fr 1fr';
+    const tierCount = P.tiers.length;
+    variantRow.style.gridTemplateColumns = tierCount >= 3 ? 'repeat(' + tierCount + ', 1fr)' : '1fr 1fr';
     variantRow.style.gap = '10px';
     currentType = P.tiers[0].id; // Mặc định chọn gói rẻ nhất
   } else if (P.packages) {
