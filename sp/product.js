@@ -46,7 +46,7 @@ const PRODUCTS = {
   'cau-truc': {
     title: 'CẤU TRÚC VÀ LUYỆN DỊCH TIẾNG TRUNG',
     desc: 'Tổng hợp 34 cấu trúc ngữ pháp HSK1-HSK3 + bài luyện dịch 2 chiều Trung ↔ Việt kèm đáp án.',
-    priceSale: 'Từ 69,000₫', priceOld: '399,000₫', discount: 'Tiết kiệm 54%',
+    priceSale: '69K - 199K', priceOld: '150K - 399K', discount: 'Tiết kiệm 54%',
     sold: 'Đã bán 1.8K+', headerTitle: 'Cấu trúc + Luyện dịch',
     videoId: 'fBMha7GPcmY',
     slides: ['/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png', '/ảnh slider/6.webp', '/ảnh slider/7.webp', '/ảnh slider/8.webp'],
