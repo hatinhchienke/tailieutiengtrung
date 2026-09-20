@@ -179,7 +179,16 @@
           <div class="variant-summary" id="variantSummary">
             <div class="variant-summary-row"><span class="variant-summary-label">Đã chọn:</span><span class="variant-summary-pkg" id="variantPkgName"></span></div>
             <div class="variant-summary-row"><span class="variant-summary-label">Giá:</span><span class="variant-summary-price" id="variantTotalPrice"></span></div>
+            <div class="modal-countdown-bar" id="modalCountdown">
+              <i class="fas fa-clock"></i>
+              <span>Giá ưu đãi còn: <strong id="modalCdHours">00</strong>:<strong id="modalCdMins">00</strong>:<strong id="modalCdSecs">00</strong></span>
+            </div>
             <button class="btn-variant-continue" id="btnVariantContinue" onclick="confirmVariant()">TIẾP TỤC <i class="fas fa-arrow-right"></i></button>
+            <div class="modal-trust-strip">
+              <span><i class="fas fa-lock"></i> Thanh toán an toàn</span>
+              <span><i class="fas fa-bolt"></i> Nhận tài liệu ngay</span>
+              <span><i class="fas fa-undo"></i> Hoàn tiền 100%</span>
+            </div>
           </div>
         </div>
       </div>
@@ -196,11 +205,20 @@
             <div class="form-group"><label>Họ và tên <span class="req">*</span></label><input type="text" id="fullName" placeholder="Nguyễn Văn A" required></div>
             <div class="form-group"><label id="phoneLabel">Số Zalo <span class="req">*</span></label><input type="tel" id="phone" placeholder="0xxxxxxxxx" required></div>
             <div class="form-group hidden" id="addressGroup"><label>Địa chỉ nhận hàng <span class="req">*</span></label><textarea id="address" placeholder="Số nhà, đường, phường/xã..." rows="3" style="width:100%;padding:12px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;"></textarea></div>
-            <button type="submit" class="btn-submit" id="submitBtn"><span id="btnText">TIẾP TỤC THANH TOÁN</span><span id="btnLoading" class="hidden"><i class="fas fa-spinner fa-spin"></i> Đang gửi...</span></button>
+            <button type="submit" class="btn-submit" id="submitBtn"><span id="btnText">TIẾP TỤC</span><span id="btnLoading" class="hidden"><i class="fas fa-spinner fa-spin"></i> Đang gửi...</span></button>
             <p class="form-note" id="noteFileBottom">*Tài liệu được gửi tự động qua link tải ngay sau khi thanh toán.</p>
             <p class="form-note" id="noteFileZalo" style="color:#0d47a1;background:#e3f2fd;padding:8px 12px;border-radius:8px;margin-top:8px;"><i class="fas fa-comment-dots" style="color:#0068ff;"></i> Gặp vấn đề? Nhắn ngay <a href="https://zalo.me/0365882261" target="_blank" style="color:#0068ff;font-weight:700;">Zalo 0365882261</a></p>
             <p class="form-note hidden" id="noteBookBottom" style="color:#e65100;background:#fff3e0;padding:8px 12px;border-radius:8px;margin-top:8px;"><i class="fas fa-truck" style="color:#e65100;"></i> Tài liệu in đen trắng, giao trong 2-4 ngày. Thanh toán COD.</p>
           </form>
+          <div class="modal-trust-strip modal-trust-strip-step2">
+            <span><i class="fas fa-lock"></i> Thanh toán an toàn</span>
+            <span><i class="fas fa-bolt"></i> Nhận tài liệu ngay</span>
+            <span><i class="fas fa-undo"></i> Hoàn tiền 100%</span>
+          </div>
+          <div class="modal-social-proof-mini" id="modalSocialProof">
+            <i class="fas fa-users" style="color:#ee4d2d;"></i>
+            <span><strong id="modalBuyerCount">0</strong> người đã mua hôm nay</span>
+          </div>
         </div>
       </div>
       <div class="modal-step hidden" id="step3">
@@ -366,6 +384,22 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- EXIT-INTENT OVERLAY -->
+  <div class="exit-intent-overlay" id="exitIntentOverlay">
+    <div class="exit-intent-modal">
+      <button class="exit-intent-close" onclick="closeExitIntent()">&times;</button>
+      <div class="exit-intent-icon">🤔</div>
+      <h3>Chờ chút!</h3>
+      <p>Bạn chắc muốn bỏ lỡ? <strong id="exitStudentCount">1,800+</strong> học viên đã tin tưởng mua tài liệu này!</p>
+      <div class="exit-intent-stats">
+        <div><i class="fas fa-star" style="color:#fbc02d;"></i> <strong>4.9/5</strong> đánh giá</div>
+        <div><i class="fas fa-rotate-left" style="color:#43a047;"></i> Hoàn tiền <strong>0%</strong></div>
+      </div>
+      <button class="exit-intent-cta" onclick="closeExitIntent();openModal();">XEM LẠI ƯU ĐÃI <i class="fas fa-arrow-right"></i></button>
+      <p class="exit-intent-sub">Giá ưu đãi chỉ áp dụng hôm nay!</p>
     </div>
   </div>
 

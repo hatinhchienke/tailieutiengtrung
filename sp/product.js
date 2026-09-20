@@ -642,6 +642,28 @@ function updateCountdown() {
 }
 updateCountdown(); setInterval(updateCountdown, 1000);
 
+// Modal countdown (syncs with main countdown)
+function updateModalCountdown() {
+  const now = new Date();
+  const end = new Date(now); end.setHours(23, 59, 59, 0);
+  const diff = end - now; if (diff <= 0) return;
+  const h = Math.floor(diff / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
+  const mH = document.getElementById('modalCdHours'), mM = document.getElementById('modalCdMins'), mS = document.getElementById('modalCdSecs');
+  if (mH) mH.textContent = String(h).padStart(2, '0');
+  if (mM) mM.textContent = String(m).padStart(2, '0');
+  if (mS) mS.textContent = String(s).padStart(2, '0');
+}
+updateModalCountdown(); setInterval(updateModalCountdown, 1000);
+
+// Dynamic buyer count for social proof in modal
+function getModalBuyerCount() {
+  const d = new Date();
+  const seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+  const base = 12 + (seed % 8); // 12-19 base
+  const hourBonus = Math.floor(d.getHours() * 0.7); // increases through the day
+  return base + hourBonus;
+}
+
 // Flash sold
 (function () {
   const d = new Date(), seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate(), pct = 82 + (seed % 11);
@@ -749,12 +771,36 @@ function openModal() {
   }
 
   updateVariantSummary();
+
+  // Set buyer count
+  const buyerEl = document.getElementById('modalBuyerCount');
+  if (buyerEl) buyerEl.textContent = getModalBuyerCount();
+
+  // Set exit-intent student count from product stats
+  const exitCountEl = document.getElementById('exitStudentCount');
+  if (exitCountEl && P.sold) exitCountEl.textContent = P.sold.replace('Đã bán ', '');
+
   if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', { content_name: P.headerTitle, content_ids: [slug], content_type: 'product', value: P.file.amount, currency: 'VND' });
   if (typeof ttq !== 'undefined') ttq.track('ViewContent', { content_name: P.headerTitle, content_id: slug, content_type: 'product' });
 }
+let exitIntentShown = false;
+let modalWasOpenedOnce = false;
+
 function closeModal() {
   document.getElementById('modalOverlay').classList.remove('active');
   document.body.style.overflow = '';
+
+  // Show exit-intent popup (only once per session, only if user has opened modal)
+  if (modalWasOpenedOnce && !exitIntentShown) {
+    exitIntentShown = true;
+    setTimeout(() => {
+      document.getElementById('exitIntentOverlay').classList.add('active');
+    }, 300);
+  }
+}
+
+function closeExitIntent() {
+  document.getElementById('exitIntentOverlay').classList.remove('active');
 }
 function showStep(id) {
   document.querySelectorAll('.modal-step').forEach(s => s.classList.add('hidden'));
@@ -833,7 +879,7 @@ function setupFormForType(type) {
   const ag = document.getElementById('addressGroup'), ai = document.getElementById('address');
   ag.classList.toggle('hidden', !isBook);
   if (isBook) ai.setAttribute('required', 'required'); else ai.removeAttribute('required');
-  document.getElementById('btnText').textContent = isBook ? 'ĐẶT HÀNG' : 'TIẾP TỤC THANH TOÁN';
+  document.getElementById('btnText').textContent = isBook ? 'ĐẶT HÀNG' : 'TIẾP TỤC';
   document.getElementById('noteFileBottom').classList.toggle('hidden', isBook);
   document.getElementById('noteFileZalo').classList.toggle('hidden', isBook);
   document.getElementById('noteBookBottom').classList.toggle('hidden', !isBook);
@@ -1077,6 +1123,7 @@ setTimeout(() => {
 const _origOpenModal = openModal;
 openModal = function () {
   toastPaused = true;
+  modalWasOpenedOnce = true;
   closeToast();
   _origOpenModal();
 };
