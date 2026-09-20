@@ -46,7 +46,7 @@ const PRODUCTS = {
   'cau-truc': {
     title: 'CẤU TRÚC VÀ LUYỆN DỊCH TIẾNG TRUNG',
     desc: 'Tổng hợp 34 cấu trúc ngữ pháp HSK1-HSK3 + bài luyện dịch 2 chiều Trung ↔ Việt kèm đáp án.',
-    priceSale: '69K - 199K', priceOld: '150K - 399K', discount: 'Tiết kiệm 54%',
+    priceSale: '69,000₫', priceOld: '150,000₫', discount: 'Tiết kiệm 54%',
     sold: 'Đã bán 1.8K+', headerTitle: 'Cấu trúc + Luyện dịch',
     videoId: 'fBMha7GPcmY',
     slides: ['/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png', '/ảnh slider/6.webp', '/ảnh slider/7.webp', '/ảnh slider/8.webp'],
@@ -58,13 +58,13 @@ const PRODUCTS = {
       'Xem trên điện thoại hoặc in ra sách'
     ],
     pkgKey: 'cautruc',
-    tiers: [
-      { id: 'pdf', name: 'Gói Thường', amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', features: ['Trọn bộ file PDF cấu trúc', { text: 'Không có video bài giảng hướng dẫn', disabled: true }, 'Tự đọc và tự dịch'] },
-      { id: 'bundle', name: 'Gói VIP', amount: 199000, oldAmount: 399000, label: '199K', content: 'tai lieu cau truc video', features: ['Trọn bộ file PDF cấu trúc + luyện dịch', '40 Video bài giảng chi tiết từ lý thuyết đến bài tập', 'Hướng dẫn dịch từng câu từng chữ', 'Xem vĩnh viễn trên điện thoại / máy tính'] },
-      { id: 'print', name: 'Bản in + Video', amount: 399000, label: '399K', content: '', soldOut: true, features: ['Sách in sẵn gửi tận nhà', '40 Video bài giảng chi tiết', 'Trọn bộ file PDF cấu trúc + luyện dịch', 'Hướng dẫn dịch từng câu từng chữ'] }
-    ],
+    addon: {
+      id: 'bundle',
+      name: 'Bộ 40 Video bài giảng',
+      addPrice: 130000,
+      desc: 'Xem vĩnh viễn trên điện thoại / máy tính'
+    },
     file: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1' },
-    pdf: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1', isFile: true },
     bundle: { amount: 199000, label: '199K', content: 'tai lieu cau truc video', isFile: true },
     book: null,
     bookPrice: '189,000₫',
@@ -451,34 +451,33 @@ let dcHTML = '<h4>📋 HÌNH THỨC NHẬN TÀI LIỆU</h4>' +
 dcHTML += '</div>';
 dc.innerHTML = dcHTML;
 
-// ============ VIP VIDEO PROMO (for products with tiers) ============
-if (P.tiers && P.tiers.length > 1) {
-  const availableTiers = P.tiers.filter(t => !t.soldOut);
-  const vipTier = availableTiers[availableTiers.length - 1];
-  const basicTier = availableTiers[0];
-  const priceDiff = vipTier.amount - basicTier.amount;
+// ============ VIP VIDEO PROMO ============
+if (P.addon) {
+  const fileAmount = P.file.amount;
+  const bundleAmount = P[P.addon.id].amount;
+  const priceDiff = P.addon.addPrice;
   const vipSection = document.getElementById('vipPromoSection');
   vipSection.style.display = 'block';
   vipSection.innerHTML =
     '<div class="vip-promo-inner">' +
-    '<div class="vip-promo-badge">👑 GÓI VIP</div>' +
-    '<h4 class="vip-promo-title"><i class="fas fa-play-circle"></i> Nâng cấp lên Gói VIP — Có Video Bài Giảng</h4>' +
+    '<div class="vip-promo-badge">🎬 VIDEO BÀI GIẢNG</div>' +
+    '<h4 class="vip-promo-title"><i class="fas fa-play-circle"></i> Thêm Bộ 40 Video Bài Giảng</h4>' +
     '<p class="vip-promo-desc">Không chỉ đọc tài liệu — bạn sẽ được <strong>xem 40 video tương ứng với 40 bài trong tài liệu</strong>. Hiểu sâu hơn, nhớ lâu hơn, học nhanh hơn gấp nhiều lần!</p>' +
     '<div class="vip-promo-benefits">' +
     '<div class="vip-benefit"><i class="fas fa-video"></i><div><strong>Video bài giảng chi tiết</strong><span>Bài giảng từng cấu trúc, giải thích rõ ràng</span></div></div>' +
     '<div class="vip-benefit"><i class="fas fa-brain"></i><div><strong>Hiểu sâu, nhớ lâu</strong><span>Nghe + nhìn + đọc = ghi nhớ gấp 3 lần</span></div></div>' +
     '<div class="vip-benefit"><i class="fas fa-sync-alt"></i><div><strong>Cập nhật miễn phí</strong><span>Cập nhật miễn phí khi có video mới</span></div></div>' +
-    '<div class="vip-benefit"><i class="fas fa-file-pdf"></i><div><strong>Bao gồm Gói Thường</strong><span>Đã có đầy đủ file PDF + luyện dịch</span></div></div>' +
+    '<div class="vip-benefit"><i class="fas fa-file-pdf"></i><div><strong>Bao gồm file PDF</strong><span>Đã có đầy đủ file PDF + luyện dịch</span></div></div>' +
     '</div>' +
     '<div class="vip-promo-price">' +
     '<div class="vip-price-compare">' +
-    '<span class="vip-price-basic"><i class="fas fa-tag"></i> Gói Thường: ' + basicTier.amount.toLocaleString('vi-VN') + '₫</span>' +
+    '<span class="vip-price-basic"><i class="fas fa-tag"></i> Chỉ file PDF: ' + fileAmount.toLocaleString('vi-VN') + '₫</span>' +
     '<span class="vip-price-arrow"><i class="fas fa-arrow-right"></i></span>' +
-    '<span class="vip-price-vip"><i class="fas fa-crown"></i> Gói VIP: <strong>' + vipTier.amount.toLocaleString('vi-VN') + '₫</strong></span>' +
+    '<span class="vip-price-vip"><i class="fas fa-play-circle"></i> File + Video: <strong>' + bundleAmount.toLocaleString('vi-VN') + '₫</strong></span>' +
     '</div>' +
     '<p class="vip-price-diff">Chỉ thêm <strong>' + priceDiff.toLocaleString('vi-VN') + '₫</strong> để có video bài giảng!</p>' +
     '</div>' +
-    '<button class="vip-promo-cta" onclick="openModal()"><i class="fas fa-crown"></i> MUA GÓI VIP NGAY</button>' +
+    '<button class="vip-promo-cta" onclick="openModal()"><i class="fas fa-play-circle"></i> MUA NGAY</button>' +
     '</div>';
 }
 
@@ -731,6 +730,22 @@ function openModal() {
       bookBtn.removeAttribute('onclick');
       bookBtn.querySelector('.variant-btn-sub').textContent = P.bookPrice ? (P.bookPrice + ' — Hết hàng') : 'Tạm hết hàng';
     }
+    // Addon checkbox (e.g., video bundle)
+    if (P.addon) {
+      let existingAddon = document.getElementById('addonSection');
+      if (existingAddon) existingAddon.remove();
+      const addonHtml = '<div class="addon-checkbox-section" id="addonSection">' +
+        '<label class="addon-label">' +
+        '<input type="checkbox" id="addonCheckbox" onchange="toggleAddon()">' +
+        '<span class="addon-checkmark"></span>' +
+        '<span class="addon-info">' +
+        '<span class="addon-name">🎬 ' + P.addon.name + ' (+' + P.addon.addPrice.toLocaleString('vi-VN') + '₫)</span>' +
+        '<span class="addon-desc">' + P.addon.desc + '</span>' +
+        '</span>' +
+        '</label>' +
+        '</div>';
+      document.querySelector('.variant-section').insertAdjacentHTML('beforeend', addonHtml);
+    }
   }
 
   updateVariantSummary();
@@ -753,6 +768,19 @@ function selectType(type) {
   updateVariantSummary();
 }
 
+function toggleAddon() {
+  const cb = document.getElementById('addonCheckbox');
+  const section = document.getElementById('addonSection');
+  if (cb && cb.checked) {
+    currentType = P.addon.id;
+    if (section) section.classList.add('active');
+  } else {
+    currentType = 'file';
+    if (section) section.classList.remove('active');
+  }
+  updateVariantSummary();
+}
+
 function updateVariantSummary() {
   const pricing = P[currentType];
   if (!pricing) { currentType = 'file'; selectType('file'); return; }
@@ -762,6 +790,8 @@ function updateVariantSummary() {
     typeLabel = P.tiers.find(t => t.id === currentType)?.name || '';
   } else if (P.packages) {
     typeLabel = P.packages.find(p => p.id === currentType)?.name || '';
+  } else if (P.addon && currentType === P.addon.id) {
+    typeLabel = 'File số + Video';
   } else {
     typeLabel = currentType === 'file' ? 'File số' : 'Tài liệu in sẵn';
   }
@@ -779,6 +809,8 @@ function confirmVariant() {
     typeLabel = ' (' + (P.tiers.find(t => t.id === currentType)?.name || '') + ')';
   } else if (P.packages) {
     typeLabel = ' (' + (P.packages.find(p => p.id === currentType)?.name || '') + ')';
+  } else if (P.addon && currentType === P.addon.id) {
+    typeLabel = ' (File số + Video)';
   } else {
     typeLabel = currentType === 'file' ? '' : ' (Tài liệu in sẵn)';
   }
