@@ -127,7 +127,7 @@ const PRODUCTS = {
   'luyen-go': {
     title: 'LUYỆN GÕ HÁN TỰ HSK1 – HSK6',
     desc: 'File luyện gõ Hán tự có tính năng check tự động: gõ đúng = xanh, sai = đỏ. Nhớ lâu hơn gấp 3 lần.',
-    priceSale: '39K - 79K', priceOld: '100K - 200K', discount: 'Tiết kiệm 61%',
+    priceSale: '49K - 99K', priceOld: '100K - 200K', discount: 'Tiết kiệm 51%',
     sold: 'Đã bán 980+', headerTitle: 'Luyện gõ Hán tự',
     videoId: 'FbMDnTSfHF4',
     slides: ['/ảnh cover sp/Luyện gõ Hán tự.png', '/ảnh slider/12.webp'],
@@ -139,14 +139,14 @@ const PRODUCTS = {
     ],
     pkgKey: 'luyen',
     packages: [
-      { id: 'goi1', amount: 39000, label: '39K', name: 'Gói 1 (HSK1-3)', content: 'tai lieu tieng trung 3' },
-      { id: 'goi2', amount: 49000, label: '49K', name: 'Gói 2 (HSK4-6)', content: 'tai lieu luyen go 2' },
-      { id: 'goi3', amount: 79000, label: '79K', name: 'Gói 3 (Full 1-6)', content: 'tai lieu luyen go 3' }
+      { id: 'goi1', amount: 49000, label: '49K', name: 'Gói 1 (HSK1-3)', content: 'tai lieu tieng trung 3' },
+      { id: 'goi2', amount: 59000, label: '59K', name: 'Gói 2 (HSK4-6)', content: 'tai lieu luyen go 2' },
+      { id: 'goi3', amount: 99000, label: '99K', name: 'Gói 3 (Full 1-6)', content: 'tai lieu luyen go 3' }
     ],
-    file: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 3' }, // For fallback reference
-    goi1: { amount: 39000, label: '39K', content: 'tai lieu tieng trung 3', isFile: true },
-    goi2: { amount: 49000, label: '49K', content: 'tai lieu luyen go 2', isFile: true },
-    goi3: { amount: 79000, label: '79K', content: 'tai lieu luyen go 3', isFile: true },
+    file: { amount: 49000, label: '49K', content: 'tai lieu tieng trung 3' }, // For fallback reference
+    goi1: { amount: 49000, label: '49K', content: 'tai lieu tieng trung 3', isFile: true },
+    goi2: { amount: 59000, label: '59K', content: 'tai lieu luyen go 2', isFile: true },
+    goi3: { amount: 99000, label: '99K', content: 'tai lieu luyen go 3', isFile: true },
     reviews: [
       { name: 'Ho Yến', letter: 'H', text: 'Trước mình nhìn chữ Hán thì hiểu nhưng không nhớ pinyin để gõ. Luyện file này 2 tuần, giờ gõ nhanh hơn hẳn!', date: '5 - 5' },
       { name: 'Tr Đức', letter: 'T', text: 'Tính năng check tự động hay lắm — gõ đúng hiện xanh, sai hiện đỏ. Như chơi game vậy, không nhàm chán.', date: '4 - 30' },
@@ -204,10 +204,10 @@ if (slug === 'tron-bo') {
 
   const luyenPass = localStorage.getItem('hub_luyen');
   if (luyenPass) {
-    if (luyenPass === 'LG41WIN') { upgradeDiscount += 39000; ownedPackageNames.push('Luyện gõ Hán tự Gói 1'); }
-    else if (luyenPass === 'LG99PRO') { upgradeDiscount += 49000; ownedPackageNames.push('Luyện gõ Hán tự Gói 2'); }
-    else if (luyenPass === 'LG88MAX') { upgradeDiscount += 79000; ownedPackageNames.push('Luyện gõ Hán tự Gói 3'); }
-    else { upgradeDiscount += 39000; ownedPackageNames.push('Luyện gõ Hán tự'); }
+    if (luyenPass === 'LG41WIN') { upgradeDiscount += 49000; ownedPackageNames.push('Luyện gõ Hán tự Gói 1'); }
+    else if (luyenPass === 'LG99PRO') { upgradeDiscount += 59000; ownedPackageNames.push('Luyện gõ Hán tự Gói 2'); }
+    else if (luyenPass === 'LG88MAX') { upgradeDiscount += 99000; ownedPackageNames.push('Luyện gõ Hán tự Gói 3'); }
+    else { upgradeDiscount += 49000; ownedPackageNames.push('Luyện gõ Hán tự'); }
   }
 
   if (upgradeDiscount > 0) {

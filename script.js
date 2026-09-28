@@ -264,7 +264,7 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0KyzGFgZkn42TDUwAL
 const PACKAGE_PRICING = {
   cautruc:  { name: 'Cấu trúc + Luyện dịch',             file: { amount: 99000,  label: '99K',  content: 'tai lieu tieng trung 1' }, book: { amount: 189000, label: '189K', content: 'sach giay tieng trung 1' } },
   tuvung:   { name: 'Từ vựng HSK1-HSK6',                  file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 2' }, book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 2' } },
-  luyen:    { name: 'Luyện gõ Hán tự HSK1-HSK3',          file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 3' }, book: null },
+  luyen:    { name: 'Luyện gõ Hán tự HSK1-HSK3',          file: { amount: 49000,  label: '49K',  content: 'tai lieu tieng trung 3' }, book: null },
   giaotiep: { name: '1200 câu giao tiếp + Video',         file: { amount: 99000,  label: '99K',  content: 'tai lieu tieng trung 4' }, book: { amount: 219000, label: '219K', content: 'sach giay tieng trung 4' } },
   bothu:    { name: '60 bộ thủ chữ Hán',                  file: { amount: 39000,  label: '39K',  content: 'tai lieu tieng trung 5' }, book: { amount: 159000, label: '159K', content: 'sach giay tieng trung 5' } },
   full:     { name: 'Full trọn bộ',                        file: { amount: 199000, label: '199K', content: 'tai lieu tieng trung 6' }, book: { amount: 499000, label: '499K', content: 'sach giay tieng trung 6' } }
