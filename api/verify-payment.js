@@ -23,18 +23,18 @@ const PACKAGE_DATA = {
     password: 'TV55TOP',
     id: 'tuvung'
   },
-  'Luyện gõ Hán tự (Gói 1: HSK1-3) - 39K': {
-    url: 'https://docs.google.com/spreadsheets/d/1qi0HoR-PuL3D8nc313fFNqpnbgSL2KI2/copy',
+  'Luyện gõ Hán tự (Gói 1: HSK1-3) - 49K': {
+    url: 'https://docs.google.com/spreadsheets/d/1pIe-bepiTkhfMHNoHYf4kPb_SyRoK1AMEpTd-2f_230/copy',
     password: 'LG41WIN',
     id: 'luyen'
   },
-  'Luyện gõ Hán tự (Gói 2: HSK4-6) - 49K': {
-    url: 'https://docs.google.com/spreadsheets/d/1sXIV30j850uPxei-YPicedOQgnP1QPLV/copy',
+  'Luyện gõ Hán tự (Gói 2: HSK4-6) - 59K': {
+    url: 'https://docs.google.com/spreadsheets/d/1_MegZZbsWJYBQnFLbbc0PHqxi2ioMfdpkIe2kcqlAUQ/copy',
     password: 'LG99PRO',
     id: 'luyen'
   },
-  'Luyện gõ Hán tự (Gói 3: HSK1-6) - 79K': {
-    url: 'https://docs.google.com/spreadsheets/d/1L67PEoGJG1YxWIdee8QENBX66KIfcaAj/copy',
+  'Luyện gõ Hán tự (Gói 3: HSK1-6) - 99K': {
+    url: 'https://docs.google.com/spreadsheets/d/1QuzDc6_SIhEL8drjwXVVu0W9LEBiK5o7QU08qOS1_k8/copy',
     password: 'LG88MAX',
     id: 'luyen'
   },
