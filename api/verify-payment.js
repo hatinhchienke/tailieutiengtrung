@@ -8,7 +8,7 @@ const payos = new PayOS(
 
 // Download links and passwords — SERVER-SIDE ONLY
 const PACKAGE_DATA = {
-  'Cấu trúc + Luyện dịch - 69K': {
+  'Cấu trúc + Luyện dịch - 99K': {
     url: 'https://drive.google.com/file/d/1dpeKetulw3sMrmcFgzQSmymuL3ArpEy0/view?usp=sharing',
     password: 'CT83MAX',
     id: 'cautruc'

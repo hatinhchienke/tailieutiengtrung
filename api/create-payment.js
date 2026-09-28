@@ -8,7 +8,7 @@ const payos = new PayOS(
 
 // Valid packages with server-side price validation + short labels for bank transfer
 const VALID_PACKAGES = {
-  'Cấu trúc + Luyện dịch - 69K':     { amount: 69000,  label: 'CauTruc' },
+  'Cấu trúc + Luyện dịch - 99K':     { amount: 99000,  label: 'CauTruc' },
   'Từ vựng HSK1-HSK6 - 39K':          { amount: 39000,  label: 'TuVung' },
   'Luyện gõ Hán tự (Gói 1: HSK1-3) - 39K':  { amount: 39000,  label: 'HanTu1' },
   'Luyện gõ Hán tự (Gói 2: HSK4-6) - 49K':  { amount: 49000,  label: 'HanTu2' },

@@ -46,7 +46,7 @@ const PRODUCTS = {
   'cau-truc': {
     title: 'CẤU TRÚC VÀ LUYỆN DỊCH TIẾNG TRUNG',
     desc: 'Tổng hợp 34 cấu trúc ngữ pháp HSK1-HSK3 + bài luyện dịch 2 chiều Trung ↔ Việt kèm đáp án.',
-    priceSale: '69,000₫', priceOld: '150,000₫', discount: 'Tiết kiệm 54%',
+    priceSale: '99,000₫', priceOld: '150,000₫', discount: 'Tiết kiệm 34%',
     sold: 'Đã bán 1.8K+', headerTitle: 'Cấu trúc + Luyện dịch',
     videoId: 'fBMha7GPcmY',
     slides: ['/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png', '/ảnh slider/6.webp', '/ảnh slider/7.webp', '/ảnh slider/8.webp'],
@@ -61,10 +61,10 @@ const PRODUCTS = {
     addon: {
       id: 'bundle',
       name: 'Bộ 40 Video bài giảng',
-      addPrice: 130000,
+      addPrice: 100000,
       desc: 'Xem vĩnh viễn trên điện thoại / máy tính'
     },
-    file: { amount: 69000, label: '69K', content: 'tai lieu tieng trung 1' },
+    file: { amount: 99000, label: '99K', content: 'tai lieu tieng trung 1' },
     bundle: { amount: 199000, label: '199K', content: 'tai lieu cau truc video', isFile: true },
     book: null,
     bookPrice: '189,000₫',
@@ -190,7 +190,7 @@ let ownedPackageNames = [];
 
 if (slug === 'tron-bo') {
   const pkgPrices = {
-    'cautruc': { amount: 69000, name: 'Cấu trúc & Luyện dịch' },
+    'cautruc': { amount: 99000, name: 'Cấu trúc & Luyện dịch' },
     'tuvung': { amount: 39000, name: 'Từ vựng HSK1-6' },
     'giaotiep': { amount: 99000, name: '1200 câu giao tiếp' },
     'bothu': { amount: 39000, name: '60 bộ thủ' }
