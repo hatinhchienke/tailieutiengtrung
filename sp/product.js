@@ -21,8 +21,8 @@ const PRODUCTS = {
     desc: 'Combo trọn bộ 6 gói tài liệu + Video bài giảng Cấu trúc chi tiết. Bao gồm: Cấu trúc + Luyện dịch, Từ vựng HSK1-6, 1200 câu giao tiếp + Video, Luyện gõ Hán tự, 60 bộ thủ, Video phát âm.',
     priceSale: '329,000₫', priceOld: '599,000₫', discount: 'Tiết kiệm 45%',
     sold: 'Đã bán 3.1K+', headerTitle: 'Combo 6 trong 1',
-    videoId: 'g8p1BpPhAUY',
-    slides: ['/images/combo-overview.webp', '/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png', '/ảnh cover sp/1200 câu.png', '/ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png', '/ảnh cover sp/Luyện gõ Hán tự.png', '/ảnh cover sp/60 bộ thủ chữ hán.png'],
+    videoId: 'YnYh4bjhYZk',
+    slides: ['/images/combo-overview.png', '/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png', '/ảnh cover sp/1200 câu.png', '/ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png', '/ảnh cover sp/Luyện gõ Hán tự.png', '/ảnh cover sp/60 bộ thủ chữ hán.png'],
     features: [
       'Cấu trúc câu + Luyện dịch tiếng Trung (30+ cấu trúc)',
       '🎬 Video bài giảng Cấu trúc hướng dẫn chi tiết',
@@ -564,7 +564,7 @@ if (!P.book) {
 
 // ============ UPSELL BANNER ============
 const COVER_IMAGES = {
-  'tron-bo': '/images/combo-overview.webp',
+  'tron-bo': '/images/combo-overview.png',
   'cau-truc': '/ảnh cover sp/Cấu trúc và luyện dịch tiếng Trung.png',
   '1200-cau': '/ảnh cover sp/1200 câu.png',
   'tu-vung': '/ảnh cover sp/Từ vựng tiếng Trung từ hsk 1 đến hsk 6.png',
