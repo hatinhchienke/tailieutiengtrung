@@ -19,7 +19,7 @@ const PACKAGE_DATA = {
     id: 'cautruc'
   },
   'Từ vựng HSK1-HSK6 - 39K': {
-    url: 'https://drive.google.com/file/d/1S13u0EaEyceN0hbQlPFoB2YM2Rc9djs1/view?usp=sharing',
+    url: 'https://drive.google.com/file/d/1imE71npnW48Nzr10sipcNFF0R0SbqJxH/view?usp=sharing',
     password: 'TV55TOP',
     id: 'tuvung'
   },
