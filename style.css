@@ -4065,7 +4065,9 @@ img {
 }
 
 /* ===== TIER SELECTOR — PRODUCT MODAL ===== */
-#variantType:has(.tier-btn) {
+#variantType:has(.tier-btn),
+#variantType:has(.pkg-badge),
+#variantType:has(.has-badge) {
   overflow: visible !important;
   margin-top: 14px;
 }
@@ -4123,7 +4125,12 @@ img {
   color: #ee4d2d !important;
   font-weight: 800 !important;
 }
-.tier-hot-badge {
+.variant-btn.has-badge {
+  overflow: visible !important;
+  position: relative;
+}
+.tier-hot-badge,
+.pkg-badge {
   position: absolute;
   top: -11px;
   left: 50%;
@@ -4136,8 +4143,14 @@ img {
   border-radius: 20px;
   white-space: nowrap;
   z-index: 10;
-  box-shadow: 0 1px 4px rgba(234, 88, 12, 0.2);
+  box-shadow: 0 1px 4px rgba(234, 88, 12, 0.25);
+  pointer-events: none;
+}
+.tier-hot-badge {
   opacity: 0.85;
+}
+.pkg-badge {
+  opacity: 1;
 }
 /* === Anchor pricing === */
 .tier-price-row {

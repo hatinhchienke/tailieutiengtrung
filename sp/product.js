@@ -138,10 +138,11 @@ const PRODUCTS = {
       'Luyện gõ trên máy tính hoặc điện thoại'
     ],
     pkgKey: 'luyen',
+    defaultPackage: 'goi3',
     packages: [
       { id: 'goi1', amount: 49000, label: '49K', name: 'Gói 1 (HSK1-3)', content: 'tai lieu tieng trung 3' },
       { id: 'goi2', amount: 59000, label: '59K', name: 'Gói 2 (HSK4-6)', content: 'tai lieu luyen go 2' },
-      { id: 'goi3', amount: 99000, label: '99K', name: 'Gói 3 (Full 1-6)', content: 'tai lieu luyen go 3' }
+      { id: 'goi3', amount: 99000, label: '99K', name: 'Gói 3 (Full 1-6)', content: 'tai lieu luyen go 3', badge: 'Lựa chọn tốt nhất', isDefault: true }
     ],
     file: { amount: 49000, label: '49K', content: 'tai lieu tieng trung 3' }, // For fallback reference
     goi1: { amount: 49000, label: '49K', content: 'tai lieu tieng trung 3', isFile: true },
@@ -733,8 +734,14 @@ function openModal() {
   } else if (P.packages) {
     document.querySelector('.variant-label').innerHTML = '<i class="fas fa-box"></i> Chọn gói sản phẩm';
     let html = '';
-    P.packages.forEach((pkg, idx) => {
-      html += '<button class="variant-btn ' + (idx === 0 ? 'active' : '') + '" data-type="' + pkg.id + '" onclick="selectType(\'' + pkg.id + '\')" style="flex-direction:column;gap:4px;padding:12px 6px;height:auto;">' +
+    const defaultPkgId = P.defaultPackage || (P.packages.find(p => p.isDefault)?.id) || 'goi3';
+    currentType = defaultPkgId;
+    P.packages.forEach((pkg) => {
+      const isSelected = pkg.id === currentType;
+      const badgeText = pkg.badge || (pkg.id === 'goi3' ? 'Lựa chọn tốt nhất' : '');
+      const badgeHtml = badgeText ? '<span class="pkg-badge">' + badgeText + '</span>' : '';
+      html += '<button class="variant-btn ' + (isSelected ? 'active' : '') + (badgeText ? ' has-badge' : '') + '" data-type="' + pkg.id + '" onclick="selectType(\'' + pkg.id + '\')" style="flex-direction:column;gap:4px;padding:12px 6px;height:auto;position:relative;overflow:visible;">' +
+        badgeHtml +
         '<span class="variant-btn-text" style="font-size:12px;white-space:normal;line-height:1.3;text-align:center;">' + pkg.name + '</span>' +
         '<span class="variant-btn-sub" style="font-size:13px;font-weight:bold;">' + pkg.amount.toLocaleString('vi-VN') + '₫</span>' +
         '</button>';
@@ -743,7 +750,8 @@ function openModal() {
     variantRow.style.display = 'grid';
     variantRow.style.gridTemplateColumns = '1fr 1fr 1fr';
     variantRow.style.gap = '8px';
-    currentType = P.packages[0].id;
+    variantRow.style.overflow = 'visible';
+    variantRow.style.marginTop = '14px';
   } else {
     currentType = 'file';
     const bookBtn = document.getElementById('bookTypeBtn');
