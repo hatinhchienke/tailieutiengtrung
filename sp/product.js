@@ -1,16 +1,29 @@
 // ===== UTM TRACKING =====
+// Logic chính nằm ở /tracking.js (load trong <head>): lưu localStorage + cookie 30 ngày.
+// Fallback dưới đây chỉ chạy nếu /tracking.js không load được.
 (function () {
-  var params = new URLSearchParams(window.location.search);
-  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
-    var val = params.get(key);
-    if (val) sessionStorage.setItem(key, val);
-  });
+  if (window.LDPTracking) return;
+  try {
+    var params = new URLSearchParams(window.location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'campaign_id', 'id_campaign'].forEach(function (key) {
+      var val = params.get(key);
+      if (val) sessionStorage.setItem(key, val);
+    });
+  } catch (e) { /* ignore */ }
 })();
 function getUtmData() {
+  if (window.LDPTracking) {
+    try { return window.LDPTracking.getData(); } catch (e) { console.warn('Tracking err:', e); }
+  }
+  var ss = function (k) { try { return sessionStorage.getItem(k) || ''; } catch (e) { return ''; } };
+  var cid = ss('campaign_id') || ss('id_campaign');
   return {
-    utm_source: sessionStorage.getItem('utm_source') || '',
-    utm_medium: sessionStorage.getItem('utm_medium') || '',
-    utm_campaign: sessionStorage.getItem('utm_campaign') || ''
+    utm_source: ss('utm_source') || (cid ? 'ads' : ''),
+    utm_medium: ss('utm_medium'),
+    utm_campaign: ss('utm_campaign') || cid,
+    utm_content: ss('utm_content'),
+    utm_term: ss('utm_term'),
+    campaign_id: cid
   };
 }
 
@@ -922,7 +935,7 @@ async function submitOrder(e) {
 
   const now = new Date(), timestamp = now.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
   const utm = getUtmData();
-  const sheetData = { submittedAt: timestamp, name, phone, package: finalPackageName, source: 'sp-' + slug, type: isBook ? 'book' : 'file', utm_source: utm.utm_source || 'organic', utm_medium: utm.utm_medium, utm_campaign: utm.utm_campaign };
+  const sheetData = Object.assign({}, utm, { submittedAt: timestamp, name, phone, package: finalPackageName, source: 'sp-' + slug, type: isBook ? 'book' : 'file', utm_source: utm.utm_source || 'organic', utm_medium: utm.utm_medium || '', utm_campaign: utm.utm_campaign || '' });
   if (isBook) sheetData.address = document.getElementById('address').value.trim();
   // Gửi data lên Google Sheet (await đảm bảo gửi xong trước khi redirect)
   try {

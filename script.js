@@ -1,26 +1,36 @@
 // ===== UTM TRACKING =====
-// Đọc UTM parameters từ URL và lưu vào sessionStorage
+// Logic chính nằm ở /tracking.js (load trong <head>): lưu localStorage + cookie 30 ngày.
 // Khi chạy ads, thêm ?utm_source=facebook hoặc ?utm_source=tiktok vào link
+// Fallback dưới đây chỉ chạy nếu /tracking.js không load được.
 (function() {
-  const params = new URLSearchParams(window.location.search);
-  const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-  utmKeys.forEach(function(key) {
-    const val = params.get(key);
-    if (val) sessionStorage.setItem(key, val);
-  });
+  if (window.LDPTracking) return;
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'campaign_id', 'id_campaign'];
+    utmKeys.forEach(function(key) {
+      const val = params.get(key);
+      if (val) sessionStorage.setItem(key, val);
+    });
+  } catch (e) { /* ignore */ }
 })();
 
 function getUtmSource() {
-  return sessionStorage.getItem('utm_source') || 'organic';
+  return getUtmData().utm_source || 'organic';
 }
 
 function getUtmData() {
+  if (window.LDPTracking) {
+    try { return window.LDPTracking.getData(); } catch (e) { console.warn('Tracking err:', e); }
+  }
+  const ss = function(k) { try { return sessionStorage.getItem(k) || ''; } catch (e) { return ''; } };
+  const cid = ss('campaign_id') || ss('id_campaign');
   return {
-    utm_source: sessionStorage.getItem('utm_source') || '',
-    utm_medium: sessionStorage.getItem('utm_medium') || '',
-    utm_campaign: sessionStorage.getItem('utm_campaign') || '',
-    utm_content: sessionStorage.getItem('utm_content') || '',
-    utm_term: sessionStorage.getItem('utm_term') || ''
+    utm_source: ss('utm_source') || (cid ? 'ads' : ''),
+    utm_medium: ss('utm_medium'),
+    utm_campaign: ss('utm_campaign') || cid,
+    utm_content: ss('utm_content'),
+    utm_term: ss('utm_term'),
+    campaign_id: cid
   };
 }
 
@@ -502,6 +512,7 @@ async function submitOrder(e) {
   // 1. Google Sheet — fire and forget
   const utm = getUtmData();
   const sheetData = {
+    ...utm,
     submittedAt: timestamp,
     name: name,
     phone: phone,
@@ -509,8 +520,8 @@ async function submitOrder(e) {
     source: 'landing-tieng-trung-v2',
     type: currentType,
     utm_source: utm.utm_source || 'organic',
-    utm_medium: utm.utm_medium,
-    utm_campaign: utm.utm_campaign
+    utm_medium: utm.utm_medium || '',
+    utm_campaign: utm.utm_campaign || ''
   };
   if (currentType === 'book') {
     sheetData.address = document.getElementById('address').value.trim();

@@ -71,7 +71,13 @@ function doPost(e) {
       data.source,
       data.utm_source || 'organic',
       data.utm_medium || '',
-      data.utm_campaign || ''
+      data.utm_campaign || '',
+      // --- Các cột tracking bổ sung (thêm vào cuối, không ảnh hưởng cột cũ) ---
+      data.campaign_id || '',
+      data.utm_content || '',
+      data.fbclid || data.ttclid || data.gclid || '',
+      data.tracking_origin || '',
+      data.landing_page || ''
     ]);
     
     // ====== BƯỚC 2: GỬI THÔNG BÁO QUA TELEGRAM ======
@@ -91,6 +97,7 @@ function doPost(e) {
       lines.push('🌐 Nguon: ' + data.source);
       lines.push('📢 Nguon QC: ' + utmLabel);
       if (data.utm_campaign) lines.push('📣 Chien dich: ' + data.utm_campaign);
+      if (data.campaign_id && data.campaign_id !== data.utm_campaign) lines.push('🆔 Campaign ID: ' + data.campaign_id);
       lines.push('━━━━━━━━━━━━━━━');
       lines.push('👉 Zalo: https://zalo.me/' + data.phone);
       
@@ -137,7 +144,7 @@ function doPost(e) {
 // ===== CẬP NHẬT HEADER GOOGLE SHEET =====
 // Thêm 3 cột mới vào cuối hàng header (sau cột "source"):
 //
-//   ... | source | Nguồn QC | Kênh QC | Chiến dịch
+//   ... | source | Nguồn QC | Kênh QC | Chiến dịch | Campaign ID | Nội dung QC | Click ID | Tracking từ | Landing page
 //
 // ===== CÁCH ĐẶT LINK ADS =====
 // 
