@@ -24,17 +24,17 @@ const PACKAGE_DATA = {
     id: 'tuvung'
   },
   'Luyện gõ Hán tự (Gói 1: HSK1-3) - 49K': {
-    url: 'https://docs.google.com/spreadsheets/d/1EAnLyd6j_mibVJJx_5LoziN6cSP91c6H-QAxJbQhTmU/copy',
+    url: 'https://docs.google.com/spreadsheets/d/1pIe-bepiTkhfMHNoHYf4kPb_SyRoK1AMEpTd-2f_230/copy',
     password: 'LG41WIN',
     id: 'luyen'
   },
   'Luyện gõ Hán tự (Gói 2: HSK4-6) - 59K': {
-    url: 'https://docs.google.com/spreadsheets/d/1w8OM42fUP_65tqEpvzk6-wLTwatVHGpfkKPFQoFjinQ/copy',
+    url: 'https://docs.google.com/spreadsheets/d/1_MegZZbsWJYBQnFLbbc0PHqxi2ioMfdpkIe2kcqlAUQ/copy',
     password: 'LG99PRO',
     id: 'luyen'
   },
   'Luyện gõ Hán tự (Gói 3: HSK1-6) - 99K': {
-    url: 'https://docs.google.com/spreadsheets/d/1OQ_j0UN55SSoLXEqhNwHJqy2fV6sI7vM381_TvldYaY/copy',
+    url: 'https://docs.google.com/spreadsheets/d/1QuzDc6_SIhEL8drjwXVVu0W9LEBiK5o7QU08qOS1_k8/copy',
     password: 'LG88MAX',
     id: 'luyen'
   },
