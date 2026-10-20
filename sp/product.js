@@ -982,12 +982,22 @@ async function submitOrder(e) {
 
 // ============ QR PAYMENT FUNCTIONS ============
 function generateQR(pkg, amount, content) {
-  const bankId = 'MB';
   const accountNo = '0868206574';
-  const template = 'compact2';
-  const qrUrl = `https://img.vietqr.io/image/${bankId}-${accountNo}-${template}.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent('HOANG DIEM HUE')}`;
+  const des = encodeURIComponent(content);
+  // img.vietqr.io now returns SVG (with embedded base64 PNG + strict CSP) for .png URLs,
+  // which fails in FB/iOS in-app browsers → use SePay (real PNG) first, VietQR as fallback.
+  const qrSources = [
+    `https://qr.sepay.vn/img?acc=${accountNo}&bank=MBBank&amount=${amount}&des=${des}&template=compact`,
+    `https://img.vietqr.io/image/MB-${accountNo}-compact2.png?amount=${amount}&addInfo=${des}&accountName=${encodeURIComponent('HOANG DIEM HUE')}`
+  ];
 
-  document.getElementById('qrImage').src = qrUrl;
+  const img = document.getElementById('qrImage');
+  let idx = 0;
+  img.onerror = function () {
+    idx++;
+    if (idx < qrSources.length) img.src = qrSources[idx];
+  };
+  img.src = qrSources[0];
   document.getElementById('qrAmount').textContent = amount.toLocaleString('vi-VN') + '₫';
   document.getElementById('qrContent').textContent = content;
   document.getElementById('qrPkgInfo').textContent = '📦 ' + pkg;
