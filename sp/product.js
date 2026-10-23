@@ -906,6 +906,40 @@ function setupFormForType(type) {
   document.getElementById('noteBookBottom').classList.toggle('hidden', !isBook);
 }
 
+// Tránh bắn trùng lặp InitiateCheckout nhiều lần trong 1 phiên duyệt web
+function trackInitiateCheckoutOnce(packageName, amount, slug, phone) {
+  try {
+    const cleanPhone = (phone || '').replace(/\D/g, '');
+    const sessionKey = 'fb_ic_' + (cleanPhone || 'session') + '_' + (slug || 'sp');
+    if (sessionStorage.getItem(sessionKey)) {
+      console.log('InitiateCheckout đã được ghi nhận trong phiên, bỏ qua bắn trùng:', sessionKey);
+      return;
+    }
+    sessionStorage.setItem(sessionKey, Date.now().toString());
+
+    if (typeof fbq !== 'undefined') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: packageName,
+        content_ids: slug ? [slug] : [],
+        content_type: 'product',
+        value: amount,
+        currency: 'VND'
+      });
+    }
+    if (typeof ttq !== 'undefined') {
+      ttq.track('InitiateCheckout', {
+        content_name: packageName,
+        content_id: slug,
+        content_type: 'product',
+        value: amount,
+        currency: 'VND'
+      });
+    }
+  } catch (err) {
+    if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_name: packageName, value: amount, currency: 'VND' });
+  }
+}
+
 async function submitOrder(e) {
   e.preventDefault();
   const name = document.getElementById('fullName').value.trim();
@@ -935,7 +969,17 @@ async function submitOrder(e) {
 
   const now = new Date(), timestamp = now.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
   const utm = getUtmData();
-  const sheetData = Object.assign({}, utm, { submittedAt: timestamp, name, phone, package: finalPackageName, source: 'sp-' + slug, type: isBook ? 'book' : 'file', utm_source: utm.utm_source || 'organic', utm_medium: utm.utm_medium || '', utm_campaign: utm.utm_campaign || '' });
+  const sheetData = Object.assign({}, utm, {
+    submittedAt: timestamp,
+    name,
+    phone,
+    package: finalPackageName,
+    source: 'sp-' + slug,
+    type: isBook ? 'book' : 'file',
+    utm_source: utm.utm_source || 'organic',
+    utm_medium: utm.utm_medium || '',
+    utm_campaign: utm.campaign_id || utm.utm_campaign || ''
+  });
   if (isBook) sheetData.address = document.getElementById('address').value.trim();
   // Gửi data lên Google Sheet (await đảm bảo gửi xong trước khi redirect)
   try {
@@ -946,8 +990,7 @@ async function submitOrder(e) {
   if (typeof ttq !== 'undefined') { ttq.track('SubmitForm', { content_name: finalPackageName, content_id: slug, content_type: 'product', value: pricing.amount, currency: 'VND' }); }
 
   if (isBook) {
-    if (typeof fbq !== 'undefined') { fbq('track', 'InitiateCheckout', { content_name: finalPackageName, content_ids: [slug], content_type: 'product', value: pricing.amount, currency: 'VND' }); }
-    if (typeof ttq !== 'undefined') { ttq.track('InitiateCheckout', { content_name: finalPackageName, content_id: slug, content_type: 'product', value: pricing.amount, currency: 'VND' }); }
+    trackInitiateCheckoutOnce(finalPackageName, pricing.amount, slug, phone);
     if (typeof fbq !== 'undefined') { fbq('track', 'Purchase', { content_name: finalPackageName, content_ids: [slug], content_type: 'product', value: pricing.amount, currency: 'VND' }); }
     if (typeof ttq !== 'undefined') { ttq.track('CompletePayment', { content_name: finalPackageName, content_id: slug, content_type: 'product', value: pricing.amount, currency: 'VND' }); }
     const tp = new URLSearchParams({ name, phone, pkg: finalPackageName, type: 'book' });
@@ -962,7 +1005,7 @@ async function submitOrder(e) {
     const payRes=await fetch('/api/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({packageName:finalPackageName,name,phone,amount:pricing.amount})});
     if(!payRes.ok)throw new Error('API error');
     const{checkoutUrl}=await payRes.json();
-    if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:finalPackageName,value:pricing.amount,currency:'VND'});
+    trackInitiateCheckoutOnce(finalPackageName, pricing.amount, slug, phone);
     window.location.href=checkoutUrl;
     */
   } catch (err) {
@@ -971,8 +1014,7 @@ async function submitOrder(e) {
     generateQR(selectedPackage, pricing.amount, pricing.content);
     showStep('step3');
 
-    if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_name: finalPackageName, content_ids: [slug], content_type: 'product', value: pricing.amount, currency: 'VND' });
-    if (typeof ttq !== 'undefined') ttq.track('InitiateCheckout', { content_name: finalPackageName, content_id: slug, content_type: 'product', value: pricing.amount, currency: 'VND' });
+    trackInitiateCheckoutOnce(finalPackageName, pricing.amount, slug, phone);
 
     btn.disabled = false;
     document.getElementById('btnText').classList.remove('hidden');

@@ -485,6 +485,28 @@ function copyTransferContent() {
   });
 }
 
+// Tránh bắn trùng lặp InitiateCheckout nhiều lần trong 1 phiên duyệt web
+function trackInitiateCheckoutOnce(packageName, value, phone) {
+  try {
+    const cleanPhone = (phone || '').replace(/\D/g, '');
+    const sessionKey = 'fb_ic_' + (cleanPhone || 'session') + '_main';
+    if (sessionStorage.getItem(sessionKey)) {
+      console.log('InitiateCheckout đã được ghi nhận trong phiên, bỏ qua bắn trùng:', sessionKey);
+      return;
+    }
+    sessionStorage.setItem(sessionKey, Date.now().toString());
+
+    if (typeof fbq !== 'undefined') {
+      fbq('track', 'InitiateCheckout', { content_name: packageName, value: value, currency: 'VND' });
+    }
+    if (typeof ttq !== 'undefined') {
+      ttq.track('InitiateCheckout', { content_name: packageName, value: value, currency: 'VND' });
+    }
+  } catch (err) {
+    if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { content_name: packageName, value: value, currency: 'VND' });
+  }
+}
+
 async function submitOrder(e) {
   e.preventDefault();
   const name = document.getElementById('fullName').value.trim();
@@ -521,7 +543,7 @@ async function submitOrder(e) {
     type: currentType,
     utm_source: utm.utm_source || 'organic',
     utm_medium: utm.utm_medium || '',
-    utm_campaign: utm.utm_campaign || ''
+    utm_campaign: utm.campaign_id || utm.utm_campaign || ''
   };
   if (currentType === 'book') {
     sheetData.address = document.getElementById('address').value.trim();
@@ -540,10 +562,10 @@ async function submitOrder(e) {
 
   // === BOOK ORDER: redirect to thank you page ===
   if (currentType === 'book') {
+    const priceMatchB = selectedPackage.match(/(\d+)K/);
+    const valB = priceMatchB ? parseInt(priceMatchB[1]) * 1000 : 0;
+    trackInitiateCheckoutOnce(selectedPackage, valB, phone);
     if (typeof fbq !== 'undefined') {
-      const priceMatchB = selectedPackage.match(/(\d+)K/);
-      const valB = priceMatchB ? parseInt(priceMatchB[1]) * 1000 : 0;
-      fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: valB, currency: 'VND' });
       fbq('track', 'Purchase', { content_name: selectedPackage, value: valB, currency: 'VND' });
     }
     const thanksParams = new URLSearchParams({
@@ -583,11 +605,9 @@ async function submitOrder(e) {
     const { checkoutUrl } = await payRes.json();
 
     // FB Pixel: InitiateCheckout
-    if (typeof fbq !== 'undefined') {
-      const priceMatch2 = selectedPackage.match(/(\d+)K/);
-      const val2 = priceMatch2 ? parseInt(priceMatch2[1]) * 1000 : 0;
-      fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: val2, currency: 'VND' });
-    }
+    const priceMatch2 = selectedPackage.match(/(\d+)K/);
+    const val2 = priceMatch2 ? parseInt(priceMatch2[1]) * 1000 : 0;
+    trackInitiateCheckoutOnce(selectedPackage, val2, phone);
 
     // Redirect to PayOS checkout
     window.location.href = checkoutUrl;
@@ -599,11 +619,9 @@ async function submitOrder(e) {
     generateQR(selectedPackage);
     showStep('step3');
 
-    if (typeof fbq !== 'undefined') {
-      const priceMatch3 = selectedPackage.match(/(\d+)K/);
-      const val3 = priceMatch3 ? parseInt(priceMatch3[1]) * 1000 : 0;
-      fbq('track', 'InitiateCheckout', { content_name: selectedPackage, value: val3, currency: 'VND' });
-    }
+    const priceMatch3 = selectedPackage.match(/(\d+)K/);
+    const val3 = priceMatch3 ? parseInt(priceMatch3[1]) * 1000 : 0;
+    trackInitiateCheckoutOnce(selectedPackage, val3, phone);
 
     btn.disabled = false;
     document.getElementById('btnText').classList.remove('hidden');

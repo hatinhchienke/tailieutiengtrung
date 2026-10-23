@@ -16,11 +16,15 @@
   var COOKIE_KEY = 'ldp_trk';
   var TTL_DAYS = 30; // >= 7 ngày theo yêu cầu
   var TTL_MS = TTL_DAYS * 24 * 60 * 60 * 1000;
+  // Trong 7 ngày sau khi click QC (giống cửa sổ "7 ngày sau click" của Meta), lượt vào sau
+  // KHÔNG có ID chiến dịch (chỉ có fbclid: bài viết page, link trong comment, Messenger...)
+  // sẽ KHÔNG ghi đè chiến dịch QC đã lưu => lead không bị rơi vào "Facebook Tự nhiên".
+  var PROTECT_MS = 7 * 24 * 60 * 60 * 1000;
 
   // Các tham số được coi là "tracking" (có 1 trong số này trên URL => ghi đè dữ liệu cũ)
   var TRACKING_KEYS = [
     'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id',
-    'campaign_id', 'id_campaign', 'adset_id', 'ad_id',
+    'campaign_id', 'id_campaign', 'campaign_name', 'utm_campaign_name', 'adset_id', 'ad_id',
     'fbclid', 'ttclid', 'gclid'
   ];
 
@@ -43,6 +47,16 @@
       }
     }
     return found ? data : null;
+  }
+
+  // Dữ liệu tracking có ID chiến dịch QC không
+  function hasCampaign(d) {
+    return !!(d && (d.campaign_id || d.id_campaign || d.utm_id || d.utm_campaign));
+  }
+
+  // Bản ghi đã lưu có chiến dịch QC và còn trong 7 ngày bảo vệ
+  function isProtected(rec) {
+    return !!(rec && hasCampaign(rec.data) && rec.savedAt && (Date.now() - rec.savedAt) <= PROTECT_MS);
   }
 
   // ---------- Storage helpers (localStorage + cookie fallback) ----------
@@ -129,16 +143,18 @@
 
   function normalize(raw, origin, rec) {
     raw = raw || {};
-    var campaignId = raw.campaign_id || raw.id_campaign || raw.utm_id || '';
+    // Bắt ID chiến dịch: ưu tiên campaign_id, id_campaign, utm_id, fallback utm_campaign
+    var campaignId = raw.campaign_id || raw.id_campaign || raw.utm_id || raw.utm_campaign || '';
+    var utmCampaign = raw.utm_campaign || campaignId || '';
     var source = inferSource(raw);
     return {
       utm_source: source || 'organic',
       utm_medium: raw.utm_medium || '',
-      // Nếu link chỉ có campaign_id (không có utm_campaign) thì vẫn hiển thị ở cột "Chiến dịch"
-      utm_campaign: raw.utm_campaign || campaignId || '',
+      utm_campaign: utmCampaign,
       utm_content: raw.utm_content || '',
       utm_term: raw.utm_term || '',
       campaign_id: campaignId,
+      campaign_name: raw.campaign_name || raw.utm_campaign_name || '',
       adset_id: raw.adset_id || '',
       ad_id: raw.ad_id || '',
       fbclid: raw.fbclid || '',
@@ -152,8 +168,13 @@
   }
 
   // Lấy dữ liệu tracking khi submit: URL hiện tại -> storage -> organic
+  // (URL không có ID chiến dịch thì ưu tiên chiến dịch QC đã lưu trong 7 ngày)
   function getData() {
     var fromUrl = readFromUrl();
+    if (fromUrl && !hasCampaign(fromUrl)) {
+      var kept = load();
+      if (isProtected(kept)) return normalize(kept.data, 'storage_kept', kept);
+    }
     if (fromUrl) {
       return normalize(fromUrl, 'url', {
         landing_page: (window.location.pathname || '') + (window.location.search || ''),
@@ -168,7 +189,9 @@
 
   // ---------- Chạy ngay khi trang load ----------
   var initial = readFromUrl();
-  if (initial) save(initial); // Chỉ ghi đè khi URL có tham số tracking mới
+  // Chỉ ghi đè khi URL có tham số tracking mới, và KHÔNG để lượt vào thiếu ID chiến dịch
+  // ghi đè chiến dịch QC đã lưu trong 7 ngày
+  if (initial && (hasCampaign(initial) || !isProtected(load()))) save(initial);
 
   window.LDPTracking = { getData: getData, clear: clear, keys: TRACKING_KEYS.slice() };
 })(window, document);

@@ -53,12 +53,35 @@ function testTelegram() {
   Logger.log(result);
 }
 
+// ⭐ HÀM TEST TRA TÊN CHIẾN DỊCH - Thay ID bên dưới bằng 1 ID có trong tab "Campaigns" rồi bấm Run
+function testLookup() {
+  Logger.log('Ten chien dich: [' + lookupCampaignName('120250765984090262') + ']');
+}
+
+// Tra tên chiến dịch từ ID trong tab "Campaigns" (cột A = ID chiến dịch, cột B = Tên chiến dịch)
+// Dùng khi link QC chưa có tham số campaign_name. Không có tab này thì trả về ''.
+function lookupCampaignName(campaignId) {
+  if (!campaignId) return '';
+  try {
+    var tab = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Campaigns');
+    if (!tab) return '';
+    var rows = tab.getDataRange().getDisplayValues();
+    var id = String(campaignId).trim();
+    for (var i = 0; i < rows.length; i++) {
+      if (String(rows[i][0]).trim() === id) return rows[i][1] || '';
+    }
+  } catch (err) { /* ignore */ }
+  return '';
+}
+
 function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var telegramStatus = '';
   
   try {
     var data = JSON.parse(e.postData.contents);
+    
+    var campaignName = data.campaign_name || lookupCampaignName(data.campaign_id || data.utm_campaign);
     
     // ====== BƯỚC 1: GHI DATA VÀO SHEET TRƯỚC (luôn thành công) ======
     sheet.appendRow([
@@ -71,19 +94,15 @@ function doPost(e) {
       data.source,
       data.utm_source || 'organic',
       data.utm_medium || '',
-      data.utm_campaign || '',
-      // --- Các cột tracking bổ sung (thêm vào cuối, không ảnh hưởng cột cũ) ---
-      data.campaign_id || '',
-      data.utm_content || '',
-      data.fbclid || data.ttclid || data.gclid || '',
-      data.tracking_origin || '',
-      data.landing_page || ''
+      data.campaign_id || data.utm_campaign || '',  // Cột J: ID Chiến dịch (ưu tiên campaign_id, fallback utm_campaign)
+      campaignName  // Cột K: Tên chiến dịch
     ]);
     
     // ====== BƯỚC 2: GỬI THÔNG BÁO QUA TELEGRAM ======
     try {
       var isBook = data.type === 'book';
       var utmLabel = data.utm_source || 'organic';
+      var campId = data.campaign_id || data.utm_campaign || '';
       
       var lines = [];
       lines.push((isBook ? '📚' : '📄') + ' DON HANG MOI');
@@ -96,8 +115,8 @@ function doPost(e) {
       lines.push('🕐 Thoi gian: ' + data.submittedAt);
       lines.push('🌐 Nguon: ' + data.source);
       lines.push('📢 Nguon QC: ' + utmLabel);
-      if (data.utm_campaign) lines.push('📣 Chien dich: ' + data.utm_campaign);
-      if (data.campaign_id && data.campaign_id !== data.utm_campaign) lines.push('🆔 Campaign ID: ' + data.campaign_id);
+      if (campId) lines.push('📣 Chien dich: ' + campId);
+      if (campaignName) lines.push('🏷 Ten chien dich: ' + campaignName);
       lines.push('━━━━━━━━━━━━━━━');
       lines.push('👉 Zalo: https://zalo.me/' + data.phone);
       
@@ -144,10 +163,12 @@ function doPost(e) {
 // ===== CẬP NHẬT HEADER GOOGLE SHEET =====
 // Thêm 3 cột mới vào cuối hàng header (sau cột "source"):
 //
-//   ... | source | Nguồn QC | Kênh QC | Chiến dịch | Campaign ID | Nội dung QC | Click ID | Tracking từ | Landing page
+//   ... | source | Nguồn QC | Kênh QC | Chiến dịch | Tên chiến dịch
 //
 // ===== CÁCH ĐẶT LINK ADS =====
 // 
+// Facebook Ads (ô "Tham số URL" của quảng cáo) — có thêm campaign_name để ghi cột K:
+//   utm_source=facebook&utm_medium=cpc&utm_campaign={{campaign.id}}&utm_content={{ad.id}}&campaign_name={{campaign.name}}
 // Facebook Ads:
 //   https://tailieutiengtrung.com/sp/tron-bo?utm_source=facebook&utm_medium=cpc&utm_campaign=ten_chien_dich
 //
